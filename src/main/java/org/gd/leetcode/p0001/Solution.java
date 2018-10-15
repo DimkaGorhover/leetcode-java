@@ -1,21 +1,29 @@
 package org.gd.leetcode.p0001;
 
+import java.util.HashMap;
+
+/**
+ * <a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a>
+ */
 public class Solution {
 
-    public int[] twoSum(int[] nums, int target) {
+    private static final int[] TWO_EL = {0, 1};
 
-        int l1 = nums.length;
-        int l2 = nums.length;
-
-        bigLoop:
-        for (int i = 0; i < l1; i++) {
-            for (int j = i + 1; j < l2; j++) {
-                final int sum = nums[i] + nums[j];
-                if (target == sum) {
-                    return new int[]{i, j};
-                }
-            }
+    private static int[] hashTable(int[] nums, int target) {
+        switch (nums.length) {
+            case 2: return TWO_EL;
+        }
+        Integer                   j;
+        HashMap<Integer, Integer> map = new HashMap<>(nums.length);
+        for (int i = 0; i < nums.length; i++) {
+            if ((j = map.get(target - nums[i])) != null)
+                return new int[]{i, j};
+            map.put(nums[i], i);
         }
         return null;
+    }
+
+    public int[] twoSum(int[] nums, int target) {
+        return hashTable(nums, target);
     }
 }
