@@ -23,6 +23,7 @@ class SolutionTest {
                 Arguments.arguments("IV", 4),
                 Arguments.arguments("IX", 9),
                 Arguments.arguments("LVIII", 58),
+                Arguments.arguments("DCCIX", 709),
                 Arguments.arguments("MCMXCIV", 1994)
         );
     }
