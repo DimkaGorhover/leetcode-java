@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * <a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a>
  */
-public class Solution {
+class Solution {
 
     private static final int[] TWO_EL = {0, 1};
 
