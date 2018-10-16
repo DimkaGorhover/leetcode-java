@@ -45,7 +45,7 @@ class SolutionTest {
                 Arguments.arguments(
                         listNode(9),
                         listNode(1, 9, 9, 9, 9, 9, 9, 9, 9, 9),
-                        listNode(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                        listNode(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                 ),
                 Arguments.arguments(
                         listNode(0),
@@ -55,7 +55,7 @@ class SolutionTest {
                 Arguments.arguments(
                         listNode(2, 4, 3),
                         listNode(5, 6, 4),
-                        listNode(8, 0, 7)
+                        listNode(7, 0, 8)
                 )
         );
     }

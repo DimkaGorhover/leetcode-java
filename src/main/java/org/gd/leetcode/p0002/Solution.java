@@ -1,21 +1,6 @@
 package org.gd.leetcode.p0002;
 
-import java.math.BigInteger;
-
 class Solution {
-
-    private static BigInteger sum(ListNode l1) {
-        BigInteger sum = BigInteger.ZERO;
-        int        m   = 0;
-        while (l1 != null) {
-            final BigInteger pow = BigInteger.TEN.pow(m);
-            final BigInteger val = BigInteger.valueOf(l1.val);
-            sum = sum.add(val.multiply(pow));
-            l1 = l1.next;
-            m++;
-        }
-        return sum;
-    }
 
     private static ListNode swap(ListNode res, int i) {
         ListNode tmp = new ListNode(i);
@@ -23,27 +8,23 @@ class Solution {
         return tmp;
     }
 
-
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        BigInteger sum = sum(l1).add(sum(l2));
 
-        if (sum.compareTo(BigInteger.ZERO) <= 0)
-            return new ListNode(sum.intValue());
+        int sum = 0;
 
-        ListNode res = null, head = null;
-        while (sum.compareTo(BigInteger.ZERO) > 0) {
-            final BigInteger mod = BigInteger.TEN;
-            int i = sum.mod(mod).intValue();
-            if (res == null) {
-                res = head = new ListNode(i);
-            } else {
-                res = swap(res, i);
-            }
-            sum = sum.subtract(BigInteger.valueOf(i));
-            sum = sum.divide(BigInteger.TEN);
+        final ListNode head = new ListNode(0);
+
+        ListNode tail = head;
+
+        while (l1 != null || l2 != null) {
+            sum = sum + (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val);
+            tail = swap(tail, sum % 10);
+            sum /= 10;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
-        return head;
+        if (sum != 0)
+            swap(tail, sum);
+        return head.next;
     }
-
-
 }
