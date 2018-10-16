@@ -3,8 +3,10 @@ package org.gd.leetcode.p0009;
 public class Solution {
 
     public boolean isPalindrome(int x) {
-        final String s1 = String.valueOf(x);
-        final String s2 = new StringBuilder().append(x).reverse().toString();
-        return s1.equals(s2);
+        if (x < 0) return false;
+        else if (x < 10) return true;
+        int num = x, reverse = 0;
+        do { reverse = (reverse * 10) + (num % 10); } while ((num /= 10) > 0);
+        return x == reverse;
     }
 }
