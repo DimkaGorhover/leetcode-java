@@ -17,9 +17,20 @@ plugins {
 // Define the main class for the application
 mainClassName = 'App'
 
+ext {
+    versions = [
+            junitPlatform: '5.3.1'
+    ]
+}
+
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compileOnly 'org.projectlombok:lombok:1.18.2'
+
+    testCompile 'org.projectlombok:lombok:1.18.2'
+    testCompile "org.junit.jupiter:junit-jupiter-api:${versions.junitPlatform}"
+    testCompile "org.junit.jupiter:junit-jupiter-engine:${versions.junitPlatform}"
+    testCompile "org.junit.jupiter:junit-jupiter-params:${versions.junitPlatform}"
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -27,4 +38,18 @@ repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+}
+
+test {
+
+    useJUnitPlatform {
+        excludeTags 'integration'
+        includeEngines 'junit-jupiter'
+    }
+
+    enableAssertions = true
+    testLogging.showStandardStreams = false
+
+    include '**/**Test.*'
+    include '**/**Tests.*'
 }
