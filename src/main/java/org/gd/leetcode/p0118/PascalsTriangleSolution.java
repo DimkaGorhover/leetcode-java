@@ -12,13 +12,15 @@ public class PascalsTriangleSolution {
     private static final List<Integer>
             SINGLE_VALUE_LINE = singletonList(1),
             TWO_VALUE_LINE    = asList(1, 1),
-            THREE_VALUE_LINE  = asList(1, 2, 1);
+            THREE_VALUE_LINE  = asList(1, 2, 1),
+            FOUR_VALUE_LINE   = asList(1, 3, 3, 1);
 
     private static final List<List<Integer>>
             ZERO  = emptyList(),
             ONE   = singletonList(SINGLE_VALUE_LINE),
             TWO   = asList(SINGLE_VALUE_LINE, TWO_VALUE_LINE),
-            THREE = asList(SINGLE_VALUE_LINE, TWO_VALUE_LINE, THREE_VALUE_LINE);
+            THREE = asList(SINGLE_VALUE_LINE, TWO_VALUE_LINE, THREE_VALUE_LINE),
+            FOUR  = asList(SINGLE_VALUE_LINE, TWO_VALUE_LINE, THREE_VALUE_LINE, FOUR_VALUE_LINE);
 
     public List<List<Integer>> generate(int numRows) {
         if (numRows < 0)
@@ -28,6 +30,7 @@ public class PascalsTriangleSolution {
             case 1: return ONE;
             case 2: return TWO;
             case 3: return THREE;
+            case 4: return FOUR;
         }
         final List<List<Integer>> integers = new ArrayList<>(numRows);
         integers.add(SINGLE_VALUE_LINE);
