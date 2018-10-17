@@ -1,5 +1,29 @@
 package org.gd.leetcode.p0235;
 
+
+/*
+-------------------------------------------------------------------------------
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        int s = p.val;
+        int b = q.val;
+        if (s > b) {
+            s = q.val;
+            b = p.val;
+        }
+        while (root != null && (root.val > b || root.val < s)) {
+            if (root.val > b) {
+                root = root.left;
+            } else {
+                root = root.right;
+            }
+        }
+        return root;
+    }
+}
+-------------------------------------------------------------------------------
+ */
+
 /**
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
  *
@@ -25,19 +49,15 @@ class Solution {
         RTreeNode rTreeNode1 = traversing0(null, node, p);
         RTreeNode rTreeNode2 = traversing0(null, node, q);
 
-        while (true) {
+        while (rTreeNode1.val() != rTreeNode2.val()) {
             if (rTreeNode1.level < rTreeNode2.level) {
                 rTreeNode2 = rTreeNode2.parent;
             } else if (rTreeNode1.level > rTreeNode2.level) {
                 rTreeNode1 = rTreeNode1.parent;
             } else {
-                break;
+                rTreeNode1 = rTreeNode1.parent;
+                rTreeNode2 = rTreeNode2.parent;
             }
-        }
-
-        while (rTreeNode1.val() != rTreeNode2.val()) {
-            rTreeNode1 = rTreeNode1.parent;
-            rTreeNode2 = rTreeNode2.parent;
         }
 
         return rTreeNode1.val;
