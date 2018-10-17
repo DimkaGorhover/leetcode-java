@@ -17,12 +17,38 @@ class PascalsTriangleSolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+                Arguments.arguments(1, List.of(
+                        List.of(1)
+                )),
+                Arguments.arguments(2, List.of(
+                        List.of(1),
+                        List.of(1, 1)
+                )),
+                Arguments.arguments(3, List.of(
+                        List.of(1),
+                        List.of(1, 1),
+                        List.of(1, 2, 1)
+                )),
+                Arguments.arguments(4, List.of(
+                        List.of(1),
+                        List.of(1, 1),
+                        List.of(1, 2, 1),
+                        List.of(1, 3, 3, 1)
+                )),
                 Arguments.arguments(5, List.of(
                         List.of(1),
                         List.of(1, 1),
                         List.of(1, 2, 1),
                         List.of(1, 3, 3, 1),
                         List.of(1, 4, 6, 4, 1)
+                )),
+                Arguments.arguments(6, List.of(
+                        List.of(1),
+                        List.of(1, 1),
+                        List.of(1, 2, 1),
+                        List.of(1, 3, 3, 1),
+                        List.of(1, 4, 6, 4, 1),
+                        List.of(1, 5, 10, 10, 5, 1)
                 ))
         );
     }
