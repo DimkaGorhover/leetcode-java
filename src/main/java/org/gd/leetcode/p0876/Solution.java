@@ -2,7 +2,7 @@ package org.gd.leetcode.p0876;
 
 import java.util.ArrayList;
 
-public class Solution {
+class Solution {
 
     public ListNode middleNode(ListNode head) {
         if (head == null) return null;

@@ -6,7 +6,7 @@ package org.gd.leetcode.p0024;
  * @author Gorkhover D.
  * @since 2018-10-18
  */
-public class Solution {
+class Solution {
 
     public ListNode swapPairs(ListNode head) {
         if (head == null) return null;

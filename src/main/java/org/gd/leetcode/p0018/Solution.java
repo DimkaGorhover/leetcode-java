@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Solution {
+class Solution {
 
     private static List<List<Integer>> wrap(int[] nums) {
         final ArrayList<Integer> integers = new ArrayList<>(nums.length);
