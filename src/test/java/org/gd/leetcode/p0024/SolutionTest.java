@@ -19,22 +19,10 @@ class SolutionTest {
     private static Stream<Arguments> args() {
         return Stream.of(
                 arguments(
-                        toListNode(1, 2, 3, 4, 5, 6, 7, 8),
-                        toListNode(2, 1, 4, 3, 6, 5, 8, 7)
+                        ListNode.of(1, 2, 3, 4, 5, 6, 7, 8),
+                        ListNode.of(2, 1, 4, 3, 6, 5, 8, 7)
                 )
         );
-    }
-
-    private static ListNode toListNode(int... values) {
-        requireNonNull(values, "values");
-        ListNode root = new ListNode(values[0]), node = root, tmp;
-        for (int i = 1; i < values.length; i++) {
-            tmp = new ListNode(values[i]);
-            node.next = tmp;
-            node = tmp;
-        }
-        return root;
-
     }
 
     @ParameterizedTest

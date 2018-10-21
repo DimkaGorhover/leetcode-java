@@ -22,7 +22,7 @@ class SolutionTest {
                 Arguments.arguments(new int[]{1, 2, 3, 4, 5, 6}, 4)
 
         ).map(arguments -> {
-            final ListNode root  = toListNode((int[]) arguments.get()[0]);
+            final ListNode root  = ListNode.of((int[]) arguments.get()[0]);
             final int      value = (int) arguments.get()[1];
 
             ListNode node = root, middle = null;
@@ -34,17 +34,6 @@ class SolutionTest {
             requireNonNull(middle, "middle");
             return Arguments.arguments(root, middle);
         });
-    }
-
-    private static ListNode toListNode(int... ints) {
-        final ListNode root = new ListNode(ints[0]);
-        ListNode node = root, tmp;
-        for (int i = 1; i < ints.length; i++) {
-            tmp = new ListNode(ints[i]);
-            node.next = tmp;
-            node = tmp;
-        }
-        return root;
     }
 
     @ParameterizedTest
