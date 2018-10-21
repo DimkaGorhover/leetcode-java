@@ -4,6 +4,7 @@ package org.gd.leetcode.p0083;
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
  *
  * @author Gorkhover D.
+ * @see org.gd.leetcode.p0082.Solution
  * @since 2018-10-21
  */
 class Solution {

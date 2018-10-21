@@ -18,44 +18,28 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SolutionTest {
 
-    private static ListNode listNode(int... values) {
-        final int length = values.length;
-        switch (length) {
-            case 0: throw new IllegalArgumentException();
-            case 1: return new ListNode(values[0]);
-        }
-        final ListNode head     = new ListNode(values[0]);
-        ListNode       listNode = head, tmp;
-        for (int i = 1; i < values.length; i++) {
-            tmp = new ListNode(values[i]);
-            listNode.next = tmp;
-            listNode = tmp;
-        }
-        return head;
-    }
-
     @NonNull
     private static Stream<Arguments> argumentsStream() {
         return Stream.of(
                 Arguments.arguments(
-                        listNode(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-                        listNode(5, 6, 4),
-                        listNode(6, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+                        ListNode.of(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+                        ListNode.of(5, 6, 4),
+                        ListNode.of(6, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                 ),
                 Arguments.arguments(
-                        listNode(9),
-                        listNode(1, 9, 9, 9, 9, 9, 9, 9, 9, 9),
-                        listNode(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+                        ListNode.of(9),
+                        ListNode.of(1, 9, 9, 9, 9, 9, 9, 9, 9, 9),
+                        ListNode.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                 ),
                 Arguments.arguments(
-                        listNode(0),
-                        listNode(0),
-                        listNode(0)
+                        ListNode.of(0),
+                        ListNode.of(0),
+                        ListNode.of(0)
                 ),
                 Arguments.arguments(
-                        listNode(2, 4, 3),
-                        listNode(5, 6, 4),
-                        listNode(7, 0, 8)
+                        ListNode.of(2, 4, 3),
+                        ListNode.of(5, 6, 4),
+                        ListNode.of(7, 0, 8)
                 )
         );
     }

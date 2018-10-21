@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0083;
+package org.gd.leetcode.p0082;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,8 +20,10 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(ListNode.of(1, 1, 2), ListNode.of(1, 2)),
-                arguments(ListNode.of(1, 1, 2, 3, 3), ListNode.of(1, 2, 3))
+                arguments(ListNode.of(1, 2, 3, 3, 4, 4, 5), ListNode.of(1, 2, 5)),
+                arguments(ListNode.of(1, 1, 2), ListNode.of(2)),
+                arguments(ListNode.of(1, 1, 2, 3, 3), ListNode.of(2)),
+                arguments(ListNode.of(1, 1, 1, 2, 3), ListNode.of(2, 3))
         );
     }
 

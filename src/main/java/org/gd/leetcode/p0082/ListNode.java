@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0083;
+package org.gd.leetcode.p0082;
 
 import lombok.EqualsAndHashCode;
 
