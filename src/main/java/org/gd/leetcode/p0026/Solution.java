@@ -3,7 +3,7 @@ package org.gd.leetcode.p0026;
 /**
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  */
-public class Solution {
+class Solution {
 
     public int removeDuplicates(int[] nums) {
         if (nums == null)
