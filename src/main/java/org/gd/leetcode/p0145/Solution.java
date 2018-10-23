@@ -35,16 +35,26 @@ class Solution {
 
         nodes.add(node);
         while ((node = nodes.poll()) != null) {
-            if (node.right != null) {
+            if (node.left != null || node.right != null) {
+                nodes.addFirst(node);
+                if (node.right != null) {
+                    nodes.addFirst(node.right);
+                    node.right = null;
+                }
+                if (node.left != null) {
+                    nodes.addFirst(node.left);
+                    node.left = null;
+                }
+            } else {
+                integers.add(node.val);
             }
-
         }
-        throw new UnsupportedOperationException();
+        return integers;
     }
 
 
     public List<Integer> postorderTraversal(TreeNode node) {
-        return recursive(node);
+        return loop(node);
 
     }
 }
