@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Test for {@link Solution};
  *
@@ -16,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2018-10-16
  */
 class SolutionTest {
+
     private static Stream<Arguments> args() {
         return Stream.of(
                 Arguments.arguments("1234567890ABCDEF", 4, "17C")
@@ -28,6 +27,5 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("Convert")
     void test_Convert(String input, int numRows, String expected) {
-        assertEquals(expected, new Solution().convert(input, numRows));
     }
 }

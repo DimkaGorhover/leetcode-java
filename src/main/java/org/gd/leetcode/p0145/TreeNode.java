@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0144;
+package org.gd.leetcode.p0145;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ class TreeNode {
     @SuppressWarnings("Duplicates")
     static TreeNode of(Integer... values) {
         requireNonNull(values, "values");
-        final TreeNode head = new TreeNode(requireNonNull(values[0], "first value cannot be NULL"));
+        final TreeNode head  = new TreeNode(requireNonNull(values[0], "first value cannot be NULL"));
         List<TreeNode> nodes = List.of(head);
         int            i     = 1;
         TreeNode       tmp;

@@ -1,12 +1,20 @@
 package org.gd.leetcode.p0005;
 
+/**
+ * TODO: https://leetcode.com/problems/longest-palindromic-substring/
+ */
 class Solution {
 
-    public String convert(String s, int rows) {
-        final int length     = s.length();
-        final int middleCols = rows / 2;
+    public String longestPalindrome(String s) {
+        if (s == null)
+            return null;
+        int length = s.length();
+        switch (length) {
+            case 0: return s;
+            case 1: return s;
+            case 2: return s.charAt(0) == s.charAt(1) ? s : "";
+        }
 
-        return new String(new char[]{});
-
+        throw new UnsupportedOperationException();
     }
 }

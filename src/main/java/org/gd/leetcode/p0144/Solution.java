@@ -2,6 +2,7 @@ package org.gd.leetcode.p0144;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,25 +24,21 @@ class Solution {
         return preorderTraversal(root, new ArrayList<>());
     }
 
-    private static List<Integer> loop0(TreeNode root) {
-        if (root == null)
+    private static List<Integer> loop0(TreeNode node) {
+        if (node == null)
             return Collections.emptyList();
-        List<Integer>  integers = new ArrayList<>();
-        List<TreeNode> nodes    = new ArrayList<>();
-        nodes.add(root);
-        while (!nodes.isEmpty()) {
-            List<TreeNode> newNodes = new ArrayList<>(4);
-            for (TreeNode node : nodes) {
-                integers.add(node.val);
-                if (node.left != null) newNodes.add(node.left);
-                if (node.right != null) newNodes.add(node.right);
-            }
-            nodes = newNodes;
+        final List<Integer>        integers = new ArrayList<>();
+        final LinkedList<TreeNode> nodes    = new LinkedList<>();
+        nodes.add(node);
+        while ((node = nodes.poll()) != null) {
+            integers.add(node.val);
+            if (node.right != null) nodes.addFirst(node.right);
+            if (node.left != null) nodes.addFirst(node.left);
         }
         return integers;
     }
 
     public List<Integer> preorderTraversal(TreeNode root) {
-        return recursive0(root);
+        return loop0(root);
     }
 }
