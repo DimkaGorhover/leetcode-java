@@ -45,8 +45,7 @@ class Solution {
             case 0: return 0;
             case 1: return value(s.charAt(0));
             case 2: {
-                final char c1 = s.charAt(0);
-                final char c2 = s.charAt(1);
+                final char c1 = s.charAt(0), c2 = s.charAt(1);
                 return isPair(c1, c2) ? (value(c2) - value(c1)) : (value(c2) + value(c1));
             }
         }

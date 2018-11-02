@@ -1,6 +1,5 @@
-package org.gd.leetcode.p0034;
+package org.gd.leetcode.p0001;
 
-import org.gd.common.CollectionUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -8,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.gd.common.CollectionUtils.toList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -15,24 +15,23 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * Test for {@link Solution};
  *
  * @author Gorkhover D.
- * @since 2018-10-20
+ * @since 2018-11-02
  */
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(new int[]{5, 7, 7, 8, 8, 10}, 8, new int[]{3, 4}),
-                arguments(new int[]{5, 7, 7, 8, 8, 10}, 6, new int[]{-1, -1})
+                arguments(new int[]{2, 7, 11, 15}, 9, new int[]{0, 1})
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("SearchRange")
-    void test_SearchRange(int[] input, int target, int[] expected) {
+    @DisplayName("TwoSum")
+    void test_TwoSum(int[] input, int target, int[] expected) {
         assertEquals(
-                CollectionUtils.toList(expected),
-                CollectionUtils.toList(new Solution().searchRange(input, target))
+                toList(expected),
+                toList(new Solution().twoSum(input, target))
         );
     }
 }
