@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.gd.common.CollectionUtils.toList;
+import static org.gd.common.CollectionUtils.listOf;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -30,8 +30,8 @@ class SolutionTest {
     @DisplayName("TwoSum")
     void test_TwoSum(int[] input, int target, int[] expected) {
         assertEquals(
-                toList(expected),
-                toList(new Solution().twoSum(input, target))
+                listOf(expected),
+                listOf(new Solution().twoSum(input, target))
         );
     }
 }

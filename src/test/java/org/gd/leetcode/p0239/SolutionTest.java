@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0034;
+package org.gd.leetcode.p0239;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,24 +15,23 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * Test for {@link Solution};
  *
  * @author Gorkhover D.
- * @since 2018-10-20
+ * @since 2018-11-02
  */
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(new int[]{5, 7, 7, 8, 8, 10}, 8, new int[]{3, 4}),
-                arguments(new int[]{5, 7, 7, 8, 8, 10}, 6, new int[]{-1, -1})
+                arguments(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3, new int[]{3, 3, 5, 5, 6, 7})
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("SearchRange")
-    void test_SearchRange(int[] input, int target, int[] expected) {
+    @DisplayName("MaxSlidingWindow")
+    void test_MaxSlidingWindow(int[] input, int k, int[] expected) {
         assertEquals(
                 listOf(expected),
-                listOf(new Solution().searchRange(input, target))
+                listOf(new Solution().maxSlidingWindow(input, k))
         );
     }
 }
