@@ -1,10 +1,12 @@
 package org.gd.leetcode.p0477;
 
 /**
- * TODO: https://leetcode.com/problems/total-hamming-distance/
+ * https://leetcode.com/problems/total-hamming-distance/
  *
  * @author Gorkhover D.
  * @since 2018-11-05
+ * <p>
+ * https://leetcode.com/submissions/detail/187467808/testcase/
  */
 class Solution {
 
@@ -17,24 +19,20 @@ class Solution {
 
     static int hammingDistance(int i1, int i2) {
         int r = i1 ^ i2,
-                limit = bits(r),
                 length = 0;
-        for (int i = 0; i < limit; i++)
+        for (int i = 0; i < bits(r); i++)
             length += (r >> i) & 1;
         return length;
-
     }
 
     public int totalHammingDistance(int[] nums) {
-        if (nums == null || nums.length == 0)
-            return 0;
-        switch (nums.length) {
-            case 1: return 0;
-            case 2: return hammingDistance(nums[0], nums[1]);
+        int total = 0, n = nums.length;
+        for (int j = 0; j < Integer.SIZE - 1; j++) {
+            int bitCount = 0;
+            for (int i = 0; i < n; i++)
+                bitCount += (nums[i] >> j) & 1;
+            total += bitCount * (n - bitCount);
         }
-        int length = hammingDistance(nums[0], nums[1]);
-        for (int i = 1; i < nums.length - 1; i++)
-            length += hammingDistance(nums[i], nums[i + 1]);
-        return length;
+        return total;
     }
 }
