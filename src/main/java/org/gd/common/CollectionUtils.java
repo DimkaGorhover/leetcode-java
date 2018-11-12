@@ -1,7 +1,9 @@
 package org.gd.common;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.unmodifiableList;
 
@@ -34,5 +36,11 @@ public final class CollectionUtils {
         for (int i : ints)
             list.add(i);
         return unmodifiableList(list);
+    }
+
+    public static List<List<Integer>> listOf(int[][] ints) {
+        return Arrays.stream(ints)
+                .map(innerInts -> Arrays.stream(innerInts).boxed().collect(Collectors.toList()))
+                .collect(Collectors.toList());
     }
 }
