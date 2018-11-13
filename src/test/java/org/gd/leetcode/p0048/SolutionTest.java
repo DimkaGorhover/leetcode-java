@@ -19,7 +19,6 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  */
 class SolutionTest {
 
-
     private static Stream<Arguments> args() {
         return Stream.of(
                 arguments(new int[][]{
