@@ -10,12 +10,17 @@ import org.gd.leetcode.common.TreeNode;
  */
 class Solution {
 
-    private static boolean isValidBST(TreeNode root, int min, int max) {
-
-        throw new UnsupportedOperationException();
-    }
-
     public boolean isValidBST(TreeNode root) {
-        return root == null || isValidBST(root, root.val, root.val);
+
+        if (root == null)
+            return true;
+
+        if (root.left != null && root.left.val >= root.val)
+            return false;
+
+        if (root.right != null && root.right.val <= root.val)
+            return false;
+
+        return isValidBST(root.left) && isValidBST(root.right);
     }
 }

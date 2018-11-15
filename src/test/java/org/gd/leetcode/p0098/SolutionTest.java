@@ -22,7 +22,8 @@ class SolutionTest {
     private static Stream<Arguments> args() {
         return Stream.of(
                 arguments(TreeNode.of(2, 1, 3), true),
-                arguments(TreeNode.of(5, 1, 4, null, null, 3, 6), false)
+                arguments(TreeNode.of(5, 1, 4, null, null, 3, 6), false),
+                arguments(TreeNode.of(10, 5, 15, null, null, 6, 20), false)
         );
     }
 
