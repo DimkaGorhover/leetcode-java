@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0144;
+package org.gd.leetcode.common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,20 +9,20 @@ import static java.util.Objects.requireNonNull;
  * @author Gorkhover D.
  * @since 2018-10-23
  */
-class TreeNode {
+public class TreeNode {
 
-    int      val;
-    TreeNode left;
-    TreeNode right;
+    public int      val;
+    public TreeNode left;
+    public TreeNode right;
 
-    TreeNode(int x) { val = x; }
+    public TreeNode(int x) { val = x; }
 
-    static TreeNode of(Integer value) {
+    public static TreeNode of(Integer value) {
         return value == null ? null : new TreeNode(value);
     }
 
     @SuppressWarnings("Duplicates")
-    static TreeNode of(Integer... values) {
+    public static TreeNode of(Integer... values) {
         requireNonNull(values, "values");
         final TreeNode head = new TreeNode(requireNonNull(values[0], "first value cannot be NULL"));
         List<TreeNode> nodes = List.of(head);
@@ -43,7 +43,6 @@ class TreeNode {
             nodes = newNodes;
         }
         return head;
-
     }
 
     @Override

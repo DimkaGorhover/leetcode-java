@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0100;
+package org.gd.leetcode.p0098;
 
 import org.gd.leetcode.common.BooleanAssertion;
 import org.gd.leetcode.common.TreeNode;
@@ -21,15 +21,16 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(TreeNode.of(1, 2, 3), TreeNode.of(1, 2, 3), true)
+                arguments(TreeNode.of(2, 1, 3), true),
+                arguments(TreeNode.of(5, 1, 4, null, null, 3, 6), false)
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("IsSameTree")
-    void test_IsSameTree(TreeNode p, TreeNode q, boolean expected) {
+    @DisplayName("IsValidBST")
+    void test_IsValidBST(TreeNode node, boolean expected) {
 
-        BooleanAssertion.of(expected).doAssert(new Solution().isSameTree(p, q));
+        BooleanAssertion.of(expected).doAssert(new Solution().isValidBST(node));
     }
 }

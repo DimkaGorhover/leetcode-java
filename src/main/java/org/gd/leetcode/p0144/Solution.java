@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0144;
 
+import org.gd.leetcode.common.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;

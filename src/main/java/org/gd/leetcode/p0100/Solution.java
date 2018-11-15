@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0100;
 
+import org.gd.leetcode.common.TreeNode;
+
 /**
  * https://leetcode.com/problems/same-tree/
  *
