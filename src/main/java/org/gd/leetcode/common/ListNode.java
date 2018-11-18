@@ -1,16 +1,16 @@
-package org.gd.leetcode.p0086;
+package org.gd.leetcode.common;
 
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-class ListNode {
+public class ListNode {
 
-    int      val;
-    ListNode next;
+    public int      val;
+    public ListNode next;
 
-    ListNode(int x) { val = x; }
+    public ListNode(int x) { val = x; }
 
-    static ListNode of(String values) {
+    public static ListNode of(String values) {
         String[] strings = values.split("(->)|;|,|\\|");
         int[]    ints    = new int[strings.length];
         int      cursor  = 0;
@@ -23,11 +23,11 @@ class ListNode {
         return of(ints, 0, cursor);
     }
 
-    static ListNode of(int... ints) {
+    public static ListNode of(int... ints) {
         return of(ints, 0, ints.length);
     }
 
-    static ListNode of(int[] ints, int fromIndex, int toIndex) {
+    public static ListNode of(int[] ints, int fromIndex, int toIndex) {
         final ListNode root = new ListNode(ints[fromIndex]);
         ListNode       node = root, tmp;
         for (int i = fromIndex + 1; i < Math.min(ints.length, toIndex); i++) {

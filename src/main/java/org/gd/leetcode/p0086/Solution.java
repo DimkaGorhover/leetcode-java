@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0086;
 
+import org.gd.leetcode.common.ListNode;
+
 /**
  * TODO: https://leetcode.com/problems/partition-list/
  *
