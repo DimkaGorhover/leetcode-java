@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0002;
 
+import org.gd.leetcode.common.ListNode;
+
 /**
  * https://leetcode.com/problems/add-two-numbers/
  */

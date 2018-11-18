@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0002;
 
 import lombok.NonNull;
+import org.gd.leetcode.common.ListNode;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
