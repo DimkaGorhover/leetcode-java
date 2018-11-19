@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * Test for {@link Solution};
@@ -20,7 +21,11 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                // TODO: add test cases
+                arguments(
+                        TreeNode.of(1, 3, 2, 5),
+                        TreeNode.of(2, 1, 3, null, 4, null, 7),
+                        TreeNode.of(3, 4, 5, 5, 4, null, 7)
+                )
         );
     }
 

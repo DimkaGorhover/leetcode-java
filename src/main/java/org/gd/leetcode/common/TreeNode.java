@@ -1,5 +1,7 @@
 package org.gd.leetcode.common;
 
+import lombok.EqualsAndHashCode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import static java.util.Objects.requireNonNull;
  * @author Gorkhover D.
  * @since 2018-10-23
  */
+@EqualsAndHashCode(doNotUseGetters = true)
 public class TreeNode {
 
     public int      val;
