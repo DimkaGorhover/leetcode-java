@@ -4,11 +4,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.gd.common.CollectionUtils.listOf;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
@@ -27,11 +26,9 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     void plusOne(int[] input, int[] expected) {
-
-
-        var actualList   = Arrays.stream(new Solution().plusOne(input)).boxed().collect(Collectors.toList());
-        var expectedList = Arrays.stream(expected).boxed().collect(Collectors.toList());
-
-        assertEquals(expectedList, actualList);
+        assertEquals(
+                listOf(expected),
+                listOf(new Solution().plusOne(input))
+        );
     }
 }
