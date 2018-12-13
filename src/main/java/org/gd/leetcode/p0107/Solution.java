@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO: https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+ * https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
  *
  * @author Horkhover Dmytro
  * @since 2018-12-12
@@ -16,11 +16,11 @@ class Solution {
     private static List<List<Integer>> traverse(ArrayList<List<Integer>> lists,
                                                 TreeNode node,
                                                 int level) {
-        if (node == null)
-            return lists;
-        lists.get(level).add(node.val);
-        traverse(lists, node.left, level - 1);
-        traverse(lists, node.right, level - 1);
+        if (node != null) {
+            lists.get(level).add(node.val);
+            traverse(lists, node.left, level - 1);
+            traverse(lists, node.right, level - 1);
+        }
         return lists;
     }
 
