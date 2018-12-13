@@ -27,6 +27,8 @@ public class TreeNode {
     @SuppressWarnings("Duplicates")
     public static TreeNode of(Integer... values) {
         requireNonNull(values, "values");
+        if (values.length < 1)
+            throw new IllegalArgumentException("values should contain at least one element");
         final TreeNode head = new TreeNode(requireNonNull(values[0], "first value cannot be NULL"));
         List<TreeNode> nodes = List.of(head);
         int            i     = 1;
