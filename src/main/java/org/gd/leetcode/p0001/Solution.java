@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * https://leetcode.com/problems/two-sum/
+ * @see org.gd.leetcode.p0016.Solution
  */
 class Solution {
 

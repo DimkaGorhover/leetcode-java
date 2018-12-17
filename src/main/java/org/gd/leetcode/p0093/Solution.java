@@ -45,6 +45,7 @@ class Solution {
             int i = 0,
                     minRemains = 3 - ipPos,
                     maxRemains = minRemains * 3;
+
             while (i < 3 && ((length - sourcePos) - minRemains >= 4)) {
 
                 if (isv(value = value * 10 + v0(source, sourcePos))) {
@@ -65,21 +66,23 @@ class Solution {
         return list;
     }
 
+    private static List<String> toIp(int[] ip) {
+        return Collections.singletonList(ip[0] + "." + ip[1] + "." + ip[2] + "." + ip[3]);
+    }
+
     public List<String> restoreIpAddresses(String s) {
         if (s.length() > 12)
             return Collections.emptyList();
         switch (s.length()) {
             case 12: {
                 final int[] ip = new int[4];
-                if (isv(ip[0] = value(s, 0, 3)) && isv(ip[1] = value(s, 3, 6)) && isv(ip[2] = value(s, 6, 9)) && isv(ip[3] = value(s, 9, 12)))
-                    return Collections.singletonList(ip[0] + "." + ip[1] + "." + ip[2] + "." + ip[3]);
-                return Collections.emptyList();
+                return (isv(ip[0] = value(s, 0, 3)) && isv(ip[1] = value(s, 3, 6)) && isv(ip[2] = value(s, 6, 9)) && isv(ip[3] = value(s, 9, 12)))
+                        ? toIp(ip) : Collections.emptyList();
             }
             case 4: {
                 final int[] ip = new int[4];
-                if (isv(ip[0] = v0(s, 0)) && isv(ip[1] = v0(s, 1)) && isv(ip[2] = v0(s, 2)) && isv(ip[3] = v0(s, 3)))
-                    return Collections.singletonList(ip[0] + "." + ip[1] + "." + ip[2] + "." + ip[3]);
-                return Collections.emptyList();
+                return (isv(ip[0] = v0(s, 0)) && isv(ip[1] = v0(s, 1)) && isv(ip[2] = v0(s, 2)) && isv(ip[3] = v0(s, 3)))
+                        ? toIp(ip) : Collections.emptyList();
             }
         }
 
