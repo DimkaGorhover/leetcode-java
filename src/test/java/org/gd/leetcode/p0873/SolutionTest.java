@@ -20,7 +20,10 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(new int[]{1, 2, 3, 4, 5, 6, 7, 8}, 5)
+                arguments(new int[]{1, 2, 3, 4, 5, 6, 7, 8}, 5),
+                arguments(new int[]{1, 2, 3}, 3),
+                arguments(new int[]{1, 2, 3, 4}, 3),
+                arguments(new int[]{1, 2, 3, 4, 5}, 4)
         );
     }
 
