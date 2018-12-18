@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0145;
 
+import org.gd.leetcode.common.TreeNode;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
