@@ -24,7 +24,6 @@ public class TreeNode {
         return value == null ? null : new TreeNode(value);
     }
 
-    @SuppressWarnings("Duplicates")
     public static TreeNode of(Integer... values) {
         requireNonNull(values, "values");
         if (values.length < 1)
