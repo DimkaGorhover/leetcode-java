@@ -11,9 +11,11 @@ import java.util.List;
 @Value
 class Point {
 
-    int id;
-
+    int        id;
+    boolean    finish;
     List<Next> nextPoints;
 
-
+    static Point finish(int id) {
+        return new Point(id, true, List.of());
+    }
 }
