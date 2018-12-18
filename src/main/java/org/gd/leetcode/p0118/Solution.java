@@ -7,7 +7,10 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
-public class PascalsTriangleSolution {
+/**
+ * https://leetcode.com/problems/pascals-triangle/
+ */
+class Solution {
 
     private static final List<Integer>
             SINGLE_VALUE_LINE = singletonList(1),

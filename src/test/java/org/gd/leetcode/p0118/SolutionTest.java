@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Gorkhover D.
  * @since 2018-10-17
  */
-class PascalsTriangleSolutionTest {
+class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
@@ -56,6 +56,6 @@ class PascalsTriangleSolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     void generate(int numRows, List<List<Integer>> expected) {
-        assertEquals(expected, new PascalsTriangleSolution().generate(numRows));
+        assertEquals(expected, new Solution().generate(numRows));
     }
 }
