@@ -30,4 +30,26 @@ class CommonsTest {
         assertSame(Commons.bigFib(91), Commons.bigFib(91));
         assertNotSame(Commons.bigFib(90), Commons.bigFib(90));
     }
+
+    @Test
+    @DisplayName("factorial")
+    void test_factorial() {
+        assertEquals(6, Commons.factorial(3));
+        assertEquals(24, Commons.factorial(4));
+        assertThrows(ArithmeticException.class, () -> Commons.factorial(21));
+    }
+
+    @Test
+    @DisplayName("test_bigFactorial")
+    void test_bigFactorial() {
+        assertEquals(
+                BigInteger.valueOf(6),
+                Commons.bigFactorial(3));
+        assertEquals(
+                BigInteger.valueOf(24),
+                Commons.bigFactorial(4));
+        assertEquals(
+                new BigInteger("2H810LN1DXTFEZNBWZFUI7HGPY6ZJCYT6S3D2B2IPKW000000000000000", 36),
+                Commons.bigFactorial(64));
+    }
 }
