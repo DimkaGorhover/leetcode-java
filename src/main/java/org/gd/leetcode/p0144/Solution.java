@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0144;
 
+import org.gd.leetcode.common.Difficulty;
 import org.gd.leetcode.common.TreeNode;
 
 import java.util.ArrayList;
@@ -7,10 +8,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.gd.leetcode.common.Difficulty.Level.MEDIUM;
+
 /**
  * @author Gorkhover D.
  * @since 2018-10-23
  */
+@Difficulty(MEDIUM)
 class Solution {
 
     private static List<Integer> preorderTraversal(TreeNode root, List<Integer> list) {
