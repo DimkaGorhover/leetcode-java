@@ -1,7 +1,5 @@
 package org.gd.leetcode.p0217;
 
-import java.util.HashSet;
-
 /**
  * https://leetcode.com/problems/contains-duplicate/
  *
@@ -11,12 +9,10 @@ import java.util.HashSet;
 class Solution {
 
     public boolean containsDuplicate(int[] nums) {
-        HashSet<Integer> set = new HashSet<>(nums.length);
-        for (int i = 0; i < nums.length; i++) {
-            if (set.contains(nums[i]))
-                return false;
-            set.add(nums[i]);
-        }
-        return true;
+        java.util.Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 1; i++)
+            if (nums[i] == nums[i + 1])
+                return true;
+        return false;
     }
 }

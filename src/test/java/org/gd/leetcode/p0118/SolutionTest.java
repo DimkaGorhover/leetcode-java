@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Gorkhover D.
@@ -18,37 +18,37 @@ class SolutionTest {
     private static Stream<Arguments> args() {
         return Stream.of(
                 Arguments.arguments(1, List.of(
-                        List.of(1)
+                        /* 0 */ List.of(1)
                 )),
                 Arguments.arguments(2, List.of(
-                        List.of(1),
-                        List.of(1, 1)
+                        /* 0 */ List.of(1),
+                        /* 1 */ List.of(1, 1)
                 )),
                 Arguments.arguments(3, List.of(
-                        List.of(1),
-                        List.of(1, 1),
-                        List.of(1, 2, 1)
+                        /* 0 */ List.of(1),
+                        /* 1 */ List.of(1, 1),
+                        /* 2 */ List.of(1, 2, 1)
                 )),
                 Arguments.arguments(4, List.of(
-                        List.of(1),
-                        List.of(1, 1),
-                        List.of(1, 2, 1),
-                        List.of(1, 3, 3, 1)
+                        /* 0 */ List.of(1),
+                        /* 1 */ List.of(1, 1),
+                        /* 2 */ List.of(1, 2, 1),
+                        /* 3 */ List.of(1, 3, 3, 1)
                 )),
                 Arguments.arguments(5, List.of(
-                        List.of(1),
-                        List.of(1, 1),
-                        List.of(1, 2, 1),
-                        List.of(1, 3, 3, 1),
-                        List.of(1, 4, 6, 4, 1)
+                        /* 0 */ List.of(1),
+                        /* 1 */ List.of(1, 1),
+                        /* 2 */ List.of(1, 2, 1),
+                        /* 3 */ List.of(1, 3, 3, 1),
+                        /* 4 */ List.of(1, 4, 6, 4, 1)
                 )),
                 Arguments.arguments(6, List.of(
-                        List.of(1),
-                        List.of(1, 1),
-                        List.of(1, 2, 1),
-                        List.of(1, 3, 3, 1),
-                        List.of(1, 4, 6, 4, 1),
-                        List.of(1, 5, 10, 10, 5, 1)
+                        /* 0 */ List.of(1),
+                        /* 1 */ List.of(1, 1),
+                        /* 2 */ List.of(1, 2, 1),
+                        /* 3 */ List.of(1, 3, 3, 1),
+                        /* 4 */ List.of(1, 4, 6, 4, 1),
+                        /* 5 */ List.of(1, 5, 10, 10, 5, 1)
                 ))
         );
     }
