@@ -2,9 +2,6 @@ package org.gd.leetcode.p0060;
 
 import org.gd.leetcode.common.Difficulty;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import static org.gd.leetcode.common.Difficulty.Level.MEDIUM;
 
 /**
@@ -16,51 +13,34 @@ import static org.gd.leetcode.common.Difficulty.Level.MEDIUM;
 @Difficulty(MEDIUM)
 class Solution {
 
-    public static int fact(int n) {
-        int s = 1;
-        for (int i = 2; i <= n; i++)
-            s = Math.multiplyExact(s, i);
-        return s;
-    }
+    private static final int[] F_TABLE = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
 
-    public static void main(String[] args) {
+    int level = 0;
 
-        int n = 4;
-        int k = 4;
-
-        int pos = fact(n) / (int) Math.pow(k, 2);
-
-        final List<String> perm = perm(new LinkedList<>(), values(n), "");
-        int                i    = 0;
-        for (String s : perm) {
-            System.out.printf("%2d. [%s]%n", i++, s);
-        }
-
-    }
-
-    private static String values(int n) {
-        final char[] chars = new char[n];
-        for (int i = 0; i < chars.length; i++)
-            chars[i] = (char) (i + 49);
-        return new String(chars);
-    }
-
-    private static List<String> perm(List<String> list, String source, String prefix) {
+    String perm(String source, String prefix, int search) {
         if (source.length() == 0) {
-            list.add(prefix);
-            return list;
+            return (search == ++level) ? prefix : null;
         }
-        for (int i = 0; i < source.length(); i++) {
-            perm(list,
+        String s;
+        for (int i = 0; search > level && i < source.length(); i++) {
+            if ((s = perm(
                     source.substring(0, i) + source.substring(i + 1),
-                    prefix + source.charAt(i));
+                    prefix + source.charAt(i),
+                    search)) != null) {
+                return s;
+            }
         }
-        return list;
+        return null;
     }
 
     public String getPermutation(int n, int k) {
 
+        //System.out.println(k / (n - 1));
 
-        throw new UnsupportedOperationException();
+        return perm(
+                //new ArrayList<>(F_TABLE[n]),
+                "123456789".substring(0, n),
+                "",
+                k);
     }
 }

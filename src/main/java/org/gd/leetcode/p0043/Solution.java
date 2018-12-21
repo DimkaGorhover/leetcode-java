@@ -1,7 +1,9 @@
 package org.gd.leetcode.p0043;
 
 /**
- * TODO: https://leetcode.com/problems/multiply-strings/submissions/
+ * TODO: https://leetcode.com/problems/multiply-strings
+ *
+ * http://math-prosto.ru/?page=pages/action-in-column/multi-in-column.php
  *
  * @author Gorkhover D.
  * @since 2018-10-22
