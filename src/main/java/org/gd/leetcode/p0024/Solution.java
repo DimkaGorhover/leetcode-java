@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0024;
 
+import org.gd.leetcode.common.ListNode;
+
 /**
  * https://leetcode.com/problems/swap-nodes-in-pairs/submissions/
  *
@@ -12,10 +14,7 @@ class Solution {
         if (head == null) return null;
         if (head.next == null) return head;
 
-        ListNode newHead = null;
-        ListNode prev    = null;
-        ListNode n1      = head;
-        ListNode n2      = n1.next;
+        ListNode newHead = null, prev = null, n1 = head, n2 = n1.next;
 
         int i = 0;
         while (n2 != null) {

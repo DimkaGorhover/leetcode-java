@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0082;
 
+import org.gd.leetcode.common.ListNode;
+
 /**
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
  *
