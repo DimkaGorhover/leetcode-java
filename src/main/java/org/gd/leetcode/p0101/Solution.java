@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0101;
 
+import org.gd.leetcode.common.Difficulty;
 import org.gd.leetcode.common.TreeNode;
 
 /**
@@ -8,14 +9,14 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-12-18
  */
+@Difficulty(Difficulty.Level.EASY)
 class Solution {
 
     private static boolean isSymmetric0(TreeNode left, TreeNode right) {
         if (left == null)
             return right == null;
-        if (right == null)
-            return false;
-        return left.val == right.val
+        return right != null
+                && left.val == right.val
                 && isSymmetric0(left.left, right.right)
                 && isSymmetric0(left.right, right.left);
     }
