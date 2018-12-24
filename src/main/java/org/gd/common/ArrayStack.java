@@ -309,6 +309,41 @@ public class ArrayStack<E> implements Stack<E> {
         return res;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (!(obj instanceof Stack)) return false;
+        final int size = size();
+        if (((Stack) obj).size() != size) return false;
+
+        if (obj instanceof ArrayStack)
+            return Arrays.equals(
+                    elementData, 0, size,
+                    ((ArrayStack) obj).elementData, 0, size);
+
+        final Iterator itr1 = iterator(), itr2 = ((Stack) obj).iterator();
+        while (itr1.hasNext() && itr2.hasNext()) {
+            if (!Objects.equals(itr1.next(), itr2.next()))
+                return false;
+        }
+        return itr1.hasNext() ^ itr2.hasNext();
+    }
+
+    /**
+     * @see ArrayList#hashCode()
+     * @see ArrayList#hashCodeRange(int, int)
+     */
+    @Override
+    public int hashCode() { return hashCode(0, 31); }
+
+    public int hashCode(int start, int multiplier) {
+        int hash = start;
+        for (int i = size - 1; i >= 0; i--)
+            hash = multiplier * hash + elementData[i].hashCode();
+        return hash;
+    }
+
     /**
      * @see ArrayList#iterator()
      */

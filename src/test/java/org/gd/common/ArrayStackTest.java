@@ -157,4 +157,28 @@ class ArrayStackTest {
         stack.removeIf(v -> v % 2 == 0);
         assertEquals(List.of(3, 1), stack.toList());
     }
+
+    @Test
+    @DisplayName("equals")
+    void test_equals() {
+        var stack = ArrayStack.of(1, 2, 3, 4);
+        for (int i = 0; i < 1 << 20; i++)
+            stack.push(i);
+        stack.clear();
+        stack.addAll(List.of(1, 2, 3, 4));
+        assertEquals(ArrayStack.of(1, 2, 3, 4), stack);
+    }
+
+    @Test
+    @DisplayName("hashCode")
+    void test_hashCode() {
+        var stack = ArrayStack.of(1, 2, 3, 4);
+        for (int i = 0; i < 1 << 20; i++)
+            stack.push(i);
+        stack.clear();
+        stack.addAll(List.of(1, 2, 3, 4));
+        assertEquals(
+                ArrayStack.of(1, 2, 3, 4).hashCode(),
+                stack.hashCode());
+    }
 }
