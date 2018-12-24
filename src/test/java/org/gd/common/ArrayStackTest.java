@@ -2,6 +2,7 @@ package org.gd.common;
 
 import org.junit.jupiter.api.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,33 +19,27 @@ class ArrayStackTest {
     @DisplayName("Size")
     void test_Size() {
         final ArrayStack<Integer> stack = new ArrayStack<>();
-        stack.add(1);
-        assertEquals(1, stack.size());
-        stack.add(2);
-        assertEquals(2, stack.size());
-        stack.pop();
-        assertEquals(1, stack.size());
-        stack.pop();
-        assertEquals(0, stack.size());
-        stack.pop();
-        assertEquals(0, stack.size());
+        // @formatter:off
+        stack.add(1); assertEquals(1, stack.size());
+        stack.add(2); assertEquals(2, stack.size());
+        stack.pop();  assertEquals(1, stack.size());
+        stack.pop();  assertEquals(0, stack.size());
+        stack.pop();  assertEquals(0, stack.size());
+        // @formatter:on
+
     }
 
     @Test
     @DisplayName("IsEmpty")
     void test_IsEmpty() {
         final ArrayStack<Integer> stack = new ArrayStack<>();
-        assertTrue(stack.isEmpty());
-        stack.add(1);
-        assertFalse(stack.isEmpty());
-        stack.add(2);
-        assertFalse(stack.isEmpty());
-        stack.pop();
-        assertFalse(stack.isEmpty());
-        stack.pop();
-        assertTrue(stack.isEmpty());
-        stack.pop();
-        assertTrue(stack.isEmpty());
+        // @formatter:off
+        stack.add(1); assertFalse(stack.isEmpty());
+        stack.add(2); assertFalse(stack.isEmpty());
+        stack.pop();  assertFalse(stack.isEmpty());
+        stack.pop();  assertTrue (stack.isEmpty());
+        stack.pop();  assertTrue (stack.isEmpty());
+        // @formatter:on
     }
 
     @Test
@@ -60,16 +55,26 @@ class ArrayStackTest {
     @Test
     @DisplayName("Iterator")
     void test_Iterator() {
+        final Iterator<Integer> iterator = ArrayStack.of(1, 2, 3).iterator();
+        // @formatter:off
+        assertTrue (iterator.hasNext()); assertEquals(3, (int) iterator.next());
+        assertTrue (iterator.hasNext()); assertEquals(2, (int) iterator.next());
+        assertTrue (iterator.hasNext()); assertEquals(1, (int) iterator.next());
+        assertFalse(iterator.hasNext());
+        // @formatter:on
     }
 
     @Test
     @DisplayName("ToArray")
     void test_ToArray() {
+        assertArrayEquals(new Object[]{3, 2, 1}, ArrayStack.of(1, 2, 3).toArray());
     }
 
     @Test
     @DisplayName("ToArray1")
     void test_ToArray1() {
+        assertArrayEquals(new Integer[]{3, 2, 1}, ArrayStack.of(1, 2, 3).toArray(new Integer[]{}));
+        assertArrayEquals(new Integer[]{3, 2, 1}, ArrayStack.of(1, 2, 3).toArray(new Integer[3]));
     }
 
     @Test
@@ -84,18 +89,22 @@ class ArrayStackTest {
     @Test
     @DisplayName("Remove")
     void test_Remove() {
-        final ArrayStack<Integer> stack = new ArrayStack<>();
-        stack.add(1);
-        stack.add(2);
-        stack.add(3);
-        stack.add(4);
-        stack.remove(2);
-        assertEquals(List.of(4, 3, 1), stack.toList());
+        final ArrayStack<Integer> stack = ArrayStack.of(1, 2, 3, 4);
+        // @formatter:off
+        stack.remove(2); assertEquals(List.of(4, 3, 1), stack.toList());
+        stack.remove(4); assertEquals(List.of(3, 1), stack.toList());
+        stack.remove(2); assertEquals(List.of(3, 1), stack.toList());
+        // @formatter:on
+
     }
 
     @Test
     @DisplayName("ContainsAll")
     void test_ContainsAll() {
+        final ArrayStack<Integer> stack = ArrayStack.of(1, 2, 3, 4);
+        assertTrue(stack.containsAll(List.of(1, 3)));
+        assertFalse(stack.containsAll(List.of(1, 5)));
+        assertTrue(stack.containsAll(List.of(4, 2, 3, 1)));
     }
 
     @Test
@@ -110,15 +119,42 @@ class ArrayStackTest {
     @Test
     @DisplayName("RemoveAll")
     void test_RemoveAll() {
+        var stack = ArrayStack.of(1, 2, 3, 4);
+        assertEquals(List.of(4, 3, 2, 1), stack.toList());
+        assertTrue(stack.removeAll(List.of(1, 3)));
+        assertEquals(List.of(4, 2), stack.toList());
+        assertFalse(stack.removeAll(List.of(3, 3)));
+        assertEquals(List.of(4, 2), stack.toList());
+        assertTrue(stack.removeAll(List.of(4, 2)));
+        assertTrue(stack.isEmpty());
     }
 
     @Test
     @DisplayName("RetainAll")
     void test_RetainAll() {
+        var stack = ArrayStack.of(1, 2, 3, 4);
+        assertTrue(stack.retainAll(List.of(2, 3, 5)));
+        assertEquals(List.of(3, 2), stack.toList());
+        assertFalse(stack.retainAll(List.of(3, 2)));
+        assertEquals(List.of(3, 2), stack.toList());
+        assertTrue(stack.retainAll(List.of(4)));
+        assertTrue(stack.isEmpty());
     }
 
     @Test
     @DisplayName("Clear")
     void test_Clear() {
+        var stack = ArrayStack.of(1, 2, 3, 4);
+        assertEquals(List.of(4, 3, 2, 1), stack.toList());
+        stack.clear();
+        assertEquals(List.of(), stack.toList());
+    }
+
+    @Test
+    @DisplayName("RemoveIf")
+    void test_RemoveIf() {
+        var stack = ArrayStack.of(1, 2, 3, 4);
+        stack.removeIf(v -> v % 2 == 0);
+        assertEquals(List.of(3, 1), stack.toList());
     }
 }

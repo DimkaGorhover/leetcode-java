@@ -1,5 +1,6 @@
 package org.gd.common;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -14,7 +15,6 @@ import static java.util.Objects.requireNonNull;
  * @see ArrayList#rangeCheckForAdd(int)
  * @since 2018-12-22
  */
-@SuppressWarnings({"unchecked", "JavadocReference", "WeakerAccess"})
 public class ArrayStack<E> implements Stack<E> {
 
     private static final Object[] EMPTY_ELEMENT_DATA = {};
@@ -72,8 +72,8 @@ public class ArrayStack<E> implements Stack<E> {
     /**
      * @see ArrayList#grow(int)
      */
-    private Object[] grow(int minCapacity) {
-        return elementData = Arrays.copyOf(elementData, newCapacity(minCapacity));
+    private void grow(int minCapacity) {
+        elementData = Arrays.copyOf(elementData, newCapacity(minCapacity));
     }
 
     private void ensureCapacityFor(int size) {
@@ -90,7 +90,30 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public List<E> toList() {
-        return isEmpty() ? Collections.emptyList() : new ArrayList<>(this);
+        final Object[] a = this.elementData;
+        switch (size()) {
+            case 0: return Collections.emptyList();
+            case 1: return List.of((E) a[0]);
+            case 2: return List.of((E) a[1], (E) a[0]);
+            case 3: return List.of((E) a[2], (E) a[1], (E) a[0]);
+            case 4: return List.of((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 5: return List.of((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+        }
+        return new ArrayList<>(this);
+    }
+
+    @Override
+    public Set<E> toSet() {
+        final Object[] a = this.elementData;
+        switch (size()) {
+            case 0: return Collections.emptySet();
+            case 1: return Set.of((E) a[0]);
+            case 2: return Set.of((E) a[1], (E) a[0]);
+            case 3: return Set.of((E) a[2], (E) a[1], (E) a[0]);
+            case 4: return Set.of((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 5: return Set.of((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+        }
+        return new HashSet<>(this);
     }
 
     @Override
@@ -140,16 +163,17 @@ public class ArrayStack<E> implements Stack<E> {
     /**
      * @see ArrayList#toArray(Object[])
      */
-    @SuppressWarnings("SuspiciousSystemArraycopy")
     @Override
     public <T> T[] toArray(T[] a) {
-        if (isEmpty())
+        final int size = size();
+        if (size == 0)
             return a;
         if (a.length < size)
-            return (T[]) Arrays.copyOf(elementData, size, a.getClass());
-        System.arraycopy(elementData, 0, a, 0, size);
-        if (a.length > size)
-            a[size] = null;
+            a = (a.getClass() == Object[].class)
+                    ? (T[]) new Object[size]
+                    : (T[]) Array.newInstance(a.getClass().getComponentType(), size);
+        for (int i = 0; i < size; i++)
+            a[i] = (T) elementData[size - 1 - i];
         return a;
     }
 
@@ -171,12 +195,18 @@ public class ArrayStack<E> implements Stack<E> {
             return false;
         for (int i = 0; i < size; i++) {
             if (Objects.equals(o, elementData[i])) {
-                System.arraycopy(elementData, i + 1, elementData, i, size - i);
-                size--;
+                remove(i);
                 return true;
             }
         }
         return false;
+    }
+
+    private void remove(int i) {
+        if (i < 0 || i >= size)
+            throw new IndexOutOfBoundsException();
+        System.arraycopy(elementData, i + 1, elementData, i, size - i);
+        size--;
     }
 
     @Override
@@ -223,9 +253,21 @@ public class ArrayStack<E> implements Stack<E> {
         return res;
     }
 
+    /**
+     * @see ArrayList#retainAll(Collection)
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
+        boolean res = false;
+        for (int i = 0; i < size(); ) {
+            if (!c.contains(elementData[i])) {
+                remove(i);
+                res = true;
+            } else {
+                i++;
+            }
+        }
+        return res;
     }
 
     @Override
@@ -250,9 +292,21 @@ public class ArrayStack<E> implements Stack<E> {
             action.accept((E) elementData[i]);
     }
 
+    /**
+     * @see #remove(Object)
+     */
     @Override
     public boolean removeIf(Predicate<? super E> filter) {
-        throw new UnsupportedOperationException();
+        boolean res = false;
+        for (int i = 0; i < size(); ) {
+            if (filter.test((E) elementData[i])) {
+                remove(i);
+                res = true;
+            } else {
+                i++;
+            }
+        }
+        return res;
     }
 
     /**
