@@ -9,12 +9,37 @@ import java.math.BigInteger;
 @SuppressWarnings("WeakerAccess")
 public final class Commons {
 
+    private static final BigInteger[] BIG_INTEGERS_BITS = new BigInteger[32];
+
     private static final BigInteger
-            BIG_FIB_91 = BigInteger.valueOf(fib(91)),
-            BIG_FIB_92 = BigInteger.valueOf(fib(92)),
+            BIG_FIB_91  = BigInteger.valueOf(fib(91)),
+            BIG_FIB_92  = BigInteger.valueOf(fib(92)),
             BIG_FACT_20 = BigInteger.valueOf(factorial(20));
 
     private Commons() { throw new UnsupportedOperationException(); }
+
+    private static BigInteger bigIntegerBits0(int bits) {
+        return bits < 63
+                ? BigInteger.valueOf(1L << bits)
+                : BigInteger.valueOf(2).pow(bits);
+    }
+
+    /**
+     * @param bits power of two
+     *
+     * @return {@link BigInteger}
+     */
+    public static BigInteger bigIntegerBits(int bits) {
+        if (bits <= 0)
+            return BigInteger.ZERO;
+        if (bits < BIG_INTEGERS_BITS.length) {
+            BigInteger pow;
+            if ((pow = BIG_INTEGERS_BITS[bits]) == null)
+                BIG_INTEGERS_BITS[bits] = (pow = bigIntegerBits0(bits));
+            return pow;
+        }
+        return bigIntegerBits0(bits);
+    }
 
     /**
      * @throws ArithmeticException if {@code n > 92}
@@ -61,5 +86,9 @@ public final class Commons {
         for (int i = 21; i <= n; i++)
             s = s.multiply(BigInteger.valueOf(i));
         return s;
+    }
+
+    public static double sigmoid(double x) {
+        return 1. / (1. + Math.exp(-x));
     }
 }
