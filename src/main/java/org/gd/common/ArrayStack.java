@@ -2,17 +2,20 @@ package org.gd.common;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
 
 /**
+ * TODO: add {@link ConcurrentModificationException}
+ *
  * @author Horkhover Dmytro
  * @see ArrayList
  * @see ArrayList#rangeCheckForAdd(int)
  * @since 2018-12-22
  */
 @SuppressWarnings({"unchecked", "JavadocReference", "WeakerAccess"})
-public class ArrayStack<E> implements Collection<E>, Stack<E> {
+public class ArrayStack<E> implements Stack<E> {
 
     private static final Object[] EMPTY_ELEMENT_DATA = {};
 
@@ -25,6 +28,15 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
     private int size;
 
     public ArrayStack() {
+    }
+
+    @SuppressWarnings("ForLoopReplaceableByForEach")
+    public static <E> ArrayStack<E> of(E... values) {
+        requireNonNull(values, "values");
+        ArrayStack<E> stack = new ArrayStack<>();
+        for (int i = 0; i < values.length; i++)
+            stack.push(values[i]);
+        return stack;
     }
 
     /**
@@ -64,11 +76,22 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
         return elementData = Arrays.copyOf(elementData, newCapacity(minCapacity));
     }
 
+    private void ensureCapacityFor(int size) {
+        final int newSize = size() + size;
+        if (newSize >= elementData.length)
+            grow(newSize);
+    }
+
     @Override
     public boolean push(E element) { return add(element); }
 
     @Override
     public E pop() { return isEmpty() ? null : (E) elementData[--size]; }
+
+    @Override
+    public List<E> toList() {
+        return isEmpty() ? Collections.emptyList() : new ArrayList<>(this);
+    }
 
     @Override
     public int size() { return size; }
@@ -93,14 +116,25 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
                 : Spliterators.spliterator(elementData, 0, size, 0);
     }
 
+    /**
+     * @see ArrayList#iterator()
+     */
     @Override
     public Iterator<E> iterator() {
         return isEmpty() ? Collections.emptyIterator() : new Itr<>(elementData, size);
     }
 
+    /**
+     * @see ArrayList#toArray()
+     */
     @Override
     public Object[] toArray() {
-        return isEmpty() ? EMPTY_ELEMENT_DATA : Arrays.copyOf(elementData, size);
+        if (isEmpty())
+            return EMPTY_ELEMENT_DATA;
+        final Object[] copy = new Object[size];
+        for (int i = 0; i < size; i++)
+            copy[i] = elementData[size - 1 - i];
+        return copy;
     }
 
     /**
@@ -123,7 +157,8 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
     public boolean add(E e) {
         if (e == null)
             return false;
-        grow(size + 1)[size++] = e;
+        ensureCapacityFor(size + 1);
+        elementData[size++] = e;
         return true;
     }
 
@@ -156,10 +191,22 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
         return true;
     }
 
+    /**
+     * @see ArrayList#addAll(Collection)
+     */
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        if (c == null)
+        if (c == null || c.isEmpty())
             return false;
+
+        if (c instanceof RandomAccess) {
+            final Object[] array = c.toArray();
+            ensureCapacityFor(array.length + size());
+            System.arraycopy(array, 0, elementData, size, array.length);
+            size += array.length;
+            return true;
+        }
+
         boolean res = true;
         for (E e : c)
             res &= add(e);
@@ -186,7 +233,7 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
 
     @Override
     public String toString() {
-        if (size == 0)
+        if (isEmpty())
             return "[]";
         final StringBuilder sb = new StringBuilder()
                 .append("->[")
@@ -196,6 +243,21 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
         return sb.append("]").toString();
     }
 
+    @Override
+    public void forEach(Consumer<? super E> action) {
+        requireNonNull(action, "action");
+        for (int i = size - 1; i >= 0; i--)
+            action.accept((E) elementData[i]);
+    }
+
+    @Override
+    public boolean removeIf(Predicate<? super E> filter) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * @see ArrayList#iterator()
+     */
     static class Itr<E> implements Iterator<E> {
 
         private final Object[] elementData;
@@ -222,6 +284,13 @@ public class ArrayStack<E> implements Collection<E>, Stack<E> {
             requireNonNull(action, "action");
             for (int i = index; i >= 0; i--)
                 action.accept((E) elementData[i]);
+        }
+
+        @Override
+        public String toString() {
+            return "ArrayStackIterator{" +
+                    "index=" + index +
+                    '}';
         }
     }
 }
