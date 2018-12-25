@@ -93,11 +93,13 @@ public class ArrayStack<E> implements Stack<E> {
         final Object[] a = this.elementData;
         switch (size()) {
             case 0: return Collections.emptyList();
-            case 1: return List.of((E) a[0]);
-            case 2: return List.of((E) a[1], (E) a[0]);
-            case 3: return List.of((E) a[2], (E) a[1], (E) a[0]);
-            case 4: return List.of((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
-            case 5: return List.of((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 1: return Collections.singletonList((E) a[0]);
+            case 2: return Arrays.asList((E) a[1], (E) a[0]);
+            case 3: return Arrays.asList((E) a[2], (E) a[1], (E) a[0]);
+            case 4: return Arrays.asList((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 5: return Arrays.asList((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 6: return Arrays.asList((E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 7: return Arrays.asList((E) a[6], (E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
         }
         return new ArrayList<>(this);
     }
@@ -107,11 +109,13 @@ public class ArrayStack<E> implements Stack<E> {
         final Object[] a = this.elementData;
         switch (size()) {
             case 0: return Collections.emptySet();
-            case 1: return Set.of((E) a[0]);
+            case 1: return Collections.singleton((E) a[0]);
             case 2: return Set.of((E) a[1], (E) a[0]);
             case 3: return Set.of((E) a[2], (E) a[1], (E) a[0]);
             case 4: return Set.of((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
             case 5: return Set.of((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 6: return Set.of((E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 7: return Set.of((E) a[6], (E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
         }
         return new HashSet<>(this);
     }
@@ -226,14 +230,25 @@ public class ArrayStack<E> implements Stack<E> {
      */
     @Override
     public boolean addAll(Collection<? extends E> c) {
+
         if (c == null || c.isEmpty())
             return false;
 
+        if (c instanceof ArrayStack) {
+            int size = size(), sizeC = c.size();
+            ensureCapacityFor(sizeC + size + 1);
+            final Object[] elementData = ((ArrayStack<? extends E>) c).elementData;
+            for (int i = sizeC - 1; i >= 0; i--)
+                this.elementData[size++] = elementData[i];
+            this.size = size;
+            return true;
+        }
+
         if (c instanceof RandomAccess) {
             final Object[] array = c.toArray();
-            ensureCapacityFor(array.length + size());
+            ensureCapacityFor(array.length + size);
             System.arraycopy(array, 0, elementData, size, array.length);
-            size += array.length;
+            this.size += array.length;
             return true;
         }
 

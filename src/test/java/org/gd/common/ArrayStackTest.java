@@ -3,6 +3,7 @@ package org.gd.common;
 import org.junit.jupiter.api.*;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -110,9 +111,17 @@ class ArrayStackTest {
     @Test
     @DisplayName("AddAll")
     void test_AddAll() {
-        final ArrayStack<Integer> stack = new ArrayStack<>();
+        var stack = new ArrayStack<>();
         stack.addAll(List.of(1, 2, 3));
         stack.addAll(List.of(4, 5, 6));
+        assertEquals(List.of(6, 5, 4, 3, 2, 1), stack.toList());
+
+        stack = ArrayStack.of(1, 2, 3);
+        stack.addAll(ArrayStack.of(6, 5, 4));
+        assertEquals(List.of(6, 5, 4, 3, 2, 1), stack.toList());
+
+        stack = ArrayStack.of(1, 2, 3);
+        stack.addAll(new LinkedList<>(List.of(4, 5, 6)));
         assertEquals(List.of(6, 5, 4, 3, 2, 1), stack.toList());
     }
 
