@@ -16,12 +16,19 @@ public final class Commons {
             BIG_FIB_92  = BigInteger.valueOf(fib(92)),
             BIG_FACT_20 = BigInteger.valueOf(factorial(20));
 
+    static {
+        BIG_INTEGERS_BITS[0] = BigInteger.ONE;
+        BIG_INTEGERS_BITS[1] = BigInteger.TWO;
+        for (int i = 2; i < BIG_INTEGERS_BITS.length; i++)
+            BIG_INTEGERS_BITS[i] = bigIntegerBits0(i);
+    }
+
     private Commons() { throw new UnsupportedOperationException(); }
 
     private static BigInteger bigIntegerBits0(int bits) {
         return bits < 63
                 ? BigInteger.valueOf(1L << bits)
-                : BigInteger.valueOf(2).pow(bits);
+                : BigInteger.ONE.shiftLeft(bits);
     }
 
     /**
@@ -30,14 +37,8 @@ public final class Commons {
      * @return {@link BigInteger}
      */
     public static BigInteger bigIntegerBits(int bits) {
-        if (bits <= 0)
-            return BigInteger.ZERO;
-        if (bits < BIG_INTEGERS_BITS.length) {
-            BigInteger pow;
-            if ((pow = BIG_INTEGERS_BITS[bits]) == null)
-                BIG_INTEGERS_BITS[bits] = (pow = bigIntegerBits0(bits));
-            return pow;
-        }
+        if (bits < 0) return BigInteger.ZERO;
+        if (bits < BIG_INTEGERS_BITS.length) return BIG_INTEGERS_BITS[bits];
         return bigIntegerBits0(bits);
     }
 

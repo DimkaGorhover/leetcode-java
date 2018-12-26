@@ -4,6 +4,8 @@ import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,6 +17,7 @@ import static java.util.Objects.requireNonNull;
  * @see ArrayList#rangeCheckForAdd(int)
  * @since 2018-12-22
  */
+@SuppressWarnings("unchecked")
 public class ArrayStack<E> implements Stack<E> {
 
     private static final Object[] EMPTY_ELEMENT_DATA = {};
@@ -53,7 +56,7 @@ public class ArrayStack<E> implements Stack<E> {
     /**
      * @see ArrayList#newCapacity(int)
      */
-    private int newCapacity(int minCapacity) {
+    private static int newCapacity(Object[] elementData, int minCapacity) {
         // overflow-conscious code
         int oldCapacity = elementData.length;
         int newCapacity = oldCapacity + (oldCapacity >> 1);
@@ -73,7 +76,7 @@ public class ArrayStack<E> implements Stack<E> {
      * @see ArrayList#grow(int)
      */
     private void grow(int minCapacity) {
-        elementData = Arrays.copyOf(elementData, newCapacity(minCapacity));
+        elementData = Arrays.copyOf(elementData, newCapacity(elementData, minCapacity));
     }
 
     private void ensureCapacityFor(int size) {
@@ -140,15 +143,26 @@ public class ArrayStack<E> implements Stack<E> {
     public Spliterator<E> spliterator() {
         return isEmpty()
                 ? Spliterators.emptySpliterator()
-                : Spliterators.spliterator(elementData, 0, size, 0);
+                : Spliterators.spliterator(iterator(), size(), 0);
     }
+
+    @Override
+    public Stream<E> stream() {
+        final int size = size();
+        return IntStream.range(0, size)
+                .map(index -> size - 1 - index)
+                .mapToObj(value -> (E) elementData[value]);
+    }
+
+    @Override
+    public Stream<E> parallelStream() { return stream().parallel(); }
 
     /**
      * @see ArrayList#iterator()
      */
     @Override
     public Iterator<E> iterator() {
-        return isEmpty() ? Collections.emptyIterator() : new Itr<>(elementData, size);
+        return isEmpty() ? Collections.emptyIterator() : new Itr<>(this);
     }
 
     /**
@@ -338,10 +352,10 @@ public class ArrayStack<E> implements Stack<E> {
                     ((ArrayStack) obj).elementData, 0, size);
 
         final Iterator itr1 = iterator(), itr2 = ((Stack) obj).iterator();
-        while (itr1.hasNext() && itr2.hasNext()) {
+        while (itr1.hasNext() && itr2.hasNext())
             if (!Objects.equals(itr1.next(), itr2.next()))
                 return false;
-        }
+
         return itr1.hasNext() ^ itr2.hasNext();
     }
 
@@ -364,31 +378,38 @@ public class ArrayStack<E> implements Stack<E> {
      */
     static class Itr<E> implements Iterator<E> {
 
-        private final Object[] elementData;
+        private final ArrayStack<E> stack;
 
         private int index;
 
-        Itr(Object[] elementData, int size) {
-            this.elementData = elementData;
-            this.index = size - 1;
+        Itr(ArrayStack<E> stack) {
+            this.stack = requireNonNull(stack, "stack");
+            this.index = stack.size() - 1;
+        }
+
+        private int nextIndex() {
+            if (!hasNext())
+                throw new NoSuchElementException();
+            final int i = index;
+            index--;
+            return i;
         }
 
         @Override
         public boolean hasNext() { return index >= 0; }
 
         @Override
-        public E next() {
-            if (!hasNext())
-                throw new NoSuchElementException();
-            return (E) elementData[index--];
-        }
+        public E next() { return (E) stack.elementData[nextIndex()]; }
 
         @Override
         public void forEachRemaining(Consumer<? super E> action) {
             requireNonNull(action, "action");
             for (int i = index; i >= 0; i--)
-                action.accept((E) elementData[i]);
+                action.accept((E) stack.elementData[i]);
         }
+
+        @Override
+        public void remove() { stack.remove(nextIndex()); }
 
         @Override
         public String toString() {

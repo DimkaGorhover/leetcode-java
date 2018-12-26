@@ -12,9 +12,20 @@ public interface Stack<E> extends Collection<E> {
 
     boolean push(E element);
 
+    /**
+     * @return {@code null} is stack is empty
+     *
+     * @see #isEmpty()
+     */
     E pop();
 
+    /**
+     * @return instance of {@link List}
+     */
     List<E> toList();
 
+    /**
+     * @return instance of {@link Set}
+     */
     Set<E> toSet();
 }

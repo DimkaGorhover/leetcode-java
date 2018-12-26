@@ -5,6 +5,8 @@ import org.junit.jupiter.api.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -189,5 +191,32 @@ class ArrayStackTest {
         assertEquals(
                 ArrayStack.of(1, 2, 3, 4).hashCode(),
                 stack.hashCode());
+    }
+
+    @SuppressWarnings("SimplifyStreamApiCallChains")
+    @Test
+    @DisplayName("spliterator")
+    void test_spliterator() {
+        assertEquals(
+                List.of(4, 3, 2, 1),
+                StreamSupport.stream(ArrayStack.of(1, 2, 3, 4).spliterator(), false)
+                        .collect(Collectors.toList())
+        );
+    }
+
+    @SuppressWarnings("SimplifyStreamApiCallChains")
+    @Test
+    @DisplayName("stream")
+    void test_stream() {
+        assertEquals(
+                List.of(4, 3, 2, 1),
+                ArrayStack.of(1, 2, 3, 4).stream().collect(Collectors.toList())
+        );
+    }
+
+    @Test
+    @DisplayName("parallelStream")
+    void test_parallelStream() {
+        assertEquals(10, ArrayStack.of(1, 2, 3, 4).stream().mapToInt(v -> v).sum());
     }
 }
