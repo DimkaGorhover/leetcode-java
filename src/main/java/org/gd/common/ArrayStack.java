@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.*;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -95,14 +97,16 @@ public class ArrayStack<E> implements Stack<E> {
     public List<E> toList() {
         final Object[] a = this.elementData;
         switch (size()) {
-            case 0: return Collections.emptyList();
-            case 1: return Collections.singletonList((E) a[0]);
-            case 2: return Arrays.asList((E) a[1], (E) a[0]);
-            case 3: return Arrays.asList((E) a[2], (E) a[1], (E) a[0]);
-            case 4: return Arrays.asList((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
-            case 5: return Arrays.asList((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
-            case 6: return Arrays.asList((E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
-            case 7: return Arrays.asList((E) a[6], (E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 0: return emptyList();
+            case 1: return singletonList((E) a[0]);
+            case 2: return asList((E) a[1], (E) a[0]);
+            case 3: return asList((E) a[2], (E) a[1], (E) a[0]);
+            case 4: return asList((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 5: return asList((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 6: return asList((E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 7: return asList((E) a[6], (E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 8: return asList((E) a[7], (E) a[6], (E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 9: return asList((E) a[8], (E) a[7], (E) a[6], (E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
         }
         return new ArrayList<>(this);
     }
@@ -111,14 +115,9 @@ public class ArrayStack<E> implements Stack<E> {
     public Set<E> toSet() {
         final Object[] a = this.elementData;
         switch (size()) {
-            case 0: return Collections.emptySet();
-            case 1: return Collections.singleton((E) a[0]);
-            case 2: return Set.of((E) a[1], (E) a[0]);
-            case 3: return Set.of((E) a[2], (E) a[1], (E) a[0]);
-            case 4: return Set.of((E) a[3], (E) a[2], (E) a[1], (E) a[0]);
-            case 5: return Set.of((E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
-            case 6: return Set.of((E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
-            case 7: return Set.of((E) a[6], (E) a[5], (E) a[4], (E) a[3], (E) a[2], (E) a[1], (E) a[0]);
+            case 0: return emptySet();
+            case 1: return singleton((E) a[0]);
+            case 2: return (Objects.equals(a[0], a[1])) ? singleton((E) a[0]) : Set.of((E) a[1], (E) a[0]);
         }
         return new HashSet<>(this);
     }

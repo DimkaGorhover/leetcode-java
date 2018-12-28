@@ -60,8 +60,10 @@ public final class Commons {
     public static BigInteger bigFib(int n) {
         if (n < 2) return BigInteger.ONE;
         if (n < 91) return BigInteger.valueOf(fib(n));
-        if (n == 91) return BIG_FIB_91;
-        if (n == 92) return BIG_FIB_92;
+        switch (n) {
+            case 91: return BIG_FIB_91;
+            case 92: return BIG_FIB_92;
+        }
         BigInteger a1 = BIG_FIB_91, a2 = BIG_FIB_92, f = a2;
         for (int i = 93; i <= n; i++) {
             f = a1.add(a2);

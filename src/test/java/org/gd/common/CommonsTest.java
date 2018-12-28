@@ -3,6 +3,7 @@ package org.gd.common;
 import org.junit.jupiter.api.*;
 
 import java.math.BigInteger;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +14,18 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2018-12-18
  */
 class CommonsTest {
+
+    @Test
+    @DisplayName("BigIntegerBits")
+    void test_BigIntegerBits() {
+        final BigInteger two = BigInteger.valueOf(2);
+        for (int i = 0; i < 100; i++) {
+            int bits = ThreadLocalRandom.current().nextInt(4, 23);
+            assertEquals(two.pow(bits), Commons.bigIntegerBits(bits));
+            bits = ThreadLocalRandom.current().nextInt(100, 200);
+            assertEquals(two.pow(bits), Commons.bigIntegerBits(bits));
+        }
+    }
 
     @Test
     @DisplayName("Fib")
