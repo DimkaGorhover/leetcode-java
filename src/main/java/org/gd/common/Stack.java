@@ -22,10 +22,10 @@ public interface Stack<E> extends Collection<E> {
     /**
      * @return instance of {@link List}
      */
-    List<E> toList();
+    default List<E> toList() { return List.copyOf(this); }
 
     /**
      * @return instance of {@link Set}
      */
-    Set<E> toSet();
+    default Set<E> toSet() { return Set.copyOf(this); }
 }

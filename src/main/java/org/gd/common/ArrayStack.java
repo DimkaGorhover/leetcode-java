@@ -149,8 +149,8 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public Stream<E> stream() {
         final int size = size();
-        return IntStream.range(0, size)
-                .map(index -> size - 1 - index)
+        return IntStream.rangeClosed(1, size)
+                .map(index -> size - index)
                 .mapToObj(value -> (E) elementData[value]);
     }
 
@@ -305,7 +305,8 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public String toString() {
         if (isEmpty())
-            return "[]";
+            return "->[]";
+        final int size = size();
         final StringBuilder sb = new StringBuilder()
                 .append("->[")
                 .append(elementData[size - 1]);
@@ -404,8 +405,8 @@ public class ArrayStack<E> implements Stack<E> {
         @Override
         public void forEachRemaining(Consumer<? super E> action) {
             requireNonNull(action, "action");
-            for (int i = index; i >= 0; i--)
-                action.accept((E) stack.elementData[i]);
+            while (index >= 0)
+                action.accept((E) stack.elementData[index--]);
         }
 
         @Override
@@ -413,9 +414,7 @@ public class ArrayStack<E> implements Stack<E> {
 
         @Override
         public String toString() {
-            return "ArrayStackIterator{" +
-                    "index=" + index +
-                    '}';
+            return "ArrayStackIterator{index=" + index + '}';
         }
     }
 }
