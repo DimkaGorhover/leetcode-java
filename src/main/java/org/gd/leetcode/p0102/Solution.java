@@ -1,12 +1,10 @@
 package org.gd.leetcode.p0102;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.gd.leetcode.common.Difficulty.Level.MEDIUM;
 
 /**
  * https://leetcode.com/problems/binary-tree-level-order-traversal/
@@ -14,7 +12,7 @@ import static org.gd.leetcode.common.Difficulty.Level.MEDIUM;
  * @author Horkhover Dmytro
  * @since 2018-12-20
  */
-@Difficulty(MEDIUM)
+@LeetCode(difficulty = LeetCode.Level.MEDIUM)
 class Solution {
 
     private static int deep(TreeNode node) {

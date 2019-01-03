@@ -1,13 +1,11 @@
 package org.gd.leetcode.p0119;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static org.gd.leetcode.common.Difficulty.Level.EASY;
 
 /**
  * https://leetcode.com/problems/pascals-triangle-ii/
@@ -16,7 +14,7 @@ import static org.gd.leetcode.common.Difficulty.Level.EASY;
  * @see org.gd.leetcode.p0118.Solution
  * @since 2018-12-21
  */
-@Difficulty(EASY)
+@LeetCode(difficulty = LeetCode.Level.EASY)
 class Solution {
 
     private static final List<Integer>

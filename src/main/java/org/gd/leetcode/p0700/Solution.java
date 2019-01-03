@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0700;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
@@ -9,7 +9,7 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-12-28
  */
-@Difficulty(Difficulty.Level.EASY)
+@LeetCode(difficulty = LeetCode.Level.EASY)
 class Solution {
 
     public TreeNode searchBST(TreeNode root, int val) {

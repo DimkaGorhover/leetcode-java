@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0804;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 
 import java.util.HashSet;
 
@@ -10,7 +10,7 @@ import java.util.HashSet;
  * @author Horkhover Dmytro
  * @since 2018-12-28
  */
-@Difficulty(Difficulty.Level.EASY)
+@LeetCode(difficulty = LeetCode.Level.EASY)
 class Solution {
 
     private static final String[] MORSE = {

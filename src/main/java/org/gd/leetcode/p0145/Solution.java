@@ -1,14 +1,12 @@
 package org.gd.leetcode.p0145;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.gd.leetcode.common.Difficulty.Level.HARD;
 
 /**
  * https://leetcode.com/problems/binary-tree-postorder-traversal/
@@ -17,7 +15,7 @@ import static org.gd.leetcode.common.Difficulty.Level.HARD;
  * @see org.gd.leetcode.p0144.Solution
  * @since 2018-10-23
  */
-@Difficulty(HARD)
+@LeetCode(difficulty = LeetCode.Level.HARD)
 class Solution {
 
     private static List<Integer> recursive0(TreeNode node, List<Integer> integers) {

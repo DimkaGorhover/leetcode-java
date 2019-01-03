@@ -1,14 +1,12 @@
 package org.gd.leetcode.p0876;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.ListNode;
-
-import static org.gd.leetcode.common.Difficulty.Level.EASY;
 
 /**
  * https://leetcode.com/problems/middle-of-the-linked-list/
  */
-@Difficulty(EASY)
+@LeetCode(difficulty = LeetCode.Level.EASY)
 class Solution {
 
     public ListNode middleNode(ListNode head) {

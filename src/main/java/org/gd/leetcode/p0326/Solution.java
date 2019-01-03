@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0326;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/power-of-three/
@@ -8,7 +8,7 @@ import org.gd.leetcode.common.Difficulty;
  * @author Horkhover Dmytro
  * @since 2018-12-26
  */
-@Difficulty(Difficulty.Level.EASY)
+@LeetCode(difficulty = LeetCode.Level.EASY)
 class Solution {
 
     public boolean isPowerOfThree(int n) {

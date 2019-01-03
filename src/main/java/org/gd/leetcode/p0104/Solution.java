@@ -1,9 +1,7 @@
 package org.gd.leetcode.p0104;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
-
-import static org.gd.leetcode.common.Difficulty.Level.EASY;
 
 /**
  * https://leetcode.com/problems/maximum-depth-of-binary-tree/
@@ -11,7 +9,7 @@ import static org.gd.leetcode.common.Difficulty.Level.EASY;
  * @author Horkhover Dmytro
  * @since 2018-11-15
  */
-@Difficulty(EASY)
+@LeetCode(difficulty = LeetCode.Level.EASY)
 class Solution {
 
     public int maxDepth(TreeNode root) {

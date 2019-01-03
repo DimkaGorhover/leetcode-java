@@ -1,8 +1,6 @@
 package org.gd.leetcode.p0060;
 
-import org.gd.leetcode.common.Difficulty;
-
-import static org.gd.leetcode.common.Difficulty.Level.MEDIUM;
+import org.gd.leetcode.common.LeetCode;
 
 /**
  * TODO: https://leetcode.com/problems/permutation-sequence/
@@ -10,7 +8,7 @@ import static org.gd.leetcode.common.Difficulty.Level.MEDIUM;
  * @author Horkhover Dmytro
  * @since 2018-12-20
  */
-@Difficulty(MEDIUM)
+@LeetCode(difficulty = LeetCode.Level.MEDIUM)
 class Solution {
 
     private static final int[] F_TABLE = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};

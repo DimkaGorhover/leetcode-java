@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0165;
 
-import org.gd.leetcode.common.Difficulty;
+import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/compare-version-numbers/
@@ -8,7 +8,7 @@ import org.gd.leetcode.common.Difficulty;
  * @author Horkhover Dmytro
  * @since 2018-12-18
  */
-@Difficulty(Difficulty.Level.MEDIUM)
+@LeetCode(difficulty = LeetCode.Level.MEDIUM)
 class Solution {
 
     public int compareVersion(String version1, String version2) {

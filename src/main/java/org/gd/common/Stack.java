@@ -1,6 +1,7 @@
 package org.gd.common;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,5 +28,5 @@ public interface Stack<E> extends Collection<E> {
     /**
      * @return instance of {@link Set}
      */
-    default Set<E> toSet() { return Set.copyOf(this); }
+    default Set<E> toSet() { return new HashSet<>(this); }
 }
