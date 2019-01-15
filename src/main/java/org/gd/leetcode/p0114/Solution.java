@@ -17,7 +17,12 @@ import org.gd.leetcode.common.TreeNode;
         })
 class Solution {
 
-    public void flatten(TreeNode root) {
+    private TreeNode swap(TreeNode node, TreeNode right) {
         throw new UnsupportedOperationException();
+    }
+
+    public void flatten(TreeNode root) {
+        if (root != null)
+            swap(root, root.right);
     }
 }
