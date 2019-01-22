@@ -18,9 +18,10 @@ class TimeUtilsTest {
     @DisplayName("ToPrettyDuration")
     void test_ToPrettyDuration() {
 
-        final String s = TimeUtils.toPrettyDuration(Duration.ofMillis(423)
-                .plus(Duration.ofSeconds(145))
-                .plus(Duration.ofMinutes(145))
+        final String s = TimeUtils.toPrettyDuration(Duration.ZERO
+                .plusMillis(423)
+                .plusSeconds(145)
+                .plusMinutes(145)
         );
 
         assertEquals("27:25:0423", s);

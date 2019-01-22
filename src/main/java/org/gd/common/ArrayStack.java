@@ -16,24 +16,12 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Horkhover Dmytro
  * @see ArrayList
- * @see ArrayList#rangeCheckForAdd(int)
  * @since 2018-12-22
  */
 @SuppressWarnings("unchecked")
-public class ArrayStack<E> implements Stack<E> {
+public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E> {
 
-    private static final Object[] EMPTY_ELEMENT_DATA = {};
-
-    private static final int DEFAULT_CAPACITY = 10;
-
-    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
-
-    private Object[] elementData = EMPTY_ELEMENT_DATA;
-
-    private int size;
-
-    public ArrayStack() {
-    }
+    public ArrayStack() {}
 
     @SuppressWarnings("ForLoopReplaceableByForEach")
     public static <E> ArrayStack<E> of(E... values) {
@@ -42,49 +30,6 @@ public class ArrayStack<E> implements Stack<E> {
         for (int i = 0; i < values.length; i++)
             stack.push(values[i]);
         return stack;
-    }
-
-    /**
-     * @see ArrayList#hugeCapacity(int)
-     */
-    private static int hugeCapacity(int minCapacity) {
-        if (minCapacity < 0) // overflow
-            throw new OutOfMemoryError();
-        return (minCapacity > MAX_ARRAY_SIZE)
-                ? Integer.MAX_VALUE
-                : MAX_ARRAY_SIZE;
-    }
-
-    /**
-     * @see ArrayList#newCapacity(int)
-     */
-    private static int newCapacity(Object[] elementData, int minCapacity) {
-        // overflow-conscious code
-        int oldCapacity = elementData.length;
-        int newCapacity = oldCapacity + (oldCapacity >> 1);
-        if (newCapacity - minCapacity <= 0) {
-            if (elementData == EMPTY_ELEMENT_DATA)
-                return Math.max(DEFAULT_CAPACITY, minCapacity);
-            if (minCapacity < 0) // overflow
-                throw new OutOfMemoryError();
-            return minCapacity;
-        }
-        return (newCapacity - MAX_ARRAY_SIZE <= 0)
-                ? newCapacity
-                : hugeCapacity(minCapacity);
-    }
-
-    /**
-     * @see ArrayList#grow(int)
-     */
-    private void grow(int minCapacity) {
-        elementData = Arrays.copyOf(elementData, newCapacity(elementData, minCapacity));
-    }
-
-    private void ensureCapacityFor(int size) {
-        final int newSize = size() + size;
-        if (newSize >= elementData.length)
-            grow(newSize);
     }
 
     @Override
@@ -219,13 +164,6 @@ public class ArrayStack<E> implements Stack<E> {
         return false;
     }
 
-    private void remove(int i) {
-        if (i < 0 || i >= size)
-            throw new IndexOutOfBoundsException();
-        System.arraycopy(elementData, i + 1, elementData, i, size - i);
-        size--;
-    }
-
     @Override
     public boolean containsAll(Collection<?> c) {
         if (c == null || c.isEmpty())
@@ -358,13 +296,6 @@ public class ArrayStack<E> implements Stack<E> {
 
         return itr1.hasNext() ^ itr2.hasNext();
     }
-
-    /**
-     * @see ArrayList#hashCode()
-     * @see ArrayList#hashCodeRange(int, int)
-     */
-    @Override
-    public int hashCode() { return hashCode(0, 31); }
 
     public int hashCode(int start, int multiplier) {
         int hash = start;
