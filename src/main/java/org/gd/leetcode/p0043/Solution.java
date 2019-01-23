@@ -1,13 +1,21 @@
 package org.gd.leetcode.p0043;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
- * TODO: https://leetcode.com/problems/multiply-strings
+ * FIXME: https://leetcode.com/problems/multiply-strings
  *
  * http://math-prosto.ru/?page=pages/action-in-column/multi-in-column.php
  *
  * @author Gorkhover D.
  * @since 2018-10-22
  */
+@LeetCode(
+        difficulty = LeetCode.Level.MEDIUM,
+        tags = {
+                LeetCode.Tags.MATH,
+                LeetCode.Tags.STRING
+        })
 class Solution {
 
     public static void main(String[] args) {
@@ -22,7 +30,6 @@ class Solution {
         java.util.Arrays.fill(chars, 0, pos, '0');
 
         while (pos1 >= 0 || pos2 >= 0) {
-
 
 
             pos1--;

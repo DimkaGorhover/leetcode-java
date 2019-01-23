@@ -4,9 +4,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.math.BigInteger;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
@@ -25,9 +26,8 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     void multiply(String v1, String v2) {
-        String expected = "" + (Integer.parseInt(v1) * Integer.parseInt(v2));
-
-
-        assertEquals(expected, new Solution().multiply(v1, v2));
+        assertEquals(
+                new BigInteger(v1, 10).multiply(new BigInteger(v2, 10)).toString(10),
+                new Solution().multiply(v1, v2));
     }
 }
