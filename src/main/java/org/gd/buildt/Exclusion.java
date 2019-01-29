@@ -4,6 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * @author Horkhover Dmytro
  * @since 2019-01-28
@@ -22,6 +24,13 @@ public class Exclusion implements Transformable {
         this.groupId = groupId;
         this.artifactId = artifactId;
         this.version = version;
+    }
+
+    public static Exclusion of(String group, String artifact) {
+        return builder()
+                .groupId(group)
+                .artifactId(artifact)
+                .build();
     }
 
     @Override
@@ -45,6 +54,8 @@ public class Exclusion implements Transformable {
 
     @Override
     public void toMaven(StringBuilder sb) {
+        requireNonNull(groupId, "\"groupId\" cannot be null");
+        requireNonNull(artifactId, "\"artifactId\" cannot be null");
         sb.append("<exclusion>")
                 .append("<groupId>").append(groupId).append("</groupId>")
                 .append("<artifactId>").append(artifactId).append("</artifactId>");

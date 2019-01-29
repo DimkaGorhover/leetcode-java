@@ -31,14 +31,8 @@ class RootTest {
                                 .artifactId("junit")
                                 .version("4.12")
                                 .exclusions(Set.of(
-                                        Exclusion.builder()
-                                                .groupId("hamcrest")
-                                                .artifactId("hamcrest")
-                                                .build(),
-                                        Exclusion.builder()
-                                                .groupId("hamcrest_1")
-                                                .artifactId("hamcrest_1")
-                                                .build()
+                                        Exclusion.of("hamcrest", "hamcrest"),
+                                        Exclusion.of("hamcrest_1", "hamcrest_1")
                                 ))
                                 .build(),
                         Dependency.of("org.junit", "junit", "4.11")
