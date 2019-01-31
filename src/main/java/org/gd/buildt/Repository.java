@@ -61,6 +61,11 @@ public class Repository implements Transformable {
         @Override
         default void toGradle(StringBuilder sb, String prefix) {}
 
+        @Override
+        default void toGradle(StringBuilder sb) {}
+
+        @Override
+        default String toGradle() { return ""; }
 
         @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
         class UpdatePolicy {
@@ -84,7 +89,10 @@ public class Repository implements Transformable {
         private DisabledPolicy() {}
 
         @Override
-        public void toMaven(StringBuilder sb) { sb.append("<enabled>false</enabled>"); }
+        public String toMaven() { return "<enabled>false</enabled>"; }
+
+        @Override
+        public void toMaven(StringBuilder sb) { sb.append(toMaven()); }
     }
 
     static class EnabledPolicy implements Policy {
