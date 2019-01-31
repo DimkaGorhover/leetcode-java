@@ -20,6 +20,7 @@ public class Root implements Transformable {
     private final String       artifactId;
     private final String       name;
     private final String       packaging;
+    private final Repositories repositories;
     private final Properties   properties;
     private final Dependencies dependencies;
 
@@ -30,7 +31,7 @@ public class Root implements Transformable {
                  @NonNull String artifactId,
                  String name,
                  String packaging,
-                 @NonNull Properties properties,
+                 Repositories repositories, @NonNull Properties properties,
                  @NonNull Dependencies dependencies) {
         this.pomVersion = pomVersion;
         this.version = version;
@@ -38,14 +39,16 @@ public class Root implements Transformable {
         this.artifactId = artifactId;
         this.name = name;
         this.packaging = packaging;
+        this.repositories = repositories;
         this.properties = properties;
         this.dependencies = dependencies;
     }
 
-
     @Override
     public void toGradle(StringBuilder sb, String prefix) {
         properties.toGradle(sb);
+        sb.append('\n');
+        repositories.toGradle(sb);
         sb.append('\n');
         dependencies.toGradle(sb);
     }
@@ -68,6 +71,7 @@ public class Root implements Transformable {
             sb.append("<packaging>").append(packaging).append("</packaging>");
 
         properties.toMaven(sb);
+        repositories.toMaven(sb);
         dependencies.toMaven(sb);
         sb.append("</project>");
     }

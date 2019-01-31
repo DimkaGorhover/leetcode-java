@@ -1,10 +1,10 @@
 package org.gd.buildt;
 
+import org.gd.buildt.Repository.Policy;
+import org.gd.buildt.Repository.Policy.UpdatePolicy;
 import org.junit.jupiter.api.*;
 
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for {@link Root};
@@ -23,6 +23,15 @@ class RootTest {
                         Property.of("p1", "v1"),
                         Property.of("p2", "v2"),
                         Property.of("p3", "v3")
+                ))
+                .repositories(Repositories.of(
+                        Repository.ofUrl("amazon.com"),
+                        Repository.builder()
+                                .id("google")
+                                .url("https://google.com")
+                                .releases(Policy.enabled(UpdatePolicy.interval(10)))
+                                .snapshots(Policy.disabled())
+                                .build()
                 ))
                 .dependencies(Dependencies.of(
                         Dependency.of("org.junit", "junit", "4.11"),

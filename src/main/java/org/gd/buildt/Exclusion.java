@@ -39,7 +39,7 @@ public class Exclusion implements Transformable {
         sb.append(prefix).append("exclude ");
         if (groupId != null && groupId.length() > 0) {
             start = true;
-            sb.append("group: ").append(groupId);
+            sb.append("group: \"").append(groupId).append('"');
         }
         if (artifactId != null && artifactId.length() > 0) {
             if (start) sb.append(", ");
