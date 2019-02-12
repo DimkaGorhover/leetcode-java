@@ -4,7 +4,7 @@ import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
- * TODO: https://leetcode.com/problems/symmetric-tree/
+ * https://leetcode.com/problems/symmetric-tree/
  *
  * @author Horkhover Dmytro
  * @since 2018-12-18
