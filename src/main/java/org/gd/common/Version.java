@@ -25,12 +25,23 @@ public class Version implements Comparable<Version> {
     public static Optional<Version> of(String text) {
         if (text == null || text.isEmpty())
             return Optional.empty();
-        return Optional.empty();
+
+        throw new UnsupportedOperationException();
     }
 
     @NonNull
     public Version nextBuild() {
         return new Version(major, minor, Math.addExact(build, 1));
+    }
+
+    @NonNull
+    public Version nextMinor() {
+        return new Version(major, Math.addExact(minor, 1), 0);
+    }
+
+    @NonNull
+    public Version nextMajor() {
+        return new Version(Math.addExact(major, 1), 0, 0);
     }
 
     @Override
