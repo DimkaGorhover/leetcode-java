@@ -12,10 +12,15 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    
     compileOnly 'org.projectlombok:lombok:1.18.2'
 
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
+    
     testCompile 'org.projectlombok:lombok:1.18.2'
+    
     testCompile "org.junit.jupiter:junit-jupiter-api:${versions.junitPlatform}"
     testCompile "org.junit.jupiter:junit-jupiter-engine:${versions.junitPlatform}"
     testCompile "org.junit.jupiter:junit-jupiter-params:${versions.junitPlatform}"
