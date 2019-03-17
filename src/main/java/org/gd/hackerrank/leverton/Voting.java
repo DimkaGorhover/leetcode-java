@@ -9,12 +9,17 @@ import java.util.*;
 class Voting {
 
     static String electionWinner(String[] votes) {
-        List<SortedSet<String>> list = new ArrayList<>();
-        Map<String, Integer>    map  = new HashMap<>();
-        for (int i = 0; i < votes.length; i++) {
-            int count = map.compute(votes[i], (s, c) -> (c == null ? 0 : c) + 1);
-            if (list.size() < count) list.add(new TreeSet<>());
-            list.get(count - 1).add(votes[i]);
+        ArrayList<SortedSet<String>> list = new ArrayList<>();
+        Map<String, Integer>         map  = new HashMap<>();
+        SortedSet<String>            level;
+        for (String vote : votes) {
+            int count = map.compute(vote, (ignore, votesCount) -> (votesCount == null ? 0 : votesCount) + 1);
+            if (list.size() < count) {
+                list.add(level = new TreeSet<>());
+            } else {
+                level = list.get(count - 1);
+            }
+            level.add(vote);
         }
         return list.get(list.size() - 1).last();
     }
