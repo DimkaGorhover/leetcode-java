@@ -20,7 +20,11 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
     
     testCompile 'org.projectlombok:lombok:1.18.2'
-    
+
+    compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.7'
+
+
     testCompile "org.junit.jupiter:junit-jupiter-api:${versions.junitPlatform}"
     testCompile "org.junit.jupiter:junit-jupiter-engine:${versions.junitPlatform}"
     testCompile "org.junit.jupiter:junit-jupiter-params:${versions.junitPlatform}"

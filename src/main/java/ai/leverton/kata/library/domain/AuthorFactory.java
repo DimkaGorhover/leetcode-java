@@ -12,7 +12,7 @@ import java.util.function.BiConsumer;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 class AuthorFactory implements Factory<Author> {
 
-    private final List<BiConsumer<Author.AuthorBuilder, String[]>> factories;
+    private final List<BiConsumer<Author.Builder, String[]>> factories;
 
     private static String[] checkSplitSize(@NonNull String[] split) {
         if (split.length != 3) {
@@ -21,7 +21,7 @@ class AuthorFactory implements Factory<Author> {
         return split;
     }
 
-    private static BiConsumer<Author.AuthorBuilder, String[]> factoryOf(@NonNull String name, final int pos) {
+    private static BiConsumer<Author.Builder, String[]> factoryOf(@NonNull String name, final int pos) {
         //@formatter:off
         switch (name) {
             case     "email": return (authorBuilder, valueLineSplit) -> authorBuilder.email(valueLineSplit[pos]);
@@ -35,7 +35,7 @@ class AuthorFactory implements Factory<Author> {
     @Nonnull
     static AuthorFactory ofCsvHeader(@NonNull String line) {
         final String[] split = checkSplitSize(line.split(";"));
-        final List<BiConsumer<Author.AuthorBuilder, String[]>> factories = new ArrayList<>(3);
+        final List<BiConsumer<Author.Builder, String[]>> factories = new ArrayList<>(3);
         for (int i = 0; i < split.length; i++) {
             factories.add(factoryOf(split[i], i));
         }
@@ -45,7 +45,7 @@ class AuthorFactory implements Factory<Author> {
     @Nonnull
     public Author create(@NonNull String line) {
         final String[] split = checkSplitSize(line.split(";"));
-        final Author.AuthorBuilder builder = Author.builder();
+        final Author.Builder builder = Author.builder();
         factories.forEach(factory -> factory.accept(builder, split));
         return builder.build();
     }

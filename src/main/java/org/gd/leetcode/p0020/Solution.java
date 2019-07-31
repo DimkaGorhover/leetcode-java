@@ -1,11 +1,19 @@
 package org.gd.leetcode.p0020;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * https://leetcode.com/problems/valid-parentheses/
  *
  * @author Horkhover Dmytro
  * @since 2018-12-29
  */
+@LeetCode(
+        difficulty = LeetCode.Level.EASY,
+        tags = {
+                LeetCode.Tags.STACK,
+                LeetCode.Tags.STRING
+        })
 class Solution {
 
     private static int map(int c) {
