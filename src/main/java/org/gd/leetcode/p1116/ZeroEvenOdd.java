@@ -3,49 +3,45 @@ package org.gd.leetcode.p1116;
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntConsumer;
 
 @LeetCode(difficulty = LeetCode.Level.MEDIUM)
 class ZeroEvenOdd {
 
-    private final Semaphore zero = new Semaphore(2);
-    private final Semaphore even = new Semaphore(1);
-    private final Semaphore odd  = new Semaphore(1);
-
-    private final AtomicInteger counter = new AtomicInteger(1);
-
     private final int n;
+
+    private final Semaphore zero, odd, even;
+
+    private int count = 1;
 
     public ZeroEvenOdd(int n) {
         this.n = n;
+        zero = new Semaphore(1);
+        odd = new Semaphore(0);
+        even = new Semaphore(0);
     }
 
     public void zero(IntConsumer printNumber) throws InterruptedException {
-        if (counter.get() < n) {
-            zero.acquire(2);
+        if (count <= n) {
+            zero.acquire();
             printNumber.accept(0);
-            even.release(1);
-        }
-    }
-
-    public void even(IntConsumer printNumber) throws InterruptedException {
-        int count = this.counter.getAndIncrement();
-        if (count < n) {
-            even.acquire(1);
-            printNumber.accept(count);
-            odd.release(1);
-            zero.release(1);
+            (count % 2 == 0 ? even : odd).release();
         }
     }
 
     public void odd(IntConsumer printNumber) throws InterruptedException {
-        int count = this.counter.getAndIncrement();
-        if (count < n) {
-            odd.acquire(1);
-            printNumber.accept(count);
-            even.release(1);
-            zero.release(1);
+        if (count <= n) {
+            odd.acquire();
+            printNumber.accept(count++);
+            zero.release();
+        }
+    }
+
+    public void even(IntConsumer printNumber) throws InterruptedException {
+        if (count <= n) {
+            even.acquire();
+            printNumber.accept(count++);
+            zero.release();
         }
     }
 }
