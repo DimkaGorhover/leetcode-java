@@ -4,6 +4,9 @@ import org.gd.leetcode.common.LeetCode;
 
 import java.util.concurrent.Semaphore;
 
+/**
+ * https://leetcode.com/problems/print-foobar-alternately
+ */
 @LeetCode(difficulty = LeetCode.Level.MEDIUM)
 class FooBar {
 

@@ -4,7 +4,7 @@ package org.gd.leetcode.p0067;
  * @author Gorkhover D.
  * @since 2018-10-22
  */
-public class Solution {
+class Solution {
 
     public String addBinary(String a, String b) {
 

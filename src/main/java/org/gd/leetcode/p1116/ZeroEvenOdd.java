@@ -2,46 +2,69 @@ package org.gd.leetcode.p1116;
 
 import org.gd.leetcode.common.LeetCode;
 
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntConsumer;
 
+/**
+ * https://leetcode.com/problems/print-zero-even-odd/
+ */
 @LeetCode(difficulty = LeetCode.Level.MEDIUM)
 class ZeroEvenOdd {
 
-    private final int n;
+    private static final int
+            LAST_ODD  = 1,
+            LAST_EVEN = 1 << 1,
+            LAST_ZERO = 1 << 2;
 
-    private final Semaphore zero, odd, even;
+    private int n;
 
-    private int count = 1;
+    private final AtomicInteger
+            count = new AtomicInteger(0),
+            c     = new AtomicInteger(LAST_EVEN);
 
     public ZeroEvenOdd(int n) {
         this.n = n;
-        zero = new Semaphore(1);
-        odd = new Semaphore(0);
-        even = new Semaphore(0);
     }
 
+    // printNumber.accept(x) outputs "x", where x is an integer.
     public void zero(IntConsumer printNumber) throws InterruptedException {
-        if (count <= n) {
-            zero.acquire();
-            printNumber.accept(0);
-            (count % 2 == 0 ? even : odd).release();
-        }
-    }
-
-    public void odd(IntConsumer printNumber) throws InterruptedException {
-        if (count <= n) {
-            odd.acquire();
-            printNumber.accept(count++);
-            zero.release();
+        synchronized (this) {
+            while (count.get() < n) {
+                if ((c.get() & LAST_ZERO) == 0) {
+                    printNumber.accept(0);
+                    c.set(c.get() | LAST_ZERO);
+                    ;
+                    notifyAll();
+                } else {
+                    wait();
+                }
+            }
         }
     }
 
     public void even(IntConsumer printNumber) throws InterruptedException {
-        if (count <= n) {
-            even.acquire();
-            printNumber.accept(count++);
-            zero.release();
+        synchronized (this) {
+            while (count.get() < n) {
+                if (c.compareAndSet(LAST_ZERO | LAST_ODD, LAST_EVEN)) {
+                    printNumber.accept(count.incrementAndGet());
+                    notifyAll();
+                } else {
+                    wait();
+                }
+            }
+        }
+    }
+
+    public void odd(IntConsumer printNumber) throws InterruptedException {
+        synchronized (this) {
+            while (count.get() < n) {
+                if (c.compareAndSet(LAST_ZERO | LAST_EVEN, LAST_ODD)) {
+                    printNumber.accept(count.incrementAndGet());
+                    notifyAll();
+                } else {
+                    wait();
+                }
+            }
         }
     }
 }

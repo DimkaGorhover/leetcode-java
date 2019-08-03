@@ -13,7 +13,7 @@ class ZeroEvenOddTest {
 
     @Test
     void test() throws InterruptedException {
-        var odd = new ZeroEvenOdd(3);
+        var odd = new ZeroEvenOdd(4);
         var q   = new LinkedBlockingQueue<Integer>();
 
         var executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -28,7 +28,7 @@ class ZeroEvenOddTest {
 
         System.out.println(List.copyOf(q));
 
-        assertEquals(List.of(0, 1, 0, 2, 0, 3), List.copyOf(q));
+        assertEquals(List.of(0, 1, 0, 2, 0, 3, 0, 4), List.copyOf(q));
     }
 
     interface TestRunnable extends Runnable {
