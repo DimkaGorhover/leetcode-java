@@ -33,7 +33,6 @@ class ZeroEvenOdd {
                 if ((c.get() & LAST_ZERO) == 0) {
                     printNumber.accept(0);
                     c.set(c.get() | LAST_ZERO);
-                    ;
                     notifyAll();
                 } else {
                     wait();
@@ -45,7 +44,7 @@ class ZeroEvenOdd {
     public void even(IntConsumer printNumber) throws InterruptedException {
         synchronized (this) {
             while (count.get() < n) {
-                if (c.compareAndSet(LAST_ZERO | LAST_ODD, LAST_EVEN)) {
+                if (c.compareAndSet((LAST_ZERO | LAST_ODD), LAST_EVEN)) {
                     printNumber.accept(count.incrementAndGet());
                     notifyAll();
                 } else {
@@ -58,7 +57,7 @@ class ZeroEvenOdd {
     public void odd(IntConsumer printNumber) throws InterruptedException {
         synchronized (this) {
             while (count.get() < n) {
-                if (c.compareAndSet(LAST_ZERO | LAST_EVEN, LAST_ODD)) {
+                if (c.compareAndSet((LAST_ZERO | LAST_EVEN), LAST_ODD)) {
                     printNumber.accept(count.incrementAndGet());
                     notifyAll();
                 } else {

@@ -1,5 +1,6 @@
 package org.gd.leetcode.common;
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
 import java.lang.annotation.*;
@@ -17,10 +18,10 @@ public @interface LeetCode {
 
     Tags[] tags() default {};
 
-    @RequiredArgsConstructor
+    @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
     enum Level {EASY, MEDIUM, HARD}
 
-    @RequiredArgsConstructor
+    @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
     enum Tags {
 
         ARRAY("Array"),
