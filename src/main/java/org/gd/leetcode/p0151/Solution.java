@@ -16,14 +16,13 @@ class Solution {
     public String reverseWords(String s) {
         if (s == null || (s = s.trim()).isEmpty())
             return "";
+        String   word;
         String[] words = s.split(" ");
         StringBuilder sb = new StringBuilder(s.length())
                 .append(words[words.length - 1]);
-        for (int i = words.length - 2; i >= 0; i--) {
-            String word = words[i].trim();
-            if (!word.isEmpty())
-                sb.append(' ').append(words[i]);
-        }
+        for (int i = words.length - 2; i >= 0; i--)
+            if (!(word = words[i].trim()).isEmpty())
+                sb.append(' ').append(word);
         return sb.toString();
     }
 }
