@@ -6,7 +6,6 @@ import java.math.BigInteger;
  * @author Horkhover Dmytro
  * @since 2018-12-18
  */
-@SuppressWarnings("WeakerAccess")
 public final class Commons {
 
     private static final BigInteger[] BIG_INTEGERS_BITS = new BigInteger[32];
@@ -93,5 +92,12 @@ public final class Commons {
 
     public static double sigmoid(double x) {
         return 1. / (1. + Math.exp(-x));
+    }
+
+    /**
+     * <a hrep="https://www.baeldung.com/java-logarithms">Calculating Logarithms in Java</a>
+     */
+    public static double log(double base, double logNumber) {
+        return Math.log10(logNumber) / Math.log10(base);
     }
 }

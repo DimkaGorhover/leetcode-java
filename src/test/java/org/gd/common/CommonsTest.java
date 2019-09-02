@@ -65,4 +65,12 @@ class CommonsTest {
                 new BigInteger("2H810LN1DXTFEZNBWZFUI7HGPY6ZJCYT6S3D2B2IPKW000000000000000", 36),
                 Commons.bigFactorial(64));
     }
+
+    @Test
+    @DisplayName("log")
+    void test_log() throws Exception {
+        assertEquals(8, Commons.log(2, 256));
+        assertEquals(2, Commons.log(3, 9));
+        assertEquals(3, Commons.log(10, 1000));
+    }
 }
