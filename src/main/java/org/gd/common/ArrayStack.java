@@ -157,7 +157,7 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
             return false;
         for (int i = 0; i < size; i++) {
             if (Objects.equals(o, elementData[i])) {
-                remove(i);
+                super.remove(i);
                 return true;
             }
         }
@@ -213,9 +213,9 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
     public boolean removeAll(Collection<?> c) {
         if (c == null || c.isEmpty() || isEmpty())
             return true;
-        boolean res = true;
+        boolean res = false;
         for (Object e : c)
-            res &= remove(e);
+            res |= remove(e);
         return res;
     }
 
@@ -227,7 +227,7 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
         boolean res = false;
         for (int i = 0; i < size(); ) {
             if (!c.contains(elementData[i])) {
-                remove(i);
+                super.remove(i);
                 res = true;
             } else {
                 i++;
@@ -259,6 +259,18 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
             action.accept((E) elementData[i]);
     }
 
+    @Override
+    public E remove(int index) {
+        final int size = size();
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+        index = size - index - 1;
+        final Object prev = elementData[index];
+        System.arraycopy(elementData, index + 1, elementData, index, size - index);
+        this.size = size - 1;
+        return (E) prev;
+    }
+
     /**
      * @see #remove(Object)
      */
@@ -267,7 +279,7 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
         boolean res = false;
         for (int i = 0; i < size(); ) {
             if (filter.test((E) elementData[i])) {
-                remove(i);
+                super.remove(i);
                 res = true;
             } else {
                 i++;

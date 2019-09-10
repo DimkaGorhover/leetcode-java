@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test for {@link Solution}
+ *
  * @since 2019-08-23
  */
 class SolutionTest {

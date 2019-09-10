@@ -92,11 +92,11 @@ class ArrayStackTest {
     @Test
     @DisplayName("Remove")
     void test_Remove() {
-        final ArrayStack<Integer> stack = ArrayStack.of(1, 2, 3, 4);
+        final ArrayStack<Integer> stack = ArrayStack.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
         // @formatter:off
-        stack.remove(2); assertEquals(List.of(4, 3, 1), stack.toList());
-        stack.remove(4); assertEquals(List.of(3, 1), stack.toList());
-        stack.remove(2); assertEquals(List.of(3, 1), stack.toList());
+        stack.remove(2); assertEquals(List.of(9, 8, 6, 5, 4, 3, 2, 1), stack.toList());
+        stack.remove(4); assertEquals(List.of(9, 8, 6, 5, 3, 2, 1), stack.toList());
+        stack.remove(2); assertEquals(List.of(9, 8, 5, 3, 2, 1), stack.toList());
         // @formatter:on
 
     }
