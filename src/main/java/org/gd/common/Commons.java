@@ -101,6 +101,7 @@ public final class Commons {
         return Math.log10(logNumber) / Math.log10(base);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static double recursionPow(double v, int pow) {
         switch (pow) {
             case -4: return v / v / v / v / v / v;
