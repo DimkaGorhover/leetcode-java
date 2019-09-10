@@ -1,33 +1,42 @@
 plugins {
     id 'java'
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
 }
 
 ext {
     versions = [
-            junitPlatform: '5.3.1'
+            java  : JavaVersion.VERSION_11,
+            lombok: "1.18.8",
+            junit : '5.5.1'
     ]
 }
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = versions.java
+targetCompatibility = versions.java
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Cairo-SR7'
+        mavenBom "org.junit:junit-bom:${versions.junit}"
+    }
+    dependencies {
+        dependency "org.projectlombok:lombok:${versions.lombok}"
+        dependency "io.reactivex.rxjava2:rxjava:${versions.rxjava2}"
+    }
+}
 
 dependencies {
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testCompile 'org.projectlombok:lombok'
 
-    annotationProcessor 'org.projectlombok:lombok:1.18.2'
-    
-    compileOnly 'org.projectlombok:lombok:1.18.2'
+    compile 'com.google.code.findbugs:jsr305:3.0.2'
+    compile 'org.apache.commons:commons-csv:1.7'
 
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
-    
-    testCompile 'org.projectlombok:lombok:1.18.2'
-
-    compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.7'
-
-
-    testCompile "org.junit.jupiter:junit-jupiter-api:${versions.junitPlatform}"
-    testCompile "org.junit.jupiter:junit-jupiter-engine:${versions.junitPlatform}"
-    testCompile "org.junit.jupiter:junit-jupiter-params:${versions.junitPlatform}"
+    testCompile "org.junit.jupiter:junit-jupiter-api"
+    testCompile "org.junit.jupiter:junit-jupiter-engine"
+    testCompile "org.junit.jupiter:junit-jupiter-params"
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -47,4 +56,9 @@ test {
 
     include '**/**Test.*'
     include '**/**Tests.*'
+}
+
+wrapper {
+    gradleVersion = "5.6.1"
+    distributionType = Wrapper.DistributionType.ALL
 }

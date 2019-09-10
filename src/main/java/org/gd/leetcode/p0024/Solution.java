@@ -1,13 +1,19 @@
 package org.gd.leetcode.p0024;
 
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.ListNode;
 
 /**
- * https://leetcode.com/problems/swap-nodes-in-pairs/submissions/
+ * https://leetcode.com/problems/swap-nodes-in-pairs/
+ *
+ * Given a linked list, swap every two adjacent nodes and return its head.
+ *
+ * You may not modify the values in the list's nodes, only nodes itself may be changed.
  *
  * @author Gorkhover D.
  * @since 2018-10-18
  */
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.LINKED_LIST)
 class Solution {
 
     public ListNode swapPairs(ListNode head) {
