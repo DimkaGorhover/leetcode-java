@@ -11,8 +11,8 @@ public final class Commons {
     private static final BigInteger[] BIG_INTEGERS_BITS = new BigInteger[32];
 
     private static final BigInteger
-            BIG_FIB_91  = BigInteger.valueOf(fib(91)),
-            BIG_FIB_92  = BigInteger.valueOf(fib(92)),
+            BIG_FIB_91 = BigInteger.valueOf(fib(91)),
+            BIG_FIB_92 = BigInteger.valueOf(fib(92)),
             BIG_FACT_20 = BigInteger.valueOf(factorial(20));
 
     static {
@@ -99,5 +99,21 @@ public final class Commons {
      */
     public static double log(double base, double logNumber) {
         return Math.log10(logNumber) / Math.log10(base);
+    }
+
+    public static double recursionPow(double v, int pow) {
+        switch (pow) {
+            case -4: return v / v / v / v / v / v;
+            case -3: return v / v / v / v / v;
+            case -2: return v / v / v / v;
+            case -1: return v / v / v;
+            case 0: return 1;
+            case 1: return v;
+            case 2: return v * v;
+            case 3: return v * v * v;
+            case 4: return v * v * v * v;
+        }
+        double half = recursionPow(v, pow / 2);
+        return half * half * recursionPow(v, pow % 2);
     }
 }

@@ -1,9 +1,16 @@
 package org.gd.common;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -72,5 +79,22 @@ class CommonsTest {
         assertEquals(8, Commons.log(2, 256));
         assertEquals(2, Commons.log(3, 9));
         assertEquals(3, Commons.log(10, 1000));
+    }
+
+    private static Stream<Arguments> powArgs() {
+
+        List<Arguments> arguments = new ArrayList<>();
+        for (int i = -6; i < 10; i++) {
+            arguments.add(Arguments.of(10D, i));
+        }
+        arguments.add(Arguments.of(8.84372d, -5));
+        return arguments.stream();
+    }
+
+    @ParameterizedTest
+    @MethodSource("powArgs")
+    //@DisplayName("recursionPow")
+    void test_recursionPow(double value, int pow) throws Exception {
+        assertEquals(Math.pow(value, pow), Commons.recursionPow(value, pow), 0.000000000000001);
     }
 }
