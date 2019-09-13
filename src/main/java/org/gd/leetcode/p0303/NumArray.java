@@ -5,8 +5,10 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * https://leetcode.com/problems/range-sum-query-immutable/
  *
+ * @see org.gd.leetcode.p0304.NumMatrix
  * @since 2019-09-13
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.DYNAMIC_PROGRAMMING})
 class NumArray {
 
@@ -18,7 +20,5 @@ class NumArray {
             sums[i] = (sum += nums[i]);
     }
 
-    public int sumRange(int i, int j) {
-        return sums[j] - (i == 0 ? 0 : sums[i - 1]);
-    }
+    public int sumRange(int i, int j) { return sums[j] - (i == 0 ? 0 : sums[i - 1]); }
 }

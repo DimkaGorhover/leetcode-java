@@ -16,8 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link NumArray}
  *
+ * @see org.gd.leetcode.p0304.NumMatrixTest
  * @since 2019-09-13
  */
+@SuppressWarnings("JavadocReference")
 class NumArrayTest {
 
     private static Stream<Arguments> args() {
@@ -43,8 +45,8 @@ class NumArrayTest {
 
     static class Case implements Iterable<SubCase>, Arguments {
 
-        private final int[] nums;
-        private final List<SubCase> subCases;
+        final int[] nums;
+        final List<SubCase> subCases;
 
         Case(int[] nums, List<SubCase> subCases) {
 
@@ -67,7 +69,7 @@ class NumArrayTest {
 
     static class SubCase {
 
-        private final int i, j, expected;
+        final int i, j, expected;
 
         SubCase(int i, int j, int expected) {
             this.i = i;
