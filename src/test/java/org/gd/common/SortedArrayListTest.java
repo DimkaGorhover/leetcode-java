@@ -18,7 +18,7 @@ class SortedArrayListTest {
     @Test
     @DisplayName("OfComparable")
     void test_OfComparable() {
-        var list = SortedArrayList.<Integer>ofComparable();
+        SortedArrayList<Integer> list = SortedArrayList.ofComparable();
         list.add(4);
         list.add(1);
         list.add(2);
@@ -142,5 +142,10 @@ class SortedArrayListTest {
     @Test
     @DisplayName("HashCode")
     void test_HashCode() {
+        assertEquals(2019, SortedArrayList.ofComparable(4, 1, 2, 3).hashCode());
+
+        SortedArrayList<Integer> list = SortedArrayList.ofComparator((o1, o2) -> Integer.compare(o2, o1));
+        list.addAll(List.of(4, 1, 2, 3));
+        assertEquals(2946, list.hashCode());
     }
 }

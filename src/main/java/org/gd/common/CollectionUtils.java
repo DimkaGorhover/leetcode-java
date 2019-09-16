@@ -29,6 +29,8 @@ public final class CollectionUtils {
             case 5: return List.of(ints[0], ints[1], ints[2], ints[3], ints[4]);
             case 6: return List.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5]);
             case 7: return List.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5], ints[6]);
+            case 8: return List.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5], ints[6], ints[7]);
+            case 9: return List.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5], ints[6], ints[7], ints[8]);
         }
         final ArrayList<Integer> list = new ArrayList<>(ints.length);
         for (int i : ints)
@@ -48,6 +50,8 @@ public final class CollectionUtils {
             case 5: return List.of(listOf(ints[0]), listOf(ints[1]), listOf(ints[2]), listOf(ints[3]), listOf(ints[4]));
             case 6: return List.of(listOf(ints[0]), listOf(ints[1]), listOf(ints[2]), listOf(ints[3]), listOf(ints[4]), listOf(ints[5]));
             case 7: return List.of(listOf(ints[0]), listOf(ints[1]), listOf(ints[2]), listOf(ints[3]), listOf(ints[4]), listOf(ints[5]), listOf(ints[6]));
+            case 8: return List.of(listOf(ints[0]), listOf(ints[1]), listOf(ints[2]), listOf(ints[3]), listOf(ints[4]), listOf(ints[5]), listOf(ints[6]), listOf(ints[7]));
+            case 9: return List.of(listOf(ints[0]), listOf(ints[1]), listOf(ints[2]), listOf(ints[3]), listOf(ints[4]), listOf(ints[5]), listOf(ints[6]), listOf(ints[7]), listOf(ints[8]));
         }
         return Arrays.stream(ints)
                 .map(innerInts -> Arrays.stream(innerInts).boxed().collect(toUnmodifiableList()))

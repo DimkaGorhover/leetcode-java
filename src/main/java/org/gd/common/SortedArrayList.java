@@ -26,6 +26,13 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         return new SortedArrayList<E>(Comparator.naturalOrder());
     }
 
+    @SafeVarargs
+    public static <E extends Comparable<E>> SortedArrayList<E> ofComparable(E ... comparableList) {
+        SortedArrayList<E> list = ofComparable();
+        list.addAll(asList(comparableList));
+        return list;
+    }
+
     public static <E> SortedArrayList<E> ofComparator(Comparator<E> comparator) {
         return new SortedArrayList<>(comparator);
     }
@@ -66,7 +73,13 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
 
     @Override
     public boolean addAll(Collection c) {
-        throw new UnsupportedOperationException();
+        if (c == null || c.isEmpty())
+            return false;
+        boolean result = false;
+        for (Object o : c) {
+            result |= add((E) o);
+        }
+        return result;
     }
 
     @Override
@@ -123,17 +136,17 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
     }
 
     @Override
-    public boolean retainAll(Collection c) {
+    public boolean retainAll(Collection<?> c) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean removeAll(Collection c) {
+    public boolean removeAll(Collection<?> c) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean containsAll(Collection c) {
+    public boolean containsAll(Collection<?> c) {
         throw new UnsupportedOperationException();
     }
 
@@ -160,8 +173,8 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
     @Override
     int hashCode(int start, int multiplier) {
         int size = size(), hash = start;
-        for (int i = 1; i < size; i--)
-            hash = multiplier * hash + elementData[i].hashCode();
+        for (int i = 1; i < size; i++)
+            hash = multiplier * hash + Objects.hashCode(elementData[i]);
         return hash;
     }
 

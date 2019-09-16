@@ -60,8 +60,8 @@ public class TreeNode {
     @Override
     public int hashCode() {
         int result = val;
-        result = 31 * result + (left != null ? left.hashCode() : 0);
-        result = 31 * result + (right != null ? right.hashCode() : 0);
+        result = 31 * result + Objects.hashCode(left);
+        result = 31 * result + Objects.hashCode(right);
         return result;
     }
 

@@ -219,4 +219,13 @@ class ArrayStackTest {
     void test_parallelStream() {
         assertEquals(10, ArrayStack.of(1, 2, 3, 4).stream().mapToInt(v -> v).sum());
     }
+
+    @Test
+    @DisplayName("toString")
+    void test_toString() throws Exception {
+        assertEquals(
+                "->[4, 3, 2, 1]",
+                ArrayStack.of(1, 2, 3, 4).toString()
+        );
+    }
 }

@@ -1,20 +1,19 @@
 package org.gd.leetcode.p0155;
 
-import org.gd.leetcode.common.LeetCode;
-
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 class PriorityQueueArrayMinStack implements MinStack {
 
-    private Queue<Integer> minQ = new PriorityQueue<>();
     private int[] data;
     private int size;
+    private Queue<Integer> minQ;
 
     /** initialize your data structure here. */
     public PriorityQueueArrayMinStack() {
         data = new int[1 << 4];
         size = 0;
+        minQ = new PriorityQueue<>();
     }
 
     public void push(int x) {
@@ -29,17 +28,12 @@ class PriorityQueueArrayMinStack implements MinStack {
     }
 
     public void pop() {
-        int last = data[size - 1];
-        if (last == minQ.peek())
+        if (data[size - 1] == minQ.element())
             minQ.poll();
         size--;
     }
 
-    public int top() {
-        return data[size - 1];
-    }
+    public int top() { return data[size - 1]; }
 
-    public int getMin() {
-        return minQ.peek();
-    }
+    public int getMin() { return minQ.element(); }
 }

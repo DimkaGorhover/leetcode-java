@@ -10,6 +10,7 @@ import java.util.Arrays;
  * @see ArrayList#rangeCheckForAdd(int)
  * @since 2019-01-22
  */
+@SuppressWarnings("JavadocReference")
 abstract class AbstractArrayCollection<E> extends AbstractCollection<E> implements ICollection<E> {
 
     static final Object[] EMPTY_ELEMENT_DATA = {};
@@ -77,6 +78,7 @@ abstract class AbstractArrayCollection<E> extends AbstractCollection<E> implemen
             grow(newSize);
     }
 
+    @SuppressWarnings("unchecked")
     public E remove(int index) {
         final int size = size();
         if (index < 0 || index >= size)

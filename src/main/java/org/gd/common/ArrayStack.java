@@ -203,9 +203,9 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
             return true;
         }
 
-        boolean res = true;
+        boolean res = false;
         for (E e : c)
-            res &= add(e);
+            res |= add(e);
         return res;
     }
 
@@ -243,32 +243,25 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
     public String toString() {
         if (isEmpty())
             return "->[]";
-        final int size = size();
+        int i = size() - 1;
         final StringBuilder sb = new StringBuilder()
                 .append("->[")
-                .append(elementData[size - 1]);
-        for (int i = size - 2; i >= 0; i--)
-            sb.append(", ").append(elementData[i]);
+                .append(elementData[i--]);
+        for (; i >= 0; )
+            sb.append(", ").append(elementData[i--]);
         return sb.append("]").toString();
     }
 
     @Override
     public void forEach(Consumer<? super E> action) {
         requireNonNull(action, "action");
-        for (int i = size - 1; i >= 0; i--)
+        for (int i = size() - 1; i >= 0; i--)
             action.accept((E) elementData[i]);
     }
 
     @Override
     public E remove(int index) {
-        final int size = size();
-        if (index < 0 || index >= size)
-            throw new IndexOutOfBoundsException();
-        index = size - index - 1;
-        final Object prev = elementData[index];
-        System.arraycopy(elementData, index + 1, elementData, index, size - index);
-        this.size = size - 1;
-        return (E) prev;
+        return super.remove(size() - index - 1);
     }
 
     /**
@@ -312,7 +305,7 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
     public int hashCode(int start, int multiplier) {
         int hash = start;
         for (int i = size - 1; i >= 0; i--)
-            hash = multiplier * hash + elementData[i].hashCode();
+            hash = multiplier * hash + Objects.hashCode(elementData[i]);
         return hash;
     }
 
