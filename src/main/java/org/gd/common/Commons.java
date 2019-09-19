@@ -8,6 +8,9 @@ import java.math.BigInteger;
  */
 public final class Commons {
 
+    private static final long GAUS_MAX_LAL = 4_294_967_295L;
+    private static final BigInteger GAUS_MAX_VAL_BI = BigInteger.valueOf(GAUS_MAX_LAL);
+
     private static final BigInteger[] BIG_INTEGERS_BITS = new BigInteger[32];
 
     private static final BigInteger
@@ -102,7 +105,7 @@ public final class Commons {
     }
 
     @SuppressWarnings("DuplicatedCode")
-    public static double recursionPow(double v, int pow) {
+    public static double recursionPow(double v, int pow) { // TODO: implement this method without recursion
         switch (pow) {
             case -4: return v / v / v / v / v / v;
             case -3: return v / v / v / v / v;
@@ -116,5 +119,53 @@ public final class Commons {
         }
         double half = recursionPow(v, pow / 2);
         return half * half * recursionPow(v, pow % 2);
+    }
+
+    public static long linearGausSum0(long count) {
+        if (count > GAUS_MAX_LAL)
+            throw new ArithmeticException("long overflow");
+        long sum = 0;
+        for (long i = 1; i <= count; i++)
+            sum += i;
+        return sum;
+    }
+
+    public static long gausSum0(long count) {
+        if (count > GAUS_MAX_LAL)
+            throw new ArithmeticException("long overflow");
+        /*
+        long mod = count % 2;
+        return (count + (1 ^ mod)) * ((count >> 1) + (1 & mod));
+        */
+        if (count % 2 == 0)
+            return (count + 1) * (count >> 1);
+        return (count) * ((count >> 1) + 1);
+    }
+
+    /**
+     * @see #linearGausSum0(long)
+     */
+    public static BigInteger linearGausSum(BigInteger count) {
+        if (count == null)
+            return BigInteger.ZERO;
+        if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
+            return BigInteger.valueOf(linearGausSum0(count.longValue()));
+        BigInteger sum = BigInteger.ZERO;
+        for (BigInteger i = BigInteger.ONE; i.compareTo(count) <= 0; i = i.add(BigInteger.ONE))
+            sum = sum.add(i);
+        return sum;
+    }
+
+    /**
+     * @see #gausSum0(long)
+     */
+    public static BigInteger gausSum(BigInteger count) {
+        if (count == null)
+            return BigInteger.ZERO;
+        if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
+            return BigInteger.valueOf(gausSum0(count.longValue()));
+        if (count.mod(BigInteger.TWO).equals(BigInteger.ZERO))
+            return count.add(BigInteger.ONE).multiply(count.shiftRight(1));
+        return count.multiply(count.shiftRight(1).add(BigInteger.ONE));
     }
 }

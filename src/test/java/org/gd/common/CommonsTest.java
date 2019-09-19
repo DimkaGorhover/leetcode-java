@@ -9,7 +9,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,7 +43,7 @@ class CommonsTest {
     @Test
     @DisplayName("BigFib")
     void test_BigFib() {
-        assertEquals(new BigInteger("280571172992510140037611932413038677189525"), Commons.bigFib(200));
+        assertEquals(new BigInteger("280571172992510140037611932413038677189525", 10), Commons.bigFib(200));
         assertEquals(BigInteger.valueOf(0x68A3DD8E61ECCFBDL), Commons.bigFib(92));
         assertSame(Commons.bigFib(92), Commons.bigFib(92));
         assertSame(Commons.bigFib(91), Commons.bigFib(91));
@@ -93,8 +92,39 @@ class CommonsTest {
 
     @ParameterizedTest
     @MethodSource("powArgs")
-    //@DisplayName("recursionPow")
+    @DisplayName("recursionPow")
     void test_recursionPow(double value, int pow) throws Exception {
         assertEquals(Math.pow(value, pow), Commons.recursionPow(value, pow), 0.000000000000001);
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @Test
+    @DisplayName("gausSum")
+    void test_gausSum() {
+
+        assertThrows(ArithmeticException.class, () -> Commons.gausSum0(4_294_967_296L));
+        assertThrows(ArithmeticException.class, () -> Commons.linearGausSum0(4_294_967_296L));
+
+        assertEquals(
+                BigInteger.valueOf(Commons.linearGausSum0(10)),
+                Commons.linearGausSum(BigInteger.valueOf(10)),
+                () -> String.format("%d", 10));
+
+        assertEquals(
+                Commons.linearGausSum(BigInteger.valueOf(10)),
+                Commons.gausSum(BigInteger.valueOf(10)),
+                () -> String.format("%d", 10));
+
+        for (int j = 0; j < 100; j++) {
+            final int count = ThreadLocalRandom.current().nextInt(1_000_000, 100_000_000);
+            assertEquals(
+                    Commons.linearGausSum0(count),
+                    Commons.gausSum0(count),
+                    () -> String.format("%d", count));
+            assertEquals(
+                    Commons.gausSum0(count),
+                    Commons.gausSum(BigInteger.valueOf(count)).longValue(),
+                    () -> String.format("%d", count));
+        }
     }
 }
