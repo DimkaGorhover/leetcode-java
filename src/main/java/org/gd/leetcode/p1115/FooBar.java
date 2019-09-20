@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
 /**
  * https://leetcode.com/problems/print-foobar-alternately
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.CONCURRENCY)
 class FooBar {
 
     private final Semaphore foo = new Semaphore(1);

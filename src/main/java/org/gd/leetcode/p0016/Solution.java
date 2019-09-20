@@ -10,8 +10,10 @@ import java.util.List;
  *
  * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0001.Solution
+ * @see org.gd.leetcode.p0018.Solution
  * @since 2018-12-15
  */
+@SuppressWarnings("JavadocReference")
 class Solution {
 
     @SuppressWarnings("Duplicates")

@@ -75,9 +75,9 @@ class CountingSheep {
         IntSet set = new IntSet();
 
         int next = 0;
-        for (int i = 1; !Thread.currentThread().isInterrupted() && set.isNotEmpty(); i++) {
+        for (int i = 1; set.isNotEmpty(); i++) {
             next = i * n;
-            int tmp = next;
+            int tmp = Math.abs(next);
             while (tmp > 0 && set.isNotEmpty()) {
                 set.remove(tmp % 10);
                 tmp /= 10;

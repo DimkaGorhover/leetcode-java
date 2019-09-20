@@ -39,7 +39,7 @@ class Solution {
             integers.add(head.val);
 
         final int n = integers.size();
-        for (int i = 0; i < n / 2 + 1; i++)
+        for (int i = 0; i < n / 2; i++)
             if (!Objects.equals(integers.get(i), integers.get(n - i - 1)))
                 return false;
 

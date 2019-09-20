@@ -25,6 +25,7 @@ public @interface LeetCode {
     enum Tags {
 
         ARRAY("Array"),
+        CONCURRENCY("Concurrency"),
         DYNAMIC_PROGRAMMING("Dynamic Programming"),
         STRING("String"),
         MATH("Math"),

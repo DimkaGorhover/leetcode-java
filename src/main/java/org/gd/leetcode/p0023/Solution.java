@@ -44,7 +44,15 @@ class Solution {
             case 0: return null;
             case 1: return lists[0];
             case 2: return mergeTwoLists(lists[0], lists[1]);
+            case 3: return mergeTwoLists(mergeTwoLists(lists[0], lists[1]), lists[2]);
             case 4: return mergeTwoLists(mergeTwoLists(lists[0], lists[3]), mergeTwoLists(lists[1], lists[2]));
+            case 8: return mergeTwoLists(
+                    mergeTwoLists(
+                            mergeTwoLists(lists[0], lists[3]),
+                            mergeTwoLists(lists[1], lists[2])),
+                    mergeTwoLists(
+                            mergeTwoLists(lists[4], lists[7]),
+                            mergeTwoLists(lists[5], lists[6])));
         }
 
         java.util.PriorityQueue<Integer> heap = new java.util.PriorityQueue<>();

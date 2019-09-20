@@ -8,7 +8,7 @@ import java.util.function.IntConsumer;
 /**
  * https://leetcode.com/problems/print-zero-even-odd/
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.CONCURRENCY)
 class ZeroEvenOdd {
 
     private static final int

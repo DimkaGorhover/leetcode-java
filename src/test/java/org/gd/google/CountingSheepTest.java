@@ -19,10 +19,13 @@ class CountingSheepTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+                arguments(-1, "-10"),
                 arguments(0, "INSOMNIA"),
                 arguments(1, "10"),
                 arguments(2, "90"),
+                arguments(5, "90"),
                 arguments(10, "90"),
+                arguments(192, "960"),
                 arguments(1692, "5076")
         );
     }

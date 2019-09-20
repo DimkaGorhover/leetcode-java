@@ -1,5 +1,9 @@
 package org.gd.leetcode.p0009;
 
+/**
+ * @see org.gd.leetcode.p0234.Solution
+ */
+@SuppressWarnings("JavadocReference")
 class Solution {
 
     public boolean isPalindrome(int x) {

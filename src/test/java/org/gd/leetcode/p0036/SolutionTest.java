@@ -107,6 +107,7 @@ class SolutionTest {
         assertEquals(8, Solution.number('9'));
     }
 
+    @Deprecated
     @Test
     @DisplayName("Pos")
     void test_Pos() {

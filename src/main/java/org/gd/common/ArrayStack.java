@@ -93,9 +93,11 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
     @Override
     public Stream<E> stream() {
         final int size = size();
+        if (size == 0)
+            return Stream.empty();
         return IntStream.rangeClosed(1, size)
                 .map(index -> size - index)
-                .mapToObj(value -> (E) elementData[value]);
+                .mapToObj(index -> (E) elementData[index]);
     }
 
     @Override
@@ -143,8 +145,10 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
     public boolean add(E e) {
         if (e == null)
             return false;
+        final int mod = this.mod.get();
         ensureCapacityFor(size + 1);
         elementData[size++] = e;
+        incMod(mod);
         return true;
     }
 
@@ -185,6 +189,8 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
         if (c == null || c.isEmpty())
             return false;
 
+        final int mod = this.mod.get();
+
         if (c instanceof ArrayStack) {
             int size = size(), sizeC = c.size();
             ensureCapacityFor(sizeC + size + 1);
@@ -192,6 +198,7 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
             for (int i = sizeC - 1; i >= 0; i--)
                 this.elementData[size++] = elementData[i];
             this.size = size;
+            incMod(mod);
             return true;
         }
 
@@ -200,6 +207,7 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
             ensureCapacityFor(array.length + size);
             System.arraycopy(array, 0, elementData, size, array.length);
             this.size += array.length;
+            incMod(mod);
             return true;
         }
 
@@ -261,7 +269,10 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
 
     @Override
     public E remove(int index) {
-        return super.remove(size() - index - 1);
+        final E prev = super.remove(size() - index - 1);
+        if (prev != null)
+            mod.getAndIncrement();
+        return prev;
     }
 
     /**
@@ -316,16 +327,25 @@ public class ArrayStack<E> extends AbstractArrayCollection<E> implements Stack<E
 
         private final ArrayStack<E> stack;
 
+        private final int mod;
+
         private int index;
 
         Itr(ArrayStack<E> stack) {
             this.stack = requireNonNull(stack, "stack");
             this.index = stack.size() - 1;
+            mod = stack.mod.get();
+        }
+
+        private void checkMod() {
+            if (mod != stack.mod.get())
+                throw new ConcurrentModificationException();
         }
 
         private int nextIndex() {
             if (!hasNext())
                 throw new NoSuchElementException();
+            checkMod();
             final int i = index;
             index--;
             return i;

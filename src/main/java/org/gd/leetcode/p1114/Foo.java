@@ -8,7 +8,8 @@ import java.util.concurrent.CountDownLatch;
  * https://leetcode.com/problems/print-in-order
  */
 @LeetCode(
-        difficulty = LeetCode.Level.EASY
+        difficulty = LeetCode.Level.EASY,
+        tags = LeetCode.Tags.CONCURRENCY
 )
 class Foo {
 

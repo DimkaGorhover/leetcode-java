@@ -1,6 +1,7 @@
 package org.gd.common;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.parallel.*;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2018-12-23
  */
+@Execution(ExecutionMode.CONCURRENT)
 class ArrayStackTest {
 
     @Test
@@ -174,7 +176,7 @@ class ArrayStackTest {
     void test_equals() {
         var stack = ArrayStack.of(1, 2, 3, 4);
         for (int i = 0; i < 1 << 20; i++)
-            stack.push(i);
+            assertTrue(stack.push(i));
         stack.clear();
         stack.addAll(List.of(1, 2, 3, 4));
         assertEquals(ArrayStack.of(1, 2, 3, 4), stack);
@@ -185,7 +187,7 @@ class ArrayStackTest {
     void test_hashCode() {
         var stack = ArrayStack.of(1, 2, 3, 4);
         for (int i = 0; i < 1 << 20; i++)
-            stack.push(i);
+            assertTrue(stack.push(i));
         stack.clear();
         stack.addAll(List.of(1, 2, 3, 4));
         assertEquals(

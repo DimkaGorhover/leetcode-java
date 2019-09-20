@@ -46,17 +46,13 @@ public class InMemoryCustomStorage implements Storage {
 
     @Override
     public void storeBooks(List<Book> books) {
-        books.forEach(book -> {
-            indexIsbn(book);
-        });
+        books.forEach(this::indexIsbn);
 
     }
 
     @Override
     public void storeMagazines(List<Magazine> magazines) {
-        magazines.forEach(magazine -> {
-            indexIsbn(magazine);
-        });
+        magazines.forEach(this::indexIsbn);
 
     }
 

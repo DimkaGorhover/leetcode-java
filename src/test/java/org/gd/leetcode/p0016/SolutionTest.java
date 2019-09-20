@@ -14,8 +14,10 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * Test for {@link Solution};
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0001.SolutionTest
  * @since 2018-12-15
  */
+@SuppressWarnings("JavadocReference")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

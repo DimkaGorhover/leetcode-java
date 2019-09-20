@@ -1,6 +1,6 @@
 package org.gd.hackerrank.other;
 
-import java.math.BigInteger;
+import org.gd.hackerrank.common.HackerRank;
 
 /**
  * https://www.hackerrank.com/challenges/a-very-big-sum
@@ -8,13 +8,13 @@ import java.math.BigInteger;
  * @author Horkhover Dmytro
  * @since 2018-11-18
  */
+@HackerRank(difficulty = HackerRank.Level.EASY)
 class VeryBigSum {
 
     static long aVeryBigSum(long[] arr) {
-        BigInteger sum = BigInteger.ZERO;
-        for (int i = 0; i < arr.length; i++) {
-            sum = sum.add(BigInteger.valueOf(arr[i]));
-        }
-        return sum.longValue();
+        long sum = 0;
+        for (long l : arr)
+            sum += l;
+        return sum;
     }
 }

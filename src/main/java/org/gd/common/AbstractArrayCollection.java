@@ -3,6 +3,8 @@ package org.gd.common;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Horkhover Dmytro
@@ -18,6 +20,8 @@ abstract class AbstractArrayCollection<E> extends AbstractCollection<E> implemen
     static final int DEFAULT_CAPACITY = 10;
 
     static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+
+    final AtomicInteger mod = new AtomicInteger(0);
 
     Object[] elementData = EMPTY_ELEMENT_DATA;
 
@@ -83,9 +87,21 @@ abstract class AbstractArrayCollection<E> extends AbstractCollection<E> implemen
         final int size = size();
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
+        final int mod = this.mod.get();
         final Object prev = elementData[index];
         System.arraycopy(elementData, index + 1, elementData, index, size - index);
         this.size = size - 1;
+        incMod(mod);
         return (E) prev;
+    }
+
+    void checkMod(int mod) {
+        if (mod != this.mod.get())
+            throw new ConcurrentModificationException();
+    }
+
+    void incMod(int mod) {
+        if (!this.mod.compareAndSet(mod, mod + 1))
+            throw new ConcurrentModificationException();
     }
 }

@@ -5,7 +5,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -75,9 +78,9 @@ class FizzBuzzTest {
         ArrayList<String> actual = new ArrayList<>(strings);
 
         assertEquals(expected, actual, () -> {
-            System.out.println(expected);
-            System.out.println(actual);
-            return "";
+            String s1 = String.format("expected: %s%n", expected);
+            String s2 = String.format("actual  : %s%n", actual);
+            return s1 + s2;
         });
 
     }

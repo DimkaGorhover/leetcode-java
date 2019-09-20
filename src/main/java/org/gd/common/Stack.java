@@ -7,7 +7,7 @@ package org.gd.common;
  */
 public interface Stack<E> extends ICollection<E> {
 
-    boolean push(E element);
+    default boolean push(E element) { return add(element); }
 
     /**
      * @return {@code null} is stack is empty
