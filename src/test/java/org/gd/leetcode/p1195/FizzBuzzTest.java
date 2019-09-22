@@ -13,6 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,11 +39,12 @@ class FizzBuzzTest {
     }
 
     private static Stream<Arguments> args() {
-        return IntStream.of(16)
+        return IntStream.of(16, 1 << 7, 1 << 14)
                 .mapToObj(n -> arguments(n, generateExpectedList(n)));
     }
 
-    private static Thread run(TestRunnable runnable) {
+    private static Thread run(String name, TestRunnable runnable) {
+        requireNonNull(name, "\"name\" cannot be null");
         requireNonNull(runnable, "\"runnable\" cannot be null");
         Thread thread = new Thread(() -> {
             try {
@@ -52,6 +54,7 @@ class FizzBuzzTest {
                 Thread.currentThread().interrupt();
             }
         });
+        thread.setName(name);
         thread.start();
         return thread;
     }
@@ -65,17 +68,17 @@ class FizzBuzzTest {
 
         FizzBuzz fizzBuzz = new FizzBuzz(n);
 
-        LinkedList<Thread> threads = new LinkedList<>();
-
-        threads.add(run(() -> fizzBuzz.fizz(() -> strings.add("fizz"))));
-        threads.add(run(() -> fizzBuzz.buzz(() -> strings.add("buzz"))));
-        threads.add(run(() -> fizzBuzz.fizzbuzz(() -> strings.add("fizzbuzz"))));
-        threads.add(run(() -> fizzBuzz.number(number -> strings.add("" + number))));
+        LinkedList<Thread> threads = new LinkedList<>(asList(
+                run("fizz", () -> fizzBuzz.fizz(() -> strings.add("fizz"))),
+                run("buzz", () -> fizzBuzz.buzz(() -> strings.add("buzz"))),
+                run("fizzbuzz", () -> fizzBuzz.fizzbuzz(() -> strings.add("fizzbuzz"))),
+                run("number", () -> fizzBuzz.number(number -> strings.add("" + number)))
+        ));
 
         while (!threads.isEmpty())
             threads.removeLast().join();
 
-        ArrayList<String> actual = new ArrayList<>(strings);
+        List<String> actual = new ArrayList<>(strings);
 
         assertEquals(expected, actual, () -> {
             String s1 = String.format("expected: %s%n", expected);

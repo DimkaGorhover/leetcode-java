@@ -75,6 +75,9 @@ public final class Commons {
         return f;
     }
 
+    /**
+     * http://mathematichka.ru/school/combinatorics/combination.html
+     */
     public static long factorial(int n) {
         if (n > 20)
             throw new ArithmeticException("long overflow");

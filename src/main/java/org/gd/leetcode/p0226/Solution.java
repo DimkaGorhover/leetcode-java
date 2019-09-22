@@ -1,23 +1,23 @@
 package org.gd.leetcode.p0226;
 
+import org.gd.leetcode.common.LeetCode;
+import org.gd.leetcode.common.TreeNode;
+
 /**
  * @author Gorkhover D.
  * @since 2018-10-22
  */
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.TREE)
 class Solution {
 
-    private static void invertTree0(TreeNode root) {
-        if (root == null)
-            return;
-        final TreeNode left = root.left;
-        root.left = root.right;
-        root.right = left;
-        invertTree0(root.left);
-        invertTree0(root.right);
-    }
-
     public TreeNode invertTree(TreeNode root) {
-        invertTree0(root);
+        if (root == null)
+            return null;
+
+        TreeNode left = invertTree(root.left);
+        root.left = invertTree(root.right);
+        root.right = left;
+
         return root;
     }
 }
