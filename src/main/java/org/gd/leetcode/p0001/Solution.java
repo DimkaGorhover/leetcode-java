@@ -1,12 +1,16 @@
 package org.gd.leetcode.p0001;
 
+import org.gd.leetcode.common.LeetCode;
+
 import java.util.HashMap;
 
 /**
  * https://leetcode.com/problems/two-sum/
+ *
  * @see org.gd.leetcode.p0016.Solution
  */
 @SuppressWarnings("JavadocReference")
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.ARRAY, LeetCode.Tags.HASH_TABLE})
 class Solution {
 
     private static final int[] TWO_EL = {0, 1};

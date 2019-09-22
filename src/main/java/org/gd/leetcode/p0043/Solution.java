@@ -2,8 +2,10 @@ package org.gd.leetcode.p0043;
 
 import org.gd.leetcode.common.LeetCode;
 
+import java.util.Arrays;
+
 /**
- * FIXME: https://leetcode.com/problems/multiply-strings
+ * https://leetcode.com/problems/multiply-strings
  *
  * http://math-prosto.ru/?page=pages/action-in-column/multi-in-column.php
  *
@@ -18,26 +20,56 @@ import org.gd.leetcode.common.LeetCode;
         })
 class Solution {
 
-    public static void main(String[] args) {
-        System.out.println(
-                new Solution().multiply("427", "36")
-        );
-    }
+    private static char c(int value) { return (char) (value + '0'); }
+
+    private static int num(char c) { return c - '0'; }
+
+    private static int num(String str, int pos) { return num(str.charAt(pos)); }
 
     public String multiply(String num1, String num2) {
-        int    pos1  = num1.length(), pos2 = num2.length(), pos = pos1 + pos2;
-        char[] chars = new char[pos];
-        java.util.Arrays.fill(chars, 0, pos, '0');
 
-        while (pos1 >= 0 || pos2 >= 0) {
+        final int length1;
+        if (num1 == null || (length1 = num1.length()) == 0)
+            throw new IllegalArgumentException("num1");
 
+        final int length2;
+        if (num2 == null || (length2 = num2.length()) == 0)
+            throw new IllegalArgumentException("num2");
 
-            pos1--;
-            pos2--;
-            pos--;
+        if (length2 == 1) {
+            if (num2.charAt(0) == '0') return "0";
+            if (num2.charAt(0) == '1') return num1;
+            if (length1 == 1) {
+                int m = num(num1, 0) * num(num2, 0);
+                int i1 = m / 10;
+                int i2 = m % 10;
+                return new String(i1 > 0 ? new char[]{c(i1), c(i2)} : new char[]{c(i2)});
+            }
         }
 
+        if (length1 == 1) {
+            if (num1.charAt(0) == '0') return "0";
+            if (num1.charAt(0) == '1') return num2;
+        }
 
-        return new String(chars, chars[0] == 0 ? 1 : 0, chars.length);
+        char[] res = new char[length1 + length2];
+        Arrays.fill(res, '0');
+
+        int resOffset = 1;
+        for (int i = length2 - 1; i >= 0; i--) {
+            int resI = res.length - resOffset;
+            int prev = 0;
+            for (int j = length1 - 1; j >= 0; j--) {
+                int m = num(num1, j) * num(num2, i) + prev + num(res[resI]);
+                prev = m / 10;
+                res[resI--] = c(m % 10);
+            }
+            resOffset++;
+            if (prev > 0)
+                res[resI] = c(prev);
+        }
+
+        final int startIndex = res[0] == '0' ? 1 : 0;
+        return new String(res, startIndex, res.length - startIndex);
     }
 }
