@@ -124,6 +124,7 @@ public final class Commons {
         return half * half * recursionPow(v, pow % 2);
     }
 
+    @Deprecated
     public static long linearGausSum0(long count) {
         if (count > GAUS_MAX_LAL)
             throw new ArithmeticException("long overflow");
@@ -148,6 +149,7 @@ public final class Commons {
     /**
      * @see #linearGausSum0(long)
      */
+    @Deprecated
     public static BigInteger linearGausSum(BigInteger count) {
         if (count == null)
             return BigInteger.ZERO;

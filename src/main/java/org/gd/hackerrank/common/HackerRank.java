@@ -17,5 +17,5 @@ public @interface HackerRank {
     Level difficulty();
 
     @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-    enum Level {EASY, MEDIUM, HARD}
+    enum Level {EASY, MEDIUM, HARD, ADVANCED}
 }
