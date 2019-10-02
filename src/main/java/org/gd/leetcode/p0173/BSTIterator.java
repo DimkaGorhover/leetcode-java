@@ -1,7 +1,10 @@
 package org.gd.leetcode.p0173;
 
+import org.gd.leetcode.common.LeetCode;
+import org.gd.leetcode.common.TreeNode;
+
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 /**
  * https://leetcode.com/problems/binary-search-tree-iterator/
@@ -9,43 +12,38 @@ import java.util.Comparator;
  * @author Gorkhover D.
  * @since 2018-10-29
  */
-class BSTIterator implements Comparator<TreeNode> {
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.STACK, LeetCode.Tags.TREE, LeetCode.Tags.DESIGN})
+class BSTIterator {
 
-    final ArrayList<TreeNode> nodes;
-
-    int index;
+    private final ArrayList<Integer> nodes;
+    private int index;
 
     public BSTIterator(TreeNode root) {
         nodes = createNodes(new ArrayList<>(), root);
-        nodes.sort(this);
-        index = nodes.size() - 1;
+        nodes.sort(Integer::compare);
+        index = 0;
     }
 
-    private static ArrayList<TreeNode> createNodes(ArrayList<TreeNode> nodes, TreeNode node) {
-        if (node == null)
-            return nodes;
-        nodes.add(node);
-        createNodes(nodes, node.left);
-        createNodes(nodes, node.right);
+    private static ArrayList<Integer> createNodes(ArrayList<Integer> nodes, TreeNode node) {
+        if (node != null) {
+            nodes.add(node.val);
+            createNodes(nodes, node.left);
+            createNodes(nodes, node.right);
+        }
         return nodes;
     }
 
-    /** @return whether we have a next smallest number */
-    public boolean hasNext() {
-        return index >= 0;
-    }
+    /**
+     * @return whether we have a next smallest number
+     */
+    public boolean hasNext() { return index < nodes.size(); }
 
-    /** @return the next smallest number */
+    /**
+     * @return the next smallest number
+     */
     public int next() {
-        final TreeNode node = nodes.get(index);
-        index--;
-        return node.val;
-    }
-
-    @Override
-    public int compare(TreeNode o1, TreeNode o2) {
-        if (o1 == null)
-            return o2 == null ? 0 : -1;
-        return Integer.compare(o1.val, o2.val);
+        if (!hasNext())
+            throw new NoSuchElementException();
+        return nodes.get(index++);
     }
 }

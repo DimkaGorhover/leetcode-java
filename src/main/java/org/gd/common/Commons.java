@@ -104,7 +104,7 @@ public final class Commons {
      * <a hrep="https://www.baeldung.com/java-logarithms">Calculating Logarithms in Java</a>
      */
     public static double log(double base, double logNumber) {
-        return Math.log10(logNumber) / Math.log10(base);
+        return Math.log(logNumber) / Math.log(base);
     }
 
     @SuppressWarnings("DuplicatedCode")

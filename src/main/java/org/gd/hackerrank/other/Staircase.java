@@ -19,7 +19,7 @@ class Staircase {
         StringBuilder sb = new StringBuilder(chars.length * n);
         for (int i = 1; i <= n; i++) {
             chars[n - i] = '#';
-            sb.append(new String(chars));
+            sb.append(chars, 0, chars.length);
         }
         System.out.print(sb.toString());
     }

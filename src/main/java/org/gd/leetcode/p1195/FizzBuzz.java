@@ -9,8 +9,6 @@ import java.util.function.IntConsumer;
 /**
  * https://leetcode.com/problems/fizz-buzz-multithreaded/
  *
- * TODO: it works only if one thread per one method
- *
  * Write a program that outputs the string representation of numbers from 1 to n, however:
  *
  * If the number is divisible by 3, output "fizz".

@@ -50,6 +50,11 @@ public @interface LeetCode {
         TRIE("Trie"),
         RECURSION("Recursion"),
         QUEUE("Queue"),
+        /**
+         * https://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/
+         *
+         * @see org.gd.common.SegmentTree
+         */
         SEGMENT_TREE("Segment Tree"),
         RANDOM("Random"),
         BINARY_INDEXED_TREE("Binary Indexed Tree"),

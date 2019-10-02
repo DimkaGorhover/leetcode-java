@@ -19,6 +19,8 @@ class MissingNumbers {
             INC = (key, count) -> count == null ? 1 : (count + 1),
             DEC = (key, count) -> count == null ? -1 : (count - 1);
 
+    private MissingNumbers() { throw new UnsupportedOperationException(); }
+
     static int[] missingNumbers(int[] arr, int[] expected) {
 
         Map<Integer, Integer> map = new HashMap<>(arr.length);

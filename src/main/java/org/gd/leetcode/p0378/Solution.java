@@ -54,16 +54,7 @@ class Solution {
         })
 class Solution {
 
-    private static int streamSolution(int[][] matrix, int k) {
-        return java.util.Arrays.stream(matrix)
-                .flatMapToInt(java.util.Arrays::stream)
-                .sorted()
-                .skip(k - 1)
-                .findFirst()
-                .getAsInt();
-    }
-
     public int kthSmallest(int[][] matrix, int k) {
-        return streamSolution(matrix, k);
+        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
     }
 }

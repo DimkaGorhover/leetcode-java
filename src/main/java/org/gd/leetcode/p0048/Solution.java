@@ -1,11 +1,14 @@
 package org.gd.leetcode.p0048;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * https://leetcode.com/problems/rotate-image/
  *
  * @author Horkhover Dmytro
  * @since 2018-11-12
  */
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.ARRAY)
 class Solution {
 
     public void rotate(int[][] matrix) {
