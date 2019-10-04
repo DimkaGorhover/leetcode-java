@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0814;
 
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
@@ -8,6 +9,7 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-12-18
  */
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.TREE)
 class Solution {
 
     private static void pruneLeft(TreeNode parent, TreeNode node) {
