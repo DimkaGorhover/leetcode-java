@@ -8,7 +8,7 @@ import org.gd.leetcode.common.LeetCode;
  * @since 2019-09-10
  */
 @SuppressWarnings("DuplicatedCode")
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.MATH, LeetCode.Tags.BINARY_SEARCH})
 class Solution {
 
     public double myPow(double x, int n) {

@@ -1,13 +1,16 @@
 package org.gd.leetcode.p0451;
 
+import org.gd.leetcode.common.LeetCode;
+
 import java.util.Arrays;
 
 /**
- * https://leetcode.com/problems/sort-characters-by-frequency/
+ * FIXME: https://leetcode.com/problems/sort-characters-by-frequency/
  *
  * @author Horkhover Dmytro
  * @since 2018-12-18
  */
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.HASH_TABLE, LeetCode.Tags.HEAP})
 class Solution {
 
     public String frequencySort(String s) {

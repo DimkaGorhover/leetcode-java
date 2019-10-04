@@ -1,4 +1,4 @@
-package org.gd.test.udp;
+package org.gd.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

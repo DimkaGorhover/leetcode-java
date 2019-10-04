@@ -1,14 +1,17 @@
 package org.gd.leetcode.p0460;
 
+import org.gd.leetcode.common.LeetCode;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * https://leetcode.com/problems/lfu-cache/description/
+ * TODO: https://leetcode.com/problems/lfu-cache/description/
  *
  * @author Gorkhover D.
  * @since 2018-10-17
  */
+@LeetCode(difficulty = LeetCode.Level.HARD, tags = LeetCode.Tags.DESIGN)
 public class LFUCache {
 
     private final Map<Integer, CacheValue> storage;

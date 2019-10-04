@@ -70,6 +70,17 @@ class CommonsTest {
         assertEquals(
                 new BigInteger("2H810LN1DXTFEZNBWZFUI7HGPY6ZJCYT6S3D2B2IPKW000000000000000", 36),
                 Commons.bigFactorial(64));
+
+
+        StringBuilder sb = new StringBuilder()
+                .append("private static final BigInteger[] FACT = {\n")
+                .append("    new BigInteger(\"").append(Commons.bigFactorial(0).toString(36)).append("\", 36)");
+        for (int i = 1; i < 201; i++) {
+            sb.append(",\n    new BigInteger(\"").append(Commons.bigFactorial(i).toString(36)).append("\", 36)");
+        }
+
+        System.out.println(sb.append("\n};"));
+
     }
 
     @Test

@@ -12,9 +12,6 @@ import java.util.List;
 class Solution {
 
     public List<Integer> spiralOrder(int[][] matrix) {
-        final ArrayList<Integer> list = new ArrayList<>(matrix.length * matrix[0].length);
-
-
-        return list;
+        throw new UnsupportedOperationException("not supported yet");
     }
 }

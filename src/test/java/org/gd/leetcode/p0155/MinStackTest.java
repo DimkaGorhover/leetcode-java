@@ -18,10 +18,10 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  */
 class MinStackTest {
 
-    private static Stream<Arguments> args() {
+    private static Stream<MinStackFactory> args() {
         return Stream.of(
-                arguments((MinStackFactory) PriorityQueueArrayMinStack::new),
-                arguments((MinStackFactory) LinkedMinStack::new)
+                PriorityQueueArrayMinStack::new,
+                LinkedMinStack::new
         );
     }
 
@@ -41,9 +41,12 @@ class MinStackTest {
     }
 
     @FunctionalInterface
-    interface MinStackFactory {
+    interface MinStackFactory extends Arguments {
 
         @Nonnull
         MinStack create();
+
+        @Override
+        default Object[] get() { return new Object[]{this}; }
     }
 }

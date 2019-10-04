@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0118;
 
+import org.gd.leetcode.common.LeetCode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import static java.util.Collections.singletonList;
 /**
  * https://leetcode.com/problems/pascals-triangle/
  */
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.ARRAY)
 class Solution {
 
     private static final List<Integer>

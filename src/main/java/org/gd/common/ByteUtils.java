@@ -9,7 +9,7 @@ public interface ByteUtils {
 
     static ByteUtils get() { return forOrder(ByteOrder.nativeOrder()); }
 
-    static ByteUtils forOrder(ByteOrder order) { return ByteUtilsImpl.forOrder(order); }
+    static ByteUtils forOrder(ByteOrder order) { return Java9ByteUtilsImpl.forOrder(order); }
 
     short readShort(byte[] bytes, int position);
 

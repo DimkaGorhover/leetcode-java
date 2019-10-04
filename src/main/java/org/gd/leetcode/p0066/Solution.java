@@ -1,9 +1,14 @@
 package org.gd.leetcode.p0066;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
+ * https://leetcode.com/problems/plus-one/
+ *
  * @author Gorkhover D.
  * @since 2018-10-22
  */
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.ARRAY)
 class Solution {
 
     public int[] plusOne(int[] digits) {

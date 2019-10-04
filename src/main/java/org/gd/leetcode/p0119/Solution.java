@@ -14,7 +14,8 @@ import java.util.List;
  * @see org.gd.leetcode.p0118.Solution
  * @since 2018-12-21
  */
-@LeetCode(difficulty = LeetCode.Level.EASY)
+@SuppressWarnings("JavadocReference")
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.ARRAY)
 class Solution {
 
     private static final List<Integer>

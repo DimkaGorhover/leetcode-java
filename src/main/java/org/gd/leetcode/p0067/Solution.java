@@ -1,9 +1,14 @@
 package org.gd.leetcode.p0067;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
+ * https://leetcode.com/problems/add-binary/
+ *
  * @author Gorkhover D.
  * @since 2018-10-22
  */
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.MATH, LeetCode.Tags.STRING})
 class Solution {
 
     public String addBinary(String a, String b) {
@@ -24,8 +29,11 @@ class Solution {
             i--;
             j--;
         }
+
         int start = 1;
-        if (prev == 1) chars[start = 0] = '1';
+        if (prev == 1)
+            chars[start = 0] = '1';
+
         return new String(chars, start, (chars.length - start));
     }
 }

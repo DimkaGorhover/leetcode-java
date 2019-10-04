@@ -1,15 +1,16 @@
 package org.gd.leetcode.p0198;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 /**
- *
- * https://leetcode.com/problems/house-robber/
+ * FIXME: https://leetcode.com/problems/house-robber/
  *
  * @author Horkhover Dmytro
  * @since 2018-12-31
  */
-@LeetCode(difficulty = LeetCode.Level.EASY)
+@Repeat
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.DYNAMIC_PROGRAMMING)
 class Solution {
 
     public int rob(int[] nums) {
