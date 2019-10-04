@@ -14,8 +14,10 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 /**
  * Test for {@link Solution}
  *
+ * @see org.gd.leetcode.p0171.SolutionTest
  * @since 2019-10-03
  */
+@SuppressWarnings("JavadocReference")
 @Execution(ExecutionMode.CONCURRENT)
 class SolutionTest {
 

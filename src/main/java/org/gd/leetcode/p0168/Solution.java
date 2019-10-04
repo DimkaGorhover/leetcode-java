@@ -25,9 +25,11 @@ import org.gd.leetcode.common.LeetCode;
 
  * Example 3: 701 --> "ZY"
  *
+ * @see org.gd.leetcode.p0171.Solution
  * @since 2019-10-03
  */
 // @formatter:on
+@SuppressWarnings("JavadocReference")
 @LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.MATH)
 class Solution {
 
