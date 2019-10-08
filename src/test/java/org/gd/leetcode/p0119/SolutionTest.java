@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0119;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.parallel.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -18,6 +19,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @see org.gd.leetcode.p0118.SolutionTest
  * @since 2018-12-21
  */
+@SuppressWarnings("JavadocReference")
+@Execution(ExecutionMode.CONCURRENT)
 class SolutionTest {
 
     private static Stream<Arguments> args() {

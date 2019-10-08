@@ -18,28 +18,28 @@ import java.util.List;
 @LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.ARRAY)
 class Solution {
 
-    private static final List<Integer>
-            V_0 = Collections.singletonList(1),
-            V_1 = Arrays.asList(1, 1),
-            V_2 = Arrays.asList(1, 2, 1),
-            V_3 = Arrays.asList(1, 3, 3, 1),
-            V_4 = Arrays.asList(1, 4, 6, 4, 1),
-            V_5 = Arrays.asList(1, 5, 10, 10, 5, 1);
+    private static final List[] CACHE = new List[]{
+            Collections.singletonList(1),
+            Arrays.asList(1, 1),
+            Arrays.asList(1, 2, 1),
+            Arrays.asList(1, 3, 3, 1),
+            Arrays.asList(1, 4, 6, 4, 1),
+            Arrays.asList(1, 5, 10, 10, 5, 1),
+            Arrays.asList(1, 6, 15, 20, 15, 6, 1),
+            Arrays.asList(1, 7, 21, 35, 35, 21, 7, 1)
+    };
 
-    @SuppressWarnings("Duplicates")
+    @SuppressWarnings({"Duplicates", "unchecked"})
     public List<Integer> getRow(int rowIndex) {
-        if (rowIndex < 0) return Collections.emptyList();
-        switch (rowIndex) {
-            case 0: return V_0;
-            case 1: return V_1;
-            case 2: return V_2;
-            case 3: return V_3;
-            case 4: return V_4;
-            case 5: return V_5;
-        }
-        int           levelLength;
-        List<Integer> prevLevel = V_5, currentLevel = prevLevel;
-        for (int i = 6; i <= rowIndex; i++) {
+        if (rowIndex < 0)
+            return Collections.emptyList();
+
+        if (rowIndex < CACHE.length)
+            return CACHE[rowIndex];
+
+        int levelLength;
+        List<Integer> prevLevel = CACHE[CACHE.length - 1], currentLevel = prevLevel;
+        for (int i = CACHE.length; i <= rowIndex; i++) {
             currentLevel = new ArrayList<>(levelLength = i + 1);
             currentLevel.add(1);
             for (int j = 1; j < levelLength - 1; j++)
