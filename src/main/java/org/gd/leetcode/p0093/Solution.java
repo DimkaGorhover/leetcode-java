@@ -1,91 +1,87 @@
 package org.gd.leetcode.p0093;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import org.gd.leetcode.common.LeetCode;
+
+import java.util.*;
 
 /**
- * TODO: https://leetcode.com/problems/restore-ip-addresses/
+ * https://leetcode.com/problems/restore-ip-addresses/
+ *
+ * Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+ *
+ * <pre><code>
+ *
+ * Example:
+ *
+ * Input: "25525511135"
+ * Output: ["255.255.11.135", "255.255.111.35"]
+ *
+ * </code></pre>
  *
  * @author Gorkhover D.
  * @since 2018-10-23
  */
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.STRING, LeetCode.Tags.BACKTRACKING})
 class Solution {
 
-    Solution() {}
+    private static boolean valid(int value) { return 0 <= value && value <= 255; }
 
-    private static int v0(String s, int index) { return s.charAt(index) - 48; }
+    private static int toInt(char c) { return c - '0'; }
 
-    private static boolean isv(int value) { return 0 <= value && value <= 255;}
-
-    private static int value(String s, int start, int end) {
-        switch ((end = Math.min(end, s.length())) - start) {
-            case 0: return 0;
-            case 1: return v0(s, start);
-            case 2: return v0(s, start) * 10 + v0(s, start + 1);
-            case 3: return v0(s, start) * 100 + v0(s, start + 1) * 10 + v0(s, start + 2);
-        }
-        int sum = 0;
-        for (int i = start; i < end; i++)
-            sum = sum * 10 + v0(s, i);
-        return sum;
-    }
-
-    private static List<String> restoreIpAddresses(List<String> list,
-                                                   String source,
-                                                   String prefix,
-                                                   int sourcePos,
-                                                   int ipPos) {
-        int length = source.length(), value = 0;
-        if (ipPos == 3) {
-            if (isv(value = value(source, sourcePos, length)))
-                list.add(prefix + "." + value);
-        } else {
-
-            int i = 0,
-                    minRemains = 3 - ipPos,
-                    maxRemains = minRemains * 3;
-
-            while (i < 3 && ((length - sourcePos) - minRemains >= 4)) {
-
-                if (isv(value = value * 10 + v0(source, sourcePos))) {
-
-                    System.out.println(value);
-
-                }
-                sourcePos++;
-                i++;
+    private static int read(String s, int offset, int length) {
+        if (s.length() - offset < length)
+            return -1;
+        switch (length) {
+            case 1: {
+                return toInt(s.charAt(offset));
             }
-
-            int remains = length - sourcePos;
-
-
+            case 2: {
+                int c1 = toInt(s.charAt(offset));
+                return c1 == 0 ? -1 : (c1 * 10) + toInt(s.charAt(offset + 1));
+            }
+            case 3: {
+                int c1 = toInt(s.charAt(offset));
+                return c1 == 0 ? -1 : (c1 * 100) + (toInt(s.charAt(offset + 1)) * 10) + toInt(s.charAt(offset + 2));
+            }
         }
-
-
-        return list;
+        return -1;
     }
 
-    private static List<String> toIp(int[] ip) {
-        return Collections.singletonList(ip[0] + "." + ip[1] + "." + ip[2] + "." + ip[3]);
+    private static void part1(Set<String> list, String s) {
+        for (int i = 1; i <= 3; i++) {
+            int i1 = read(s, 0, i);
+            if (valid(i1))
+                part2(list, i1, s, i);
+        }
+    }
+
+    private static void part2(Set<String> list, int i1, String s, int offset) {
+        for (int i = 1; i <= 3; i++) {
+            int i2 = read(s, offset, i);
+            if (valid(i2))
+                part3(list, i1, i2, s, offset + i);
+        }
+    }
+
+    private static void part3(Set<String> list, int i1, int i2, String s, int offset) {
+        for (int i = 1; i <= 3; i++) {
+            int i3 = read(s, offset, i);
+            if (valid(i3))
+                part4(list, i1, i2, i3, s, offset + i);
+        }
+    }
+
+    private static void part4(Set<String> list, int i1, int i2, int i3, String s, int offset) {
+        int i4 = read(s, offset, (s.length() - offset));
+        if (valid(i4))
+            list.add(i1 + "." + i2 + "." + i3 + "." + i4);
     }
 
     public List<String> restoreIpAddresses(String s) {
-        if (s.length() > 12)
+        if (s.length() < 4 || s.length() > 12)
             return Collections.emptyList();
-        switch (s.length()) {
-            case 12: {
-                final int[] ip = new int[4];
-                return (isv(ip[0] = value(s, 0, 3)) && isv(ip[1] = value(s, 3, 6)) && isv(ip[2] = value(s, 6, 9)) && isv(ip[3] = value(s, 9, 12)))
-                        ? toIp(ip) : Collections.emptyList();
-            }
-            case 4: {
-                final int[] ip = new int[4];
-                return (isv(ip[0] = v0(s, 0)) && isv(ip[1] = v0(s, 1)) && isv(ip[2] = v0(s, 2)) && isv(ip[3] = v0(s, 3)))
-                        ? toIp(ip) : Collections.emptyList();
-            }
-        }
-
-        return restoreIpAddresses(new ArrayList<>(), s, "", 0, 0);
+        HashSet<String> set = new HashSet<>();
+        part1(set, s);
+        return new ArrayList<>(set);
     }
 }
