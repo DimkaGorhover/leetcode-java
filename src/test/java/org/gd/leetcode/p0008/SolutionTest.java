@@ -22,6 +22,7 @@ class SolutionTest {
                 arguments("42", 42),
                 arguments("    -42", -42),
                 arguments("words and 987", 0),
+                arguments("987  ", 987),
                 arguments("-91283472332", Integer.MIN_VALUE),
                 arguments("1291283472332", Integer.MAX_VALUE),
                 arguments("4193 with words", 4193)
