@@ -2,12 +2,10 @@ package org.gd.leetcode.p0146;
 
 import org.gd.leetcode.common.LeetCode;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * TODO: https://leetcode.com/problems/lru-cache/
@@ -24,41 +22,45 @@ import static java.util.Objects.requireNonNull;
 @LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.DESIGN)
 class LRUCache {
 
-    private final Delegate delegate;
+    private final LRUCacheProvider provider;
 
     public LRUCache(int capacity) {
-        if (capacity <= 0) {
-            delegate = EmptyDelegate.INSTANCE;
-        } else if (capacity == 1) {
-            delegate = SingleValueDelegate.INSTANCE;
-        } else {
-            delegate = new HashMapDelegate(capacity);
-        }
+        provider = LRUCacheProvider.ofCapacity(capacity);
     }
 
     /**
      * @return the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
      */
-    public int get(int key) { return delegate.get(key); }
+    public int get(int key) { return provider.get(key); }
 
     /**
      * Set or insert the value if the key is not already present. When the cache reached its capacity, it should
      * invalidate the least recently used item before inserting a new item.
      */
-    public void put(int key, int value) { delegate.put(key, value); }
+    public void put(int key, int value) { provider.put(key, value); }
 
-    interface Delegate {
+    interface LRUCacheProvider {
+
+        static LRUCacheProvider ofCapacity(int capacity) {
+            if (capacity <= 0)
+                return EmptyLRUCacheProvider.INSTANCE;
+
+            if (capacity == 1)
+                return new SingleValueLRUCacheProvider();
+
+            return new Log_N_LRUCacheProvider(capacity);
+        }
 
         int get(int key);
 
         void put(int key, int value);
     }
 
-    static class EmptyDelegate implements Delegate {
+    static class EmptyLRUCacheProvider implements LRUCacheProvider {
 
-        static final EmptyDelegate INSTANCE = new EmptyDelegate();
+        static final EmptyLRUCacheProvider INSTANCE = new EmptyLRUCacheProvider();
 
-        private EmptyDelegate() {}
+        private EmptyLRUCacheProvider() {}
 
         @Override
         public int get(int key) { return -1; }
@@ -67,36 +69,34 @@ class LRUCache {
         public void put(int key, int value) {}
     }
 
-    static class SingleValueDelegate implements Delegate {
-
-        static final SingleValueDelegate INSTANCE = new SingleValueDelegate();
-
-        private SingleValueDelegate() {}
+    static class SingleValueLRUCacheProvider implements LRUCacheProvider {
 
         private int key, value;
+        private boolean init = false;
 
         @Override
         public int get(int key) {
-            return key == this.key ? value : -1;
+            return init && key == this.key ? value : -1;
         }
 
         @Override
         public void put(int key, int value) {
             this.key = key;
             this.value = value;
+            init = true;
         }
     }
 
-    static class HashMapDelegate implements Delegate {
+    static class Log_N_LRUCacheProvider implements LRUCacheProvider {
 
         private final Map<Integer, Node> map;
-        private final Queue<Node> queue;
+        private final ArrayList<Node> queue;
 
         int capacity;
 
-        HashMapDelegate(int capacity) {
+        Log_N_LRUCacheProvider(int capacity) {
             map = new HashMap<>(this.capacity = capacity);
-            queue = new PriorityQueue<>();
+            queue = new ArrayList<>(capacity);
         }
 
         @Override
@@ -107,62 +107,81 @@ class LRUCache {
 
         @Override
         public void put(int key, int value) {
-            Node node = new Node(key, value);
-            Node prev = map.put(key, node);
-            if (capacity == 0) {
-                Node poll = queue.poll();
-                map.remove(poll.key);
-            } else if (prev == null) {
-                capacity--;
+
+            if (map.containsKey(key)) {
+                map.get(key).setValue(value);
+            } else {
+
+                if (queue.size() == capacity) {
+                    queue.sort(Node.COMPARATOR);
+                    Node prev = queue.remove(0);
+                    map.remove(prev.getKey());
+                }
+
+                Node next = new Node(key, value);
+                queue.add(next);
+                map.put(key, next);
+
             }
-            queue.add(node);
+        }
+
+        static class Node implements Comparable<Node> {
+
+            static final Comparator<? super Node> COMPARATOR = Comparator.nullsLast(Node::compareTo);
+
+            private static final java.util.concurrent.atomic.AtomicLong USAGE = new java.util.concurrent.atomic.AtomicLong(Long.MIN_VALUE);
+
+            private final int key;
+
+            private int value;
+            private long usage;
+
+            Node(int key, int value) {
+                this.key = key;
+                setValue(value);
+            }
+
+            public int getKey() { return key; }
+
+            public int getValue() {
+                usage = USAGE.accumulateAndGet(1, Math::addExact);
+                return value;
+            }
+
+            public void setValue(int value) {
+                this.value = value;
+                getValue();
+            }
+
+            @Override
+            public int compareTo(Node node) {
+                if (node == null)
+                    return -1;
+
+                return Long.compare(usage, node.usage);
+            }
+
+            @Override
+            public String toString() {
+                return "Node{" +
+                        "key=" + key +
+                        ", value=" + value +
+                        ", instance=" + usage +
+                        '}';
+            }
         }
     }
 
-    static class Node implements Comparable<Node> {
+    static class Log_1_LRUCacheProvider implements LRUCacheProvider {
 
-        private final int key, value;
-        private int count;
-
-        Node(int value, int key) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public int getValue() {
-            count++;
-            return value;
+        @Override
+        public int get(int key) {
+            throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
         }
 
         @Override
-        public int compareTo(Node node) {
-            requireNonNull(node, "\"node\" cannot be null");
-            return Integer.compare(count, node.count);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Node)) return false;
-            Node node = (Node) o;
-            return key == node.key &&
-                    value == node.value;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = key;
-            result = 31 * result + value;
-            return result;
-        }
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "key=" + key +
-                    ", value=" + value +
-                    ", count=" + count +
-                    '}';
+        public void put(int key, int value) {
+            throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
         }
     }
 }

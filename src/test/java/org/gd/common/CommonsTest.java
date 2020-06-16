@@ -26,8 +26,10 @@ class CommonsTest {
     void test_BigIntegerBits() {
         final BigInteger two = BigInteger.valueOf(2);
         for (int i = 0; i < 100; i++) {
+
             int bits = ThreadLocalRandom.current().nextInt(4, 23);
             assertEquals(two.pow(bits), Commons.bigIntegerBits(bits));
+            
             bits = ThreadLocalRandom.current().nextInt(100, 200);
             assertEquals(two.pow(bits), Commons.bigIntegerBits(bits));
         }
@@ -83,12 +85,25 @@ class CommonsTest {
 
     }
 
-    @Test
+    private static Stream<Arguments> logArgs() {
+
+        return Stream.of(
+            Arguments.of(2d, 256d, /* == */ 8d),
+            Arguments.of(2d, 8d, /* == */ 3d),
+            Arguments.of(3d, 9d, /* == */ 2d),
+            Arguments.of(10d, 1_000d, /* == */ 3d)
+        );
+    }
+
+    @ParameterizedTest
     @DisplayName("log")
-    void test_log() throws Exception {
-        assertEquals(8, Commons.log(2, 256));
-        assertEquals(2, Commons.log(3, 9));
-        assertEquals(3, Commons.log(10, 1000));
+    @MethodSource("logArgs")
+    void test_log(double base, double logNumber, double expected) throws Exception {
+        
+        double actual = Commons.log(base, logNumber);
+
+        assertEquals(expected, actual, 0.000_000_000_001D,
+                () -> String.format("log(%1.2f, %1.2f) == %1.2f (expected: %1.2f)%n", base, logNumber, actual, expected));
     }
 
     private static Stream<Arguments> powArgs() {

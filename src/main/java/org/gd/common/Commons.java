@@ -8,8 +8,8 @@ import java.math.BigInteger;
  */
 public final class Commons {
 
-    private static final long GAUS_MAX_LAL = 4_294_967_295L;
-    private static final BigInteger GAUS_MAX_VAL_BI = BigInteger.valueOf(GAUS_MAX_LAL);
+    private static final long GAUS_MAX_VAL = 4_294_967_295L;
+    private static final BigInteger GAUS_MAX_VAL_BI = BigInteger.valueOf(GAUS_MAX_VAL);
 
     private static final BigInteger[] BIG_INTEGERS_BITS = new BigInteger[32];
 
@@ -59,6 +59,12 @@ public final class Commons {
         return f;
     }
 
+    /**
+     * https://habr.com/ru/post/261159/
+     * 
+     * @param n
+     * @return
+     */
     public static BigInteger bigFib(int n) {
         if (n < 2) return BigInteger.ONE;
         if (n < 91) return BigInteger.valueOf(fib(n));
@@ -126,7 +132,7 @@ public final class Commons {
 
     @Deprecated
     public static long linearGausSum0(long count) {
-        if (count > GAUS_MAX_LAL)
+        if (count > GAUS_MAX_VAL)
             throw new ArithmeticException("long overflow");
         long sum = 0;
         for (long i = 1; i <= count; i++)
@@ -134,8 +140,14 @@ public final class Commons {
         return sum;
     }
 
+    /**
+     * 1 + 2 + 3 + 4 + ... + 97 + 98 + 99 + 100
+     * 
+     * @param count
+     * @return
+     */
     public static long gausSum0(long count) {
-        if (count > GAUS_MAX_LAL)
+        if (count > GAUS_MAX_VAL)
             throw new ArithmeticException("long overflow");
         /*
         long mod = count % 2;
@@ -167,10 +179,13 @@ public final class Commons {
     public static BigInteger gausSum(BigInteger count) {
         if (count == null)
             return BigInteger.ZERO;
+
         if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
             return BigInteger.valueOf(gausSum0(count.longValue()));
+        
         if (count.mod(BigInteger.TWO).equals(BigInteger.ZERO))
             return count.add(BigInteger.ONE).multiply(count.shiftRight(1));
+        
         return count.multiply(count.shiftRight(1).add(BigInteger.ONE));
     }
 }
