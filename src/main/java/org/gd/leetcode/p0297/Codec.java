@@ -3,6 +3,8 @@ package org.gd.leetcode.p0297;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
+import java.nio.IntBuffer;
+
 /**
  * TODO: https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
  *
@@ -14,14 +16,15 @@ class Codec {
     private static final byte NULL_FIELD = 0;
     private static final byte FIELD = 1;
 
-    private static int size(TreeNode root) {
-        if (root == null)
-            return 0;
-        return 1 + Integer.BYTES;
+    static int size(TreeNode root) {
+        return root == null ? 0 : 1 + size(root.left) + size(root.right);
     }
 
     /** Encodes a tree to a single string. */
     public String serialize(TreeNode root) {
+
+        IntBuffer.allocate(size(root));
+
         throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
     }
 

@@ -2,10 +2,6 @@ package org.gd.leetcode.p0307;
 
 import org.gd.leetcode.common.LeetCode;
 
-import static org.gd.leetcode.common.LeetCode.Level.MEDIUM;
-import static org.gd.leetcode.common.LeetCode.Tags.BINARY_INDEXED_TREE;
-import static org.gd.leetcode.common.LeetCode.Tags.SEGMENT_TREE;
-
 /**
  * TODO: https://leetcode.com/problems/range-sum-query-mutable/ [linear solution]
  *
@@ -25,7 +21,12 @@ import static org.gd.leetcode.common.LeetCode.Tags.SEGMENT_TREE;
  * @since 2019-09-18
  */
 @SuppressWarnings("JavadocReference")
-@LeetCode(difficulty = MEDIUM, tags = {BINARY_INDEXED_TREE, SEGMENT_TREE})
+@LeetCode(
+        difficulty = LeetCode.Level.MEDIUM,
+        tags = {
+                LeetCode.Tags.BINARY_INDEXED_TREE,
+                LeetCode.Tags.SEGMENT_TREE
+        })
 class NumArray {
 
     private final int[] nums;

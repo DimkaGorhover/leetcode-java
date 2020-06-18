@@ -32,8 +32,8 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("MyAtoi")
-    void test_MyAtoi(String str, int expected) throws Exception {
+    void test_MyAtoi(String str, int expected) {
         int actual = new Solution().myAtoi(str);
-        assertEquals(expected, actual, () -> String.format("%ninput:[%s], expected:[%d], actual:[%d]%n%n", str, expected, actual));
+        assertEquals(expected, actual, () -> String.format("input:[%s], expected:[%d], actual:[%d]%n%n", str, expected, actual));
     }
 }
