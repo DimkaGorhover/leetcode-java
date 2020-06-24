@@ -1,6 +1,7 @@
 package org.gd.common;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 
 /**
  * @author Horkhover Dmytro
@@ -14,6 +15,7 @@ public final class Commons {
     private static final BigInteger[] BIG_INTEGERS_BITS = new BigInteger[32];
 
     private static final BigInteger
+            BIG_92 = BigInteger.valueOf(92),
             BIG_FIB_91 = BigInteger.valueOf(fib(91)),
             BIG_FIB_92 = BigInteger.valueOf(fib(92)),
             BIG_FACT_20 = BigInteger.valueOf(factorial(20));
@@ -81,6 +83,25 @@ public final class Commons {
         return f;
     }
 
+    public static BigInteger fib(BigInteger n) {
+        if (n.compareTo(BigInteger.TWO) < 0) 
+            return BigInteger.ONE;
+
+        if (n.compareTo(BIG_92) <= 0) 
+            return BigInteger.valueOf(fib(n.intValue()));
+
+        // TODO: implement it
+        throw new UnsupportedOperationException();
+
+        // BigInteger a1 = BIG_FIB_91, a2 = BIG_FIB_92, f = a2;
+        // for (int i = 91; i <= n; i++) {
+        //     f = a1.add(a2);
+        //     a1 = a2;
+        //     a2 = f;
+        // }
+        // return f;
+    }
+
     /**
      * http://mathematichka.ru/school/combinatorics/combination.html
      */
@@ -111,6 +132,10 @@ public final class Commons {
      */
     public static double log(double base, double logNumber) {
         return Math.log(logNumber) / Math.log(base);
+    }
+
+    public static double log2(double value) {
+        return log(2, value);
     }
 
     @SuppressWarnings("DuplicatedCode")
@@ -159,17 +184,79 @@ public final class Commons {
     }
 
     /**
+     * https://en.wikipedia.org/wiki/Euclidean_algorithm
+     */
+    public static long euclideanAlgorithm(long a, long b) {
+        if (a == b)
+            return a;
+            
+        while (a != 0 && b !=0) {
+            if (a > b) {
+                a %= b;
+            } else {
+                b %= a;
+            }
+        }
+        return a + b;
+    }
+
+    /**
+     * https://en.wikipedia.org/wiki/Trial_division
+     */
+    public static boolean trialDivision(long n) {
+        n = Math.abs(n);
+        if (n < 4)
+            return true;
+        if (n % 2 == 0)
+            return false;
+        final double sqrt = Math.sqrt(n);
+        for (long i = 3; i <= sqrt; i += 2) {
+            if (n % i == 0) 
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Sieve of Eratosthenes
+     * 
+     * https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+     */
+    public static long[] sieveOfEratosthenes(long n) {
+        if (n <= 2) 
+            return new long[]{};
+        if (n == 3) 
+            return new long[]{2};
+
+        final ArrayList<Long> list = new ArrayList<>();
+        list.add(2L);
+        for (long i = 3; i < n; i++) {
+            if (trialDivision(i))
+                list.add(i);
+        }
+
+        final long[] arr = new long[list.size()];
+        for (int i = 0; i < list.size(); i++) 
+            arr[i] = list.get(i);
+
+        return arr;
+    }
+
+    /**
      * @see #linearGausSum0(long)
      */
     @Deprecated
     public static BigInteger linearGausSum(BigInteger count) {
         if (count == null)
             return BigInteger.ZERO;
-        if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
+        
+            if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
             return BigInteger.valueOf(linearGausSum0(count.longValue()));
+
         BigInteger sum = BigInteger.ZERO;
         for (BigInteger i = BigInteger.ONE; i.compareTo(count) <= 0; i = i.add(BigInteger.ONE))
             sum = sum.add(i);
+        
         return sum;
     }
 

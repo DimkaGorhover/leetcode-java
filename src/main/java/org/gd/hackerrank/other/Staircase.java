@@ -2,12 +2,15 @@ package org.gd.hackerrank.other;
 
 import java.util.Arrays;
 
+import org.gd.hackerrank.common.HackerRank;
+
 /**
  * https://www.hackerrank.com/challenges/staircase
  *
  * @author Horkhover Dmytro
  * @since 2018-11-18
  */
+@HackerRank(difficulty = HackerRank.Level.EASY)
 class Staircase {
 
     private Staircase() { throw new UnsupportedOperationException(); }

@@ -1,5 +1,7 @@
 package org.gd.hackerrank.other;
 
+import org.gd.hackerrank.common.HackerRank;
+
 /**
  * https://www.hackerrank.com/challenges/lonely-integer/
  * 
@@ -7,6 +9,7 @@ package org.gd.hackerrank.other;
  * @see org.gd.leetcode.p0136.Solution
  * @since 2020-06-19
  */
+@HackerRank(difficulty = HackerRank.Level.EASY)
 class LonelyInteger {
 
     private LonelyInteger() {

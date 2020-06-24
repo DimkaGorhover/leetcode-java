@@ -1,11 +1,14 @@
 package org.gd.hackerrank.other;
 
+import org.gd.hackerrank.common.HackerRank;
+
 /**
  * https://www.hackerrank.com/challenges/diagonal-difference
  *
  * @author Horkhover Dmytro
  * @since 2018-11-18
  */
+@HackerRank(difficulty = HackerRank.Level.EASY)
 class DiagonalDifference {
 
     private DiagonalDifference() { throw new UnsupportedOperationException(); }

@@ -1,5 +1,8 @@
 package org.gd.hackerrank.other;
 
+import static java.util.Arrays.spliterator;
+import static java.util.stream.StreamSupport.longStream;
+
 import org.gd.hackerrank.common.HackerRank;
 
 /**
@@ -11,10 +14,22 @@ import org.gd.hackerrank.common.HackerRank;
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class VeryBigSum {
 
-    static long aVeryBigSum(long[] arr) {
+    private VeryBigSum() {
+        throw new UnsupportedOperationException();
+    }
+
+    static long streamSolution(final long[] arr) {
+        return longStream(spliterator(arr), arr.length > Short.MAX_VALUE).sum();
+    }
+
+    static long forLoopSolution(final long[] arr) {
         long sum = 0;
-        for (long l : arr)
+        for (final long l : arr)
             sum += l;
         return sum;
+    }
+
+    static long aVeryBigSum(final long[] arr) {
+        return forLoopSolution(arr);
     }
 }

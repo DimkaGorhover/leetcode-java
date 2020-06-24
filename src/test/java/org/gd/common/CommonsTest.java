@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommonsTest {
 
     @Test
-    @DisplayName("BigIntegerBits")
+    @DisplayName("BigInteger Bits")
     void test_BigIntegerBits() {
         final BigInteger two = BigInteger.valueOf(2);
         for (int i = 0; i < 100; i++) {
@@ -38,12 +39,19 @@ class CommonsTest {
     @Test
     @DisplayName("Fib")
     void test_Fib() {
+        
+        assertEquals(1, Commons.fib(-1));
+        assertEquals(1, Commons.fib(1));
+        assertEquals(2, Commons.fib(2));
+        assertEquals(3, Commons.fib(3));
+        assertEquals(5, Commons.fib(4));
+
         assertEquals(0x68A3DD8E61ECCFBDL, Commons.fib(92));
         assertThrows(ArithmeticException.class, () -> Commons.fib(93));
     }
 
     @Test
-    @DisplayName("BigFib")
+    @DisplayName("BigInteger Fib")
     void test_BigFib() {
         assertEquals(new BigInteger("280571172992510140037611932413038677189525", 10), Commons.bigFib(200));
         assertEquals(BigInteger.valueOf(0x68A3DD8E61ECCFBDL), Commons.bigFib(92));
@@ -61,7 +69,7 @@ class CommonsTest {
     }
 
     @Test
-    @DisplayName("test_bigFactorial")
+    @DisplayName("BigInteger Factorial")
     void test_bigFactorial() {
         assertEquals(
                 BigInteger.valueOf(6),
@@ -114,6 +122,19 @@ class CommonsTest {
         }
         arguments.add(Arguments.of(8.84372d, -5));
         return arguments.stream();
+    }
+
+    @Test
+    @DisplayName("Sieve of Eratosthenes")
+    void test_sieveOfEratosthenes() {
+        long n = 27;
+        long[] expected = {2, 3, 5, 7, 11, 13, 17, 19, 23};
+        long[] actual = Commons.sieveOfEratosthenes(n);
+
+        assertArrayEquals(expected, actual, () -> 
+                String.format("%s%n%s%n",
+                        (Arrays.toString(expected) + " <-- expected"),
+                        (Arrays.toString(actual) + " <-- actual")));
     }
 
     @ParameterizedTest
