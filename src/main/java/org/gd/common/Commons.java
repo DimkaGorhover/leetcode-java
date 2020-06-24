@@ -63,9 +63,9 @@ public final class Commons {
 
     /**
      * https://habr.com/ru/post/261159/
-     * 
+     *
      * @param n
-     * @return
+     * @return instance of {@link BigInteger}
      */
     public static BigInteger bigFib(int n) {
         if (n < 2) return BigInteger.ONE;
@@ -167,7 +167,7 @@ public final class Commons {
 
     /**
      * 1 + 2 + 3 + 4 + ... + 97 + 98 + 99 + 100
-     * 
+     *
      * @param count
      * @return
      */
@@ -269,10 +269,35 @@ public final class Commons {
 
         if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
             return BigInteger.valueOf(gausSum0(count.longValue()));
-        
+
         if (count.mod(BigInteger.TWO).equals(BigInteger.ZERO))
             return count.add(BigInteger.ONE).multiply(count.shiftRight(1));
-        
+
         return count.multiply(count.shiftRight(1).add(BigInteger.ONE));
+    }
+
+    public static long nextPowerOf2(long n) {
+        n--;
+        n |= n >> 1;
+        n |= n >> 2;
+        n |= n >> 4;
+        n |= n >> 8;
+        n |= n >> 16;
+        return n + 1;
+    }
+
+    public static long prevPowerOf2(long n) {
+        n--;
+        n |= n >> 1;
+        n |= n >> 2;
+        n |= n >> 4;
+        n |= n >> 8;
+        n |= n >> 16;
+        n -= (n >> 1);
+        return n;
+    }
+
+    public static boolean isPowerOfTwo(long n) {
+        return (n > 0) && ((n & (n - 1)) == 0);
     }
 }

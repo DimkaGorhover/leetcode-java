@@ -174,4 +174,32 @@ class CommonsTest {
                     () -> String.format("%d", count));
         }
     }
+
+    @Test
+    @DisplayName("Next Power Of 2")
+    void test_nextPowerOf2() {
+        long actual = Commons.nextPowerOf2(10);
+        assertEquals(16, actual);
+        assertTrue(Commons.isPowerOfTwo(actual));
+    }
+
+    @Test
+    @DisplayName("Prev Power Of 2")
+    void test_prevPowerOf2() {
+        long actual = Commons.prevPowerOf2(10);
+        assertEquals(8, actual);
+        assertTrue(Commons.isPowerOfTwo(actual));
+    }
+
+    @Test
+    @DisplayName("Is Power Of 2")
+    void test_isPowerOfTwo() {
+        assertFalse(Commons.isPowerOfTwo(-1));
+        assertFalse(Commons.isPowerOfTwo(0));
+        assertTrue(Commons.isPowerOfTwo(1));
+        assertTrue(Commons.isPowerOfTwo(2));
+        assertTrue(Commons.isPowerOfTwo(4));
+        assertTrue(Commons.isPowerOfTwo(8));
+        assertTrue(Commons.isPowerOfTwo(16));
+    }
 }
