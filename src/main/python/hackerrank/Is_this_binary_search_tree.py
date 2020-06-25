@@ -12,6 +12,9 @@ class Node:
 
 def checkBST(root: Node):
 
+    if not root:
+        return True
+
     queue = []
     queue.append([root, 0, 10**4])
 

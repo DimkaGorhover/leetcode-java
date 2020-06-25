@@ -9,7 +9,6 @@ import javax.annotation.Nonnull;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * Test for {@link PriorityQueueArrayMinStack}
@@ -27,14 +26,19 @@ class MinStackTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("test")
+    @DisplayName("LeetCode #155: Min Stack")
     void test(@Nonnull MinStackFactory minStackFactory) {
+        
         MinStack minStack = minStackFactory.create();
+        
         minStack.push(-2);
         minStack.push(0);
         minStack.push(-3);
+        
         assertEquals(-3, minStack.getMin());
+        
         minStack.pop();
+        
         assertEquals(0, minStack.top());
         assertEquals(-2, minStack.getMin());
 

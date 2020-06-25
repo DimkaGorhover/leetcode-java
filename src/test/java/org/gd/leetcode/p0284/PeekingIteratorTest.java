@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PeekingIteratorTest {
 
     @Test
-    @DisplayName("Peek")
+    @DisplayName("LeetCode #284: Peeking Iterator")
     void test_Peek() throws Exception {
 
-        PeekingIterator iterator = new PeekingIterator<>(List.of(1, 2, 3, 4, 5).iterator());
+        PeekingIterator<Integer> iterator = new PeekingIterator<>(List.of(1, 2, 3, 4, 5).iterator());
 
         assertTrue(iterator.hasNext());
 
