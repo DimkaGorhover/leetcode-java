@@ -9,32 +9,29 @@ import org.gd.leetcode.common.TreeNode;
 @LeetCode(difficulty = LeetCode.Level.EASY)
 class Solution {
 
-    public int longestUnivaluePath(TreeNode root) {
+    int ans = 0;
 
-        if (root == null)
-            return 0;
-
-        return Math.max(0, Math.max(
-            longestUnivaluePath(root.left, 0, root.val), 
-            longestUnivaluePath(root.right, 0, root.val)
-        ));
+    private static boolean isEqual(TreeNode parent, TreeNode child) {
+        return parent != null && child != null && child.val == parent.val;
     }
 
-    private static int longestUnivaluePath(TreeNode node, int deep, int value) {
+    public int longestUnivaluePath(TreeNode root) {
+        ans = 0;
+        lup(root);
+        return ans;
+    }
 
+    private int lup(TreeNode node) {
         if (node == null)
-            return deep;
+            return 0;
 
-        return Math.max(
-            
-            node.val != value ? deep : Math.max(
-                longestUnivaluePath(node.left, deep + 1, value), 
-                longestUnivaluePath(node.right, deep + 1, value)), 
+        int leftRoot = lup(node.left);
+        int rightRoot = lup(node.right);
 
-            Math.max(
-                longestUnivaluePath(node.left, 0, node.val), 
-                longestUnivaluePath(node.right, 0, node.val)
-            )
-        );
+        int left = isEqual(node, node.left) ? leftRoot + 1: 0;
+        int right = isEqual(node, node.right) ? rightRoot + 1: 0;
+
+        ans = Math.max(ans, left + right);
+        return Math.max(left, right);
     }
 }

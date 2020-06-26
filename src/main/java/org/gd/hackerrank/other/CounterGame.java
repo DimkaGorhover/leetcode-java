@@ -8,21 +8,20 @@ import org.gd.hackerrank.common.HackerRank;
 @HackerRank(difficulty = HackerRank.Level.MEDIUM)
 class CounterGame {
 
-    public static void main(String[] args) {
-        System.out.println(
-            counterGame(10)
-        );
+    static String counterGame(long n) {
+        boolean luise = false;
+        while (n > 1) {
+            luise = !luise;
+            long p2 = prevPow2(n);
+            n = (n == p2) ? (n / 2) : (n - p2);
+        }
+        return luise ? "Louise" : "Richard";
     }
 
-    static String counterGame(long n) {
-        long v = n;
-        v--;
-        v |= v >> 1;
-        v |= v >> 2;
-        v |= v >> 4;
-        v |= v >> 8;
-        v |= v >> 16;
-        v++;
-        return "" + v;
+    private static long prevPow2(long n) {
+        n--;
+        for (int i = 0; i < 6; i++)
+            n |= n >> (1 << i);
+        return n - (n >> 1);
     }
 }
