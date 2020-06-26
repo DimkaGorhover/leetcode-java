@@ -1,15 +1,11 @@
 CPU_COUNT=2
 GRADLE_VERSION=6.5
-DOCKER_ORG=dier
 GRADLE_CONTAINER_NAME=gradle-$(shell basename "$$PWD")
 CONTAINER_NAME=$(shell basename "$$PWD")
-GRADLE_USER=gradle
 EXPOSE_PORT=8888
 LOCAL_USER_DIR=$(shell echo $${HOME})
 
-# __GRADLE_IMAGE_TAG=$(DOCKER_ORG)/gradle:$(GRADLE_VERSION)-graalvm
-__GRADLE_IMAGE_TAG=$(DOCKER_ORG)/gradle:$(GRADLE_VERSION)-jdk-14.0.1
-# __GRADLE_IMAGE_TAG=gradle:6.5.0-jdk14
+__GRADLE_IMAGE_TAG=gradle:6.5.0-jdk14
 
 docker_prefix=docker run -i -t \
 	--rm \
@@ -18,7 +14,7 @@ docker_prefix=docker run -i -t \
 	--memory 8g \
 	--memory-reservation 1g \
 	--memory-swap 0 \
-	--user $(GRADLE_USER) \
+	--user gradle \
 	-p 8888:8080 \
 	-v gradle-cache:/home/gradle/.gradle \
 	-v m2-cache:/home/gradle/.m2 \
