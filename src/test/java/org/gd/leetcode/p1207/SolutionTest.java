@@ -30,7 +30,7 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("UniqueOccurrences")
+    @DisplayName("LeetCode #1207: Unique Number of Occurrences")
     void test_UniqueOccurrences(int[] arr, boolean expected) throws Exception {
         BooleanAssertion.of(expected).doAssert(new Solution().uniqueOccurrences(arr));
     }

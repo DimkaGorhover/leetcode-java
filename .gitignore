@@ -12,6 +12,8 @@ bin/
 /out/production/classes/
 /out/test/classes/
 
+/venv
+
 # Datasource local storage ignored files
 /.idea/dataSources/
 dataSources.local.xml

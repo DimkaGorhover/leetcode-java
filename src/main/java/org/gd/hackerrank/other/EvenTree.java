@@ -10,7 +10,7 @@ import java.util.List;
  * @since 2019-09-23
  */
 @HackerRank(difficulty = HackerRank.Level.MEDIUM)
-public class EvenTree {
+class EvenTree {
 
     /**
      * @param t_nodes the number of nodes in the tree

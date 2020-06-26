@@ -124,11 +124,16 @@ class WordDictionary {
 
         @Override
         public boolean search(String word) {
-            Set<String> target = storage.get(word.length());
+            if (word == null)
+                return false;
+            
+                Set<String> target = storage.get(word.length());
             if (target == null)
                 return false;
+
             if (target.contains(word))
                 return true;
+
             for (String saved : target) {
                 if (isEqual(saved, word)) 
                     return true;
@@ -139,9 +144,8 @@ class WordDictionary {
 
         private static boolean isEqual(String saved, String target) {
             for (int i = 0; i < saved.length(); i++) {
-                if (target.charAt(i) == '.')
-                    continue;
-                if (saved.charAt(i) != target.charAt(i))
+                char tc = target.charAt(i);
+                if (tc != '.' && saved.charAt(i) != tc)
                     return false;
             }
             return true;

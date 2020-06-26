@@ -6,7 +6,7 @@ import org.gd.hackerrank.common.HackerRank;
 /**
  * https://www.hackerrank.com/challenges/maximizing-xor/
  */
-@Repeat
+@Repeat("Maximizing Xor")
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class MaximizingXor {
 

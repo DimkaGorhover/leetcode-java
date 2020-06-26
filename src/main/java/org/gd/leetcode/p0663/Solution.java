@@ -11,8 +11,8 @@ import org.gd.leetcode.common.TreeNode;
  * 
  * https://leetcode.com/articles/equal-tree-partition/
  */
-@Repeat
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@Repeat("check if left and right nodes are equal")
+@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = { LeetCode.Tags.TREE, LeetCode.Tags.BINARY_SEARCH_TREE })
 class Solution {
 
     private Stack<Integer> seen;
