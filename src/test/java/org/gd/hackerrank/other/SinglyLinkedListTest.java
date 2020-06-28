@@ -1,7 +1,8 @@
 package org.gd.hackerrank.other;
 
 import lombok.Value;
-import org.gd.hackerrank.other.SinglyLinkedList.SinglyLinkedListNode;
+
+import org.gd.hackerrank.common.SinglyLinkedListNode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
