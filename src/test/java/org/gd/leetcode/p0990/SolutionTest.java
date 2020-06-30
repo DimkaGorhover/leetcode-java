@@ -14,6 +14,7 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+                Arguments.of(new String[]{"a==z", "a==b", "b==c", "c==d", "b==y", "c==x", "d==w", "g==h", "h==i", "i==j", "a==g", "j!=y"}, false),
                 Arguments.of(new String[]{"a==b", "b!=c", "c==a"}, false),
                 Arguments.of(new String[]{"a==b", "b!=a"}, false),
                 Arguments.of(new String[]{"b==a", "a==b"}, true),
@@ -34,7 +35,7 @@ class SolutionTest {
     @Test
     @DisplayName("LeetCode #990: Testing equals in inner classes")
     void eq() {
-        
+
         Solution.Op ac = new Solution.Eq('a', 'c');
         Solution.Op ca = new Solution.Eq('c', 'a');
         Solution.Op cb = new Solution.Eq('c', 'b');

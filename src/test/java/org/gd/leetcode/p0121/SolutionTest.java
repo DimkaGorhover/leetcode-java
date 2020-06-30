@@ -26,11 +26,9 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("MaxProfit")
+    @DisplayName("LeetCode #121: Best Time to Buy and Sell Stock")
     void test_MaxProfit(int[] prices, int expected) {
-
-        int actual = new Solution().maxProfit(prices);
-
-        assertEquals(expected, actual);
+        assertEquals(expected, new Solution().maxProfit(prices));
+        assertEquals(expected, new LinearSolution().maxProfit(prices));
     }
 }

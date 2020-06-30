@@ -19,15 +19,15 @@ import org.gd.leetcode.common.LeetCode;
 class Solution {
 
     public int maxProfit(int[] prices) {
-        int max0 = prices[0];
-        int max1 = prices[0];
-
-        for (int i = 1, n = prices.length; i < n; i++) {
-
-            max1 = Math.max(max1 - prices[i], prices[i]);
-
-            max0 = Math.max(max0, max1);
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        int profit;
+        for (int price : prices) {
+            if (price < minPrice)
+                minPrice = price;
+            else if ((profit = price - minPrice) > maxProfit)
+                maxProfit = profit;
         }
-        return max0;
+        return maxProfit;
     }
 }

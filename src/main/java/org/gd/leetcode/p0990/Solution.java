@@ -12,25 +12,50 @@ class Solution {
 
     public boolean equationsPossible(String[] equations) {
 
-        ValuesProviders valuesProviders = new ValuesProviders();
-        Set<Op> ops = new HashSet<>();
+        Set<Integer>[] graph = new Set['z' - 'a' + 1];
+        for (int i = 0; i < graph.length; i++)
+            graph[i] = new HashSet<>();
 
+        for (String equation : equations) {
+            if (equation.charAt(1) == '=') {
+                int x = equation.charAt(0) - 'a';
+                int y = equation.charAt(3) - 'a';
+                graph[x].add(y);
+                graph[y].add(x);
+            }
+        }
+
+        System.out.println();
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ValuesProviderBuilder values = new ValuesProviderBuilder();
         Op op;
+        OpBuilder builder = Op.builder();
         for (String equation : equations) {
             op = Op.of(equation);
             if (op.isAlwaysFalse()) {
                 return false;
             }
             if (!op.isAlwaysTrue()) {
-                ops.add(op);
-                valuesProviders.add(equation.charAt(0), equation.charAt(3));
+                builder.add(op);
+                values.add(equation.charAt(0), equation.charAt(3));
             }
         }
 
-        op = Op.reduce(ops);
-        op = LoggedOp.of(op);
+        op = builder.build();
 
-        return false;
+        return values.apply(op);
     }
 
     interface ValuesProvider {
@@ -38,49 +63,20 @@ class Solution {
         int get(char operand);
     }
 
-    static class ImmutableValuesProvider implements ValuesProvider {
+    static class ValuesProviderBuilder implements ValuesProvider {
 
-        private final int[] map;
-        private final int[] values;
+        private final int[] map = new int['z' - 'a' + 1];
+        private int[] values = new int[0];
+        private int counter = 0;
 
-        private ImmutableValuesProvider(int[] map, int[] values) {
-            this.map = map;
-            this.values = values;
-        }
-
-        static ImmutableValuesProvider copyOf(int[] arr, int[] values) {
-            return new ImmutableValuesProvider(
-                    Arrays.copyOf(arr, arr.length),
-                    Arrays.copyOf(values, values.length));
+        public ValuesProviderBuilder() {
+            Arrays.fill(map, -1);
         }
 
         @Override
         public int get(char operand) {
-            int value = map[operand - 'a'];
-            if (value < 1)
-                throw new IllegalArgumentException();
-            return value;
+            return values[map[operand - 'a']];
         }
-
-        @Override
-        public String toString() {
-            StringJoiner sj = new StringJoiner(", ", "[", "]");
-            for (int i = 0; i < map.length; i++) {
-                if (map[i] > 0) {
-                    char c = (char) (i + 'a');
-                    int v = values[map[i] - 1];
-                    sj.add("{" + c + '=' + v + '}');
-                }
-            }
-            return sj.toString();
-        }
-    }
-
-    static class ValuesProviders {
-
-        private final int[] map = new int['z' - 'a' + 1];
-
-        private int counter = 0;
 
         void add(char operand0, char operand1) {
             add(operand0);
@@ -88,24 +84,27 @@ class Solution {
         }
 
         void add(char operand) {
-            map[operand - 'a'] = ++counter;
+            if (map[operand - 'a'] < 0) {
+                map[operand - 'a'] = counter;
+                counter++;
+            }
         }
 
         boolean apply(Op op) {
-            if (op.isAlwaysFalse())
-                return false;
-            if (op.isAlwaysTrue())
-                return true;
-
-            int[] values = new int[counter];
-            return apply(op, values, 0);
+            if (op.isAlwaysFalse()) return false;
+            if (op.isAlwaysTrue()) return true;
+            values = new int[counter];
+            return apply(op, 0);
         }
 
-        boolean apply(Op op, int[] values, int start) {
-            for (int i = start; i < counter; i++) {
-                for (int j = 0; j < i; j++) {
-                    values[i] = j;
-                }
+        private boolean apply(Op op, int index) {
+            if (index == values.length)
+                return op.apply(this);
+
+            for (int i = 0; i <= index; i++) {
+                values[index] = i;
+                if (apply(op, index + 1))
+                    return true;
             }
             return false;
         }
@@ -124,18 +123,6 @@ class Solution {
             throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
         }
 
-        static Op reduce(Collection<Op> ops) {
-            Op reducer = True.INSTANCE;
-            if (ops == null || ops.size() == 0)
-                return reducer;
-            for (Op op : ops) {
-                if (op.isAlwaysFalse())
-                    return False.INSTANCE;
-                reducer = reducer.and(op);
-            }
-            return reducer;
-        }
-
         static Op eq(char operand0, char operand1) {
             return operand0 == operand1 ? new SameEq(operand0) : new Eq(operand0, operand1);
         }
@@ -143,6 +130,8 @@ class Solution {
         static Op neq(char operand0, char operand1) {
             return operand0 == operand1 ? new SameNeq(operand0) : new Neq(operand0, operand1);
         }
+
+        static OpBuilder builder() { return new OpBuilderImpl(); }
 
         boolean apply(ValuesProvider provider);
 
@@ -153,6 +142,37 @@ class Solution {
         default boolean isAlwaysFalse() { return false; }
 
         default boolean isAlwaysTrue() { return false; }
+    }
+
+    interface OpBuilder {
+
+        OpBuilder add(Op op);
+
+        Op build();
+    }
+
+    static class OpBuilderImpl implements OpBuilder {
+
+        private final Set<Op> ops = new HashSet<>();
+
+        @Override
+        public OpBuilder add(Op op) {
+            ops.add(op);
+            return this;
+        }
+
+        @Override
+        public Op build() {
+            Op reducer = True.INSTANCE;
+            if (ops.size() == 0)
+                return reducer;
+            for (Op op : ops) {
+                if (op.isAlwaysFalse())
+                    return False.INSTANCE;
+                reducer = reducer.and(op);
+            }
+            return reducer;
+        }
     }
 
     static class LoggedOp implements Op {

@@ -4,24 +4,23 @@ import org.gd.common.Repeat;
 import org.gd.hackerrank.common.HackerRank;
 import org.gd.hackerrank.common.SinglyLinkedListNode;
 
-@Repeat
+/**
+ * https://www.hackerrank.com/challenges/reverse-a-linked-list/
+ */
+@Repeat("reverse linked list")
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class ReverseLinkedList {
 
-    public static void main(String[] args) {
-        System.out.println(reverse(SinglyLinkedListNode.of(1, 2, 3, 4)));
-    }
-
     static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
-        if (head == null)
-            return null;
+        if (head == null || head.next == null)
+            return head;
 
         SinglyLinkedListNode prev = null;
         SinglyLinkedListNode current = head;
         SinglyLinkedListNode next = null;
 
         while (current != null) {
-            
+
             next = current.next;
             current.next = prev;
             prev = current;
