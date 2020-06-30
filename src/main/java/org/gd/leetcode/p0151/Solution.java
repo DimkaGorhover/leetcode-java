@@ -4,8 +4,6 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/reverse-words-in-a-string/
- *
- * TODO: replace by linear search on char array
  */
 @LeetCode(
         difficulty = LeetCode.Level.EASY,

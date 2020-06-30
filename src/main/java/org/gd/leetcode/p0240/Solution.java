@@ -1,12 +1,17 @@
 package org.gd.leetcode.p0240;
 
+import java.util.Arrays;
+
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 /**
- * TODO: LeetCode 240: https://leetcode.com/problems/search-a-2d-matrix-ii/
+ * https://leetcode.com/problems/search-a-2d-matrix-ii/
  *
+ * @see Arrays#binarySearch(int[], int)
  * @since 2019-09-10
  */
+@Repeat("search value in 2d matrix")
 @LeetCode(
         difficulty = LeetCode.Level.MEDIUM,
         tags = {
@@ -17,12 +22,26 @@ class Solution {
 
     public boolean searchMatrix(int[][] matrix, int target) {
 
+        if (matrix == null || matrix.length == 0)
+            return false;
+
         int cols = matrix.length;
         int rows = matrix[0].length;
 
+        if ((matrix[0][0] > target) || (matrix[cols - 1][rows - 1] < target))
+            return false;
 
+        for (int col = 0, row = rows - 1; col < cols && row >= 0;) {
+            if (matrix[col][row] == target) {
+                return true;
+            }
+            if (matrix[col][row] < target) {
+                col++;
+            } else {
+                row--;
+            }
+        }
 
-
-        throw new UnsupportedOperationException(new String(new char[]{ 175, 92, 95, 40, 12_484, 41, 95, 47, 175 }));
+        return false;
     }
 }

@@ -6,6 +6,7 @@ import org.gd.leetcode.common.LeetCode;
  * https://leetcode.com/problems/valid-parentheses/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0022.Solution
  * @since 2018-12-29
  */
 @LeetCode(

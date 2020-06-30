@@ -2,10 +2,6 @@ package org.gd.leetcode.p0307;
 
 import org.gd.leetcode.common.LeetCode;
 
-import static org.gd.leetcode.common.LeetCode.Level.MEDIUM;
-import static org.gd.leetcode.common.LeetCode.Tags.BINARY_INDEXED_TREE;
-import static org.gd.leetcode.common.LeetCode.Tags.SEGMENT_TREE;
-
 /**
  * TODO: https://leetcode.com/problems/range-sum-query-mutable/ [linear solution]
  *
@@ -25,23 +21,25 @@ import static org.gd.leetcode.common.LeetCode.Tags.SEGMENT_TREE;
  * @since 2019-09-18
  */
 @SuppressWarnings("JavadocReference")
-@LeetCode(difficulty = MEDIUM, tags = {BINARY_INDEXED_TREE, SEGMENT_TREE})
+@LeetCode(
+        difficulty = LeetCode.Level.MEDIUM,
+        tags = {
+                LeetCode.Tags.BINARY_INDEXED_TREE,
+                LeetCode.Tags.SEGMENT_TREE
+        })
 class NumArray {
 
-    private final int[] nums;
+    private final int[] arr;
 
     public NumArray(int[] nums) {
-        this.nums = nums;
+        this.arr = nums;
     }
 
     public void update(int i, int val) {
-        nums[i] = val;
+        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
     }
 
     public int sumRange(int i, int j) {
-        int sum = 0;
-        while (i <= j)
-            sum += nums[i++];
-        return sum;
+        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
     }
 }

@@ -5,18 +5,22 @@ import org.gd.leetcode.common.LeetCode;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.gd.leetcode.common.LeetCode.Level.HARD;
-import static org.gd.leetcode.common.LeetCode.Tags.*;
-
 /**
  * TODO: https://leetcode.com/problems/online-majority-element-in-subarray/
+ * FIXME: https://leetcode.com/submissions/detail/263560321/
  *
  * https://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/
  *
  * @see org.gd.common.SegmentTree
  * @since 2019-09-23
  */
-@LeetCode(difficulty = HARD, tags = {ARRAY, BINARY_SEARCH, SEGMENT_TREE})
+@LeetCode(
+        difficulty = LeetCode.Level.HARD,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.BINARY_SEARCH,
+                LeetCode.Tags.SEGMENT_TREE
+        })
 class MajorityChecker {
 
     private final Delegate delegate;

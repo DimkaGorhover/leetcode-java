@@ -22,6 +22,7 @@ class SolutionTest {
                 arguments("42", 42),
                 arguments("    -42", -42),
                 arguments("words and 987", 0),
+                arguments("987  ", 987),
                 arguments("-91283472332", Integer.MIN_VALUE),
                 arguments("1291283472332", Integer.MAX_VALUE),
                 arguments("4193 with words", 4193)
@@ -31,8 +32,8 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("MyAtoi")
-    void test_MyAtoi(String str, int expected) throws Exception {
+    void test_MyAtoi(String str, int expected) {
         int actual = new Solution().myAtoi(str);
-        assertEquals(expected, actual, () -> String.format("%ninput:[%s], expected:[%d], actual:[%d]%n%n", str, expected, actual));
+        assertEquals(expected, actual, () -> String.format("input:[%s], expected:[%d], actual:[%d]%n%n", str, expected, actual));
     }
 }

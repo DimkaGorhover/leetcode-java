@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
@@ -22,12 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommonsTest {
 
     @Test
-    @DisplayName("BigIntegerBits")
+    @DisplayName("BigInteger Bits")
     void test_BigIntegerBits() {
         final BigInteger two = BigInteger.valueOf(2);
         for (int i = 0; i < 100; i++) {
+
             int bits = ThreadLocalRandom.current().nextInt(4, 23);
             assertEquals(two.pow(bits), Commons.bigIntegerBits(bits));
+            
             bits = ThreadLocalRandom.current().nextInt(100, 200);
             assertEquals(two.pow(bits), Commons.bigIntegerBits(bits));
         }
@@ -36,12 +39,19 @@ class CommonsTest {
     @Test
     @DisplayName("Fib")
     void test_Fib() {
+        
+        assertEquals(1, Commons.fib(-1));
+        assertEquals(1, Commons.fib(1));
+        assertEquals(2, Commons.fib(2));
+        assertEquals(3, Commons.fib(3));
+        assertEquals(5, Commons.fib(4));
+
         assertEquals(0x68A3DD8E61ECCFBDL, Commons.fib(92));
         assertThrows(ArithmeticException.class, () -> Commons.fib(93));
     }
 
     @Test
-    @DisplayName("BigFib")
+    @DisplayName("BigInteger Fib")
     void test_BigFib() {
         assertEquals(new BigInteger("280571172992510140037611932413038677189525", 10), Commons.bigFib(200));
         assertEquals(BigInteger.valueOf(0x68A3DD8E61ECCFBDL), Commons.bigFib(92));
@@ -59,7 +69,7 @@ class CommonsTest {
     }
 
     @Test
-    @DisplayName("test_bigFactorial")
+    @DisplayName("BigInteger Factorial")
     void test_bigFactorial() {
         assertEquals(
                 BigInteger.valueOf(6),
@@ -83,12 +93,25 @@ class CommonsTest {
 
     }
 
-    @Test
+    private static Stream<Arguments> logArgs() {
+
+        return Stream.of(
+            Arguments.of(2d, 256d, /* == */ 8d),
+            Arguments.of(2d, 8d, /* == */ 3d),
+            Arguments.of(3d, 9d, /* == */ 2d),
+            Arguments.of(10d, 1_000d, /* == */ 3d)
+        );
+    }
+
+    @ParameterizedTest
     @DisplayName("log")
-    void test_log() throws Exception {
-        assertEquals(8, Commons.log(2, 256));
-        assertEquals(2, Commons.log(3, 9));
-        assertEquals(3, Commons.log(10, 1000));
+    @MethodSource("logArgs")
+    void test_log(double base, double logNumber, double expected) throws Exception {
+        
+        double actual = Commons.log(base, logNumber);
+
+        assertEquals(expected, actual, 0.000_000_000_001D,
+                () -> String.format("log(%1.2f, %1.2f) == %1.2f (expected: %1.2f)%n", base, logNumber, actual, expected));
     }
 
     private static Stream<Arguments> powArgs() {
@@ -99,6 +122,19 @@ class CommonsTest {
         }
         arguments.add(Arguments.of(8.84372d, -5));
         return arguments.stream();
+    }
+
+    @Test
+    @DisplayName("Sieve of Eratosthenes")
+    void test_sieveOfEratosthenes() {
+        long n = 27;
+        long[] expected = {2, 3, 5, 7, 11, 13, 17, 19, 23};
+        long[] actual = Commons.sieveOfEratosthenes(n);
+
+        assertArrayEquals(expected, actual, () -> 
+                String.format("%s%n%s%n",
+                        (Arrays.toString(expected) + " <-- expected"),
+                        (Arrays.toString(actual) + " <-- actual")));
     }
 
     @ParameterizedTest
@@ -137,5 +173,33 @@ class CommonsTest {
                     Commons.gausSum(BigInteger.valueOf(count)).longValue(),
                     () -> String.format("%d", count));
         }
+    }
+
+    @Test
+    @DisplayName("Next Power Of 2")
+    void test_nextPowerOf2() {
+        long actual = Commons.nextPowerOf2(10);
+        assertEquals(16, actual);
+        assertTrue(Commons.isPowerOfTwo(actual));
+    }
+
+    @Test
+    @DisplayName("Prev Power Of 2")
+    void test_prevPowerOf2() {
+        long actual = Commons.prevPowerOf2(10);
+        assertEquals(8, actual);
+        assertTrue(Commons.isPowerOfTwo(actual));
+    }
+
+    @Test
+    @DisplayName("Is Power Of 2")
+    void test_isPowerOfTwo() {
+        assertFalse(Commons.isPowerOfTwo(-1));
+        assertFalse(Commons.isPowerOfTwo(0));
+        assertTrue(Commons.isPowerOfTwo(1));
+        assertTrue(Commons.isPowerOfTwo(2));
+        assertTrue(Commons.isPowerOfTwo(4));
+        assertTrue(Commons.isPowerOfTwo(8));
+        assertTrue(Commons.isPowerOfTwo(16));
     }
 }

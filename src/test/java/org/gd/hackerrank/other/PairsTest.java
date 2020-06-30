@@ -28,6 +28,14 @@ class PairsTest {
     @MethodSource("args")
     @DisplayName("Pairs")
     void test_Pairs(int[] arr, int k, int expected) throws Exception {
-        assertEquals(expected, Pairs.pairs(k, arr));
+        
+        int actual = Pairs.pairs(k, arr);
+        assertEquals(expected, actual);
+
+        actual = Pairs.twoPointersSolution(k, arr);
+        assertEquals(expected, actual);
+
+        actual = Pairs.linearSolution(k, arr);
+        assertEquals(expected, actual);
     }
 }

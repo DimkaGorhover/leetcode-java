@@ -54,6 +54,8 @@ class Trie {
 
     static class ToLongWordException extends RuntimeException {
 
+        private static final long serialVersionUID = 9060161481648923766L;
+
         ToLongWordException(int length) {
             super(String.format("max length: %d, current length: %d", WORD_MAX_LENGTH, length));
         }

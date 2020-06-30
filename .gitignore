@@ -4,10 +4,15 @@
 
 # Project exclude paths
 /.gradle/
+gradlew*
+/gradle/wrapper/
 /build/
+bin/
 /out/
 /out/production/classes/
 /out/test/classes/
+
+/venv
 
 # Datasource local storage ignored files
 /.idea/dataSources/

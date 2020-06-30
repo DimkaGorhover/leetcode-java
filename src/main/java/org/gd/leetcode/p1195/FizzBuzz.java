@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntConsumer;
 
 /**
+ * https://leetcode.com/problems/fizz-buzz/
  * https://leetcode.com/problems/fizz-buzz-multithreaded/
  *
  * Write a program that outputs the string representation of numbers from 1 to n, however:
@@ -25,6 +26,7 @@ import java.util.function.IntConsumer;
  * Thread C will call fizzbuzz() to check for divisibility of 3 and 5 and outputs fizzbuzz.
  * Thread D will call number() which should only output the numbers.
  *
+ * @see org.gd.leetcode.p0412.Solution
  * @since 2019-09-19
  */
 @LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.CONCURRENCY)

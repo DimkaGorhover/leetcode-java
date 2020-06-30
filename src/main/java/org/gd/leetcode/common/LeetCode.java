@@ -63,6 +63,7 @@ public @interface LeetCode {
         BRAINTEASER("Brainteaser"),
         GEOMETRY("Geometry"),
         MAP("Map"),
+        SLIDING_WINDOW("Sliding Window"),
         REJECTION_SAMPLING("Rejection Sampling"),
         RESERVOIR_SAMPLING("Reservoir Sampling"),
         MEMOIZATION("Memoization");

@@ -1,5 +1,8 @@
 package org.gd.leetcode.p0235;
 
+import org.gd.common.Repeat;
+import org.gd.leetcode.common.LeetCode;
+import org.gd.leetcode.common.TreeNode;
 
 /*
 -------------------------------------------------------------------------------
@@ -25,11 +28,15 @@ class Solution {
  */
 
 /**
- * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
+ * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+ * 
+ * TODO: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/discuss/64963/3-lines-with-O(1)-space-1-Liners-Alternatives
  *
  * @author Gorkhover D.
  * @since 2018-10-17
  */
+@Repeat
+@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.TREE)
 class Solution {
 
     private static RTreeNode traversing0(RTreeNode parent, TreeNode node, int value) {
@@ -59,9 +66,7 @@ class Solution {
                 rTreeNode2 = rTreeNode2.parent;
             }
         }
-
         return rTreeNode1.val;
-
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -91,5 +96,4 @@ class Solution {
                     "{val=" + val.val + ", level=" + level + '}';
         }
     }
-
 }

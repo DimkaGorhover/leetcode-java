@@ -17,9 +17,14 @@ public class SegmentTree {
         this(arr, 0, arr.length);
     }
 
+    public static void main(String[] args) {
+        SegmentTree segmentTree = new SegmentTree(new int[]{0, 1, 2, 3});
+        System.out.println(segmentTree);
+    }
+
     /**
      * Constructor to construct segment tree from given array. This constructor  allocates memory for segment tree and
-     * calls {@link #constructSTUtil(int[], int, int, int)} to  fill the allocated memory
+     * calls {@link #constructSTUtil(int, int, int)} to  fill the allocated memory
      *
      * @see Commons#log(double, double)
      */
@@ -38,31 +43,32 @@ public class SegmentTree {
         // Memory allocation
         tree = new int[maxSize];
 
-        constructSTUtil(arr, 0, length - 1, 0);
+        constructSTUtil(startIndex, startIndex + length - 1, 0);
     }
 
     /**
      * A recursive function that constructs Segment Tree for array[ss..se].
      *
-     * @param input      input array
      * @param leftBound  left bound (inclusive)
      * @param rightBound right bound (inclusive)
-     * @param inputIndex is index of current node in segment tree {@link #tree}
+     * @param treeIndex  is index of current node in segment tree {@link #tree}
      */
-    private int constructSTUtil(int[] input, int leftBound, int rightBound, int inputIndex) {
+    private int constructSTUtil(int leftBound, int rightBound, int treeIndex) {
 
         // If there is one element in array, store it in current node of segment tree and return
         if (leftBound == rightBound)
-            return tree[inputIndex] = input[leftBound];
+            return tree[treeIndex] = arr[leftBound];
 
         // If there are more than one elements, then recur for left and
         // right subtrees and store the sum of values in this node
         int mid = getMid(leftBound, rightBound);
 
-        tree[inputIndex] = constructSTUtil(input, leftBound, mid, (inputIndex * 2 + 1))
-                + constructSTUtil(input, (mid + 1), rightBound, (inputIndex * 2 + 2));
+        int leftSum = constructSTUtil(leftBound, mid, ((treeIndex << 1) + 1));
+        int rightSum = constructSTUtil((mid + 1), rightBound, ((treeIndex << 1) + 2));
 
-        return tree[inputIndex];
+        tree[treeIndex] = leftSum + rightSum;
+
+        return tree[treeIndex];
     }
 
     /**
@@ -97,8 +103,11 @@ public class SegmentTree {
 
         // If a part of this segment overlaps with the given range
         int mid = getMid(leftBound, rightBound);
-        return getSumUtil(leftBound, mid, qs, qe, (2 * si + 1)) +
-                getSumUtil((mid + 1), rightBound, qs, qe, (2 * si + 2));
+
+        int leftSum = getSumUtil(leftBound, mid, qs, qe, (2 * si + 1));
+        int rightSum = getSumUtil((mid + 1), rightBound, qs, qe, (2 * si + 2));
+
+        return leftSum + rightSum;
     }
 
     /*
@@ -109,19 +118,19 @@ public class SegmentTree {
                  input array.
        diff --> Value to be added to all nodes which have i in range
     */
-    private void updateValueUtil(int leftBound, int rightBound, int i, int diff, int si) {
+    private void updateValueUtil(int leftBound, int rightBound, int index, int diff, int treeIndex) {
         // Base Case: If the input index lies outside the range of
         // this segment
-        if (i < leftBound || i > rightBound)
+        if (index < leftBound || index > rightBound)
             return;
 
         // If the input index is in range of this node, then update the
         // value of the node and its children
-        tree[si] = tree[si] + diff;
+        tree[treeIndex] = tree[treeIndex] + diff;
         if (rightBound != leftBound) {
             int mid = getMid(leftBound, rightBound);
-            updateValueUtil(leftBound, mid, i, diff, 2 * si + 1);
-            updateValueUtil(mid + 1, rightBound, i, diff, 2 * si + 2);
+            updateValueUtil(leftBound, mid, index, diff, 2 * treeIndex + 1);
+            updateValueUtil(mid + 1, rightBound, index, diff, 2 * treeIndex + 2);
         }
     }
 
@@ -149,12 +158,11 @@ public class SegmentTree {
      *
      * @return sum of elements in range from index qs (quey start) to qe (query end).
      */
-    int getSum(int qs, int qe) {
-        // Check for erroneous input values
-        if (qs < 0 || qe > length - 1 || qs > qe) {
-            System.out.println("Invalid Input");
-            return -1;
-        }
-        return getSumUtil(0, length - 1, qs, qe, 0);
+    int getSum(int leftBound, int rightBound) {
+
+        if (leftBound < 0 || rightBound > length - 1 || leftBound > rightBound)
+            throw new IndexOutOfBoundsException();
+
+        return getSumUtil(0, length - 1, leftBound, rightBound, 0);
     }
 }

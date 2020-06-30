@@ -8,9 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-
 /**
  * Test for {@link Solution};
  *
@@ -21,9 +18,9 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments("()[]{", false),
-                arguments("{[]}", true),
-                arguments("([)]", false)
+                Arguments.of("()[]{", false),
+                Arguments.of("{[]}", true),
+                Arguments.of("([)]", false)
         );
     }
 

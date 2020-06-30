@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @see org.gd.leetcode.p0303.NumArray
  * @since 2019-09-13
  */
-@Repeat
+@Repeat("Calc sum from range in 2d matrix")
 @SuppressWarnings("JavadocReference")
 @LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.DYNAMIC_PROGRAMMING})
 class NumMatrix {

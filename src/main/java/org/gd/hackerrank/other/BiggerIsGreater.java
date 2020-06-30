@@ -4,13 +4,26 @@ import org.gd.common.Repeat;
 import org.gd.hackerrank.common.HackerRank;
 
 /**
- * https://www.hackerrank.com/challenges/bigger-is-greater/problem
+ * https://www.hackerrank.com/challenges/bigger-is-greater/
+ * 
+ * Lexicographical order is often known as alphabetical order when dealing with 
+ * strings. A string is greater than another string if it comes later in a 
+ * lexicographically sorted list.
+ * 
+ * Given a word, create a new word by swapping some or all of its characters. 
+ * This new word must meet two criteria:
+ * - It must be greater than the original word
+ * - It must be the smallest word that meets the first condition
+ * 
+ * For example, given the word , the next largest word is .
+ * 
+ * Complete the function biggerIsGreater below to create and return the new string meeting the criteria. If it is not possible, return no answer.
  *
  * https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
  *
  * @since 2019-09-23
  */
-@Repeat
+@Repeat("Lexicographical order")
 @HackerRank(difficulty = HackerRank.Level.MEDIUM)
 class BiggerIsGreater {
 
