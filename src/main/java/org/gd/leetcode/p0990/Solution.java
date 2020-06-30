@@ -17,17 +17,18 @@ class Solution {
 
         Op op;
         for (String equation : equations) {
-            valuesProviders.add(equation.charAt(0), equation.charAt(3));
-            if (!(op = Op.of(equation)).isAlwaysTrue())
+            op = Op.of(equation);
+            if (op.isAlwaysFalse()) {
+                return false;
+            }
+            if (!op.isAlwaysTrue()) {
                 ops.add(op);
+                valuesProviders.add(equation.charAt(0), equation.charAt(3));
+            }
         }
 
-        op = new LoggedOp(Op.reduce(ops));
-
-        for (ValuesProvider provider : valuesProviders) {
-            if (op.apply(provider))
-                return true;
-        }
+        op = Op.reduce(ops);
+        op = LoggedOp.of(op);
 
         return false;
     }
@@ -39,35 +40,46 @@ class Solution {
 
     static class ImmutableValuesProvider implements ValuesProvider {
 
-        private final Map<Character, Integer> map;
-        private final int[] arr;
+        private final int[] map;
+        private final int[] values;
 
-        ImmutableValuesProvider(Map<Character, Integer> map, int[] arr) {
-            this.map = new TreeMap<>(map);
-            this.arr = Arrays.copyOf(arr, arr.length);
+        private ImmutableValuesProvider(int[] map, int[] values) {
+            this.map = map;
+            this.values = values;
+        }
+
+        static ImmutableValuesProvider copyOf(int[] arr, int[] values) {
+            return new ImmutableValuesProvider(
+                    Arrays.copyOf(arr, arr.length),
+                    Arrays.copyOf(values, values.length));
         }
 
         @Override
         public int get(char operand) {
-            Integer index = map.get(operand);
-            if (index == null)
+            int value = map[operand - 'a'];
+            if (value < 1)
                 throw new IllegalArgumentException();
-            return arr[index];
+            return value;
         }
 
         @Override
         public String toString() {
             StringJoiner sj = new StringJoiner(", ", "[", "]");
-            for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-                sj.add("{" + entry.getKey() + '=' + arr[entry.getValue()] + '}');
+            for (int i = 0; i < map.length; i++) {
+                if (map[i] > 0) {
+                    char c = (char) (i + 'a');
+                    int v = values[map[i] - 1];
+                    sj.add("{" + c + '=' + v + '}');
+                }
             }
             return sj.toString();
         }
     }
 
-    static class ValuesProviders implements Iterable<ValuesProvider> {
+    static class ValuesProviders {
 
-        private final Map<Character, Integer> map = new HashMap<>();
+        private final int[] map = new int['z' - 'a' + 1];
+
         private int counter = 0;
 
         void add(char operand0, char operand1) {
@@ -76,45 +88,28 @@ class Solution {
         }
 
         void add(char operand) {
-            if (!map.containsKey(operand)) {
-                map.put(operand, counter);
-                counter++;
+            map[operand - 'a'] = ++counter;
+        }
+
+        boolean apply(Op op) {
+            if (op.isAlwaysFalse())
+                return false;
+            if (op.isAlwaysTrue())
+                return true;
+
+            int[] values = new int[counter];
+            return apply(op, values, 0);
+        }
+
+        boolean apply(Op op, int[] values, int start) {
+            for (int i = start; i < counter; i++) {
+                for (int j = 0; j < i; j++) {
+                    values[i] = j;
+                }
             }
+            return false;
         }
 
-        @Override
-        public Iterator<ValuesProvider> iterator() {
-
-            final int counter = this.counter;
-            int[] arr = new int[counter];
-            Arrays.fill(arr, 1);
-
-            return new Iterator<ValuesProvider>() {
-
-                private int index = 0;
-
-                @Override
-                public boolean hasNext() {
-                    return index < counter;
-                }
-
-                @Override
-                public ValuesProvider next() {
-                    if (!hasNext())
-                        throw new NoSuchElementException();
-
-                    // FIXME: WRONG PERMUTATION HERE
-                    if (index > 0) {
-                        for (int i = index; i < counter; i++)
-                            arr[i]++;
-                    }
-                    index++;
-                    // FIXME: WRONG PERMUTATION HERE
-
-                    return new ImmutableValuesProvider(map, arr);
-                }
-            };
-        }
     }
 
     interface Op {
@@ -152,9 +147,7 @@ class Solution {
         boolean apply(ValuesProvider provider);
 
         default Op and(Op then) {
-            if (equals(then))
-                return this;
-            return new And(this, then);
+            return equals(then) ? this : new And(this, then);
         }
 
         default boolean isAlwaysFalse() { return false; }
@@ -166,8 +159,12 @@ class Solution {
 
         private final Op op;
 
-        LoggedOp(Op op) {
+        private LoggedOp(Op op) {
             this.op = op;
+        }
+
+        static LoggedOp of(Op op) {
+            return op instanceof LoggedOp ? (LoggedOp) op : new LoggedOp(op);
         }
 
         @Override
@@ -226,65 +223,38 @@ class Solution {
         private True() {}
 
         @Override
-        public boolean apply(ValuesProvider provider) {
-            return true;
-        }
+        public boolean apply(ValuesProvider provider) { return true; }
 
         @Override
         public Op and(Op then) { return then; }
 
         @Override
-        public String toString() {return "true";}
+        public String toString() { return "true"; }
     }
 
-    static class SameNeq implements Op {
+    static class SameNeq extends False {
 
         private final char operand;
 
         SameNeq(char operand) { this.operand = operand; }
 
         @Override
-        public boolean apply(ValuesProvider provider) { return false; }
-
-        @Override
-        public boolean isAlwaysFalse() { return true; }
-
-        @Override
-        public Op and(Op then) { return False.INSTANCE; }
-
-        @Override
-        public String toString() {
-            return operand + "!=" + operand;
-        }
+        public String toString() { return operand + "!=" + operand; }
     }
 
-    static class SameEq implements Op {
+    static class SameEq extends True {
 
         private final char operand;
 
-        SameEq(char operand) {
-            this.operand = operand;
-        }
+        SameEq(char operand) { this.operand = operand; }
 
         @Override
-        public boolean apply(ValuesProvider provider) { return true; }
-
-        @Override
-        public boolean isAlwaysTrue() { return true; }
-
-        @Override
-        public Op and(Op then) { return then; }
-
-        @Override
-        public String toString() {
-            return operand + "==" + operand;
-        }
+        public String toString() { return operand + "==" + operand; }
     }
 
     static class Eq implements Op {
 
         private final char operand0;
-
         private final char operand1;
 
         Eq(char operand0, char operand1) {

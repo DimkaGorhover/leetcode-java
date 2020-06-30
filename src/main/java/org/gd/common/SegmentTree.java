@@ -17,6 +17,11 @@ public class SegmentTree {
         this(arr, 0, arr.length);
     }
 
+    public static void main(String[] args) {
+        SegmentTree segmentTree = new SegmentTree(new int[]{0, 1, 2, 3});
+        System.out.println(segmentTree);
+    }
+
     /**
      * Constructor to construct segment tree from given array. This constructor  allocates memory for segment tree and
      * calls {@link #constructSTUtil(int, int, int)} to  fill the allocated memory
@@ -58,8 +63,8 @@ public class SegmentTree {
         // right subtrees and store the sum of values in this node
         int mid = getMid(leftBound, rightBound);
 
-        int leftSum = constructSTUtil(leftBound, mid, (treeIndex * 2 + 1));
-        int rightSum = constructSTUtil((mid + 1), rightBound, (treeIndex * 2 + 2));
+        int leftSum = constructSTUtil(leftBound, mid, ((treeIndex << 1) + 1));
+        int rightSum = constructSTUtil((mid + 1), rightBound, ((treeIndex << 1) + 2));
 
         tree[treeIndex] = leftSum + rightSum;
 

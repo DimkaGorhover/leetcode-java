@@ -34,6 +34,7 @@ class SolutionTest {
     @Test
     @DisplayName("LeetCode #990: Testing equals in inner classes")
     void eq() {
+        
         Solution.Op ac = new Solution.Eq('a', 'c');
         Solution.Op ca = new Solution.Eq('c', 'a');
         Solution.Op cb = new Solution.Eq('c', 'b');
@@ -58,14 +59,15 @@ class SolutionTest {
     @Test
     @DisplayName("LeetCode #990: Testing LoggedOp")
     void logged() {
+
         Solution.Op ac = new Solution.Eq('a', 'c');
-        Solution.Op ca = new Solution.LoggedOp(new Solution.Eq('c', 'a'));
+        Solution.Op ca = Solution.LoggedOp.of(new Solution.Eq('c', 'a'));
 
         assertEquals(ac, ca);
         assertEquals(ac.hashCode(), ca.hashCode());
 
         ac = new Solution.Neq('a', 'c');
-        ca = new Solution.LoggedOp(new Solution.Neq('c', 'a'));
+        ca = Solution.LoggedOp.of(new Solution.Neq('c', 'a'));
 
         assertEquals(ac, ca);
         assertEquals(ac.hashCode(), ca.hashCode());
