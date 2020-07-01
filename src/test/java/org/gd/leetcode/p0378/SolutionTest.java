@@ -17,6 +17,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  *
  * @since 2019-10-01
  */
+@DisplayName("LeetCode #378: kth smallest element in a sorted matrix")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -34,7 +35,6 @@ class SolutionTest {
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("KthSmallest")
     void test_KthSmallest(int[][] matrix, int k) throws Exception {
 
         int expected = Arrays.stream(matrix)

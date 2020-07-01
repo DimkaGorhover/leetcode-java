@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("LeetCode #1470")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

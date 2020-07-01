@@ -1,13 +1,16 @@
 package org.gd.leetcode.p0307;
 
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-18
  */
+@DisplayName("LeetCode #307: range sum query mutable")
 class NumArrayTest {
 
     private static Stream<Arguments> args() {
@@ -59,6 +63,11 @@ class NumArrayTest {
                 return Collections.emptyIterator();
             return subCases.iterator();
         }
+
+        @Override
+        public String toString() {
+            return subCases.toString();
+        }
     }
 
     interface SubCase {
@@ -73,6 +82,11 @@ class NumArrayTest {
 
         @Override
         public void doAssert(NumArray numArray) { numArray.update(i, value); }
+
+        @Override
+        public String toString() {
+            return "Update{" + i + " -> " + value + '}';
+        }
     }
 
     @RequiredArgsConstructor(access = AccessLevel.PACKAGE, staticName = "of")
@@ -83,6 +97,11 @@ class NumArrayTest {
         @Override
         public void doAssert(NumArray numArray) {
             assertEquals(expected, numArray.sumRange(leftBound, rightBound));
+        }
+
+        @Override
+        public String toString() {
+            return "Sum{(" + leftBound + "; " + rightBound + ") => " + expected + '}';
         }
     }
 }

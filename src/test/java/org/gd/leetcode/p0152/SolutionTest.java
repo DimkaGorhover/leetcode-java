@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover D.
  * @since 2020-06-30.06.2020
  */
+@DisplayName("LeetCode #152")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

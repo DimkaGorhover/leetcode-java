@@ -17,6 +17,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Gorkhover D.
  * @since 2018-10-23
  */
+@DisplayName("LeetCode #86")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -27,7 +28,7 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("Partition")
+    @DisplayName("LeetCode #86: Partition List")
     void test_Partition(ListNode head, int x, ListNode expected) {
         assertEquals(expected, new Solution().partition(head, x));
     }
