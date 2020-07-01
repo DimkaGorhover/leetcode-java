@@ -47,9 +47,10 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("LeetCode #113: Path Sum II")
     void pathSum(TreeNode root, int target, List<List<Integer>> expected) {
+        List<List<Integer>> actual = new Solution().pathSum(root, target);
         assertEquals(
                 new HashSet<>(expected),
-                new HashSet<>(new Solution().pathSum(root, target))
+                new HashSet<>(actual)
         );
     }
 }

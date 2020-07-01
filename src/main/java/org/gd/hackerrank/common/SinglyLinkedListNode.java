@@ -1,7 +1,11 @@
 package org.gd.hackerrank.common;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
 
+/**
+ * @see org.gd.leetcode.common.ListNode
+ */
+@EqualsAndHashCode(doNotUseGetters = true)
 public class SinglyLinkedListNode {
     
     public final int data;
@@ -30,19 +34,5 @@ public class SinglyLinkedListNode {
     @Override
     public String toString() {
         return "(" + data + ")" + (next == null ? "" : ("=>" + next));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SinglyLinkedListNode that = (SinglyLinkedListNode) o;
-        return data == that.data &&
-                Objects.equals(next, that.next);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(data, next);
     }
 }

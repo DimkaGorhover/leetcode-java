@@ -63,6 +63,26 @@ public class TreeNode {
         return head;
     }
 
+    /**
+     * @deprecated Don't use it while solving tasks
+     */
+    @Deprecated
+    public TreeNode copy() {
+        return copy(this);
+    }
+
+    private static TreeNode copy(TreeNode head) {
+        if (head == null)
+            return null;
+        TreeNode node = new TreeNode(head.val);
+        node.left = copy(head.left);
+        node.right = copy(head.right);
+        return node;
+    }
+
+    /**
+     * @deprecated Don't use it while solving tasks
+     */
     @Deprecated
     public long sum() {
         return sum(this);

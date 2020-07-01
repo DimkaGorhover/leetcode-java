@@ -25,7 +25,7 @@ class UdpTest {
         receiver.start();
 
         try {
-            Thread.sleep(2_000);
+            Thread.sleep(5_000);
         } catch (InterruptedException ignored) {
             Thread.currentThread().interrupt();
         }
@@ -77,11 +77,15 @@ class UdpTest {
                 int i = 0;
                 while (!isInterrupted()) {
 
-                    byte[] str = String.format("send:%s:%s",
+                    String str = String.format("%s:%s",
                             new DecimalFormat("000").format(i++),
-                            UUID.randomUUID()).getBytes(StandardCharsets.UTF_16BE);
+                            UUID.randomUUID());
 
-                    socket.send(new DatagramPacket(str, 0, str.length, ip, 3000));
+                    byte[] bytes = str.getBytes(StandardCharsets.UTF_16BE);
+
+                    System.out.printf("send:%8s%n", str);
+
+                    socket.send(new DatagramPacket(bytes, 0, bytes.length, ip, 3000));
 
                     try {
                         Thread.sleep(ThreadLocalRandom.current().nextInt(50, 200));
@@ -124,7 +128,7 @@ class UdpTest {
                 while (!isInterrupted()) {
                     socket.receive(dp);
                     String str = new String(dp.getData(), 0, dp.getLength(), StandardCharsets.UTF_16BE);
-                    System.out.println(str);
+                    System.out.printf("receive:%8s%n", str);
                 }
             } catch (IOException e) {
                 System.err.println(this + " --> " + e.toString());
