@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class ListNode {
 
+    private static final int TO_STRING_LIMIT = 1 << 5;
+
     public int val;
     public ListNode next;
 
@@ -12,8 +14,8 @@ public class ListNode {
 
     public static ListNode of(String values) {
         String[] strings = values.split("(->)|;|,|\\|");
-        int[]    ints    = new int[strings.length];
-        int      cursor  = 0;
+        int[] ints = new int[strings.length];
+        int cursor = 0;
         for (String string : strings) {
             try {
                 int value = Integer.parseInt(string.trim());
@@ -21,6 +23,22 @@ public class ListNode {
             } catch (NumberFormatException ignore) {}
         }
         return of(ints, 0, cursor);
+    }
+
+    public static ListNode rangeClosed(int start, int end) {
+        if (start == end)
+            return new ListNode(start);
+
+        ListNode head = new ListNode(-1);
+        ListNode node = head;
+        if (start < end) {
+            for (int i = start; i <= end; i++)
+                node = node.addNext(i);
+        } else {
+            for (int i = start; i >= end; i--)
+                node = node.addNext(i);
+        }
+        return head.next;
     }
 
     public static ListNode of(int val) {
@@ -58,26 +76,44 @@ public class ListNode {
         return node;
     }
 
-    @Deprecated
-    public int sum() {
-        return sum(this);
+    public ListNode addNext(int val) {
+        ListNode node = new ListNode(val);
+        this.next = node;
+        return node;
     }
 
-    private static int sum(ListNode node) {
-        return node == null ? 0 : node.val + sum(node.next);
+    @Deprecated
+    public int sum() {
+        ListNode node = this;
+        int sum = val;
+        while ((node = node.next) != null)
+            sum += node.val;
+        return sum;
     }
 
     @Deprecated
     public int count() {
-        return count(this);
-    }
-
-    private static int count(ListNode node) {
-        return node == null ? 0 : 1 + count(node.next);
+        ListNode node = this;
+        int count = 1;
+        while ((node = node.next) != null)
+            count++;
+        return count;
     }
 
     @Override
     public String toString() {
-        return "(" + val + ")" + (next == null ? "" : ("=>" + next));
+        ListNode node = this;
+        StringBuilder sb = new StringBuilder();
+        sb.append('(').append(node.val).append(')');
+        int i = 1;
+        while ((node = node.next) != null) {
+            sb.append("=>(").append(node.val).append(')');
+            if (i >= TO_STRING_LIMIT) {
+                sb.append("=>...");
+                break;
+            }
+            i++;
+        }
+        return sb.toString();
     }
 }
