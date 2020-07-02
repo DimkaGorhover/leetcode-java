@@ -11,6 +11,8 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 public @interface LeetCode {
 
+    String name() default "";
+
     Level difficulty();
 
     State state() default State.UNKNOWN;
