@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-24
  */
+@DisplayName("LeetCode #4: Find Median of Two Sorted Arrays")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

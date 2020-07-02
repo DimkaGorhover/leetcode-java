@@ -7,6 +7,7 @@ import org.gd.leetcode.common.LeetCode;
  */
 @LeetCode(
         difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.TWO_POINTERS,
                 LeetCode.Tags.STRING

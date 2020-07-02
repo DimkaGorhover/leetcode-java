@@ -11,6 +11,7 @@ import org.gd.leetcode.common.TreeNode;
  */
 @LeetCode(
         difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.TREE,
                 LeetCode.Tags.DEPTH_FIRST_SEARCH,

@@ -127,7 +127,7 @@ class WordDictionary {
             if (word == null)
                 return false;
             
-                Set<String> target = storage.get(word.length());
+            Set<String> target = storage.get(word.length());
             if (target == null)
                 return false;
 
@@ -143,9 +143,9 @@ class WordDictionary {
         }
 
         private static boolean isEqual(String saved, String target) {
-            for (int i = 0; i < saved.length(); i++) {
-                char tc = target.charAt(i);
-                if (tc != '.' && saved.charAt(i) != tc)
+            for (int i = 0, n = saved.length(); i < n; i++) {
+                char c = target.charAt(i);
+                if (c != '.' && saved.charAt(i) != c)
                     return false;
             }
             return true;
@@ -155,6 +155,10 @@ class WordDictionary {
 
     // ===== Trie =============================================================
 
+    /**
+     * @deprecated uses too much memory
+     */
+    @Deprecated
     static class TrieWordDictionaryProvider implements WordDictionaryProvider {
 
         private static final int NODES_LENGTH = ('z' - 'a') + 1;

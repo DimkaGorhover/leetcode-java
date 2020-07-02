@@ -23,6 +23,7 @@ import org.gd.leetcode.common.LeetCode;
 @SuppressWarnings("JavadocReference")
 @LeetCode(
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO,
         tags = {
                 LeetCode.Tags.BINARY_INDEXED_TREE,
                 LeetCode.Tags.SEGMENT_TREE

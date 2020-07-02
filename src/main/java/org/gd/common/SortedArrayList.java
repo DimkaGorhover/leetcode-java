@@ -71,6 +71,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         throw new UnsupportedOperationException();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean addAll(Collection c) {
         if (c == null || c.isEmpty())
@@ -94,6 +95,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         this.size = 0;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public E get(int index) {
         final int size = size();
@@ -150,6 +152,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         throw new UnsupportedOperationException();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T[] toArray(T[] a) {
         final int size = size();
@@ -178,6 +181,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         return hash;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<E> toList() {
         final Object[] a = this.elementData;
@@ -222,6 +226,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         @Override
         public boolean hasNext() { return i < size; }
 
+        @SuppressWarnings("unchecked")
         @Override
         public E next() {
             if (!hasNext())
@@ -234,6 +239,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
             SortedArrayList.this.remove(i);
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         public void forEachRemaining(Consumer<? super E> action) {
             requireNonNull(action, "\"action\" cannot be null");

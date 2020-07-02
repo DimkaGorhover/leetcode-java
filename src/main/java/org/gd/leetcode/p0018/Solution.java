@@ -15,6 +15,7 @@ import java.util.List;
 @SuppressWarnings("JavadocReference")
 @LeetCode(
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.HASH_TABLE,

@@ -12,7 +12,12 @@ import static java.util.Objects.requireNonNull;
  *
  * @since 2019-09-24
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.DESIGN, LeetCode.Tags.TRIE})
+@LeetCode(
+    difficulty = LeetCode.Level.MEDIUM, 
+    tags = {
+        LeetCode.Tags.DESIGN, 
+        LeetCode.Tags.TRIE
+    })
 class Trie {
 
     private static final int NODES_LENGTH = 'z' - 'a' + 1;

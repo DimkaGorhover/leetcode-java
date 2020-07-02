@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * TODO: https://leetcode.com/problems/3sum/
  *
@@ -14,6 +16,14 @@ import java.util.List;
  * @see org.gd.leetcode.p0018.Solution
  * @since 2018-12-15
  */
+@LeetCode(
+    difficulty = LeetCode.Level.MEDIUM,
+    state = LeetCode.State.FIXME,
+    tags = {
+        LeetCode.Tags.ARRAY,
+        LeetCode.Tags.TWO_POINTERS
+    }
+)
 @SuppressWarnings("JavadocReference")
 class Solution {
 

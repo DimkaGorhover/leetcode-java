@@ -8,7 +8,13 @@ import org.gd.leetcode.common.LeetCode;
  * @author Horkhover Dmytro
  * @since 2018-12-18
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.RANDOM, LeetCode.Tags.REJECTION_SAMPLING})
+@LeetCode(
+    difficulty = LeetCode.Level.MEDIUM, 
+    state = LeetCode.State.FIXME,
+    tags = {
+        LeetCode.Tags.RANDOM, 
+        LeetCode.Tags.REJECTION_SAMPLING
+    })
 class Solution extends SolBase {
 
     private static final double C = 10.0 / 7.0;

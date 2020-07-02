@@ -1,8 +1,5 @@
 package org.gd.leetcode.common;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-
 import java.lang.annotation.*;
 
 /**
@@ -16,12 +13,14 @@ public @interface LeetCode {
 
     Level difficulty();
 
+    State state() default State.UNKNOWN;
+
     Tags[] tags() default {};
 
-    @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+    enum State {TODO, FIXME, DONE, UNKNOWN}
+
     enum Level {EASY, MEDIUM, HARD}
 
-    @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
     enum Tags {
 
         ARRAY("Array"),
@@ -69,5 +68,7 @@ public @interface LeetCode {
         MEMOIZATION("Memoization");
 
         public final String name;
+
+        Tags(String name) { this.name = name; }
     }
 }

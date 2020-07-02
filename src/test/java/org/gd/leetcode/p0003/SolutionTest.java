@@ -15,16 +15,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Gorkhover D.
  * @since 2018-10-16
  */
+@DisplayName("LeetCode #3: longest substring without repeating characters")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.arguments("ab", 2),
-                Arguments.arguments("aa", 1),
-                Arguments.arguments("aabcdacd", 4),
-                Arguments.arguments("bbbbb", 1),
-                Arguments.arguments("pwwkew", 3),
-                Arguments.arguments("abcabcbb", 3)
+                Arguments.of("ab", 2),
+                Arguments.of("aa", 1),
+                Arguments.of("aabcdacd", 4),
+                Arguments.of("bbbbb", 1),
+                Arguments.of("pwwkew", 3),
+                Arguments.of("abcabcbb", 3)
         );
     }
 
