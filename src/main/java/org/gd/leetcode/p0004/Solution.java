@@ -8,12 +8,14 @@ import org.gd.leetcode.common.LeetCode;
  * @since 2019-09-24
  */
 @LeetCode(
-    difficulty = LeetCode.Level.HARD, 
-    tags = {
-        LeetCode.Tags.DIVIDE_AND_CONQUER, 
-        LeetCode.Tags.BINARY_SEARCH, 
-        LeetCode.Tags.ARRAY
-    })
+        name = "median of two sorted arrays",
+        difficulty = LeetCode.Level.HARD,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.DIVIDE_AND_CONQUER,
+                LeetCode.Tags.BINARY_SEARCH,
+                LeetCode.Tags.ARRAY
+        })
 class Solution {
 
 /*

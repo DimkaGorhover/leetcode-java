@@ -14,6 +14,7 @@ import java.util.Set;
  * @see org.gd.leetcode.p0141.Solution
  * @since 2020-07-01
  */
+@SuppressWarnings("JavadocReference")
 @HackerRank(
         difficulty = HackerRank.Level.MEDIUM,
         tags = {

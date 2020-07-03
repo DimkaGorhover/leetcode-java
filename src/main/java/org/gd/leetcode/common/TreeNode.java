@@ -1,6 +1,7 @@
 package org.gd.leetcode.common;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,12 +81,32 @@ public class TreeNode {
         return node;
     }
 
+    @Deprecated
+    public int deep() {
+        return deep(this);
+    }
+
+    private static int deep(TreeNode node) {
+        return node == null ? 0 : 1 + Math.max(deep(node.left), deep(node.right));
+    }
+
     /**
      * @deprecated Don't use it while solving tasks
      */
     @Deprecated
     public long sum() {
-        return sum(this);
+        LinkedList<TreeNode> list = new LinkedList<>();
+        list.add(this);
+        TreeNode node;
+        long sum = 0;
+        while ((node = list.poll()) != null) {
+            sum += node.val;
+            if (node.left != null)
+                list.offer(node.left);
+            if (node.right != null)
+                list.offer(node.right);
+        }
+        return sum;
     }
 
     private static long sum(TreeNode node) {

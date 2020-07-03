@@ -11,6 +11,7 @@ import java.util.Set;
  * @see org.gd.hackerrank.other.LinkedListCycleDetection
  * @since 2020-07-01
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         difficulty = LeetCode.Level.EASY,
         tags = {

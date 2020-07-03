@@ -1,8 +1,22 @@
 package org.gd.leetcode.p0013;
 
 
+import org.gd.leetcode.common.LeetCode;
+
 import java.util.Arrays;
 
+/**
+ * https://leetcode.com/problems/roman-to-integer/
+ */
+@LeetCode(
+        name = "Roman to Integer",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.MATH,
+                LeetCode.Tags.STRING
+        }
+)
 class Solution {
 
     private static final byte  OFFSET = 67;

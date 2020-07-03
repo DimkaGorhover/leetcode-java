@@ -65,7 +65,15 @@ public class ListNode {
      */
     @Deprecated
     public ListNode copy() {
-        return copy(this);
+        ListNode nextOrigin = this.next;
+        ListNode headCopy = new ListNode(val);
+        ListNode copy = headCopy;
+        while (nextOrigin != null) {
+            copy.next = new ListNode(nextOrigin.val);
+            nextOrigin = nextOrigin.next;
+            copy = copy.next;
+        }
+        return headCopy;
     }
 
     private static ListNode copy(ListNode head) {

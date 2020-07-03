@@ -5,10 +5,14 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * https://leetcode.com/problems/string-to-integer-atoi/
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {
-        LeetCode.Tags.MATH,
-        LeetCode.Tags.STRING
-})
+@LeetCode(
+        name = "string to integer (atoi)",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.MATH,
+                LeetCode.Tags.STRING
+        })
 class Solution {
 
     private static final int PREV_MAX_INT = Integer.MAX_VALUE / 10;
@@ -17,15 +21,19 @@ class Solution {
     public int myAtoi(String str) {
         if (str == null)
             return 0;
+
         int sign = 1, i = 0, n = str.length(), r = 0;
         while (i < n && str.charAt(i) == ' ')
             i++;
+
         if (i >= n)
             return 0;
+
         switch (str.charAt(i)) {
             case '-': sign = -1;
             case '+': i++;
         }
+
         while (i < n) {
             int num = str.charAt(i) - '0';
             if (num < 0 || num > 9) break;
@@ -34,6 +42,7 @@ class Solution {
             r = 10 * r + num;
             i++;
         }
+
         return sign * r;
     }
 }

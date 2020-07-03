@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * Test for {@link Solution};
@@ -16,26 +15,21 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Gorkhover D.
  * @since 2018-10-21
  */
+@DisplayName("LeetCode #14: Longest Common Prefix")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(s("flower", "flow", "flight"), "fl"),
-                arguments(s("dog", "racecar", "car"), "")
+                Arguments.of(new String[]{"flower", "flow", "flight"}, "fl"),
+                Arguments.of(new String[]{"dog", "racecar", "car"}, "")
         );
-    }
-
-    private static String[] s(String... value) {
-        return value;
     }
 
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("LongestCommonPrefix")
     void test_LongestCommonPrefix(String[] input, String expected) {
-        assertEquals(
-                expected,
-                new Solution().longestCommonPrefix(input)
-        );
+        String actual = new Solution().longestCommonPrefix(input);
+        assertEquals(expected, actual);
     }
 }

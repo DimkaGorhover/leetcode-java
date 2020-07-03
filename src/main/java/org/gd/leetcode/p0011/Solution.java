@@ -1,12 +1,16 @@
 package org.gd.leetcode.p0011;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/container-with-most-water/
  */
+@Repeat
 @LeetCode(
+        name = "Container With Most Water",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.TWO_POINTERS

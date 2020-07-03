@@ -12,27 +12,39 @@ import java.util.List;
  * @author Horkhover Dmytro
  * @since 2018-12-20
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@LeetCode(
+        name = "Binary Tree Level Order Traversal",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.BREADTH_FIRST_SEARCH
+        }
+)
 class Solution {
+
+    private List<List<Integer>> result;
 
     private static int deep(TreeNode node) {
         return node == null ? 0 : 1 + Math.max(deep(node.left), deep(node.right));
     }
 
-    private static List<List<Integer>> fill(List<List<Integer>> list, TreeNode node, int level) {
+    private List<List<Integer>> fill(TreeNode node, int level) {
         if (node != null) {
-            list.get(level).add(node.val);
-            fill(list, node.left, level + 1);
-            fill(list, node.right, level + 1);
+            result.get(level).add(node.val);
+            fill(node.left, level + 1);
+            fill(node.right, level + 1);
         }
-        return list;
+        return result;
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
-        final int           deep   = deep(root);
-        List<List<Integer>> levels = new ArrayList<>(deep);
+        final int deep = deep(root);
+
+        result = new ArrayList<>(deep);
         for (int i = 0; i < deep; i++)
-            levels.add(new ArrayList<>());
-        return fill(levels, root, 0);
+            result.add(new ArrayList<>());
+
+        return fill(root, 0);
     }
 }

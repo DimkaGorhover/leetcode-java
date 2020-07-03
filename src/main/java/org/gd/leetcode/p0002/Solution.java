@@ -1,10 +1,19 @@
 package org.gd.leetcode.p0002;
 
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.ListNode;
 
 /**
  * https://leetcode.com/problems/add-two-numbers/
  */
+@LeetCode(
+        name = "add two numbers",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.LINKED_LIST,
+                LeetCode.Tags.MAP
+        })
 class Solution {
 
     private static ListNode swap(ListNode res, int i) {

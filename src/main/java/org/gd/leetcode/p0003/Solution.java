@@ -6,13 +6,15 @@ import org.gd.leetcode.common.LeetCode;
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  */
 @LeetCode(
-    difficulty = LeetCode.Level.MEDIUM,
-    tags = {
-        LeetCode.Tags.HASH_TABLE,
-        LeetCode.Tags.TWO_POINTERS,
-        LeetCode.Tags.STRING,
-        LeetCode.Tags.SLIDING_WINDOW
-    }
+        name = "longest substring without repeating characters",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.HASH_TABLE,
+                LeetCode.Tags.TWO_POINTERS,
+                LeetCode.Tags.STRING,
+                LeetCode.Tags.SLIDING_WINDOW
+        }
 )
 class Solution {
 
@@ -22,7 +24,7 @@ class Solution {
     }
 
     public int lengthOfLongestSubstring(String s) {
-        
+
         if (s == null)
             return 0;
 
@@ -32,7 +34,7 @@ class Solution {
             case 1: return 1;
             case 2: return s.charAt(0) == s.charAt(1) ? 1 : 2;
         }
-        
+
         int[] index = new int[1 << 7];
         int max = 1;
         int c;

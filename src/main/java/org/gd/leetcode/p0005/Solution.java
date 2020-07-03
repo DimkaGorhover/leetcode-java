@@ -8,7 +8,14 @@ import org.gd.leetcode.common.LeetCode;
  * @see org.gd.leetcode.p0226.Solution
  */
 @SuppressWarnings({"JavadocReference"})
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.STRING, LeetCode.Tags.DYNAMIC_PROGRAMMING})
+@LeetCode(
+        name = "longest palindromic substring",
+        state = LeetCode.State.DONE,
+        difficulty = LeetCode.Level.MEDIUM,
+        tags = {
+                LeetCode.Tags.STRING,
+                LeetCode.Tags.DYNAMIC_PROGRAMMING
+        })
 class Solution {
 
 /*
