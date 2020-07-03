@@ -7,12 +7,12 @@ import org.gd.leetcode.common.ListNode;
  * https://leetcode.com/problems/add-two-numbers/
  */
 @LeetCode(
-        name = "add two numbers",
+        name = "Add Two Numbers",
         difficulty = LeetCode.Level.MEDIUM,
         state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.LINKED_LIST,
-                LeetCode.Tags.MAP
+                LeetCode.Tags.MATH
         })
 class Solution {
 
@@ -37,8 +37,10 @@ class Solution {
             if (l1 != null) l1 = l1.next;
             if (l2 != null) l2 = l2.next;
         }
+
         if (sum != 0)
             swap(tail, sum);
+
         return head.next;
     }
 }

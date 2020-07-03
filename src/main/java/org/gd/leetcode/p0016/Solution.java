@@ -1,14 +1,11 @@
 package org.gd.leetcode.p0016;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import org.gd.leetcode.common.LeetCode;
 
+import java.util.List;
+
 /**
- * TODO: https://leetcode.com/problems/3sum/
+ * TODO: https://leetcode.com/problems/3sum-closest/
  *
  * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0001.Solution
@@ -17,42 +14,17 @@ import org.gd.leetcode.common.LeetCode;
  * @since 2018-12-15
  */
 @LeetCode(
-    difficulty = LeetCode.Level.MEDIUM,
-    state = LeetCode.State.FIXME,
-    tags = {
-        LeetCode.Tags.ARRAY,
-        LeetCode.Tags.TWO_POINTERS
-    }
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.FIXME,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.TWO_POINTERS
+        }
 )
 @SuppressWarnings("JavadocReference")
 class Solution {
 
-    @SuppressWarnings("Duplicates")
-    private static List<Integer> hashTable(
-            int[] nums, int fromIndex, int toIndex,
-            int target) {
-        Integer                   j;
-        HashMap<Integer, Integer> map = new HashMap<>(nums.length);
-        for (int i = fromIndex; i < toIndex; i++) {
-            if ((j = map.get(target - nums[i])) != null)
-                return Arrays.asList(-target, j, nums[i]);
-            map.put(nums[i], nums[i]);
-        }
-        return null;
-    }
-
     public List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
-
-        System.out.println(Arrays.toString(nums));
-
-        List<Integer>       integers;
-        List<List<Integer>> all = new ArrayList<>();
-
-        for (int i = 0; i < nums.length - 2; i++)
-            if ((integers = hashTable(nums, i + 1, nums.length, 0 - nums[i])) != null)
-                all.add(integers);
-
-            return all;
+        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
     }
 }

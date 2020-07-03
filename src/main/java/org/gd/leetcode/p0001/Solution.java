@@ -11,9 +11,12 @@ import java.util.HashMap;
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
-    difficulty = LeetCode.Level.EASY,
-    state = LeetCode.State.DONE,
-    tags = {LeetCode.Tags.ARRAY, LeetCode.Tags.HASH_TABLE})
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.HASH_TABLE
+        })
 class Solution {
 
     private static final int[] TWO_EL = {0, 1};
@@ -24,7 +27,7 @@ class Solution {
             case 1: return null;
             case 2: return TWO_EL;
         }
-        Integer                   j;
+        Integer j;
         HashMap<Integer, Integer> map = new HashMap<>(nums.length);
         for (int i = fromIndex; i < toIndex; i++) {
             if ((j = map.get(target - nums[i])) != null)

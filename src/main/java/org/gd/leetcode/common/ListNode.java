@@ -1,8 +1,5 @@
 package org.gd.leetcode.common;
 
-import lombok.EqualsAndHashCode;
-
-@EqualsAndHashCode
 public class ListNode {
 
     private static final int TO_STRING_LIMIT = 1 << 5;
@@ -60,11 +57,10 @@ public class ListNode {
         return root;
     }
 
-    /**
-     * @throws StackOverflowError if list has cycles
-     */
     @Deprecated
     public ListNode copy() {
+        if (hasCycle())
+            throw new IllegalStateException("list has cycles");
         ListNode nextOrigin = this.next;
         ListNode headCopy = new ListNode(val);
         ListNode copy = headCopy;
@@ -76,11 +72,18 @@ public class ListNode {
         return headCopy;
     }
 
-    private static ListNode copy(ListNode head) {
+    @Deprecated
+    public ListNode copyRecursive() {
+        return copyRecursive(this);
+    }
+
+    private static ListNode copyRecursive(ListNode head) {
         if (head == null)
             return null;
+        if (hasCycle(head))
+            throw new IllegalStateException("list has cycles");
         ListNode node = new ListNode(head.val);
-        node.next = copy(head.next);
+        node.next = copyRecursive(head.next);
         return node;
     }
 
@@ -108,20 +111,116 @@ public class ListNode {
         return count;
     }
 
+    @SuppressWarnings("DeprecatedIsStillUsed")
+    @Deprecated
+    public boolean hasCycle() {
+        return hasCycle(this);
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    private static boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null)
+            return false;
+
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (slow != fast) {
+            if (fast == null || fast.next == null)
+                return false;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return true;
+    }
+
     @Override
-    public String toString() {
-        ListNode node = this;
-        StringBuilder sb = new StringBuilder();
-        sb.append('(').append(node.val).append(')');
-        int i = 1;
-        while ((node = node.next) != null) {
-            sb.append("=>(").append(node.val).append(')');
-            if (i >= TO_STRING_LIMIT) {
-                sb.append("=>...");
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ListNode current = this;
+        ListNode other = (ListNode) o;
+
+        if (current.hasCycle() || other.hasCycle())
+            return false;
+
+        while (current != null || other != null) {
+
+            if (current == null || other == null || current.val != other.val)
+                return false;
+
+            current = current.next;
+            other = other.next;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        if (next == null)
+            return hash;
+
+        ListNode slow = this;
+        ListNode fast = slow.next;
+        boolean cycleFound = true;
+
+        while (slow != fast) {
+
+            if (fast == null || fast.next == null) {
+                cycleFound = false;
                 break;
             }
-            i++;
+
+            hash = hash * 13 + slow.val;
+
+            slow = slow.next;
+            fast = fast.next.next;
         }
+
+        if (cycleFound) {
+            return hash * 19;
+        }
+
+        while (slow != null) {
+            hash = hash * 13 + slow.val;
+            slow = slow.next;
+        }
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+
+        ListNode slow = this;
+        ListNode fast = slow.next;
+
+        StringBuilder sb = new StringBuilder();
+        String prefix = "";
+        int i = 1;
+
+        while (slow != fast) {
+
+            if (fast == null || fast.next == null)
+                break;
+
+            sb.append(prefix).append('(').append(slow.val).append(')');
+            prefix = "=>";
+            if (i >= TO_STRING_LIMIT)
+                return sb.append("=>...").toString();
+
+            i++;
+
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        while (slow != null) {
+            sb.append("=>(").append(slow.val).append(')');
+            slow = slow.next;
+        }
+
         return sb.toString();
     }
 }

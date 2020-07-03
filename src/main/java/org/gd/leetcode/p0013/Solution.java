@@ -7,7 +7,10 @@ import java.util.Arrays;
 
 /**
  * https://leetcode.com/problems/roman-to-integer/
+ *
+ * @see org.gd.leetcode.p0012.Solution
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Roman to Integer",
         difficulty = LeetCode.Level.EASY,

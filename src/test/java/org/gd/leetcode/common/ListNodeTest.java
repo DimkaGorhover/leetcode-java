@@ -14,11 +14,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class ListNodeTest {
 
     @Test
+    void test_toString() {
+        assertEquals(
+                ListNode.of(1, 2, 3, 4, 5).toString(),
+                ListNode.of(1, 2, 3, 4, 5).toString());
+    }
+
+    @Test
     @DisplayName("Copy")
     void test_Copy() {
         ListNode head = ListNode.of(1, 2, 3, 4);
         assertEquals(head, head.copy());
         assertNotSame(head, head.copy());
+    }
+
+    @Test
+    @DisplayName("HashCode")
+    void test_HashCode() {
+        assertEquals(
+                ListNode.of(1, 2, 3, 4, 5).hashCode(),
+                ListNode.of(1, 2, 3, 4, 5).hashCode());
     }
 
     @Test
