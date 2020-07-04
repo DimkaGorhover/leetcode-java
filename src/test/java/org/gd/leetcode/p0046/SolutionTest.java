@@ -1,10 +1,12 @@
 package org.gd.leetcode.p0046;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.function.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -39,7 +41,10 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("Permute")
     void test_Permute(int[] nums, List<List<Integer>> expected) throws Exception {
+
         var actual = new Solution().permute(nums);
-        assertEquals(expected, actual);
+
+        assertEquals(expected.size(), actual.size());
+        assertEquals(new HashSet<>(expected), new HashSet<>(actual));
     }
 }

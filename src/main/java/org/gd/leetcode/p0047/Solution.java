@@ -1,28 +1,23 @@
-package org.gd.leetcode.p0046;
+package org.gd.leetcode.p0047;
 
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.*;
 
-import static java.util.Objects.requireNonNull;
-
 /**
- * https://leetcode.com/problems/permutations/
+ * https://leetcode.com/problems/permutations-ii/
  *
- * @see org.gd.leetcode.p0047.Solution
- * @see org.gd.leetcode.p0077.Solution
- * @since 2019-09-20
+ * @see org.gd.leetcode.p0046.Solution
  */
-@SuppressWarnings({"JavadocReference", "ConstantConditions"})
+@SuppressWarnings({"JavadocReference", "DuplicatedCode", "ConstantConditions"})
 @LeetCode(
-        name = "Permutations",
+        name = "Permutations II",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.DONE,
-        tags = LeetCode.Tags.BACKTRACKING
-)
+        state = LeetCode.State.TODO,
+        tags = LeetCode.Tags.BACKTRACKING)
 class Solution {
 
-    private List<List<Integer>> result;
+    private Set<List<Integer>> result;
     private int length;
     private ArrayList<Integer> item;
     private Queue<Integer> queue;
@@ -34,6 +29,13 @@ class Solution {
     }
 
     private static List<List<Integer>> twoElement(int[] nums) {
+
+        if (nums[0] == nums[1]) {
+            return Collections.singletonList(
+                    Arrays.asList(nums[0], nums[1])
+            );
+        }
+
         return Arrays.asList(
                 Arrays.asList(nums[0], nums[1]),
                 Arrays.asList(nums[1], nums[0])
@@ -55,13 +57,13 @@ class Solution {
         }
     }
 
-    public List<List<Integer>> permute(int[] nums) {
+    public List<List<Integer>> permuteUnique(int[] nums) {
 
         if (nums == null || nums.length == 0) return Collections.emptyList();
         if (nums.length == 1) return oneElement(nums);
         if (nums.length == 2) return twoElement(nums);
 
-        result = new ArrayList<>();
+        result = new HashSet<>();
         queue = new LinkedList<>();
         item = new ArrayList<>(length = nums.length);
 
@@ -72,6 +74,6 @@ class Solution {
 
         permute(0);
 
-        return result;
+        return new ArrayList<>(result);
     }
 }
