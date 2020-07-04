@@ -17,6 +17,7 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+                Arguments.of("abc", "ahbgdfff", false),
                 Arguments.of("abc", "ahbgdc", true),
                 Arguments.of("ac", "ahbgdc", true)
         );

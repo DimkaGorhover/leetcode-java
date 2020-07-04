@@ -7,9 +7,18 @@ import org.gd.leetcode.common.LeetCode;
  *
  * https://leetcode.com/problems/unique-paths/discuss/306448/O(min(m-%2B-n))-time-O(1)-space-solution
  *
+ * @see org.gd.leetcode.p0064.Solution
  * @since 2019-10-03
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.ARRAY, LeetCode.Tags.DYNAMIC_PROGRAMMING})
+@SuppressWarnings("JavadocReference")
+@LeetCode(
+        name = "unique paths",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.DYNAMIC_PROGRAMMING
+        })
 class Solution {
 
     private int dpUniquePaths(int m, int n) {
