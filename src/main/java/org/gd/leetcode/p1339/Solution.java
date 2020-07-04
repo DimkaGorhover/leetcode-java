@@ -10,7 +10,9 @@ import java.util.Map;
  * https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
  */
 @LeetCode(
+        name = "Maximum Product of Splitted Binary Tree",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.DYNAMIC_PROGRAMMING,
                 LeetCode.Tags.TREE,

@@ -39,6 +39,7 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("Permute")
     void test_Permute(int[] nums, List<List<Integer>> expected) throws Exception {
-        assertEquals(expected, new Solution().permute(nums));
+        var actual = new Solution().permute(nums);
+        assertEquals(expected, actual);
     }
 }
