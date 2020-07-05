@@ -11,7 +11,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "Minimum Path Sum",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.DYNAMIC_PROGRAMMING
