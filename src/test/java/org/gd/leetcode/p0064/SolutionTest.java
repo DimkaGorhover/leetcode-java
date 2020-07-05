@@ -9,6 +9,13 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link Solution}
+ *
+ * <code>
+ *     ./gradlew clean test --parallel --max-workers=4 --no-daemon --tests 'org.gd.leetcode.p0064.SolutionTest'
+ * </code>
+ */
 class SolutionTest {
 
     private static Stream<Arguments> args() {
