@@ -22,22 +22,22 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-//                Arguments.of(
-//                        new String[]{
-//                                "This", "is", "an", "example", "of", "text", "justification."
-//                        }, 16, List.of(
-//                                "This    is    an",
-//                                "example  of text",
-//                                "justification.  "
-//                        )),
-//                Arguments.of(
-//                        new String[]{
-//                                "What", "must", "be", "acknowledgment", "shall", "be"
-//                        }, 16, List.of(
-//                                "What   must   be",
-//                                "acknowledgment  ",
-//                                "shall be        "
-//                        )),
+                Arguments.of(
+                        new String[]{
+                                "This", "is", "an", "example", "of", "text", "justification."
+                        }, 16, List.of(
+                                "This    is    an",
+                                "example  of text",
+                                "justification.  "
+                        )),
+                Arguments.of(
+                        new String[]{
+                                "What", "must", "be", "acknowledgment", "shall", "be"
+                        }, 16, List.of(
+                                "What   must   be",
+                                "acknowledgment  ",
+                                "shall be        "
+                        )),
                 Arguments.of(
                         new String[]{
                                 "Science", "is", "what", "we", "understand", "well", "enough", "to", "explain",
