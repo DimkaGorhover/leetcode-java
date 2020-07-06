@@ -15,7 +15,16 @@ import java.util.List;
  * @see org.gd.leetcode.p0144.Solution
  * @since 2018-10-23
  */
-@LeetCode(difficulty = LeetCode.Level.HARD)
+@SuppressWarnings("JavadocReference")
+@LeetCode(
+        name = "Binary Tree Postorder Traversal",
+        difficulty = LeetCode.Level.HARD,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.STACK,
+                LeetCode.Tags.TREE
+        }
+)
 class Solution {
 
     private static List<Integer> recursive0(TreeNode node, List<Integer> integers) {
