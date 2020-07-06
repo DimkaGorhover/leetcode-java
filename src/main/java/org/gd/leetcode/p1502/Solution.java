@@ -7,7 +7,7 @@ import java.util.Arrays;
 @LeetCode(
         name = "Can Make Arithmetic Progression From Sequence",
         difficulty = LeetCode.Level.EASY,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.SORT
