@@ -15,7 +15,14 @@ import java.util.List;
  *
  * @since 2019-09-12
  */
-@LeetCode(difficulty = LeetCode.Level.HARD, tags = {LeetCode.Tags.TREE, LeetCode.Tags.DESIGN})
+@LeetCode(
+        name = "serialize and deserialize binary tree",
+        difficulty = LeetCode.Level.HARD,
+        state = LeetCode.State.TODO,
+        tags = {
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.DESIGN
+        })
 class Codec {
 
     @Deprecated

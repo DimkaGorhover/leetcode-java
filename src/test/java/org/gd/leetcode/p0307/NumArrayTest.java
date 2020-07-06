@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-18
  */
+@Disabled
 @DisplayName("LeetCode #307: range sum query mutable")
 class NumArrayTest {
 

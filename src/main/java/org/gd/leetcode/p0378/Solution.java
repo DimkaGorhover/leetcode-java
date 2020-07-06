@@ -47,7 +47,9 @@ class Solution {
  * @since 2018-11-18
  */
 @LeetCode(
+        name = "kth smallest element in a sorted matrix",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO,
         tags = {
                 LeetCode.Tags.BINARY_SEARCH,
                 LeetCode.Tags.HEAP

@@ -14,6 +14,7 @@ import java.util.List;
  * @since 2018-12-15
  */
 @LeetCode(
+        name = "3sum closest",
         difficulty = LeetCode.Level.MEDIUM,
         state = LeetCode.State.FIXME,
         tags = {

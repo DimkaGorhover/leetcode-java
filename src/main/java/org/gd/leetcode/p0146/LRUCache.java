@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TODO: https://leetcode.com/problems/lru-cache/
+ * https://leetcode.com/problems/lru-cache/
  *
  * Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following
  * operations: {@link #get(int)} and {@link #put(int, int)}.
@@ -19,7 +19,11 @@ import java.util.Map;
  *
  * @since 2019-09-18
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.DESIGN)
+@LeetCode(
+        name = "LRU Cache",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.DESIGN)
 class LRUCache {
 
     private final LRUCacheProvider provider;

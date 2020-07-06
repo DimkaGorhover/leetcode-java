@@ -10,6 +10,11 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link Solution}
+ */
+@Disabled
+@DisplayName("LeetCode #990: satisfiability of equality equations")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

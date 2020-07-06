@@ -17,6 +17,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  *
  * @since 2019-10-01
  */
+@Disabled
 @DisplayName("LeetCode #378: kth smallest element in a sorted matrix")
 class SolutionTest {
 

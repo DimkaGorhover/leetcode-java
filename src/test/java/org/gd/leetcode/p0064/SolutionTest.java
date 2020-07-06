@@ -7,13 +7,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for {@link Solution}
  *
  * <code>
- *     ./gradlew clean test --parallel --max-workers=4 --no-daemon --tests 'org.gd.leetcode.p0064.SolutionTest'
+ * ./gradlew clean test --parallel --max-workers=4 --no-daemon --tests 'org.gd.leetcode.p0064.SolutionTest'
  * </code>
  */
 class SolutionTest {
@@ -41,25 +42,23 @@ class SolutionTest {
                 {5, 1, 8, 8, 4, 6, 8, 5, 2, 4, 1, 6, 2, 2, 9, 7}
         };
 
-        var solution0 = new Solution();
-        var solution1 = new DijkstraSolution();
-
         Stream<Supplier<ISolution>> solutions = Stream.of(
-                () -> solution0,
-                () -> solution1,
-                DijkstraSolution::new,
-                Solution::new);
+                SolutionFactory.singleton(Solution.class),
+                SolutionFactory.singleton(DijkstraSolution.class),
+                SolutionFactory.prototype(Solution.class),
+                SolutionFactory.prototype(DijkstraSolution.class)
+        );
 
-        return solutions.flatMap(s -> Stream.of(
+        return solutions.flatMap(solution -> Stream.of(
 
-                Arguments.of(s, grid0, 83),
+                Arguments.of(solution, grid0, 83),
 
-                Arguments.of(s, new int[][]{
+                Arguments.of(solution, new int[][]{
                         {1, 2, 5},
                         {3, 2, 1}
                 }, 6),
 
-                Arguments.of(s, new int[][]{
+                Arguments.of(solution, new int[][]{
                         {1, 3, 1},
                         {1, 5, 1},
                         {4, 2, 1}
@@ -69,7 +68,7 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    void minPathSum(Supplier<ISolution> solution, int[][] grid, int expected) {
+    void minPathSum(SolutionFactory solution, int[][] grid, int expected) {
         int actual = solution.get().minPathSum(grid);
         assertEquals(expected, actual);
     }

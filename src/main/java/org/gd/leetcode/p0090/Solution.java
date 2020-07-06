@@ -12,7 +12,9 @@ import java.util.List;
  * @since 2019-02-12
  */
 @LeetCode(
+        name = "Subsets II",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.BACKTRACKING

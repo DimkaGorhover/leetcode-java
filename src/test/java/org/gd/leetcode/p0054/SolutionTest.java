@@ -17,6 +17,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Horkhover Dmytro
  * @since 2018-11-20
  */
+@Disabled
+@DisplayName("LeetCode #54: spiral matrix")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

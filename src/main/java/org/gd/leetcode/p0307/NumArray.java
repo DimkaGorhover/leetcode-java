@@ -22,6 +22,7 @@ import org.gd.leetcode.common.LeetCode;
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "range sum query mutable",
         difficulty = LeetCode.Level.MEDIUM,
         state = LeetCode.State.TODO,
         tags = {

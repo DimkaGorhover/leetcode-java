@@ -17,7 +17,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Gorkhover D.
  * @since 2018-10-23
  */
-@DisplayName("LeetCode #86")
+@Disabled
+@DisplayName("LeetCode #86: Partition List")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

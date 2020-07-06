@@ -9,8 +9,9 @@ import org.gd.leetcode.common.LeetCode;
  * @since 2018-11-19
  */
 @LeetCode(
-        difficulty = LeetCode.Level.MEDIUM
-)
+        name = "increasing triplet subsequence",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO)
 class Solution {
 
     public boolean increasingTriplet(int[] nums) {

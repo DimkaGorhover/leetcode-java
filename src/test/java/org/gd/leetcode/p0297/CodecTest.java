@@ -17,14 +17,15 @@ import java.util.stream.Stream;
  * @author Horkhover D.
  * @since 2020-06-16
  */
-@DisplayName("LeetCode #297")
+@Disabled
+@DisplayName("LeetCode #297: serialize and deserialize binary tree")
 class CodecTest {
 
     static Stream<Arguments> args() {
         return Stream.of(
-            Arguments.of(TreeNode.of(1, 2, 3, 4, 5, 6, 7)),
-            Arguments.of(TreeNode.of(1, 2, 3, 4, null, null, 7)),
-            Arguments.of(TreeNode.of(1, 2, 3, 4, null, null, null))
+                Arguments.of(TreeNode.of(1, 2, 3, 4, 5, 6, 7)),
+                Arguments.of(TreeNode.of(1, 2, 3, 4, null, null, 7)),
+                Arguments.of(TreeNode.of(1, 2, 3, 4, null, null, null))
         );
     }
 
@@ -46,7 +47,7 @@ class CodecTest {
     @Test
     @DisplayName("LeetCode #297: Check TreeNode Size")
     void test_Size() {
-        
+
         TreeNode treeNode = TreeNode.of(1, 2, 3, 4, 5, 6, 7);
         assertEquals(7, Codec.size(treeNode));
 

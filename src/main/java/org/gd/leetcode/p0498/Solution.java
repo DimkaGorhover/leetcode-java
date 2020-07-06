@@ -5,12 +5,15 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * TODO: https://leetcode.com/problems/diagonal-traverse/
  *
- * Given a matrix of M x N elements (M rows, N columns),
- * return all elements of the matrix in diagonal order as shown in the below image.
+ * Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in
+ * the below image.
  *
  * @since 2019-09-14
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@LeetCode(
+        name = "diagonal traverse",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO)
 class Solution {
 
     public int[] findDiagonalOrder(int[][] matrix) {
@@ -21,6 +24,6 @@ class Solution {
         if (matrix.length == 1)
             return matrix[0];
 
-        throw new UnsupportedOperationException(new String(new char[]{ 175, 92, 95, 40, 12_484, 41, 95, 47, 175 }));
+        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
     }
 }

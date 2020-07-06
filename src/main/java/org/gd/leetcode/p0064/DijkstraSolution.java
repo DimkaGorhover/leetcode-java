@@ -13,11 +13,12 @@ class DijkstraSolution implements ISolution {
         queue.add(PathPoint.start(grid));
         PathPoint point;
         while ((point = queue.poll()) != null) {
-            if (point.isFinish()) return point.sum();
+            if (point.isFinish())
+                return point.sum();
             point.down().ifPresent(queue::add);
             point.right().ifPresent(queue::add);
         }
 
-        throw new UnsupportedOperationException("not supported yet");
+        throw new RuntimeException("it will not happen");
     }
 }

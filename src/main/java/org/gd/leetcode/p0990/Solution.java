@@ -7,7 +7,14 @@ import java.util.*;
 /**
  * TODO: https://leetcode.com/problems/satisfiability-of-equality-equations/
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.UNION_FIND, LeetCode.Tags.GRAPH})
+@LeetCode(
+        name = "satisfiability of equality equations",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.FIXME,
+        tags = {
+                LeetCode.Tags.UNION_FIND,
+                LeetCode.Tags.GRAPH
+        })
 class Solution {
 
     public boolean equationsPossible(String[] equations) {
@@ -26,17 +33,6 @@ class Solution {
         }
 
         System.out.println();
-
-
-
-
-
-
-
-
-
-
-
 
 
         ValuesProviderBuilder values = new ValuesProviderBuilder();

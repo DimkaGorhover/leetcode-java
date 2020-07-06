@@ -8,7 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-@DisplayName("LeetCode #334")
+@Disabled
+@DisplayName("LeetCode #334: increasing triplet subsequence")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

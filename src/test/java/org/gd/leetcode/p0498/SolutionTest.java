@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-14
  */
+@Disabled
+@DisplayName("LeetCode #498: diagonal traverse")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

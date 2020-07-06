@@ -26,6 +26,7 @@ import java.util.List;
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "3sum",
         difficulty = LeetCode.Level.MEDIUM,
         state = LeetCode.State.TODO,
         tags = {

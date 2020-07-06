@@ -9,8 +9,11 @@ import org.gd.leetcode.common.LeetCode;
  * @see org.gd.leetcode.p0053.Solution
  * @since 2020-06-30
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "maximum product subarray",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO,
         tags = {
                 LeetCode.Tags.DYNAMIC_PROGRAMMING,
                 LeetCode.Tags.ARRAY

@@ -18,6 +18,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @since 2018-12-15
  */
 @SuppressWarnings("JavadocReference")
+@Disabled
+@DisplayName("LeetCode #16: 3sum closest")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

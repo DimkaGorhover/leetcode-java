@@ -14,7 +14,11 @@ import java.util.List;
  * @since 2019-09-20
  */
 @SuppressWarnings({"JavadocReference", "DuplicatedCode"})
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.BACKTRACKING)
+@LeetCode(
+        name = "combinations",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.BACKTRACKING)
 class Solution {
 
     private static final long[] FACT = {

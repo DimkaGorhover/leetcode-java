@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-20
  */
+@DisplayName("LeetCode #77: combinations")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

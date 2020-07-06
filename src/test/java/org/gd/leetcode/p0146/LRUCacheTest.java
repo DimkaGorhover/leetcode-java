@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-18
  */
+@DisplayName("LeetCode #146: LRU Cache")
 class LRUCacheTest {
 
     @Test
