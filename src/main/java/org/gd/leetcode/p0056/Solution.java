@@ -9,8 +9,10 @@ import java.util.Comparator;
  * https://leetcode.com/problems/merge-intervals/
  *
  * @author Horkhover D.
+ * @see org.gd.leetcode.p0057.Solution
  * @since 2020-07-06
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Merge Intervals",
         difficulty = LeetCode.Level.MEDIUM,
