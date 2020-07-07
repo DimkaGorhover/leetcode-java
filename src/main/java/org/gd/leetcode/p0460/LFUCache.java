@@ -8,12 +8,17 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * TODO: https://leetcode.com/problems/lfu-cache/description/
+ * TODO: https://leetcode.com/problems/lfu-cache/
  *
  * @author Gorkhover D.
  * @since 2018-10-17
  */
-@LeetCode(difficulty = LeetCode.Level.HARD, tags = LeetCode.Tags.DESIGN)
+@LeetCode(
+        name = "LFU Cache",
+        difficulty = LeetCode.Level.HARD,
+        state = LeetCode.State.TODO,
+        tags = LeetCode.Tags.DESIGN
+)
 public class LFUCache {
 
     private final LFUCacheProvider provider;

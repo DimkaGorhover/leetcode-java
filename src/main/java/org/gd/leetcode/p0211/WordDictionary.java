@@ -11,16 +11,19 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/add-and-search-word-data-structure-design/
- * 
+ *
  * @see org.gd.leetcode.p0208.Trie
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
-    difficulty = LeetCode.Level.MEDIUM, 
-    tags = { 
-        LeetCode.Tags.DESIGN, 
-        LeetCode.Tags.BACKTRACKING,
-        LeetCode.Tags.TRIE 
-    })
+        name = "Add and Search Word - Data structure design",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.DESIGN,
+                LeetCode.Tags.BACKTRACKING,
+                LeetCode.Tags.TRIE
+        })
 class WordDictionary {
 
     private final WordDictionaryProvider provider;
@@ -54,7 +57,7 @@ class WordDictionary {
         private final WordDictionaryProvider provider;
 
         ToLowerCaseWordDictionaryProvider(WordDictionaryProvider provider) {
-            if (provider == null) 
+            if (provider == null)
                 throw new NullPointerException();
 
             this.provider = provider;
@@ -86,7 +89,7 @@ class WordDictionary {
         private final WordDictionaryProvider provider;
 
         FastCacheWordDictionaryProvider(WordDictionaryProvider provider) {
-            if (provider == null) 
+            if (provider == null)
                 throw new NullPointerException();
 
             this.provider = provider;
@@ -126,7 +129,7 @@ class WordDictionary {
         public boolean search(String word) {
             if (word == null)
                 return false;
-            
+
             Set<String> target = storage.get(word.length());
             if (target == null)
                 return false;
@@ -135,7 +138,7 @@ class WordDictionary {
                 return true;
 
             for (String saved : target) {
-                if (isEqual(saved, word)) 
+                if (isEqual(saved, word))
                     return true;
             }
             return false;
@@ -150,7 +153,7 @@ class WordDictionary {
             }
             return true;
         }
-        
+
     }
 
     // ===== Trie =============================================================

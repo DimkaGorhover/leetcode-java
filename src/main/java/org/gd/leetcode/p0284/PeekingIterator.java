@@ -11,7 +11,12 @@ import java.util.NoSuchElementException;
  *
  * @since 2019-09-13
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.DESIGN})
+@LeetCode(
+        name = "Peeking Iterator",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.DESIGN
+)
 class PeekingIterator<T> implements Iterator<T> {
 
     private final Iterator<T> iterator;

@@ -25,7 +25,14 @@ import org.gd.leetcode.common.LeetCode;
  *
  * @since 2019-09-10
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.STACK, LeetCode.Tags.DESIGN})
+@LeetCode(
+        name = "Min Stack",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.STACK,
+                LeetCode.Tags.DESIGN
+        })
 interface MinStack {
 
     void push(int x);

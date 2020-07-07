@@ -3,6 +3,8 @@ package org.gd.leetcode.p0023;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.ListNode;
 
+import java.util.PriorityQueue;
+
 /**
  * https://leetcode.com/problems/merge-k-sorted-lists/
  *
@@ -55,7 +57,7 @@ class Solution {
                             mergeTwoLists(lists[5], lists[6])));
         }
 
-        java.util.PriorityQueue<Integer> heap = new java.util.PriorityQueue<>();
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
         for (ListNode head : lists)
             for (; head != null; head = head.next)
                 heap.add(head.val);

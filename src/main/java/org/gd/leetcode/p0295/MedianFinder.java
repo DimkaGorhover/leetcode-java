@@ -24,7 +24,14 @@ import org.gd.leetcode.common.LeetCode;
  *
  * @since 2019-09-10
  */
-@LeetCode(difficulty = LeetCode.Level.HARD, tags = {LeetCode.Tags.HEAP, LeetCode.Tags.DESIGN})
+@LeetCode(
+        name = "Find Median from Data Stream",
+        difficulty = LeetCode.Level.HARD,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.HEAP,
+                LeetCode.Tags.DESIGN
+        })
 class MedianFinder {
 
     private int[] elementData = new int[0];

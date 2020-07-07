@@ -12,7 +12,15 @@ import java.util.NoSuchElementException;
  * @author Gorkhover D.
  * @since 2018-10-29
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.STACK, LeetCode.Tags.TREE, LeetCode.Tags.DESIGN})
+@LeetCode(
+        name = "Binary Search Tree Iterator",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.STACK,
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.DESIGN
+        })
 class BSTIterator {
 
     private final ArrayList<Integer> nodes;

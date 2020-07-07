@@ -13,11 +13,13 @@ import static java.util.Objects.requireNonNull;
  * @since 2019-09-24
  */
 @LeetCode(
-    difficulty = LeetCode.Level.MEDIUM, 
-    tags = {
-        LeetCode.Tags.DESIGN, 
-        LeetCode.Tags.TRIE
-    })
+        name = "Implement Trie (Prefix Tree)",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.DESIGN,
+                LeetCode.Tags.TRIE
+        })
 class Trie {
 
     private static final int NODES_LENGTH = 'z' - 'a' + 1;
@@ -94,7 +96,8 @@ class Trie {
         }
 
         /**
-         * FIXME: it may raise {@link StackOverflowError} because it's de facto recursion. Dirty fix is in {@link Trie#insert(String)}
+         * FIXME: it may raise {@link StackOverflowError} because it's de facto recursion. Dirty fix is in {@link
+         * Trie#insert(String)}
          */
         void insert(String text, int index) {
             if (index < text.length())
@@ -102,7 +105,8 @@ class Trie {
         }
 
         /**
-         * FIXME: it may raise {@link StackOverflowError} because it's de facto recursion. Dirty fix is in {@link Trie#insert(String)}
+         * FIXME: it may raise {@link StackOverflowError} because it's de facto recursion. Dirty fix is in {@link
+         * Trie#insert(String)}
          */
         boolean startsWith(String prefix, int index) {
             final Node node;
