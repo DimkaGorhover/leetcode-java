@@ -1,8 +1,9 @@
 package org.gd.common;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toUnmodifiableList;
@@ -16,6 +17,18 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 public final class CollectionUtils {
 
     private CollectionUtils() { throw new UnsupportedOperationException(); }
+
+    public static <T> Stream<T> stream(Iterator<T> iterator) {
+        if (iterator == null || !iterator.hasNext())
+            return Stream.empty();
+
+        return StreamSupport.stream(
+                Spliterators.spliteratorUnknownSize(iterator, 0), false);
+    }
+
+    public static <T> List<T> listOf(Iterator<T> iterator) {
+        return stream(iterator).collect(Collectors.toList());
+    }
 
     public static List<Integer> listOf(int[] ints) {
         if (ints == null)
