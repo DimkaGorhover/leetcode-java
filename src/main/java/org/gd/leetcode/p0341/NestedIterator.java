@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 @LeetCode(
         name = "Flatten Nested List Iterator",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.STACK,
                 LeetCode.Tags.DESIGN
