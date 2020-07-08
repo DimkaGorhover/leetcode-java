@@ -4,8 +4,6 @@ import org.gd.leetcode.common.LeetCode;
 
 import java.util.*;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * https://leetcode.com/problems/permutations/
  *

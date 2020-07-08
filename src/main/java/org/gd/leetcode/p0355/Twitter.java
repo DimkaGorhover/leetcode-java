@@ -6,13 +6,15 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ * https://leetcode.com/problems/design-twitter/
+ *
  * @see org.gd.leetcode.p0023.Solution
  */
 @SuppressWarnings({"JavadocReference", "SameParameterValue"})
 @LeetCode(
         name = "Design Twitter",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = LeetCode.Tags.DESIGN
 )
 class Twitter {
