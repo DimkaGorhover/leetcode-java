@@ -6,7 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * this annotation means that I have found solution (not solved by myself) and try to solve it again in nearest future
+ * this annotation means that I have found solution (maybe not solved by myself) and try to solve it again in nearest
+ * future
  *
  * @since 2019-09-23
  */
