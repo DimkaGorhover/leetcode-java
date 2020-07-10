@@ -2,7 +2,7 @@ package org.gd.leetcode.p0622;
 
 import java.util.LinkedList;
 
-public class LinkedListMyCircularQueue implements MyCircularQueue {
+class LinkedListMyCircularQueue implements MyCircularQueue {
 
     private final LinkedList<Integer> q = new LinkedList<>();
     private final int capacity;
