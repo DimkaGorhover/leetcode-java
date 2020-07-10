@@ -10,7 +10,11 @@ import java.util.Arrays;
  * @author Horkhover Dmytro
  * @since 2018-12-28
  */
-@LeetCode(difficulty = LeetCode.Level.EASY)
+@LeetCode(
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.HASH_TABLE
+)
 class Solution {
 
     private static final int[] KEYBOARD;

@@ -65,18 +65,12 @@ class WordDictionary {
 
         @Override
         public void addWord(String word) {
-            if (word != null)
-                word.toLowerCase();
-
-            provider.addWord(word);
+            provider.addWord(word == null ? null : word.toLowerCase());
         }
 
         @Override
         public boolean search(String word) {
-            if (word != null)
-                word.toLowerCase();
-
-            return provider.search(word);
+            return provider.search(word == null ? null : word.toLowerCase());
         }
     }
 
@@ -117,12 +111,8 @@ class WordDictionary {
 
         @Override
         public void addWord(String word) {
-            int index = word.length();
-            Set<String> set = storage.get(index);
-            if (set == null) {
-                storage.put(index, set = new HashSet<>());
-            }
-            set.add(word);
+            if (word != null)
+                storage.computeIfAbsent(word.length(), k -> new HashSet<>()).add(word);
         }
 
         @Override

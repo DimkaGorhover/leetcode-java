@@ -8,7 +8,12 @@ import org.gd.leetcode.common.LeetCode;
  * @author Horkhover Dmytro
  * @since 2018-12-18
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@LeetCode(
+        name = "Compare Version Numbers",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.STRING
+)
 class Solution {
 
     public int compareVersion(String version1, String version2) {

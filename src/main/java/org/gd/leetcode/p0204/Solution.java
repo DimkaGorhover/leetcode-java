@@ -33,7 +33,7 @@ class Solution {
             );
         } else {
             this.provider = new BigValuesCacheSolutionProvider(
-                    new SimpleLinearSolutionProvider()
+                    new DynamicProgrammingPSolutionProvider()
             );
         }
     }
@@ -60,7 +60,7 @@ class Solution {
         int countPrimes(int n);
     }
 
-    static class SimpleLinearSolutionProvider implements SolutionProvider {
+    static class DynamicProgrammingPSolutionProvider implements SolutionProvider {
 
         @Override
         public int countPrimes(int n) {
