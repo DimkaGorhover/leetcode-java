@@ -36,6 +36,12 @@ class Solution {
         return newList;
     }
 
+    private void reset(int[] nums) {
+        this.nums = nums;
+        this.result = new ArrayList<>(1 << nums.length);
+        result.add(Collections.emptyList());
+    }
+
     private void populate(List<Integer> list, int i) {
         for (int j = i; j < nums.length; j++) {
             List<Integer> copy = copy(list, nums[j]);
@@ -54,15 +60,10 @@ class Solution {
         if (nums.length == 1)
             return Arrays.asList(
                     Collections.emptyList(),
-                    Collections.singletonList(nums[0])
-            );
+                    Collections.singletonList(nums[0]));
 
-        this.nums = nums;
-        this.result = new ArrayList<>();
-        result.add(Collections.emptyList());
-
+        reset(nums);
         populate(null, 0);
-
         return result;
     }
 
