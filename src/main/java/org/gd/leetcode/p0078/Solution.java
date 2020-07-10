@@ -33,7 +33,7 @@ class Solution {
         List<Integer> newList = new ArrayList<>(list.size() + 1);
         newList.addAll(list);
         newList.add(value);
-        return newList;
+        return Collections.unmodifiableList(newList);
     }
 
     private void reset(int[] nums) {
@@ -43,9 +43,9 @@ class Solution {
     }
 
     private void populate(List<Integer> list, int i) {
+        List<Integer> copy;
         for (int j = i; j < nums.length; j++) {
-            List<Integer> copy = copy(list, nums[j]);
-            result.add(new ArrayList<>(copy));
+            result.add(copy = copy(list, nums[j]));
             populate(copy, j + 1);
         }
     }
