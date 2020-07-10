@@ -7,10 +7,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * https://leetcode.com/problems/subsets/submissions/
+ */
 @LeetCode(
         name = "Subsets",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.BACKTRACKING,
@@ -20,7 +23,6 @@ import java.util.List;
 class Solution {
 
     private int[] nums;
-    private int[] subset;
     private List<List<Integer>> result;
 
     private static List<Integer> copy(List<Integer> list, int value) {
@@ -34,19 +36,7 @@ class Solution {
         return newList;
     }
 
-    private List<Integer> createList(int index, int value) {
-        int listSize = index + 1;
-        List<Integer> list = new ArrayList<>(listSize);
-        subset[index] = value;
-        for (int i = 0; i < listSize; i++)
-            list.add(subset[i]);
-        return list;
-    }
-
     private void populate(List<Integer> list, int i) {
-        if (i == nums.length)
-            return;
-
         for (int j = i; j < nums.length; j++) {
             List<Integer> copy = copy(list, nums[j]);
             result.add(new ArrayList<>(copy));
@@ -68,7 +58,6 @@ class Solution {
             );
 
         this.nums = nums;
-        this.subset = new int[nums.length];
         this.result = new ArrayList<>();
         result.add(Collections.emptyList());
 
