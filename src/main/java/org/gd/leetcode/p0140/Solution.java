@@ -1,29 +1,24 @@
-package org.gd.leetcode.p0139;
+package org.gd.leetcode.p0140;
 
-import org.gd.leetcode.common.LeetCode;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
- * https://leetcode.com/problems/word-break/
- *
- * @author Horkhover D.
- * @since 2020-07-11
+ * https://leetcode.com/problems/word-break-ii/
  */
-@LeetCode(
-        name = "Word Break",
-        difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
-        tags = LeetCode.Tags.DYNAMIC_PROGRAMMING
-)
-class Solution {
+public class Solution {
 
+    private List<String> result;
     private Set<String> dict;
     private boolean[] dp;
     private int maxLength;
     private int minLength;
 
     private void reset(String word, List<String> wordDict) {
+
+        result = new ArrayList<>();
 
         dp = new boolean[word.length() + 1];
         dp[0] = true;
@@ -39,8 +34,10 @@ class Solution {
         }
     }
 
-    public boolean wordBreak(String word, List<String> wordDict) {
+    public List<String> wordBreak(String word, List<String> wordDict) {
+
         reset(word, wordDict);
+
         for (int i = minLength; i <= word.length(); i++) {
             for (int j = Math.max(0, i - maxLength); i - j >= minLength; j++) {
                 String subWord = word.substring(j, i);
@@ -50,6 +47,6 @@ class Solution {
                 }
             }
         }
-        return dp[word.length()];
+        return result;
     }
 }

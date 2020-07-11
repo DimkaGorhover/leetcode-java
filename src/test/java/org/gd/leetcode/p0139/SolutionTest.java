@@ -19,24 +19,29 @@ import static org.junit.jupiter.api.Assertions.*;
 class SolutionTest {
 
     private static Stream<Arguments> args() {
+
         return Stream.of(
+                Arguments.of("applepenapple", List.of("apple", "pen"), true),
+                Arguments.of("leetcode", List.of("leet", "code"), true),
+                Arguments.of("abcd", List.of("a", "abc", "b", "cd"), true),
+                Arguments.of("dogs", List.of("dog","s","gs"), true),
+                Arguments.of("aaaaaa", List.of("aaaa", "aaa"), true),
+                Arguments.of("bb", List.of("b", "a", "bbb", "bbbb"), true),
                 Arguments.of(
                         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
-                        List.of("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"),
+                        List.of("a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"),
                         false
                 ),
-                Arguments.of("aaaaaaa", List.of("aaaa","aa"), false),
-                Arguments.of("leetcode", List.of("leet", "code"), true),
-                Arguments.of("applepenapple", List.of("apple", "pen"), true),
+                Arguments.of("aaaaaaa", List.of("aaaa", "aa"), false),
                 Arguments.of("catsandog", List.of("cats", "dog", "sand", "and", "cat"), false)
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "word = {0}, dict = {1}")
     @MethodSource("args")
     @DisplayName("WordBreak")
     void test_WordBreak(String word, List<String> dict, boolean expected) {
-        boolean actual = new Solution().wordBreak(word, dict);
-        assertEquals(expected, actual);
+        //assertEquals(expected, new StreamSolution().wordBreak(word, dict));
+        assertEquals(expected, new Solution().wordBreak(word, dict));
     }
 }
