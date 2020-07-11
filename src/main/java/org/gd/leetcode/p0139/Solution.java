@@ -19,14 +19,26 @@ import java.util.*;
 class Solution {
 
     private Map<Integer, Set<String>> groupByLength;
-    private Set<Integer> lengths;
+    private int[] lengths;
     private int maxLength;
     private int minLength;
 
-    private void reset(List<String> wordDict) {
+    private static List<String> squash(List<String> wordDict) {
+        if (wordDict == null || wordDict.isEmpty())
+            return Collections.emptyList();
+
+        // TODO: squash
+
+        return wordDict;
+    }
+
+    private void resetDict(List<String> wordDict) {
+
+        wordDict = squash(wordDict);
+
         maxLength = 0;
         minLength = Integer.MAX_VALUE;
-        lengths = new TreeSet<>(Comparator.comparingInt(value -> -value));
+        Set<Integer> lengths = new TreeSet<>(Comparator.comparingInt(value -> -value));
         groupByLength = new HashMap<>();
 
         for (String word : wordDict) {
@@ -43,6 +55,11 @@ class Solution {
                 set.add(word);
                 return set;
             });
+            this.lengths = new int[lengths.size()];
+            int i = 0;
+            for (int value : lengths) {
+                this.lengths[i++] = value;
+            }
         }
     }
 
@@ -53,12 +70,18 @@ class Solution {
             final int wordLength = word.length();
             if (wordLength == 0) return true;
             if (wordLength < minLength) continue;
+
             for (int length : lengths) {
                 if (length > wordLength) break;
-                Set<String> set = groupByLength.get(length);
-                String substring = word.substring(0, length);
-                if (set.contains(substring)) {
-                    q.offerFirst(word.substring(length));
+
+                String leftSubstring = word.substring(0, length);
+                if (groupByLength.get(length).contains(leftSubstring)) {
+
+                    if (wordLength == length)
+                        return true;
+
+                    String rightSubstring = word.substring(length);
+                    q.offerFirst(rightSubstring);
                 }
             }
         }
@@ -66,7 +89,7 @@ class Solution {
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {
-        reset(wordDict);
+        resetDict(wordDict);
         return wordBreak0(s);
     }
 }

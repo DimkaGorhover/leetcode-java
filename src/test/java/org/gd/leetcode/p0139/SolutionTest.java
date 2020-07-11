@@ -23,7 +23,7 @@ class SolutionTest {
                 Arguments.of(
                         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
                         List.of("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"),
-                        true
+                        false
                 ),
                 Arguments.of("aaaaaaa", List.of("aaaa","aa"), false),
                 Arguments.of("leetcode", List.of("leet", "code"), true),
