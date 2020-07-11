@@ -14,13 +14,21 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
+ * @see org.gd.leetcode.p0140.SolutionTest
  * @since 2020-07-11
  */
+@SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #139: Word Break")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
 
         return Stream.of(
+                Arguments.of(
+                        "pineapplepenapple",
+                        List.of("apple", "pen", "applepen", "pine", "pineapple"),
+                        true),
+                Arguments.of("catsandog", List.of("cats", "dog", "sand", "and", "cat"), false),
                 Arguments.of("applepenapple", List.of("apple", "pen"), true),
                 Arguments.of("leetcode", List.of("leet", "code"), true),
                 Arguments.of("abcd", List.of("a", "abc", "b", "cd"), true),
@@ -32,8 +40,7 @@ class SolutionTest {
                         List.of("a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"),
                         false
                 ),
-                Arguments.of("aaaaaaa", List.of("aaaa", "aa"), false),
-                Arguments.of("catsandog", List.of("cats", "dog", "sand", "and", "cat"), false)
+                Arguments.of("aaaaaaa", List.of("aaaa", "aa"), false)
         );
     }
 

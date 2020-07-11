@@ -8,8 +8,10 @@ import java.util.*;
  * https://leetcode.com/problems/word-break/
  *
  * @author Horkhover D.
+ * @see org.gd.leetcode.p0140.Solution
  * @since 2020-07-11
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Word Break",
         difficulty = LeetCode.Level.MEDIUM,
