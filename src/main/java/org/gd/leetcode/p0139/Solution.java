@@ -20,29 +20,21 @@ import java.util.*;
 )
 class Solution {
 
-    private Set<String> dict;
-    private boolean[] dp;
-    private int maxLength;
-    private int minLength;
+    public boolean wordBreak(String word, List<String> wordDict) {
 
-    private void reset(String word, List<String> wordDict) {
-
-        dp = new boolean[word.length() + 1];
-        dp[0] = true;
-
-        dict = new HashSet<>();
-        maxLength = 0;
-        minLength = Integer.MAX_VALUE;
+        Set<String> dict = new HashSet<>();
+        int maxLength = 0;
+        int minLength = Integer.MAX_VALUE;
         for (String dictWord : wordDict) {
             final int length = dictWord.length();
             maxLength = Math.max(maxLength, length);
             minLength = Math.min(minLength, length);
             dict.add(dictWord);
         }
-    }
 
-    public boolean wordBreak(String word, List<String> wordDict) {
-        reset(word, wordDict);
+        boolean[] dp = new boolean[word.length() + 1];
+        dp[0] = true;
+
         for (int i = minLength; i <= word.length(); i++) {
             for (int j = Math.max(0, i - maxLength); i - j >= minLength; j++) {
                 String subWord = word.substring(j, i);
