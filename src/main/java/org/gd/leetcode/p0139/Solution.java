@@ -15,7 +15,7 @@ import java.util.*;
 @LeetCode(
         name = "Word Break",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = LeetCode.Tags.DYNAMIC_PROGRAMMING
 )
 class Solution {
