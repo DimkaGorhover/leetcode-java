@@ -20,7 +20,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("LeetCode #23: Merge K Sorted Lists")
 class SolutionTest {
 
-    private static Stream<Arguments> arguments() {
+    @SuppressWarnings("deprecation")
+    private static ListNode[] copy(ListNode[] lists) {
+        ListNode[] newLists = new ListNode[lists.length];
+        for (int i = 0; i < lists.length; i++) {
+            newLists[i] = lists[i].copy();
+        }
+        return newLists;
+    }
+
+    private static Stream<Arguments> args() {
         return Stream.of(
                 Arguments.of(
                         new ListNode[]{
@@ -33,10 +42,16 @@ class SolutionTest {
     }
 
     @ParameterizedTest
-    @MethodSource("arguments")
+    @MethodSource("args")
     @DisplayName("MergeKLists")
-    void test_MergeKLists(ListNode[] lists, ListNode expected) throws Exception {
-        assertEquals(expected, new Solution().mergeKLists(lists));
-        //assertEquals(expected, new ReduceSolution().mergeKLists(lists));
+    void test_MergeKLists(ListNode[] lists, ListNode expected) {
+        assertEquals(expected, new Solution().mergeKLists(copy(lists)));
+    }
+
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("PriorityQ")
+    void test_PriorityQ(ListNode[] lists, ListNode expected) {
+        assertEquals(expected, new ReduceSolution().mergeKLists(copy(lists)));
     }
 }
