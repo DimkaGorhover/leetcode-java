@@ -16,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @see org.gd.leetcode.p0021.SolutionTest
  * @since 2019-09-10
  */
+@SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #23: Merge K Sorted Lists")
 class SolutionTest {
 
     private static Stream<Arguments> arguments() {
@@ -35,5 +37,6 @@ class SolutionTest {
     @DisplayName("MergeKLists")
     void test_MergeKLists(ListNode[] lists, ListNode expected) throws Exception {
         assertEquals(expected, new Solution().mergeKLists(lists));
+        //assertEquals(expected, new ReduceSolution().mergeKLists(lists));
     }
 }

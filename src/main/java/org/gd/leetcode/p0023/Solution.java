@@ -13,6 +13,8 @@ import java.util.PriorityQueue;
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "Merge K Sorted Lists",
+        state = LeetCode.State.DONE,
         difficulty = LeetCode.Level.HARD,
         tags = {
                 LeetCode.Tags.LINKED_LIST,
@@ -25,7 +27,7 @@ class Solution {
      * @see org.gd.leetcode.p0021.Solution#mergeTwoLists(ListNode, ListNode)
      */
     @SuppressWarnings("DuplicatedCode")
-    private static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null) return l2;
         if (l2 == null) return l1;
         if (l1.val < l2.val) {
