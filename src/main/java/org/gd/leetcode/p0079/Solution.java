@@ -10,10 +10,11 @@ import java.util.StringJoiner;
  * @author Horkhover D.
  * @since 2020-07-13.07.2020
  */
+@SuppressWarnings("RedundantIfStatement")
 @LeetCode(
         name = "Word Search",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.BACKTRACKING
@@ -21,60 +22,50 @@ import java.util.StringJoiner;
 )
 class Solution {
 
+    private static final char VISITED = 0;
+
     private char[][] board;
-    private boolean[][] arr;
-    int rows, cols;
+    private int rows, cols;
 
     private boolean exist(final String word,
                           final int charIndex,
                           final int row,
                           final int col) {
 
-        if (charIndex == word.length())
-            return true;
-
+        if (charIndex == word.length()) return true;
         char c = word.charAt(charIndex);
 
         // up
-        if (row > 0 && !arr[row - 1][col] && board[row - 1][col] == c) {
-            arr[row - 1][col] = true;
-            if (exist(word, charIndex + 1, row - 1, col)) {
-                return true;
-            } else {
-                arr[row - 1][col] = false;
-            }
+        if (row > 0 && board[row - 1][col] == c) {
+            board[row - 1][col] = VISITED;
+            boolean result = exist(word, charIndex + 1, row - 1, col);
+            board[row - 1][col] = c;
+            if (result) return true;
         }
 
         // down
-        if (row < rows - 1 && !arr[row + 1][col] && board[row + 1][col] == c) {
-            arr[row + 1][col] = true;
-            if (exist(word, charIndex + 1, row + 1, col)) {
-                return true;
-            } else {
-                arr[row + 1][col] = false;
-            }
+        if (row < rows - 1 && board[row + 1][col] == c) {
+            board[row + 1][col] = VISITED;
+            boolean result = exist(word, charIndex + 1, row + 1, col);
+            board[row + 1][col] = c;
+            if (result) return true;
         }
 
         // left
-        if (col > 0 && !arr[row][col - 1] && board[row][col - 1] == c) {
-            arr[row][col - 1] = true;
-            if (exist(word, charIndex + 1, row, col - 1)) {
-                return true;
-            } else {
-                arr[row][col - 1] = false;
-            }
+        if (col > 0 && board[row][col - 1] == c) {
+            board[row][col - 1] = VISITED;
+            boolean result = exist(word, charIndex + 1, row, col - 1);
+            board[row][col - 1] = c;
+            if (result) return true;
         }
 
         // right
-        if (col < cols - 1 && !arr[row][col + 1] && board[row][col + 1] == c) {
-            arr[row][col + 1] = true;
-            if (exist(word, charIndex + 1, row, col + 1)) {
-                return true;
-            } else {
-                arr[row][col + 1] = false;
-            }
+        if (col < cols - 1 && board[row][col + 1] == c) {
+            board[row][col + 1] = VISITED;
+            boolean result = exist(word, charIndex + 1, row, col + 1);
+            board[row][col + 1] = c;
+            if (result) return true;
         }
-
 
         return false;
     }
@@ -83,20 +74,18 @@ class Solution {
         this.board = board;
         rows = board.length;
         cols = board[0].length;
-        arr = new boolean[rows][cols];
     }
 
     public boolean exist(char[][] board, String word) {
         reset(board);
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (board[row][col] == word.charAt(0)) {
-                    arr[row][col] = true;
-                    if (exist(word, 1, row, col)) {
-                        return true;
-                    } else {
-                        arr[row][col] = false;
-                    }
+                char c = word.charAt(0);
+                if (board[row][col] == c) {
+                    board[row][col] = VISITED;
+                    boolean result = exist(word, 1, row, col);
+                    board[row][col] = c;
+                    if (result) return true;
                 }
             }
         }
@@ -108,11 +97,10 @@ class Solution {
         StringJoiner sj = new StringJoiner("->", "[", "]");
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (arr[row][col])
+                if (board[row][col] == VISITED)
                     sj.add(String.format("(%d;%d)", row, col));
             }
         }
         return sj.toString();
-
     }
 }

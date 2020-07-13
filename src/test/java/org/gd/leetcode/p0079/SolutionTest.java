@@ -20,24 +20,26 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
 
-        char[][] board = {
+        final char[][] board = {
                 {'A', 'B', 'C', 'E'},
                 {'S', 'F', 'C', 'S'},
                 {'A', 'D', 'E', 'E'}
         };
 
-        return Stream.of(
-                Arguments.of(board, "SEE", true),
-                Arguments.of(board, "ABCCED", true),
-                Arguments.of(board, "ABCB", false)
-        );
+        return Stream
+                .of(new SingletonSolutionFactory(), new PrototypeSolutionFactory())
+                .flatMap(sf -> Stream.of(
+                        Arguments.of(sf, board, "ABCCED", true),
+                        Arguments.of(sf, board, "SEE", true),
+                        Arguments.of(sf, board, "ABCB", false)
+                ));
     }
 
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("Exist")
-    void test_Exist(char[][] board, String word, boolean expected) {
-        boolean actual = new Solution().exist(board, word);
-        assertEquals(expected, actual);
+    void test_Exist(SolutionFactory sf, char[][] board, String word, boolean expected) {
+        assertEquals(expected, sf.get().exist(board, word));
     }
+
 }

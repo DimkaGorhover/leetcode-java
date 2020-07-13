@@ -1,5 +1,6 @@
 package org.gd.common;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -64,5 +65,21 @@ public final class ArrayUtils {
                 return mid; // key found
         }
         return low;  //return -(low + 1);  // key not found.
+    }
+
+    public static char[] copy(char[] arr) {
+        return Arrays.copyOf(arr, arr.length);
+    }
+
+    public static char[][] copy(char[][] matrix) {
+        if (matrix == null)
+            return null;
+        if (matrix.length == 0)
+            return new char[0][];
+        if (matrix.length == 1)
+            return new char[][]{copy(matrix[0])};
+        return Arrays.stream(matrix)
+                .map(ArrayUtils::copy)
+                .toArray(char[][]::new);
     }
 }
