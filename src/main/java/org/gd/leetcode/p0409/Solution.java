@@ -1,25 +1,36 @@
 package org.gd.leetcode.p0409;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * https://leetcode.com/problems/longest-palindrome/
  *
  * @author Horkhover D.
  * @since 2020-07-13
  */
+@LeetCode(
+        name = "Longest Palindrome",
+        state = LeetCode.State.DONE,
+        difficulty = LeetCode.Level.EASY,
+        tags = {
+                LeetCode.Tags.HASH_TABLE
+        }
+)
 class Solution {
 
     public int longestPalindrome(String s) {
-        int[] arr = new int[128];
-        for (int i = 0; i < s.length(); i++)
-            arr[s.charAt(i)]++;
-
-        int length = 0;
-        int odd = 0;
-        for (int value : arr) {
-            if (value % 2 == 0) {length += value;}
-            else
-
+        final int length = s.length();
+        final boolean[] arr = new boolean[128];
+        int pLength = 0;
+        for (int i = 0; i < length; i++) {
+            char c = s.charAt(i);
+            if (arr[c]) {
+                arr[c] = false;
+                pLength += 2;
+            } else {
+                arr[c] = true;
+            }
         }
-        return length + maxOdd;
+        return Math.min(length, pLength + 1);
     }
 }
