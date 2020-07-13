@@ -27,7 +27,15 @@ public final class CollectionUtils {
     }
 
     public static <T> List<T> listOf(Iterator<T> iterator) {
-        return stream(iterator).collect(Collectors.toList());
+
+        if (iterator == null || !iterator.hasNext())
+            return Collections.emptyList();
+
+        List<T> list = new ArrayList<>();
+        while (iterator.hasNext())
+            list.add(iterator.next());
+
+        return Collections.unmodifiableList(list);
     }
 
     public static List<Integer> listOf(int[] ints) {

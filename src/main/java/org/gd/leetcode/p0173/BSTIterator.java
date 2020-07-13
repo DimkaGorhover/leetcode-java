@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0173;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
@@ -8,6 +9,8 @@ import java.util.NoSuchElementException;
 
 /**
  * https://leetcode.com/problems/binary-search-tree-iterator/
+ *
+ * TODO: implement lazy iterator
  *
  * @author Gorkhover D.
  * @since 2018-10-29
