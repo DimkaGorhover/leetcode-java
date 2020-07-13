@@ -27,8 +27,8 @@ public class TreeNode {
         this.right = right;
     }
 
-    public static Builder builder() {
-        return new TreeNodeBuilder();
+    public static Builder builder(int val) {
+        return new TreeNodeBuilder(val);
     }
 
     public static TreeNode of(Integer value) {
@@ -160,8 +160,6 @@ public class TreeNode {
     }
 
     public interface Builder {
-
-        Builder val(int val);
 
         Builder left(TreeNode node);
 

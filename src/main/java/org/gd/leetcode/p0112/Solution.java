@@ -9,8 +9,10 @@ import org.gd.leetcode.common.TreeNode;
  * @see org.gd.leetcode.p0113.Solution
  * @see org.gd.leetcode.p0257.Solution
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.TREE,
                 LeetCode.Tags.DEPTH_FIRST_SEARCH

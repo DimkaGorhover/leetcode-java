@@ -2,17 +2,12 @@ package org.gd.leetcode.common;
 
 class TreeNodeBuilder implements TreeNode.Builder {
 
-    private int val;
+    private final int val;
     private TreeNode left;
     private TreeNode right;
 
-    TreeNodeBuilder() {
-    }
-
-    @Override
-    public TreeNode.Builder val(int val) {
+    TreeNodeBuilder(int val) {
         this.val = val;
-        return this;
     }
 
     @Override

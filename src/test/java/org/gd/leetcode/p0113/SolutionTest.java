@@ -15,18 +15,19 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @see org.gd.leetcode.p0112.SolutionTest
  */
+@SuppressWarnings("JavadocReference")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
 
-        TreeNode root0 = TreeNode.builder().val(5)
-                .left(TreeNode.builder().val(4)
-                        .left(TreeNode.builder().val(11)
+        TreeNode root0 = TreeNode.builder(5)
+                .left(TreeNode.builder(4)
+                        .left(TreeNode.builder(11)
                                 .left(7)
                                 .right(2)))
-                .right(TreeNode.builder().val(8)
+                .right(TreeNode.builder(8)
                         .left(13)
-                        .right(TreeNode.builder().val(4)
+                        .right(TreeNode.builder(14)
                                 .left(5)
                                 .right(1)))
                 .build();

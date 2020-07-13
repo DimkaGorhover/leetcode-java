@@ -13,8 +13,10 @@ import java.util.List;
  * @see org.gd.leetcode.p0112.Solution
  * @see org.gd.leetcode.p0257.Solution
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.TREE,
                 LeetCode.Tags.DEPTH_FIRST_SEARCH
