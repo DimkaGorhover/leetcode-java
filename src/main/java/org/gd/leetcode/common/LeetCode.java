@@ -19,7 +19,16 @@ public @interface LeetCode {
 
     Tags[] tags() default {};
 
-    enum State {TODO, FIXME, DONE, UNKNOWN}
+    enum State {
+
+        TODO,
+        FIXME,
+        TIME_LIMIT_EXCEEDED,
+        DONE,
+        UNKNOWN;
+
+        public boolean isDone() { return this == DONE; }
+    }
 
     enum Level {EASY, MEDIUM, HARD}
 

@@ -14,8 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
+ * @see org.gd.leetcode.p0132.Solution
  * @since 2020-07-13
  */
+@SuppressWarnings("JavadocReference")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
