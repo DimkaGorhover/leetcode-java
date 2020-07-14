@@ -12,6 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class SegmentTreeTest {
 
     @Test
+    @DisplayName("001")
+    void test_001() {
+        SegmentTree tree = new SegmentTree(new int[]{1, 2, 3, 4});
+        assertEquals(6, tree.getSum(0, 2));
+
+        tree = new SegmentTree(new int[0]);
+        tree.getSum(0, 1);
+    }
+
+    @Test
     @DisplayName("Main")
     void test_Main() {
 
@@ -20,10 +30,13 @@ class SegmentTreeTest {
         assertEquals(15, tree.getSum(1, 3));
         assertEquals(9, tree.getSum(0, 2));
 
-        tree.updateValue(1, 10);
+        tree.update(1, 10);
         assertEquals(22, tree.getSum(1, 3));
 
-        tree.updateValue(2, 4);
+        tree.update(2, 4);
         assertEquals(21, tree.getSum(1, 3));
+
+        tree = new SegmentTree(new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+        System.out.println(tree);
     }
 }

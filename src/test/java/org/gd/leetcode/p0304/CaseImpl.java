@@ -21,7 +21,7 @@ class CaseImpl implements Case {
     }
 
     @Override
-    public int[][] getMatrix() { return matrix; }
+    public int[][] matrix() { return matrix; }
 
     @Nonnull
     @Override

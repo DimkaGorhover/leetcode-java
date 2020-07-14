@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -201,5 +202,24 @@ class CommonsTest {
         assertTrue(Commons.isPowerOfTwo(4));
         assertTrue(Commons.isPowerOfTwo(8));
         assertTrue(Commons.isPowerOfTwo(16));
+    }
+
+    @Test
+    @DisplayName("DigitsCount")
+    void test_DigitsCount() {
+        for (int i = -9; i < 10; i++) {
+            assertEquals(1, Commons.digitsCount(i));
+        }
+
+        assertEquals(2, Commons.digitsCount(54));
+        assertEquals(4, Commons.digitsCount(9534));
+    }
+
+    @Test
+    @DisplayName("MaxDigitsCount")
+    void test_MaxDigitsCount() {
+        assertEquals(3, Commons.maxDigitsCount(
+                IntStream.rangeClosed(1, 200).toArray()
+        ));
     }
 }

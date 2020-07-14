@@ -6,7 +6,7 @@ interface SubCase {
 
     void doAssert(NumMatrix numMatrix);
 
-    void doAssert(NumMatrix.Solution numMatrix);
+    void doAssert(Solution numMatrix);
 
     interface Builder {
 

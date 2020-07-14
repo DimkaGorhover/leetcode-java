@@ -9,7 +9,7 @@ import java.util.stream.Stream;
  */
 public interface Case extends Iterable<SubCase>, Arguments {
 
-    int[][] getMatrix();
+    int[][] matrix();
 
     Stream<SubCase> stream();
 

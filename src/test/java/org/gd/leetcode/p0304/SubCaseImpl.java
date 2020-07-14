@@ -24,7 +24,7 @@ class SubCaseImpl implements SubCase {
     }
 
     @Override
-    public void doAssert(NumMatrix.Solution numMatrix) {
+    public void doAssert(Solution numMatrix) {
         requireNonNull(numMatrix, "\"numMatrix\" cannot be null");
         assertEquals(
                 expected,

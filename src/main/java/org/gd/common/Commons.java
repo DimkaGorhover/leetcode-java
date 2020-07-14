@@ -65,6 +65,7 @@ public final class Commons {
      * https://habr.com/ru/post/261159/
      *
      * @param n
+     *
      * @return instance of {@link BigInteger}
      */
     public static BigInteger bigFib(int n) {
@@ -84,10 +85,10 @@ public final class Commons {
     }
 
     public static BigInteger fib(BigInteger n) {
-        if (n.compareTo(BigInteger.TWO) < 0) 
+        if (n.compareTo(BigInteger.TWO) < 0)
             return BigInteger.ONE;
 
-        if (n.compareTo(BIG_92) <= 0) 
+        if (n.compareTo(BIG_92) <= 0)
             return BigInteger.valueOf(fib(n.intValue()));
 
         // TODO: implement it
@@ -151,7 +152,7 @@ public final class Commons {
             case 3: return v * v * v;
             case 4: return v * v * v * v;
         }
-        double half = recursionPow(v, pow / 2);
+        double half = recursionPow(v, pow >> 1);
         return half * half * recursionPow(v, pow % 2);
     }
 
@@ -169,6 +170,7 @@ public final class Commons {
      * 1 + 2 + 3 + 4 + ... + 97 + 98 + 99 + 100
      *
      * @param count
+     *
      * @return
      */
     public static long gausSum0(long count) {
@@ -189,8 +191,8 @@ public final class Commons {
     public static long euclideanAlgorithm(long a, long b) {
         if (a == b)
             return a;
-            
-        while (a != 0 && b !=0) {
+
+        while (a != 0 && b != 0) {
             if (a > b) {
                 a %= b;
             } else {
@@ -211,7 +213,7 @@ public final class Commons {
             return false;
         final double sqrt = Math.sqrt(n);
         for (long i = 3; i <= sqrt; i += 2) {
-            if (n % i == 0) 
+            if (n % i == 0)
                 return false;
         }
         return true;
@@ -219,13 +221,13 @@ public final class Commons {
 
     /**
      * Sieve of Eratosthenes
-     * 
+     *
      * https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
      */
     public static long[] sieveOfEratosthenes(long n) {
-        if (n <= 2) 
+        if (n <= 2)
             return new long[]{};
-        if (n == 3) 
+        if (n == 3)
             return new long[]{2};
 
         final ArrayList<Long> list = new ArrayList<>();
@@ -236,7 +238,7 @@ public final class Commons {
         }
 
         final long[] arr = new long[list.size()];
-        for (int i = 0; i < list.size(); i++) 
+        for (int i = 0; i < list.size(); i++)
             arr[i] = list.get(i);
 
         return arr;
@@ -249,14 +251,14 @@ public final class Commons {
     public static BigInteger linearGausSum(BigInteger count) {
         if (count == null)
             return BigInteger.ZERO;
-        
-            if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
+
+        if (count.compareTo(GAUS_MAX_VAL_BI) <= 0)
             return BigInteger.valueOf(linearGausSum0(count.longValue()));
 
         BigInteger sum = BigInteger.ZERO;
         for (BigInteger i = BigInteger.ONE; i.compareTo(count) <= 0; i = i.add(BigInteger.ONE))
             sum = sum.add(i);
-        
+
         return sum;
     }
 
@@ -276,6 +278,7 @@ public final class Commons {
         return count.multiply(count.shiftRight(1).add(BigInteger.ONE));
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static long nextPowerOf2(long n) {
         n--;
         n |= n >> 1;
@@ -286,6 +289,7 @@ public final class Commons {
         return n + 1;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static long prevPowerOf2(long n) {
         n--;
         n |= n >> 1;
@@ -299,5 +303,16 @@ public final class Commons {
 
     public static boolean isPowerOfTwo(long n) {
         return (n > 0) && ((n & (n - 1)) == 0);
+    }
+
+    public static int digitsCount(int num) {
+        return num == 0 ? 1 : (int) (Math.log10(Math.abs(num)) + 1);
+    }
+
+    public static int maxDigitsCount(int[] arr) {
+        int count = 0;
+        for (int value : arr)
+            count = Math.max(count, digitsCount(value));
+        return count;
     }
 }

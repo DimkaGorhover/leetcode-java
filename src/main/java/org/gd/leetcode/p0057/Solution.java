@@ -17,7 +17,7 @@ import java.util.Queue;
 @LeetCode(
         name = "Insert Interval",
         difficulty = LeetCode.Level.HARD,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.SORT

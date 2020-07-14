@@ -1,6 +1,5 @@
 package org.gd.leetcode.p0304;
 
-import org.gd.leetcode.p0304.NumMatrix.Solution;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.parallel.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -69,15 +68,16 @@ class NumMatrixTest {
         );
     }
 
+    @SuppressWarnings("deprecation")
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("SumRegion")
     void test_SumRegion(Case aCase) throws Exception {
 
-        NumMatrix numMatrix = new NumMatrix(aCase.getMatrix());
-        Solution linearMatrixSolution = new NumMatrix.LinearMatrixSolution(aCase.getMatrix());
-        Solution matrixSolution = new NumMatrix.DynamicProgrammingSolution(aCase.getMatrix());
-        Solution quadSolution = new NumMatrix.QuadSolution(aCase.getMatrix());
+        Solution numMatrix = new NumMatrix(aCase.matrix());
+        Solution linearMatrixSolution = new EachRowSumSolution(aCase.matrix());
+        Solution matrixSolution = new DynamicProgrammingSolution(aCase.matrix());
+        Solution quadSolution = new QuadSolution(aCase.matrix());
 
         for (SubCase c : aCase) {
             c.doAssert(numMatrix);
