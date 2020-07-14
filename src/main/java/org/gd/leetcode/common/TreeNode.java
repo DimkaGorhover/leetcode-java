@@ -27,6 +27,10 @@ public class TreeNode {
         this.right = right;
     }
 
+    public static TreeNode of() {
+        return null;
+    }
+
     public static Builder builder(int val) {
         return new TreeNodeBuilder(val);
     }
