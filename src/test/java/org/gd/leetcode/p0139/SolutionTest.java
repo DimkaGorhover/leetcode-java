@@ -44,6 +44,7 @@ class SolutionTest {
         );
     }
 
+    @Timeout(2)
     @ParameterizedTest(name = "word = {0}, dict = {1}")
     @MethodSource("args")
     @DisplayName("WordBreak")

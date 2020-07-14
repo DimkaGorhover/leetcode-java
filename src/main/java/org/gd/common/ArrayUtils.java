@@ -71,6 +71,10 @@ public final class ArrayUtils {
         return Arrays.copyOf(arr, arr.length);
     }
 
+    public static int[] copy(int[] arr) {
+        return Arrays.copyOf(arr, arr.length);
+    }
+
     public static char[][] copy(char[][] matrix) {
         if (matrix == null)
             return null;
@@ -81,5 +85,17 @@ public final class ArrayUtils {
         return Arrays.stream(matrix)
                 .map(ArrayUtils::copy)
                 .toArray(char[][]::new);
+    }
+
+    public static int[][] copy(int[][] matrix) {
+        if (matrix == null)
+            return null;
+        if (matrix.length == 0)
+            return new int[0][];
+        if (matrix.length == 1)
+            return new int[][]{copy(matrix[0])};
+        return Arrays.stream(matrix)
+                .map(ArrayUtils::copy)
+                .toArray(int[][]::new);
     }
 }

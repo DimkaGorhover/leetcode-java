@@ -12,7 +12,7 @@ class DijkstraSolution implements ISolution {
         PriorityQueue<PathPoint> queue = new PriorityQueue<>();
         queue.add(PathPoint.start(grid));
         PathPoint point;
-        while ((point = queue.poll()) != null) {
+        while ((point = queue.poll()) != null && !Thread.currentThread().isInterrupted()) {
             if (point.isFinish())
                 return point.sum();
             point.down().ifPresent(queue::add);

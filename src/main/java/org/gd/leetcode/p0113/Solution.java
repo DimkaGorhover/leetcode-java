@@ -40,7 +40,7 @@ class Solution {
             traverse(root.left, new ArrayList<>(pathValues), pathSum, target);
 
         if (root.right != null)
-            traverse(root.right, pathValues, pathSum, target);
+            traverse(root.right, new ArrayList<>(pathValues), pathSum, target);
     }
 
     public List<List<Integer>> pathSum(TreeNode root, int sum) {

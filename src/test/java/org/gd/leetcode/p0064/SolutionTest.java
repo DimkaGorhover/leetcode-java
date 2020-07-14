@@ -1,5 +1,7 @@
 package org.gd.leetcode.p0064;
 
+import org.gd.common.ArrayUtils;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -7,7 +9,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -51,7 +52,7 @@ class SolutionTest {
 
         return solutions.flatMap(solution -> Stream.of(
 
-                Arguments.of(solution, grid0, 83),
+                Arguments.of(solution, ArrayUtils.copy(grid0), 83),
 
                 Arguments.of(solution, new int[][]{
                         {1, 2, 5},
@@ -66,6 +67,7 @@ class SolutionTest {
         ));
     }
 
+    @Timeout(2)
     @ParameterizedTest
     @MethodSource("args")
     void minPathSum(SolutionFactory solution, int[][] grid, int expected) {

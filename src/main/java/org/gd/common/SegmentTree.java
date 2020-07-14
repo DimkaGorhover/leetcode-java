@@ -42,7 +42,8 @@ public class SegmentTree {
         // Memory allocation
         tree = new int[arrayTreeSize];
 
-        construct(startIndex, startIndex + length - 1, 0);
+        if (this.length > 0)
+            construct(startIndex, startIndex + length - 1, 0);
     }
 
     /**

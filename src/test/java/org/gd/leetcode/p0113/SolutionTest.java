@@ -13,6 +13,8 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test for {@link Solution}
+ *
  * @see org.gd.leetcode.p0112.SolutionTest
  */
 @SuppressWarnings("JavadocReference")
@@ -27,7 +29,7 @@ class SolutionTest {
                                 .right(2)))
                 .right(TreeNode.builder(8)
                         .left(13)
-                        .right(TreeNode.builder(14)
+                        .right(TreeNode.builder(4)
                                 .left(5)
                                 .right(1)))
                 .build();

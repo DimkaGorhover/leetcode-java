@@ -3,8 +3,8 @@ package org.gd.leetcode.common;
 class TreeNodeBuilder implements TreeNode.Builder {
 
     private final int val;
-    private TreeNode left;
-    private TreeNode right;
+
+    private TreeNode left, right;
 
     TreeNodeBuilder(int val) {
         this.val = val;
