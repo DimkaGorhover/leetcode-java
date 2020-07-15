@@ -18,28 +18,28 @@ class SolutionTest {
                 Arguments.of(2, TreeNode.of(1, 4, 5, 4, 4, 5)),
 
                 Arguments.of(2, TreeNode.of(
-                                    5, 
-                                5, null, 
+                                    5,
+                                5, null,
                             5, null,
                         1, null,
                     3, null
                 )),
 
                 Arguments.of(2, TreeNode.of(
-                         5, 
-                     4,      5, 
+                         5,
+                     4,      5,
                     1, 1,   5, null
                 )),
 
-                Arguments.of(1, TreeNode.of(
-                         1, 
-                     4,      5, 
+                Arguments.of(2, TreeNode.of(
+                         1,
+                     4,      5,
                     4, 4,   5, null
                 )),
 
-                Arguments.of(1, TreeNode.of(
-                            1, 
-                        4,      5, 
+                Arguments.of(2, TreeNode.of(
+                            1,
+                        4,      5,
                     4,  4,      5, null
                 ))
 
@@ -50,17 +50,7 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("LeetCode #687: Longest Univalue Path")
     void test(int expected, TreeNode root) {
-
         int actual = new Solution().longestUnivaluePath(root);
-
-        if (expected != actual) {
-
-            System.err.println("expected = " + expected);
-            System.err.println("actual = " + actual);
-            System.err.println();
-            
-            fail();
-        }
-
+        assertEquals(expected, actual);
     }
 }

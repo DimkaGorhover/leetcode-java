@@ -185,6 +185,7 @@ class Codec {
                     s = -1;
                     readS = true;
                 } else if (isDigit(c)) {
+                    readS = true;
                     num = num * 10 + digit(c);
                 } else {
                     break;

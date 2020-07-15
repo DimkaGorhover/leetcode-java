@@ -11,9 +11,12 @@ import org.gd.leetcode.common.LeetCode;
  * @see org.gd.leetcode.p0152.Solution
  * @since 2020-06-30
  */
+@SuppressWarnings("JavadocReference")
 @Repeat("fucking dynamic programming")
 @LeetCode(
+        name = "Maximum SubArray",
         difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.DYNAMIC_PROGRAMMING,
                 LeetCode.Tags.ARRAY,
