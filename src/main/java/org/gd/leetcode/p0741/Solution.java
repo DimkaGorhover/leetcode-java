@@ -16,21 +16,22 @@ import org.gd.leetcode.common.LeetCode;
 )
 class Solution {
 
-    private SimplePoint[][] grid;
+    private Point[][] grid;
     private int rows, cols;
 
     private void reset(int[][] grid) {
         rows = grid.length;
         cols = grid[0].length;
-        this.grid = new SimplePoint[rows][cols];
+        this.grid = new Point[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                this.grid[row][col] = new SimplePoint(grid[row][col]);
+                this.grid[row][col] = Point.of(row, col, grid[row][col]);
             }
         }
     }
 
     private int forward() {
+
         for (int row = 1; row < rows && !grid[row][0].isBlock(); row++)
             grid[row][0].addPrev(grid[row - 1][0]);
 
@@ -43,12 +44,13 @@ class Solution {
                 if (grid[row][col].isBlock())
                     continue;
 
-                final SimplePoint up = grid[row - 1][col];
-                final SimplePoint left = grid[row][col - 1];
+                final Point up = grid[row - 1][col];
+                final Point left = grid[row][col - 1];
 
                 if (up.isBlock()) {
-                    if (!left.isBlock())
+                    if (!left.isBlock()) {
                         grid[row][col].addPrev(left);
+                    }
                 } else if (left.isBlock()) {
                     grid[row][col].addPrev(up);
                 } else if (up.value() > left.value()) {
@@ -59,53 +61,57 @@ class Solution {
             }
         }
 
-        SimplePoint point = grid[rows - 1][cols - 1];
-        int value = point.pathSum();
-        point.resetAll();
-        return value;
+        Point point = grid[rows - 1][cols - 1];
+        if (point.isValid()) {
+            int value = point.pathSum();
+            point.erase();
+            return value;
+        }
+
+        return -1;
     }
 
     private int backward() {
 
-        for (int row = rows - 2; row >= 0 && !grid[row][0].isBlock(); row--)
-            grid[row][0].addPrev(grid[row + 1][0]);
+        for (int row = rows - 2; row >= 0 && !grid[row][cols - 1].isBlock(); row--)
+            grid[row][cols - 1].addPrev(grid[row + 1][cols - 1]);
 
-        for (int col = cols - 2; col >= 0 && !grid[0][col].isBlock(); col--)
-            grid[0][col].addPrev(grid[0][col + 1]);
+        for (int col = cols - 2; col >= 0 && !grid[rows - 1][col].isBlock(); col--)
+            grid[rows - 1][col].addPrev(grid[rows - 1][col + 1]);
 
         for (int row = rows - 2; row >= 0; row--) {
             for (int col = cols - 2; col >= 0; col--) {
-                if (grid[row][col].isBlock())
+                Point current = grid[row][col];
+                current.reset();
+                if (current.isBlock())
                     continue;
 
-                SimplePoint right = grid[row][col + 1];
-                SimplePoint down = grid[row + 1][col];
+                Point right = grid[row][col + 1];
+                Point down = grid[row + 1][col];
                 if (right.isBlock()) {
                     if (!down.isBlock())
-                        grid[row][col].addPrev(down);
+                        current.addPrev(down);
                 } else if (down.isBlock()) {
-                    grid[row][col].addPrev(right);
+                    current.addPrev(right);
                 } else if (right.value() > down.value()) {
-                    grid[row][col].addPrev(right);
+                    current.addPrev(right);
                 } else {
-                    grid[row][col].addPrev(down);
+                    current.addPrev(down);
                 }
             }
         }
 
-        SimplePoint point = grid[0][0];
-        int value = point.pathSum();
-        point.resetAll();
-        return value;
+        return grid[0][0].pathSum();
     }
 
     public int cherryPickup(int[][] intsGrid) {
         reset(intsGrid);
 
-        int forward = forward();
-        int backward = backward();
+        final int forward = forward();
+        if (forward == -1)
+            return 0;
 
-        return forward + backward;
+        return forward + backward();
     }
 
 }

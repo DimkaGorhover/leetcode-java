@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,14 +16,31 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover D.
  * @since 2020-07-16.07.2020
  */
+@DisplayName("LeetCode #741: Cherry Pickup")
 class SolutionTest {
 
-    private static Stream<Arguments> args() {
-        return Stream.of(
+    private static List<Arguments> args() {
+        return List.of(
+
+                Arguments.of(new int[][]{
+                        {1, 1, 1, 1, 0, 0, 0},
+                        {0, 0, 0, 1, 0, 0, 0},
+                        {0, 0, 0, 1, 0, 0, 1},
+                        {1, 0, 0, 1, 0, 0, 0},
+                        {0, 0, 0, 1, 0, 0, 0},
+                        {0, 0, 0, 1, 0, 0, 0},
+                        {0, 0, 0, 1, 1, 1, 1}}, 15),
+
+                Arguments.of(new int[][]{
+                        {1, 1, -1},
+                        {1, -1, 1},
+                        {-1, 1, 1}}, 0),
+
                 Arguments.of(new int[][]{
                         {0, 1, -1},
                         {1, 0, -1},
                         {1, 1, 1}}, 5),
+
                 Arguments.of(new int[][]{
                         {0, 1, -1, 1},
                         {1, 0, -1, 1},

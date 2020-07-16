@@ -357,7 +357,7 @@ public final class Commons {
     }
 
     public static int digitsCount(int num) {
-        return num == 0 ? 1 : (int) (Math.log10(Math.abs(num)) + 1);
+        return num == 0 ? 1 : (int) (Math.log10(Math.abs(num)) + (num < 0 ? 2 : 1));
     }
 
     public static int maxDigitsCount(int[] arr) {
