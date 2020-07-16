@@ -11,7 +11,7 @@ import java.util.Map;
  */
 @LeetCode(
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.DEPTH_FIRST_SEARCH,
                 LeetCode.Tags.BREADTH_FIRST_SEARCH,
