@@ -1,4 +1,4 @@
-package org.gd.hackerrank.other;
+package org.gd.hackerrank.other.array;
 
 import org.gd.hackerrank.common.HackerRank;
 
@@ -7,6 +7,8 @@ import org.gd.hackerrank.common.HackerRank;
  */
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class ArraysLeftRotation {
+
+    private ArraysLeftRotation() { throw new UnsupportedOperationException(); }
 
     static int[] rotLeft(int[] array, int rotationCount) {
 
@@ -19,7 +21,7 @@ class ArraysLeftRotation {
         return systemArrayCopy(array, rotationCount);
     }
 
-    static int[] systemArrayCopy(int[] arr, int rotationCount) {
+    private static int[] systemArrayCopy(int[] arr, int rotationCount) {
 
         int[] newArr = new int[arr.length];
 

@@ -1,27 +1,18 @@
-package org.gd.hackerrank.other;
+package org.gd.hackerrank.other.array;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.gd.common.ArrayUtils.copy;
+import static org.gd.common.CollectionUtils.listOf;
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Arrays: Left Rotation")
 class ArraysLeftRotationTest {
-
-    private static List<Integer> toList(int[] arr) {
-        if (arr == null || arr.length == 0)
-            return Collections.emptyList();
-        if (arr.length == 1)
-            return Collections.singletonList(arr[0]);
-        return Arrays.stream(arr).boxed().collect(Collectors.toList());
-    }
 
     private static Stream<Arguments> args() {
         return Stream.of(
@@ -35,8 +26,8 @@ class ArraysLeftRotationTest {
     @DisplayName("Arrays: Left Rotation")
     void rotLeft(int[] input, int r, int[] expected) {
 
-        int[] actual = ArraysLeftRotation.rotLeft(input, r);
+        int[] actual = ArraysLeftRotation.rotLeft(copy(input), r);
 
-        assertEquals(toList(expected), toList(actual));
+        assertEquals(listOf(expected), listOf(actual));
     }
 }

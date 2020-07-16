@@ -12,6 +12,8 @@ import org.gd.hackerrank.common.HackerRank;
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class TreeInorderTraversal {
 
+    private TreeInorderTraversal() { throw new UnsupportedOperationException(); }
+
     public static void inOrder(Node root) {
         if (root == null)
             return;

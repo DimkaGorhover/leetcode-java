@@ -12,6 +12,8 @@ import org.gd.hackerrank.common.HackerRank;
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class TreePreorderTraversal {
 
+    private TreePreorderTraversal() { throw new UnsupportedOperationException(); }
+
     public static void preOrder(Node root) {
         if (root == null) return;
         System.out.print(root.data + " ");

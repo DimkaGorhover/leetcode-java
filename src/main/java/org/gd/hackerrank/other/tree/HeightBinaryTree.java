@@ -8,8 +8,11 @@ import org.gd.hackerrank.common.HackerRank;
  * @author Horkhover D.
  * @since 2020-07-15
  */
+@SuppressWarnings("unused")
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class HeightBinaryTree {
+
+    private HeightBinaryTree() { throw new UnsupportedOperationException(); }
 
     private static int height0(Node root) {
         return root == null ? 0 : 1 + Math.max(height0(root.left), height0(root.right));

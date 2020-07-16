@@ -13,6 +13,8 @@ import java.util.StringJoiner;
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class LevelOrderTraversal {
 
+    private LevelOrderTraversal() { throw new UnsupportedOperationException(); }
+
     private static int height(Node root) {
         return root == null ? 0 : 1 + Math.max(height(root.left), height(root.right));
     }

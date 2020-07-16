@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * https://www.hackerrank.com/challenges/missing-numbers/problem
+ * https://www.hackerrank.com/challenges/missing-numbers/
  *
  * @since 2019-09-23
  */
@@ -16,8 +16,8 @@ import java.util.TreeSet;
 class MissingNumbers {
 
     private static final java.util.function.BiFunction<Integer, Integer, Integer>
-            INC = (key, count) -> count == null ? 1 : (count + 1),
-            DEC = (key, count) -> count == null ? -1 : (count - 1);
+            INC = (key, count) -> (count == null ? 0 : count) + 1,
+            DEC = (key, count) -> (count == null ? 0 : count) - 1;
 
     private MissingNumbers() { throw new UnsupportedOperationException(); }
 

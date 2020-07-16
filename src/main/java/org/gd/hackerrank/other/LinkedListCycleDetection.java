@@ -17,10 +17,10 @@ import java.util.Set;
 @SuppressWarnings("JavadocReference")
 @HackerRank(
         difficulty = HackerRank.Level.MEDIUM,
-        tags = {
-                LeetCode.Tags.LINKED_LIST
-        })
+        tags = LeetCode.Tags.LINKED_LIST)
 class LinkedListCycleDetection {
+
+    private LinkedListCycleDetection() { throw new UnsupportedOperationException(); }
 
     static boolean hasCycle(SinglyLinkedListNode head) {
         for (Set<SinglyLinkedListNode> nodesSeen = new HashSet<>(); head != null; head = head.next) {
