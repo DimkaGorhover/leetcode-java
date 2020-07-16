@@ -3,9 +3,8 @@ package org.gd.leetcode.p0133;
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * https://leetcode.com/problems/clone-graph/
@@ -21,47 +20,21 @@ import java.util.Set;
 )
 class Solution {
 
-    private final Set<Integer> visited = new HashSet<>();
+    private final Map<Integer, Node> visited = new HashMap<>();
 
-    public Node cloneGraph(Node node) {
+    private Node clone0(Node node) {
+        Node newNode = visited.get(node.val);
+        if (newNode != null)
+            return newNode;
 
-        if (visited.contains(node.val))
-            return node;
-
-        Node newNode = new Node(node.val);
-        newNode.neighbors.addAll(node.neighbors);
-
-        for (Node neighbor : newNode.neighbors) {
-
-            int position = neighbor.neighbors.indexOf(node);
-            neighbor.neighbors.set(position, newNode);
-            visited.add(newNode.val);
-            cloneGraph(neighbor);
-        }
+        visited.put(node.val, newNode = new Node(node.val, new ArrayList<>(node.neighbors.size())));
+        for (Node neighbor : node.neighbors)
+            newNode.neighbors.add(cloneGraph(neighbor));
 
         return newNode;
     }
 
-    static class Node {
-        public int val;
-        public List<Node> neighbors;
-
-        Node() {
-            this(0);
-        }
-
-        Node(int _val) {
-            this(_val, new ArrayList<>());
-        }
-
-        Node(int _val, ArrayList<Node> _neighbors) {
-            val = _val;
-            neighbors = _neighbors;
-        }
-
-        @Override
-        public String toString() {
-            return "" + val;
-        }
+    public Node cloneGraph(Node node) {
+        return node == null ? null : clone0(node);
     }
 }
