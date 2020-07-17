@@ -24,5 +24,5 @@ public @interface HackerRank {
     LeetCode.Tags[] tags() default {};
 
     @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-    enum Level {EASY, MEDIUM, HARD, ADVANCED}
+    enum Level {EASY, MEDIUM, HARD, ADVANCED, EXPERT}
 }
