@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-17
  */
+@DisplayName("LeetCode #494: Target Sum")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

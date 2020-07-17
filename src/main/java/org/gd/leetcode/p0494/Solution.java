@@ -23,7 +23,7 @@ class Solution {
     private int target;
     private int[] nums;
 
-    private int find(int sum, int index) {
+    private int find(final int sum, final int index) {
 
         if (index == nums.length)
             return sum == target ? 1 : 0;
@@ -31,19 +31,16 @@ class Solution {
         if (memo[index][sum + 1000] != null)
             return memo[index][sum + 1000];
 
-        final int num = nums[index];
-        int count0 = find(sum + num, index + 1);
-        int count1 = find(sum - num, index + 1);
+        final int count0 = find(sum + nums[index], index + 1);
+        final int count1 = find(sum - nums[index], index + 1);
 
-        memo[index][sum + 1000] = count0 + count1;
-
-        return count0 + count1;
+        return memo[index][sum + 1000] = count0 + count1;
     }
 
-    public int findTargetSumWays(int[] nums, int S) {
+    public int findTargetSumWays(int[] nums, int target) {
         this.nums = nums;
         memo = new Integer[nums.length][2002];
-        target = S;
+        this.target = target;
 
         return find(0, 0);
     }
