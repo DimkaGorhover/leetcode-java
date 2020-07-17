@@ -9,7 +9,7 @@ import org.gd.leetcode.common.TreeNode;
 @LeetCode(
         name = "Univalued Binary Tree",
         difficulty = LeetCode.Level.EASY,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.TREE
         }
