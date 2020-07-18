@@ -1,5 +1,6 @@
-package org.gd.leetcode.p0151;
+package org.gd.leetcode.p0662;
 
+import org.gd.leetcode.common.TreeNode;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,22 +12,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for {@link Solution}
+ *
+ * @author Horkhover Dmytro
+ * @since 2020-07-18
  */
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of("the sky is blue", "blue is sky the"),
-                Arguments.of("  hello world!  ", "world! hello"),
-                Arguments.of("a good   example", "example good a")
+                Arguments.of(TreeNode.of(1, 3, 2, 5, 3, null, 9), 4)
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeerCode #151: Reverse Words in a String")
-    void reverseWords(String input, String expected) {
-        String actual = new Solution().reverseWords(input);
-        assertEquals(expected, actual);
+    @DisplayName("WidthOfBinaryTree")
+    void test_WidthOfBinaryTree(TreeNode root, int expected) {
+        assertEquals(expected, new Solution().widthOfBinaryTree(root));
     }
 }

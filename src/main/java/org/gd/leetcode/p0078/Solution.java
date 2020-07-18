@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * https://leetcode.com/problems/subsets/submissions/
+ * https://leetcode.com/problems/subsets/
  */
 @LeetCode(
         name = "Subsets",
