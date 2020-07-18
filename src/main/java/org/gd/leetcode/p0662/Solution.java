@@ -4,7 +4,6 @@ import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * https://leetcode.com/problems/maximum-width-of-binary-tree/
@@ -22,37 +21,40 @@ import java.util.List;
 )
 class Solution {
 
-    private int level;
-    private ArrayList<TreeNode> levelNodes;
+    private int maxWidth;
+    private ArrayList<ArrayList<TreeNode>> lines;
 
     private void reset() {
-        level = 0;
-        levelNodes = new ArrayList<>();
+        maxWidth = 0;
+        lines = new ArrayList<>();
+    }
+
+    private static int count(ArrayList<TreeNode> line) {
+        int size = line.size();
+        int i = 0;
+        int j = size - 1;
+        while (i < size && line.get(i) == null)
+            i++;
+        while (j > 0 && line.get(j) == null)
+            j--;
+        return j - i + 1;
+    }
+
+    private void add(TreeNode node, int level) {
+        if (lines.size() == level) {
+            lines.add(new ArrayList<>());
+        }
+        ArrayList<TreeNode> line = lines.get(level);
+        line.add(node);
+        maxWidth = Math.max(maxWidth, count(line));
     }
 
     private void traverse(TreeNode node, final int level) {
-        if (this.level == level) {
-            levelNodes.add(node);
-        } else if (this.level < level) {
-            this.level = level;
-            levelNodes = new ArrayList<>();
-            levelNodes.add(node);
-        }
+        add(node, level);
         if (node != null && (node.left != null || node.right != null)) {
             traverse(node.left, level + 1);
             traverse(node.right, level + 1);
         }
-    }
-
-    private int count() {
-        int size = levelNodes.size();
-        int i = 0;
-        int j = size - 1;
-        while (i < size && levelNodes.get(i) == null)
-            i++;
-        while (j > 0 && levelNodes.get(j) == null)
-            j--;
-        return j - i + 1;
     }
 
     public int widthOfBinaryTree(TreeNode root) {
@@ -60,6 +62,21 @@ class Solution {
             return 0;
         reset();
         traverse(root, 0);
-        return count();
+        return maxWidth;
+    }
+
+    static class Line {
+
+        private int count = 0;
+
+        void add(TreeNode node) {
+            if (count == 0) {
+                if (node != null) {
+                    count++;
+                }
+            } else {
+                count++;
+            }
+        }
     }
 }
