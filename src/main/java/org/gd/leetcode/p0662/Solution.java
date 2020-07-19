@@ -19,37 +19,24 @@ import org.gd.leetcode.common.TreeNode;
 )
 class Solution {
 
-    private TreeNode[][] lines;
+    private Line[] lines;
+    private int maxWidth;
 
     private static int height(TreeNode node) {
         return node == null ? 0 : 1 + Math.max(height(node.left), height(node.right));
     }
 
-    private static int count(TreeNode[] line) {
-        final int size = line.length;
-        int i = 0;
-        while (i < size && line[i] == null)
-            i++;
-        int j = size - 1;
-        while (j >= i && line[j] == null)
-            j--;
-        return j - i + 1;
-    }
-
-    private void reset(TreeNode node) {
-        lines = new TreeNode[height(node)][];
-        int capacity = 1;
-        for (int i = 0; i < lines.length; i++) {
-            lines[i] = new TreeNode[capacity];
-            capacity *= 2;
-        }
-    }
-
     private void traverse(TreeNode node, final int level, final int pos) {
+        if (node == null)
+            return;
 
-        lines[level][pos] = node;
+        Line line = lines[level];
+        if (line == null)
+            lines[level] = line = new Line();
 
-        if (node != null && (node.left != null || node.right != null)) {
+        line.add(node, pos);
+
+        if (node.left != null || node.right != null) {
             traverse(node.left, level + 1, pos * 2);
             traverse(node.right, level + 1, pos * 2 + 1);
         }
@@ -59,15 +46,27 @@ class Solution {
         if (root == null)
             return 0;
 
-        reset(root);
+        lines = new Line[height(root)];
 
         traverse(root, 0, 0);
 
-        int max = 0;
-        for (TreeNode[] line : lines)
-            max = Math.max(max, count(line));
+        return maxWidth;
 
-        return max;
+    }
 
+    class Line {
+
+        private int left = Integer.MAX_VALUE;
+        private int right = Integer.MIN_VALUE;
+
+        void add(TreeNode node, int pos) {
+            if (node != null) {
+                left = Math.min(left, pos);
+                right = Math.max(right, pos);
+                maxWidth = Math.max(maxWidth, length());
+            }
+        }
+
+        int length() { return right - left + 1; }
     }
 }
