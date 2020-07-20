@@ -24,6 +24,8 @@ class SolutionTest {
                 .of(new TwoListsSolutionFactory(), new CustomSolutionFactory())
                 .flatMap(sf -> Stream.of(
 
+                        Arguments.of(sf, TreeNode.of(1,1,1,1,1,1,1,null,null,null,1,null,null,null,null,2,2,2,2,2,2,2,null,2,null,null,2,null,2), 8),
+
                         Arguments.of(sf, TreeNode.of(1, 1, 1, 1, null, null, 1, 1, null, null, 1), 8),
 
                         Arguments.of(sf, TreeNode.of(1, 1, 1, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1,
@@ -58,7 +60,10 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("WidthOfBinaryTree")
     void test_WidthOfBinaryTree(SolutionFactory sf, TreeNode root, int expected) {
-        Solution solution = sf.create();
-        assertEquals(expected, solution.widthOfBinaryTree(root));
+//        Solution solution = sf.create();
+
+
+        assertEquals(expected, new TwoListsSolution().widthOfBinaryTree(root));
+        assertEquals(expected, new CustomSolution().widthOfBinaryTree(root));
     }
 }

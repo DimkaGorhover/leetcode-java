@@ -12,7 +12,7 @@ import org.gd.leetcode.common.TreeNode;
 @LeetCode(
         name = "Maximum Width of Binary Tree",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.TREE
         }

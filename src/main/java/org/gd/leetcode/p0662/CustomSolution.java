@@ -22,9 +22,9 @@ class CustomSolution implements Solution {
 
         Line line = lines[level];
         if (line == null)
-            lines[level] = line = new Line();
+            lines[level] = line = new Line(pos);
 
-        line.add(pos);
+        maxWidth = Math.max(maxWidth, line.calcLength(pos));
 
         traverse(node.left, level + 1, pos * 2);
         traverse(node.right, level + 1, pos * 2 + 1);
@@ -32,37 +32,19 @@ class CustomSolution implements Solution {
 
     @Override
     public int widthOfBinaryTree(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null)
+            return 0;
         lines = new Line[height(root)];
         traverse(root, 0, 1);
-
-        System.out.println(lines[lines.length - 1]);
-
-        return Math.toIntExact(maxWidth);
-
+        return maxWidth;
     }
 
-    private static int length(int left, int right) {
-        if (left > right)
-            return length(right, left);
+    static class Line {
 
-        return right - left + 1;
-    }
+        private final int left;
 
-    class Line {
+        Line(int left) { this.left = left; }
 
-        private int left = Integer.MAX_VALUE;
-        private int right = Integer.MIN_VALUE;
-
-        void add(int pos) {
-            left = Math.min(left, pos);
-            right = Math.max(right, pos);
-            maxWidth = Math.max(maxWidth, length(left, right));
-        }
-
-        @Override
-        public String toString() {
-            return String.format("(%d : %d)", left, right);
-        }
+        int calcLength(int pos) { return pos - left + 1; }
     }
 }

@@ -5,8 +5,6 @@ import org.gd.leetcode.common.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.gd.common.CollectionUtils.last;
-
 /**
  * @author Horkhover Dmytro
  * @see CustomSolution
@@ -22,11 +20,7 @@ class TwoListsSolution implements Solution {
         start = new ArrayList<>();
         end = new ArrayList<>();
 
-        int result = dfs(root, 0, 1);
-
-        System.out.printf("%d == %d%n", last(start), last(end));
-
-        return result;
+        return dfs(root, 0, 1);
     }
 
     private int dfs(TreeNode root, final int level, final int pos) {
