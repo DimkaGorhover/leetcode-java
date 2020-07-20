@@ -19,33 +19,46 @@ import static org.junit.jupiter.api.Assertions.*;
 class SolutionTest {
 
     private static Stream<Arguments> args() {
-        return Stream.of(
 
-                Arguments.of(TreeNode.of(
-                        0, 0, 0, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
-                        null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
-                        null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
-                        0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
-                        null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
-                        null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
-                        0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
-                        null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
-                        null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
-                        0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
-                        null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
-                        null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
-                        0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null), 2),
+        return Stream
+                .of(new TwoListsSolutionFactory(), new CustomSolutionFactory())
+                .flatMap(sf -> Stream.of(
 
-                Arguments.of(TreeNode.of(1, 1, 1, 1, null, null, 1, 1, null, null, 1), 8),
-                Arguments.of(TreeNode.of(1, 3, 2, 5), 2),
-                Arguments.of(TreeNode.of(1, 3, 2, 5, 3, null, 9), 4)
-        );
+                        Arguments.of(sf, TreeNode.of(1, 1, 1, 1, null, null, 1, 1, null, null, 1), 8),
+
+                        Arguments.of(sf, TreeNode.of(1, 1, 1, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1,
+                                null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null,
+                                1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1,
+                                null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null,
+                                1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1,
+                                null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, null, 1, 1, null, 1, null, 1, null,
+                                1, null, 1, null), 2_147_483_645),
+
+                        Arguments.of(sf, TreeNode.of(
+                                0, 0, 0, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
+                                null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
+                                null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
+                                0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
+                                null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
+                                null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
+                                0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
+                                null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
+                                null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
+                                0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0,
+                                null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null,
+                                null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null, null,
+                                0, 0, null, null, 0, 0, null, null, 0, 0, null, null, 0, 0, null), 2),
+
+                        Arguments.of(sf, TreeNode.of(1, 3, 2, 5), 2),
+                        Arguments.of(sf, TreeNode.of(1, 3, 2, 5, 3, null, 9), 4)
+                ));
     }
 
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("WidthOfBinaryTree")
-    void test_WidthOfBinaryTree(TreeNode root, int expected) {
-        assertEquals(expected, new Solution().widthOfBinaryTree(root));
+    void test_WidthOfBinaryTree(SolutionFactory sf, TreeNode root, int expected) {
+        Solution solution = sf.create();
+        assertEquals(expected, solution.widthOfBinaryTree(root));
     }
 }
