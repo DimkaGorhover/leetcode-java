@@ -11,7 +11,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "Ugly Number II",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.MATH,
                 LeetCode.Tags.DYNAMIC_PROGRAMMING,

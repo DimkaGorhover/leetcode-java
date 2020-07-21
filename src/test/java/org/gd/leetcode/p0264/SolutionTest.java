@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("LeetCode 264: Ugly Number II")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -24,16 +25,15 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     void nthUglyNumber(int n, int expected) {
-        assertEquals(expected, new DPSolution().nthUglyNumber(n));
         assertEquals(expected, new BigCacheSolution().nthUglyNumber(n));
+        assertEquals(expected, new DPSolution().nthUglyNumber(n));
     }
 
     @Test
     void testAll() {
         for (int n = -100; n <= 1690; n++) {
             int expected = new BigCacheSolution().nthUglyNumber(n);
-            int actual = new DPSolution().nthUglyNumber(n);
-            assertEquals(expected, actual);
+            assertEquals(expected, new DPSolution().nthUglyNumber(n));
         }
     }
 }
