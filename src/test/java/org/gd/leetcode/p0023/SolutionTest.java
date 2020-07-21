@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -24,34 +25,53 @@ class SolutionTest {
     private static ListNode[] copy(ListNode[] lists) {
         ListNode[] newLists = new ListNode[lists.length];
         for (int i = 0; i < lists.length; i++) {
-            newLists[i] = lists[i].copy();
+            newLists[i] = ListNode.copyRecursive(lists[i]);
         }
         return newLists;
     }
 
     private static Stream<Arguments> args() {
-        return Stream.of(
-                Arguments.of(
-                        new ListNode[]{
-                                ListNode.of("1->4->5"),
-                                ListNode.of("1->3->4"),
-                                ListNode.of("2->6")
-                        },
-                        ListNode.of("1->1->2->3->4->4->5->6"))
-        );
+
+        return Stream.of(new BigHeapSolutionFactory(), new HeapSolutionFactory(), new OopHeapSolutionFactory())
+                .flatMap(sf -> Stream.of(
+
+                        Arguments.of(sf,
+                                new ListNode[]{
+                                        ListNode.of("1->4->5"),
+                                        null,
+                                        ListNode.of("2->6")
+                                },
+                                ListNode.of("1->2->4->5->6")),
+
+                        Arguments.of(sf,
+                                new ListNode[]{
+                                        ListNode.of("1->4->5"),
+                                        ListNode.of("1->3->4"),
+                                        ListNode.of("2->6")
+                                },
+                                ListNode.of("1->1->2->3->4->4->5->6"))
+                ));
+    }
+
+    @SuppressWarnings("deprecation")
+    private static void validate(ListNode[] lists) {
+        requireNonNull(lists, "\"lists\" cannot be null");
+        for (int i = 0, length = lists.length; i < length; i++) {
+            ListNode list = lists[i];
+            if (list != null && !list.isSorted())
+                throw new IllegalArgumentException(String.format("list %d is not sorted", i));
+        }
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("MergeKLists")
-    void test_MergeKLists(ListNode[] lists, ListNode expected) {
-        assertEquals(expected, new Solution().mergeKLists(copy(lists)));
-    }
+    void test_MergeKLists(SolutionFactory sf, ListNode[] lists, ListNode expected) {
 
-    @ParameterizedTest
-    @MethodSource("args")
-    @DisplayName("PriorityQ")
-    void test_PriorityQ(ListNode[] lists, ListNode expected) {
-        assertEquals(expected, new ReduceSolution().mergeKLists(copy(lists)));
+        validate(lists);
+
+        Solution solution = sf.create();
+        ListNode actual = solution.mergeKLists(copy(lists));
+
+        assertEquals(expected, actual);
     }
 }

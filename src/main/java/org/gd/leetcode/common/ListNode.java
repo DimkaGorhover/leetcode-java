@@ -77,11 +77,14 @@ public class ListNode {
         return copyRecursive(this);
     }
 
-    private static ListNode copyRecursive(ListNode head) {
+    @Deprecated
+    public static ListNode copyRecursive(ListNode head) {
         if (head == null)
             return null;
+
         if (hasCycle(head))
             throw new IllegalStateException("list has cycles");
+
         ListNode node = new ListNode(head.val);
         node.next = copyRecursive(head.next);
         return node;
@@ -153,6 +156,41 @@ public class ListNode {
             other = other.next;
         }
 
+        return true;
+    }
+
+    @Deprecated
+    public boolean isSorted() {
+        return isAscendSorted() || isDescendSorted();
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    @Deprecated
+    public boolean isDescendSorted() {
+        ListNode left = this;
+        ListNode right = this.next;
+
+        while (right != null) {
+            if (right.val < left.val)
+                return false;
+            left = right;
+            right = right.next;
+        }
+        return true;
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    @Deprecated
+    public boolean isAscendSorted() {
+        ListNode left = this;
+        ListNode right = this.next;
+
+        while (right != null) {
+            if (right.val > left.val)
+                return false;
+            left = right;
+            right = right.next;
+        }
         return true;
     }
 
