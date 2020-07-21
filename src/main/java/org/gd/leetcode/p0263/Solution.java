@@ -21,9 +21,17 @@ import org.gd.leetcode.common.LeetCode;
  * Input: 14 Output: false Explanation: 14 is not ugly since it includes another prime factor 7. Note:
  *
  * 1 is typically treated as an ugly number. Input is within the 32-bit signed integer range: [−2**31,  2**31 − 1].
+ *
+ * @see org.gd.leetcode.p0264.Solution
  */
+@SuppressWarnings("JavadocReference")
 @Repeat("it's not my solution =( ")
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.MATH)
+@LeetCode(
+        name = "Ugly Number",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.MATH
+)
 class Solution {
 
     public boolean isUgly(int num) {
