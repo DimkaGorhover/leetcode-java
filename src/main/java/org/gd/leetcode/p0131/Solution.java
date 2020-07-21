@@ -9,8 +9,10 @@ import java.util.List;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-13.07.2020
+ * @see org.gd.leetcode.p0132.Solution
+ * @since 2020-07-13
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Palindrome Partitioning",
         difficulty = LeetCode.Level.MEDIUM,
@@ -23,6 +25,7 @@ class Solution {
 
     private List<List<String>> result;
 
+    @SuppressWarnings("DuplicatedCode")
     private static boolean isPalindrome(String word) {
         final int length = word.length();
         if (length == 0)
