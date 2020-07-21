@@ -1,11 +1,11 @@
 package org.gd.common;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 /**
@@ -77,5 +77,26 @@ public final class CollectionUtils {
         return Arrays.stream(ints)
                 .map(innerInts -> Arrays.stream(innerInts).boxed().collect(toUnmodifiableList()))
                 .collect(toUnmodifiableList());
+    }
+
+    public static <T> T last(Iterable<T> collection) {
+        requireNonNull(collection, "\"collection\" cannot be null");
+
+        if (collection instanceof Deque)
+            return ((Deque<T>) collection).peekLast();
+
+        if (collection instanceof List) {
+            List<T> list = (List<T>) collection;
+            return (list).get(list.size() - 1);
+        }
+
+        if (collection instanceof SortedSet)
+            return ((SortedSet<T>) collection).last();
+
+        Iterator<T> iterator = collection.iterator();
+        if (iterator.hasNext())
+            return iterator.next();
+
+        throw new IllegalArgumentException("collection is empty");
     }
 }
