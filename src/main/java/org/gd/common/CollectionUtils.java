@@ -81,27 +81,22 @@ public final class CollectionUtils {
 
     public static <T> T last(Iterable<T> collection) {
         requireNonNull(collection, "\"collection\" cannot be null");
-        if (collection instanceof List)
-            return last((List<T>) collection);
+
+        if (collection instanceof Deque)
+            return ((Deque<T>) collection).peekLast();
+
+        if (collection instanceof List) {
+            List<T> list = (List<T>) collection;
+            return (list).get(list.size() - 1);
+        }
+
+        if (collection instanceof SortedSet)
+            return ((SortedSet<T>) collection).last();
 
         Iterator<T> iterator = collection.iterator();
         if (iterator.hasNext())
             return iterator.next();
 
         throw new IllegalArgumentException("collection is empty");
-    }
-
-    public static <T> T last(List<T> list) {
-        requireNonNull(list, "\"list\" cannot be null");
-        if (list.isEmpty())
-            throw new IllegalArgumentException("list is empty");
-
-        if (list instanceof RandomAccess)
-            return list.get(list.size() - 1);
-
-        if (list instanceof Deque)
-            return ((LinkedList<T>) list).peekLast();
-
-        return list.get(list.size() - 1);
     }
 }
