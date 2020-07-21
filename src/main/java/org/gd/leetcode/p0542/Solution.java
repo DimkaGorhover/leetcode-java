@@ -22,8 +22,6 @@ class Solution {
     private int[][] matrix;
     private int rows;
     private int cols;
-    private Set<Point> visited = new HashSet<>();
-    private Deque<Point> q;
 
     public int[][] updateMatrix(int[][] matrix) {
         if (matrix == null || matrix.length == 0)
@@ -32,35 +30,21 @@ class Solution {
         this.matrix = matrix;
         rows = matrix.length;
         cols = matrix[0].length;
-        visited = new HashSet<>();
-        q = new LinkedList<>();
+        Set<Point> visited = new HashSet<>();
+        Deque<Point> q = new LinkedList<>();
 
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-
-                Point point = new Point(row, col);
-                if (matrix[row][col] == 0) {
-                    visited.add(point);
-                } else {
-                    q.add(point);
-                }
-            }
-        }
-
-
+        for (int row = 0; row < rows; row++)
+            for (int col = 0; col < cols; col++)
+                (matrix[row][col] == 0 ? visited : q).add(new Point(row, col));
 
         while (!q.isEmpty()) {
 
             Point point = q.poll();
-            if (visited.contains(point))
-                continue;
-
+            if (visited.contains(point)) continue;
             int min = Integer.MAX_VALUE;
+            ArrayList<Point> next = new ArrayList<>();
 
-            ArrayList<Point> next = new ArrayList<>(4);
-
-            if (min > 0 && point.hasUp()) {
-                Point prev = point.up();
+            for (Point prev : point.neighbours()) {
                 if (!visited.contains(prev)) {
                     next.add(prev);
                 } else {
@@ -68,38 +52,11 @@ class Solution {
                 }
             }
 
-            if (min > 0 && point.hasDown()) {
-                Point prev = point.down();
-                if (!visited.contains(prev)) {
-                    next.add(prev);
-                } else {
-                    min = Math.min(min, prev.value());
-                }
-            }
-
-            if (min > 0 && point.hasLeft()) {
-                Point prev = point.left();
-                if (!visited.contains(prev)) {
-                    next.add(prev);
-                } else {
-                    min = Math.min(min, prev.value());
-                }
-            }
-
-            if (min > 0 && point.hasRight()) {
-                Point prev = point.right();
-                if (!visited.contains(prev)) {
-                    next.add(prev);
-                } else {
-                    min = Math.min(min, prev.value());
-                }
-            }
-
-            if (min == Integer.MIN_VALUE) {
-
+            if (min == Integer.MAX_VALUE) {
                 q.addFirst(point);
-                q.addFirst(next.get(0));
-
+                for (Point nextPoint : next) {
+                    q.addFirst(nextPoint);
+                }
             } else {
                 point.set(min + point.value());
                 visited.add(point);
@@ -128,27 +85,12 @@ class Solution {
 
         List<Point> neighbours() {
             ArrayList<Point> points = new ArrayList<>(4);
-            if (row > 0)
-                points.add(new Point(row - 1, col));
-
+            if (row > 0) points.add(new Point(row - 1, col));
+            if (col > 0) points.add(new Point(row, col - 1));
+            if (row < rows - 1) points.add(new Point(row + 1, col));
+            if (col < cols - 1) points.add(new Point(row, col + 1));
             return points;
         }
-
-        boolean hasUp() { return row > 0; }
-
-        Point up() { return new Point(row - 1, col); }
-
-        boolean hasLeft() { return col > 0; }
-
-        Point left() { return new Point(row, col - 1); }
-
-        boolean hasDown() { return row < rows - 1; }
-
-        Point down() { return new Point(row + 1, col); }
-
-        boolean hasRight() { return col < cols - 1; }
-
-        Point right() { return new Point(row, col + 1); }
 
         @Override
         public int hashCode() { return hash; }
