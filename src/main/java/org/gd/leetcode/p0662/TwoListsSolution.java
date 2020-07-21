@@ -10,6 +10,7 @@ import java.util.List;
  * @see CustomSolution
  * @since 2020-07-20
  */
+@Deprecated
 class TwoListsSolution implements Solution {
 
     private List<Integer> start;

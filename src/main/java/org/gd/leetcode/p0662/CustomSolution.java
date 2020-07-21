@@ -24,7 +24,7 @@ class CustomSolution implements Solution {
         if (line == null)
             lines[level] = line = new Line(pos);
 
-        maxWidth = Math.max(maxWidth, line.calcLength(pos));
+        maxWidth = Math.max(maxWidth, line.distanceTo(pos));
 
         traverse(node.left, level + 1, pos * 2);
         traverse(node.right, level + 1, pos * 2 + 1);
@@ -45,6 +45,6 @@ class CustomSolution implements Solution {
 
         Line(int left) { this.left = left; }
 
-        int calcLength(int pos) { return pos - left + 1; }
+        int distanceTo(int pos) { return pos - left + 1; }
     }
 }

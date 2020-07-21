@@ -4,6 +4,7 @@ package org.gd.leetcode.p0662;
  * @author Horkhover Dmytro
  * @since 2020-07-20
  */
+@SuppressWarnings("deprecation")
 class TwoListsSolutionFactory implements SolutionFactory {
 
     @Override
