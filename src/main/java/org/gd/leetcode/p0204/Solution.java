@@ -9,7 +9,10 @@ import java.util.Map;
 
 /**
  * https://leetcode.com/problems/count-primes/
+ *
+ * @see org.gd.leetcode.p0279.Solution
  */
+@SuppressWarnings("JavadocReference")
 @Repeat("primes count before n")
 @LeetCode(
         difficulty = LeetCode.Level.EASY,
@@ -33,7 +36,7 @@ class Solution {
             );
         } else {
             this.provider = new BigValuesCacheSolutionProvider(
-                    new DynamicProgrammingPSolutionProvider()
+                    new DynamicProgrammingSolutionProvider()
             );
         }
     }
@@ -60,17 +63,19 @@ class Solution {
         int countPrimes(int n);
     }
 
-    static class DynamicProgrammingPSolutionProvider implements SolutionProvider {
+    static class DynamicProgrammingSolutionProvider implements SolutionProvider {
+
+        private static final int START = 2;
 
         @Override
         public int countPrimes(int n) {
-            boolean[] notPrime = new boolean[n];
+            boolean[] notPrime = new boolean[n - START];
             int count = 0;
-            for (int i = 2; i < n; i++) {
-                if (!notPrime[i]) {
+            for (int i = START; i < n; i++) {
+                if (!notPrime[i - START]) {
                     count++;
-                    for (int j = 2; i * j < n; j++)
-                        notPrime[i * j] = true;
+                    for (int j = START; i * j < n; j++)
+                        notPrime[i * j - START] = true;
                 }
             }
 

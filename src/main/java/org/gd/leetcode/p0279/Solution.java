@@ -4,9 +4,14 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/perfect-squares/
+ *
+ * @see org.gd.leetcode.p0204.Solution
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "Perfect Squares",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO,
         tags = {
                 LeetCode.Tags.MATH,
                 LeetCode.Tags.DYNAMIC_PROGRAMMING,

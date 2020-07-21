@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("LeetCode #204: Count Primes")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -22,9 +23,8 @@ class SolutionTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "n = {0} ==> {1}")
     @MethodSource("args")
-    @DisplayName("LeetCode #204: Count Primes")
     void countPrimes(int n, int expected) {
 
         int actual = new Solution().countPrimes(n);
