@@ -35,6 +35,26 @@ public final class Commons {
                 : BigInteger.ONE.shiftLeft(bits);
     }
 
+    public static int max(int v0, int v1) {
+        return Math.max(v0, v1);
+    }
+
+    public static int max(int v0, int v1, int v2) {
+        return max(max(v0, v1), v2);
+    }
+
+    public static int max(int v0, int v1, int v2, int v3) {
+        return max(max(v0, v1), max(v2, v3));
+    }
+
+    public static int max(int v0, int v1, int v2, int v3, int v4) {
+        return max(max(v0, v1), max(v2, v3), v4);
+    }
+
+    public static int max(int v0, int v1, int v2, int v3, int v4, int v5) {
+        return max(max(v0, v1), max(v2, v3), max(v4, v5));
+    }
+
     /**
      * @param bits power of two
      *
