@@ -15,6 +15,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Horkhover Dmytro
  * @since 2018-11-18
  */
+@DisplayName("LeetCode 36: Valid Sudoku")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -113,10 +114,16 @@ class SolutionTest {
     void test_Pos() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                System.out.print(Solution.pos(i, j) + " ");
+                System.out.print(pos(i, j) + " ");
             }
             System.out.println();
         }
+    }
+
+    static int pos(int i, int j) {
+        i = i - (i / 3) * 3;
+        j = j - (j / 3) * 3;
+        return i * 3 + j;
     }
 }
 
