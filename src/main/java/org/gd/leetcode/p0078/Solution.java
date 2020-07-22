@@ -9,7 +9,10 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/subsets/
+ *
+ * @see org.gd.leetcode.p0090.Solution
  */
+@SuppressWarnings({"JavadocReference", "DuplicatedCode"})
 @LeetCode(
         name = "Subsets",
         difficulty = LeetCode.Level.MEDIUM,
