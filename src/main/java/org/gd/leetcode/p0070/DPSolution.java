@@ -1,5 +1,8 @@
 package org.gd.leetcode.p0070;
 
+/**
+ * @see MemoizationSolution
+ */
 class DPSolution implements Solution {
 
     @Override

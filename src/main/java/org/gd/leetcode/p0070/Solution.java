@@ -5,7 +5,10 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/climbing-stairs/
+ *
+ * @see org.gd.leetcode.p0746.Solution
  */
+@SuppressWarnings("JavadocReference")
 @Repeat("DYNAMIC_PROGRAMMING")
 @LeetCode(
         name = "Climbing Stairs",
