@@ -8,9 +8,11 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * https://leetcode.com/problems/search-a-2d-matrix-ii/
  *
+ * @see org.gd.leetcode.p0074.Solution
  * @see Arrays#binarySearch(int[], int)
  * @since 2019-09-10
  */
+@SuppressWarnings("JavadocReference")
 @Repeat("search value in 2d matrix")
 @LeetCode(
         difficulty = LeetCode.Level.MEDIUM,
