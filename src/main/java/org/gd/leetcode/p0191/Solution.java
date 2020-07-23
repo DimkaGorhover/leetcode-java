@@ -7,6 +7,7 @@ import org.gd.leetcode.common.LeetCode;
  *
  * @author Horkhover D.
  * @see org.gd.leetcode.p0461.Solution
+ * @see org.gd.leetcode.p0477.Solution
  * @see org.gd.leetcode.p0693.Solution
  * @since 2020-07-09
  */

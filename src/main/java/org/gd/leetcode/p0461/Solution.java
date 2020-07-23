@@ -7,10 +7,11 @@ import org.gd.leetcode.common.LeetCode;
  *
  * @author Horkhover D.
  * @see org.gd.leetcode.p0191.Solution
+ * @see org.gd.leetcode.p0477.Solution
  * @see org.gd.leetcode.p0693.Solution
  * @since 2020-07-09
  */
-@SuppressWarnings("JavadocReference")
+@SuppressWarnings({"JavadocReference", "DuplicatedCode"})
 @LeetCode(
         name = "Hamming Distance",
         difficulty = LeetCode.Level.EASY,
@@ -20,6 +21,9 @@ import org.gd.leetcode.common.LeetCode;
 class Solution {
 
     public int hammingDistance(int x, int y) {
+        if (x == y)
+            return 0;
+
         int distance = 0;
         while (x > 0 || y > 0) {
             distance += (x & 1) ^ (y & 1);

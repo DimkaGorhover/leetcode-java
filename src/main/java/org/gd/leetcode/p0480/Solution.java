@@ -8,8 +8,11 @@ import java.util.Arrays;
  * https://leetcode.com/problems/sliding-window-median/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0004.Solution
+ * @see org.gd.leetcode.p0295.MedianFinder
  * @since 2020-07-22
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Sliding Window Median",
         difficulty = LeetCode.Level.HARD,
