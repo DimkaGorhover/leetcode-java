@@ -1,11 +1,23 @@
 package org.gd.leetcode.p0052;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
+ * https://leetcode.com/problems/n-queens-ii/
+ *
  * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0051.Solution
  * @since 2020-07-24
  */
 @SuppressWarnings({"JavadocReference", "DuplicatedCode"})
+@LeetCode(
+        name = "N-Queens II",
+        difficulty = LeetCode.Level.HARD,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.BACKTRACKING
+        }
+)
 class Solution {
 
     private int n, result;
