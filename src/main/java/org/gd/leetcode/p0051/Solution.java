@@ -7,13 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/n-queens/
+ *
  * @author Horkhover Dmytro
  * @since 2020-07-22
  */
 @LeetCode(
         name = "N-Queens",
         difficulty = LeetCode.Level.HARD,
-        state = LeetCode.State.FIXME,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.BACKTRACKING
         }
@@ -21,66 +23,75 @@ import java.util.List;
 class Solution {
 
     private List<List<String>> result;
+
     private char[][] board;
-    private boolean[] rowSet;
-    private boolean[] colSet;
-    private boolean[] diagonalSet;
 
-    private void init(final int n) {
-        result = new ArrayList<>(n);
-        board = new char[n][n];
-
-        for (int row = 0; row < n; row++)
-            Arrays.fill(board[row], '.');
-
-        rowSet = new boolean[n];
-        colSet = new boolean[n];
-        diagonalSet = new boolean[n];
-    }
+    private int[] positions;
+    private boolean[] rowSet, colSet;
 
     private boolean canBePlaced(int row, int col) {
-        return board[row][col] == '.'
-                && !rowSet[row]
-                && !colSet[col]
-                && (row != col || diagonalSet[row]);
+        if (row == 0)
+            return true;
+
+        if (rowSet[row] || colSet[col])
+            return false;
+
+        for (int row1 = 0; row1 < row; row1++) {
+            int col1 = positions[row1];
+            if (Math.abs(col - col1) == Math.abs(row - row1))
+                return false;
+        }
+
+        return true;
     }
 
     private void set(int row, int col) {
         board[row][col] = 'Q';
-        rowSet[row] = colSet[col] = diagonalSet[row] = true;
+        rowSet[row] = colSet[col] = true;
+        positions[row] = col;
     }
 
     private void reset(int row, int col) {
         board[row][col] = '.';
-        rowSet[row] = colSet[col] = diagonalSet[row] = false;
+        rowSet[row] = colSet[col] = false;
     }
 
-    private boolean solve(final int n) {
+    private void solve(final int row) {
 
-        if (n == 0)
-            return true;
+        if (row == board.length) {
 
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board.length; col++) {
+            ArrayList<String> list = new ArrayList<>(board.length);
+            for (char[] chars : board)
+                list.add(new String(chars));
+            result.add(list);
 
-                if (canBePlaced(row, col)) {
-                    set(row, col);
-
-                    if (solve(n - 1))
-                        return true;
-
-                    reset(row, col);
-                }
-
-            }
+            return;
         }
 
-        return false;
+        for (int col = 0; col < board.length; col++) {
+            if (canBePlaced(row, col)) {
+                set(row, col);
+                solve(row + 1);
+                reset(row, col);
+            }
+        }
     }
 
     public List<List<String>> solveNQueens(final int n) {
-        init(n);
-        solve(n);
+        if (n <= 0)
+            throw new IllegalArgumentException();
+
+        result = new ArrayList<>(n);
+        board = new char[n][n];
+        positions = new int[n];
+        rowSet = new boolean[n];
+        colSet = new boolean[n];
+
+        for (int row = 0; row < n; row++)
+            Arrays.fill(board[row], '.');
+
+        solve(0);
+
         return result;
     }
 
