@@ -10,8 +10,10 @@ import java.util.List;
  * https://leetcode.com/problems/n-queens/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0052.Solution
  * @since 2020-07-22
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "N-Queens",
         difficulty = LeetCode.Level.HARD,

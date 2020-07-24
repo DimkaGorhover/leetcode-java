@@ -15,8 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0052.Solution
  * @since 2020-07-22
  */
+@SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode 51: N-Queens")
 class SolutionTest {
 
@@ -39,7 +41,7 @@ class SolutionTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} Queens")
     @MethodSource("args")
     @DisplayName("SolveNQueens")
     void test_SolveNQueens(int n, List<List<String>> expected) {
