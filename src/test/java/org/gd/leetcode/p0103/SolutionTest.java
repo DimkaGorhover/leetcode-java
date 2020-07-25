@@ -27,7 +27,7 @@ class SolutionTest {
                         List.of(
                                 List.of(1),
                                 List.of(3, 2),
-                                List.of(7, 6, 5, 4)
+                                List.of(4, 5, 6, 7)
                         )),
                 Arguments.of(
                         TreeNode.of(1, 2, 3, 4, null, null, 5),
