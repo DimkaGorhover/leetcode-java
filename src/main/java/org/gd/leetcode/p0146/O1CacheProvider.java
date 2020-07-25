@@ -3,6 +3,10 @@ package org.gd.leetcode.p0146;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @see org.gd.leetcode.p0460.O1CacheProvider
+ */
+@SuppressWarnings({"DuplicatedCode", "JavadocReference"})
 class O1CacheProvider implements CacheProvider {
 
     private final Node head;
