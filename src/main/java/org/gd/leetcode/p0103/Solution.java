@@ -17,7 +17,7 @@ import java.util.List;
 @LeetCode(
         name = "Binary Tree Zigzag Level Order Traversal",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.STACK,
                 LeetCode.Tags.TREE,
