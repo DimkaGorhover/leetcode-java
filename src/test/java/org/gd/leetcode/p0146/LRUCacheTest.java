@@ -13,8 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link LRUCache}
  *
+ * @see org.gd.leetcode.p0460.LFUCacheTest
  * @since 2019-09-18
  */
+@SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #146: LRU Cache")
 class LRUCacheTest {
 

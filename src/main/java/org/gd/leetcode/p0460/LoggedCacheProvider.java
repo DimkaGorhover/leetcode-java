@@ -1,34 +1,44 @@
 package org.gd.leetcode.p0460;
 
-class LoggedCacheProvider implements CacheProvider {
+class LoggedCacheProvider implements LFUCache.CacheProvider {
 
-    private final CacheProvider provider;
+    private final LFUCache.CacheProvider provider;
+    private final String prefix;
 
-    LoggedCacheProvider(CacheProvider provider) {
+    LoggedCacheProvider(LFUCache.CacheProvider provider) {
+        this(provider, provider.getClass().getSimpleName());
+    }
+
+    LoggedCacheProvider(LFUCache.CacheProvider provider, String prefix) {
         this.provider = provider;
+        this.prefix = prefix;
+    }
+
+    public static LFUCache.CacheProvider of(LFUCache.CacheProvider cacheProvider) {
+        if (cacheProvider instanceof LoggedCacheProvider)
+            return cacheProvider;
+        return new LoggedCacheProvider(cacheProvider);
     }
 
     @Override
     public int get(int key) {
-
         int value = provider.get(key);
-
-        System.out.println();
-        System.out.printf("[%s]: get: %d --> %d%n", provider.getClass().getSimpleName(), key, value);
-
+        System.out.printf("[ %s ]: get: %d --> %d%n", prefix, key, value);
         return value;
     }
 
     @Override
     public void put(int key, int value) {
+        StringBuilder sb = new StringBuilder();
 
-        System.out.println();
-        System.out.printf("[%s]: put: %d --> %d%n", provider.getClass().getSimpleName(), key, value);
-        System.out.printf("[%s]: before: %s%n", provider.getClass().getSimpleName(), provider);
+        sb.append(String.format("[ %s ]: put: %d --> %d; ", prefix, key, value));
+        sb.append(String.format("before: %s; ", provider));
 
         provider.put(key, value);
 
-        System.out.printf("[%s]: after: %s%n", provider.getClass().getSimpleName(), provider);
+        sb.append(String.format("after: %s%n", provider));
+
+        System.out.print(sb);
     }
 
 }
