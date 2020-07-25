@@ -7,7 +7,7 @@ package org.gd.leetcode.p0460;
 interface CacheProvider {
 
     static CacheProvider ofCapacity(int capacity) {
-        if (capacity == 0)
+        if (capacity <= 0)
             return ZeroCapacityCacheProvider.INSTANCE;
 
         if (capacity == 1)
