@@ -11,15 +11,17 @@ import java.util.concurrent.atomic.AtomicLong;
  * TODO: https://leetcode.com/problems/lfu-cache/
  *
  * @author Gorkhover D.
+ * @see org.gd.leetcode.p0146.LRUCache
  * @since 2018-10-17
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "LFU Cache",
         difficulty = LeetCode.Level.HARD,
         state = LeetCode.State.TODO,
         tags = LeetCode.Tags.DESIGN
 )
-public class LFUCache {
+class LFUCache {
 
     private final LFUCacheProvider provider;
 
