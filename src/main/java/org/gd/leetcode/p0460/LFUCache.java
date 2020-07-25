@@ -13,7 +13,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "LFU Cache",
         difficulty = LeetCode.Level.HARD,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.DESIGN,
                 LeetCode.Tags.HASH_TABLE,
