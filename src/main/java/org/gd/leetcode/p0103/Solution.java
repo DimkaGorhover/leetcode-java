@@ -55,7 +55,7 @@ class Solution {
         int capacity = height(root);
         result = new ArrayList<>(capacity);
         for (int i = 0; i < capacity; i++)
-            result.add(i % 2 == 0 ? new ArrayList<>() : new LinkedList<>());
+            result.add(i % 2 == 0 ? new ArrayList<>(Math.max(i * 2, 1)) : new LinkedList<>());
 
         traverse(root, 0);
         return result;

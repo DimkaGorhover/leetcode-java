@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-25
  */
-@DisplayName("Test for org.gd.leetcode.p0103.Solution")
+@DisplayName("LeetCode #103: Binary Tree Zigzag Level Order Traversal")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
