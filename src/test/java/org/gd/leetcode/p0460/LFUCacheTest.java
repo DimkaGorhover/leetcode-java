@@ -17,44 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class LFUCacheTest {
 
     @Test
-    @DisplayName("prio_queue")
-    void test_prio_queue() {
-        final PriorityQueue<Object> queue = new PriorityQueue<>();
-        var u1 = new User(1);
-        u1.time = 1;
-        var u2 = new User(1);
-        u2.time = 2;
-
-        queue.add(u1);
-        queue.add(u2);
-
-        System.out.println(queue);
-
-        u1.time = 3;
-
-        System.out.println(queue);
-    }
-
-    @ToString(doNotUseGetters = true)
-    static class User implements Comparable<User> {
-
-        final int id;
-
-        long time;
-
-        User(int id) { this.id = id; }
-
-        @Override
-        public int compareTo(User o) {
-            return Long.compare(o.time, time);
-        }
-    }
-
-    @Test
     @DisplayName("Get #1")
     void test_Get_001() {
 
-        var cache = new LFUCache(2);
+        var cache = new O1CacheProvider(2);
 
         cache.put(1, 1);
         cache.put(2, 2);
