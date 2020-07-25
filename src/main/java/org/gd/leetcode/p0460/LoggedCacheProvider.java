@@ -1,20 +1,20 @@
 package org.gd.leetcode.p0460;
 
-class LoggedCacheProvider implements LFUCache.CacheProvider {
+class LoggedCacheProvider implements CacheProvider {
 
-    private final LFUCache.CacheProvider provider;
+    private final CacheProvider provider;
     private final String prefix;
 
-    LoggedCacheProvider(LFUCache.CacheProvider provider) {
+    LoggedCacheProvider(CacheProvider provider) {
         this(provider, provider.getClass().getSimpleName());
     }
 
-    LoggedCacheProvider(LFUCache.CacheProvider provider, String prefix) {
+    LoggedCacheProvider(CacheProvider provider, String prefix) {
         this.provider = provider;
         this.prefix = prefix;
     }
 
-    public static LFUCache.CacheProvider of(LFUCache.CacheProvider cacheProvider) {
+    public static CacheProvider of(CacheProvider cacheProvider) {
         if (cacheProvider instanceof LoggedCacheProvider)
             return cacheProvider;
         return new LoggedCacheProvider(cacheProvider);

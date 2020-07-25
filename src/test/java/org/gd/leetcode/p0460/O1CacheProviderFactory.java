@@ -11,7 +11,7 @@ class O1CacheProviderFactory implements CacheProviderFactory {
     private O1CacheProviderFactory() {}
 
     @Override
-    public LFUCache.CacheProvider create(int capacity) { return new LFUCache.O1CacheProvider(capacity); }
+    public CacheProvider create(int capacity) { return new O1CacheProvider(capacity); }
 
     @Override
     public String toString() { return "O(1)"; }

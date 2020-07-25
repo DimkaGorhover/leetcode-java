@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 2020-07-25
  */
 @Deprecated
-class DefaultCacheProvider implements LFUCache.CacheProvider {
+class DefaultCacheProvider implements CacheProvider {
 
     private final ArrayList<CacheValue> queue;
     private final HashMap<Integer, CacheValue> storage;

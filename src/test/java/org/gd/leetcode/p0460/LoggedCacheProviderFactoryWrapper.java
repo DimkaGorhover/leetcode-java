@@ -17,8 +17,8 @@ class LoggedCacheProviderFactoryWrapper implements CacheProviderFactory {
     }
 
     @Override
-    public LFUCache.CacheProvider create(int capacity) {
-        LFUCache.CacheProvider cacheProvider = cacheProviderFactory.create(capacity);
+    public CacheProvider create(int capacity) {
+        CacheProvider cacheProvider = cacheProviderFactory.create(capacity);
         return new LoggedCacheProvider(cacheProvider, toString());
     }
 

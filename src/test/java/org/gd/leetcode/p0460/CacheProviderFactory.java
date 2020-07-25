@@ -6,5 +6,5 @@ package org.gd.leetcode.p0460;
  */
 interface CacheProviderFactory {
 
-    LFUCache.CacheProvider create(final int capacity);
+    CacheProvider create(final int capacity);
 }
