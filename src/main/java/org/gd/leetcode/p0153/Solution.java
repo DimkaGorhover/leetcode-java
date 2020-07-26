@@ -29,23 +29,21 @@ class Solution {
 
         while (true) {
 
-            if (leftIndex == rightIndex)
+            if (leftIndex == rightIndex || nums[leftIndex] < nums[rightIndex])
                 return nums[leftIndex];
 
             if (rightIndex - leftIndex == 1)
                 return Math.min(nums[leftIndex], nums[rightIndex]);
 
-            int midIndex = mid(leftIndex, rightIndex);
-            int midValue = nums[midIndex];
-            int leftValue = nums[leftIndex];
+            final int midIndex = mid(leftIndex, rightIndex);
 
-            if (midValue == leftValue) {
+            if (nums[midIndex] == nums[leftIndex]) {
                 int leftMin = findMin(leftIndex, midIndex);
                 int rightMin = findMin(midIndex, rightIndex);
                 return Math.min(leftMin, rightMin);
             }
 
-            if (midValue < leftValue) {
+            if (nums[midIndex] < nums[leftIndex]) {
                 rightIndex = midIndex;
             } else {
                 leftIndex = midIndex;
