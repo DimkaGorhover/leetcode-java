@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0153;
+package org.gd.leetcode.p0154;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2020-07-26
  */
 @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
-@DisplayName("LeetCode #153: Find Minimum in Rotated Sorted Array")
+@DisplayName("LeetCode #154: Find Minimum in Rotated Sorted Array II")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

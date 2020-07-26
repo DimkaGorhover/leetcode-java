@@ -1,18 +1,18 @@
-package org.gd.leetcode.p0153;
+package org.gd.leetcode.p0154;
 
 import org.gd.leetcode.common.LeetCode;
 
 /**
- * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+ * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
  *
  * @author Horkhover Dmytro
- * @see org.gd.leetcode.p0154.Solution
+ * @see org.gd.leetcode.p0153.Solution
  * @since 2020-07-26
  */
 @SuppressWarnings({"JavadocReference", "DuplicatedCode"})
 @LeetCode(
-        name = "Find Minimum in Rotated Sorted Array",
-        difficulty = LeetCode.Level.MEDIUM,
+        name = "Find Minimum in Rotated Sorted Array II",
+        difficulty = LeetCode.Level.HARD,
         state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
