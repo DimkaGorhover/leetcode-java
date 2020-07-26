@@ -22,6 +22,8 @@ class SolutionTest {
     private static Stream<Arguments> args() {
         return Stream.of(
                 Arguments.of(new int[]{2, 2, 2, 2, 2, 3, 1, 2, 2}, 1),
+                Arguments.of(new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 1, 2, 2}, 1),
+                Arguments.of(new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 0, 1, 2, 2}, 0),
                 Arguments.of(new int[]{1}, 1),
                 Arguments.of(new int[]{1, 0}, 0),
                 Arguments.of(new int[]{1, 0, -1}, -1),

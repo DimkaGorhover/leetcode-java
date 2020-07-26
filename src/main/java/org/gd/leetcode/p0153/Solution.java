@@ -40,12 +40,12 @@ class Solution {
             int leftValue = nums[leftIndex];
 
             if (midValue == leftValue) {
-                return Math.min(
-                        findMin(leftIndex, midIndex),
-                        findMin(midIndex, rightIndex));
+                int leftMin = findMin(leftIndex, midIndex);
+                int rightMin = findMin(midIndex, rightIndex);
+                return Math.min(leftMin, rightMin);
             }
 
-            if (midValue < leftIndex) {
+            if (midValue < leftValue) {
                 rightIndex = midIndex;
             } else {
                 leftIndex = midIndex;
@@ -60,6 +60,8 @@ class Solution {
         switch (nums.length) {
             case 1: return nums[0];
             case 2: return Math.min(nums[0], nums[1]);
+            case 3: return Math.min(nums[0], Math.min(nums[2], nums[1]));
+            case 4: return Math.min(Math.min(nums[0], nums[1]), Math.min(nums[2], nums[3]));
         }
 
         this.nums = nums;
