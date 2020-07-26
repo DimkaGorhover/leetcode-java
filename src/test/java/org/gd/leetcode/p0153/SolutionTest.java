@@ -16,13 +16,18 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-26
  */
+@DisplayName("LeetCode #153: Find Minimum in Rotated Sorted Array")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+                Arguments.of(new int[]{2, 2, 2, 2, 2, 3, 1, 2, 2}, 1),
+                Arguments.of(new int[]{1}, 1),
+                Arguments.of(new int[]{1, 0}, 0),
+                Arguments.of(new int[]{1, 0, -1}, -1),
                 Arguments.of(new int[]{3, 4, 5, 1, 2}, 1),
-                Arguments.of(new int[]{4, 5, 6, 7, 0, 1, 2}, 0)
-        );
+                Arguments.of(new int[]{2, 2, 2, 2, 2, 1, 2, 2}, 1),
+                Arguments.of(new int[]{4, 5, 6, 7, 0, 1, 2}, 0));
     }
 
     @ParameterizedTest

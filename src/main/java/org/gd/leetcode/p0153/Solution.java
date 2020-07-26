@@ -1,9 +1,22 @@
 package org.gd.leetcode.p0153;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
+ * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+ *
  * @author Horkhover Dmytro
  * @since 2020-07-26
  */
+@LeetCode(
+        name = "Find Minimum in Rotated Sorted Array",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.BINARY_SEARCH
+        }
+)
 class Solution {
 
     private int[] nums;
