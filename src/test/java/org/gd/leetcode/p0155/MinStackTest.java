@@ -2,7 +2,6 @@ package org.gd.leetcode.p0155;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import javax.annotation.Nonnull;
@@ -11,16 +10,17 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link PriorityQueueArrayMinStack}
+ * Test for {@link MinStack}
  *
  * @since 2019-09-10
  */
+@DisplayName("LeetCode #155: Min Stack")
 class MinStackTest {
 
     private static Stream<MinStackFactory> args() {
         return Stream.of(
-                PriorityQueueArrayMinStack::new,
-                LinkedMinStack::new
+                new PriorityQueueArrayMinStackFactory(),
+                new LinkedStackFactory()
         );
     }
 
@@ -44,13 +44,4 @@ class MinStackTest {
 
     }
 
-    @FunctionalInterface
-    interface MinStackFactory extends Arguments {
-
-        @Nonnull
-        MinStack create();
-
-        @Override
-        default Object[] get() { return new Object[]{this}; }
-    }
 }
