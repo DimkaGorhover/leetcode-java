@@ -35,8 +35,8 @@ class Solution {
             if (nums[mid] == target || nums[left] == target || nums[right] == target)
                 return true;
 
-
-
+            if (nums[left] == nums[mid])
+                return search(left, mid - 1) || search(mid + 1, right);
 
 
 
