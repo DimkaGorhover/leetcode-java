@@ -6,9 +6,10 @@ import org.gd.leetcode.common.LeetCode;
  * https://leetcode.com/problems/search-in-rotated-sorted-array/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0081.Solution
  * @see org.gd.leetcode.p0153.Solution
  * @see org.gd.leetcode.p0154.Solution
- * @see java.util.Arrays#binarySearch(int[], int)
+ * @see java.util.Arrays#binarySearch0(int[], int, int, int)
  * @since 2020-07-27
  */
 @SuppressWarnings("JavadocReference")
