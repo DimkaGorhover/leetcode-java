@@ -1,10 +1,14 @@
 package org.gd.leetcode.p0239;
 
+import org.gd.common.IOUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.BufferedReader;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.gd.common.CollectionUtils.listOf;
@@ -17,21 +21,56 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Gorkhover D.
  * @since 2018-11-02
  */
+@Timeout(value = 200, unit = TimeUnit.MILLISECONDS)
+@DisplayName("LeetCode #239: Sliding Window Maximum")
 class SolutionTest {
 
+    private static int[] intArray(String[] arr) {
+        return Arrays.stream(arr)
+                .mapToInt(value -> Integer.parseInt(value.trim()))
+                .toArray();
+    }
+
+    private static Stream<Arguments> testCase001() {
+        try (var resource = IOUtils.resource(SolutionTest.class, "test_case_001.txt")) {
+
+            int[] ints = intArray(resource.readLine().split(","));
+            int k = Integer.parseInt(resource.readLine().trim());
+            int[] expected = intArray(resource.readLine().split(","));
+
+            return Stream.of(Arguments.of(ints, k, expected));
+
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static Stream<Arguments> args() {
-        return Stream.of(
-                arguments(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3, new int[]{3, 3, 5, 5, 6, 7})
+
+        return Stream.concat(
+                Stream.of(
+                        Arguments.of(new int[]{9, 10, 9, -7, -4, -8, 2, -6}, 5, new int[]{10, 10, 9, 2}),
+                        Arguments.of(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3, new int[]{3, 3, 5, 5, 6, 7})
+                ),
+                testCase001()
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("MaxSlidingWindow")
-    void test_MaxSlidingWindow(int[] input, int k, int[] expected) {
+    @DisplayName("TreeMapSolution")
+    void test_TreeMapSolution(int[] input, int k, int[] expected) {
         assertEquals(
                 listOf(expected),
-                listOf(new Solution().maxSlidingWindow(input, k))
-        );
+                listOf(new TreeMapSolution().maxSlidingWindow(input, k)));
+    }
+
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("DequeSolution")
+    void test_DequeSolution(int[] input, int k, int[] expected) {
+        assertEquals(
+                listOf(expected),
+                listOf(new DequeSolution().maxSlidingWindow(input, k)));
     }
 }

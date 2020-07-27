@@ -3,11 +3,12 @@ package org.gd.leetcode.p0155;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+@Deprecated
 class PriorityQueueArrayMinStack implements MinStack {
 
+    private final Queue<Integer> minQ;
     private int[] data;
     private int size;
-    private Queue<Integer> minQ;
 
     /** initialize your data structure here. */
     public PriorityQueueArrayMinStack() {
