@@ -14,7 +14,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "Sliding Window Maximum",
         difficulty = LeetCode.Level.HARD,
-        state = LeetCode.State.FIXME,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.HEAP,
                 LeetCode.Tags.SLIDING_WINDOW
