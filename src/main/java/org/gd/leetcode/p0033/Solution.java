@@ -61,18 +61,18 @@ class Solution {
 
             if (leftValue > midValue) {
 
-                if (target < midValue || leftValue > target) {
-                    left = mid + 1;
+                if (target < midValue && leftValue > target) {
+                    right = mid;
                 } else {
-                    right = mid - 1;
+                    left = mid;
                 }
 
             } else {
 
                 if (leftValue < target && target < midValue) {
-                    right = mid - 1;
+                    right = mid;
                 } else {
-                    left = mid + 1;
+                    left = mid;
                 }
 
             }

@@ -29,7 +29,7 @@ class SolutionTest {
         ).toArray();
 
         return Stream.of(
-                Arguments.of(Arrays.copyOf(ints, ints.length), 13, 912),
+                //Arguments.of(Arrays.copyOf(ints, ints.length), 13, 912),
                 Arguments.of(new int[]{15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14}, 25, 4),
                 Arguments.of(new int[]{2, 3, 4, 5, 6, 7, 8, 9, 1}, 9, 7),
                 Arguments.of(new int[]{4, 5, 6, 7, 0, 1, 2}, 3, -1),
