@@ -18,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-27
  */
+@DisplayName("LeetCode #33: Search in Rotated Sorted Array")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
-
 
         int[] ints = IntStream.concat(
                 IntStream.rangeClosed(101, 1000),
@@ -44,7 +44,7 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("Search")
-        //@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
     void test_Search(int[] nums, int target, int expected) {
         assertEquals(expected, new Solution().search(nums, target));
     }

@@ -15,7 +15,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "Search in Rotated Sorted Array",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.BINARY_SEARCH
@@ -23,7 +23,10 @@ import org.gd.leetcode.common.LeetCode;
 )
 class Solution {
 
-    private static int linearSearch(int[] nums, int target) {
+    private int[] nums;
+    private int target;
+
+    private int linearSearch() {
         if (nums.length == 0)
             return -1;
 
@@ -37,18 +40,8 @@ class Solution {
         return -1;
     }
 
-    public int search(int[] nums, int target) {
-
-        if (nums == null)
-            return -1;
-
-        if (nums.length < 5)
-            return linearSearch(nums, target);
-
-        int left = 0;
+    private int search(int left, int right) {
         int mid;
-        int right = nums.length - 1;
-
         while (left < right) {
 
             final int midValue = nums[mid = ((left + right + 1) >>> 1)];
@@ -76,9 +69,19 @@ class Solution {
                 }
 
             }
-
         }
-
         return -1;
+    }
+
+    public int search(int[] nums, int target) {
+
+        if (nums == null) return -1;
+
+        this.nums = nums;
+        this.target = target;
+
+        if (nums.length < 5) return linearSearch();
+
+        return search(0, nums.length - 1);
     }
 }
