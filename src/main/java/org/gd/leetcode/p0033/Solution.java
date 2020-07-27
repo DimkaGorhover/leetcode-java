@@ -51,7 +51,7 @@ class Solution {
 
         while (left < right) {
 
-            final int midValue = nums[mid = (left + right) >>> 1];
+            final int midValue = nums[mid = ((left + right + 1) >>> 1)];
             final int leftValue = nums[left];
             final int rightValue = nums[right];
 
@@ -61,18 +61,18 @@ class Solution {
 
             if (leftValue > midValue) {
 
-                if (target < midValue && leftValue > target) {
-                    right = mid;
+                if (target < midValue || target > leftValue) {
+                    right = mid - 1;
                 } else {
-                    left = mid;
+                    left = mid + 1;
                 }
 
             } else {
 
                 if (leftValue < target && target < midValue) {
-                    right = mid;
+                    right = mid - 1;
                 } else {
-                    left = mid;
+                    left = mid + 1;
                 }
 
             }
