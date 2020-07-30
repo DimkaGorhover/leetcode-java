@@ -5,8 +5,10 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * https://leetcode.com/problems/median-of-two-sorted-arrays/
  *
+ * @see org.gd.leetcode.p0295.MedianFinder
  * @since 2019-09-24
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "median of two sorted arrays",
         difficulty = LeetCode.Level.HARD,

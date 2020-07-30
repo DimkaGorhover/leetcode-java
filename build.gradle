@@ -9,9 +9,9 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     implementation("org.projectlombok:lombok:${lombokVersion}")
 
-    implementation("com.google.code.findbugs:jsr305:3.0.2")
+    implementation("com.google.code.findbugs:jsr305:3.0.2") // TODO: replace it by jetbrains annotations
     implementation("org.apache.commons:commons-csv:1.7")
-    implementation("com.google.guava:guava:28.1-jre")
+    //implementation("com.google.guava:guava:28.1-jre")
 
     // test scope
 

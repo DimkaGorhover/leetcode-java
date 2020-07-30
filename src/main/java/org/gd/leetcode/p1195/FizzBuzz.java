@@ -29,7 +29,12 @@ import java.util.function.IntConsumer;
  * @see org.gd.leetcode.p0412.Solution
  * @since 2019-09-19
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.CONCURRENCY)
+@SuppressWarnings("JavadocReference")
+@LeetCode(
+        name = "Fizz Buzz Multithreaded",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.CONCURRENCY)
 class FizzBuzz {
 
     private final AtomicInteger counter;
