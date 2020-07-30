@@ -26,14 +26,26 @@ import org.gd.leetcode.common.LeetCode;
  * @since 2019-10-09
  */
 @Repeat("i've stolen this solution! Shame on me! :( ")
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = LeetCode.Tags.ARRAY)
+@LeetCode(
+        name = "Product of Array Except Self",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.DYNAMIC_PROGRAMMING
+        })
 class Solution {
 
     public int[] productExceptSelf(int[] nums) {
+
+        if (nums == null || nums.length == 0)
+            return nums;
+
         int[] answer = new int[nums.length];
         answer[0] = 1;
         for (int i = 1; i < answer.length; i++)
             answer[i] = answer[i - 1] * nums[i - 1];
+
         int right = 1;
         for (int i = answer.length - 1; i >= 0; i--) {
             answer[i] *= right;

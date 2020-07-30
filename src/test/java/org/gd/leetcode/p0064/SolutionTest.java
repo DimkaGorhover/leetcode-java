@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * ./gradlew clean test --parallel --max-workers=4 --no-daemon --tests 'org.gd.leetcode.p0064.SolutionTest'
  * </code>
  */
+@DisplayName("LeetCode #64: Minimum Path Sum")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

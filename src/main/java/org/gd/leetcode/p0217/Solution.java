@@ -1,18 +1,24 @@
 package org.gd.leetcode.p0217;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * https://leetcode.com/problems/contains-duplicate/
  *
  * @author Gorkhover D.
  * @since 2018-11-01
  */
-class Solution {
+@LeetCode(
+        name = "Contains Duplicate",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.FIXME,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.HASH_TABLE,
+                LeetCode.Tags.TWO_POINTERS
+        }
+)
+interface Solution {
 
-    public boolean containsDuplicate(int[] nums) {
-        java.util.Arrays.sort(nums);
-        for (int i = 0; i < nums.length - 1; i++)
-            if (nums[i] == nums[i + 1])
-                return true;
-        return false;
-    }
+    boolean containsDuplicate(int[] nums);
 }

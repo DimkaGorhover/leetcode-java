@@ -22,8 +22,10 @@ import org.gd.leetcode.common.LeetCode;
  * If all integer numbers from the stream are between 0 and 100, how would you optimize it? If 99% of all integer
  * numbers from the stream are between 0 and 100, how would you optimize it?
  *
+ * @see org.gd.leetcode.p0004.Solution
  * @since 2019-09-10
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Find Median from Data Stream",
         difficulty = LeetCode.Level.HARD,

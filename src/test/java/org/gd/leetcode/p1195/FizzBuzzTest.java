@@ -24,6 +24,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  *
  * @since 2019-09-19
  */
+@DisplayName("LeetCode #1195: Fizz Buzz Multithreaded")
 class FizzBuzzTest {
 
     private static List<String> generateExpectedList(int n) {
