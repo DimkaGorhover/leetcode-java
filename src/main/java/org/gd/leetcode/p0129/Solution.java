@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0129;
 
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
@@ -8,20 +9,42 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-11-15
  */
+@LeetCode(
+        name = "Sum Root to Leaf Numbers",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.DEPTH_FIRST_SEARCH
+        }
+)
 class Solution {
 
-    private static int number(TreeNode root, int prev, int sum) {
-        if (root.left == null && root.right == null)
-            return sum + prev;
-        if (root.left != null)
-            sum = number(root.left, prev * 10 + root.left.val, sum);
-        if (root.right != null)
-            sum = number(root.right, prev * 10 + root.right.val, sum);
-        return sum;
+    private int sum;
 
+    private static boolean isLeaf(TreeNode node) {
+        return node.left == null && node.right == null;
+    }
+
+    private void traverse(TreeNode root, int prev) {
+        if (isLeaf(root)) {
+            sum += prev;
+            return;
+        }
+
+        if (root.left != null)
+            traverse(root.left, prev * 10 + root.left.val);
+
+        if (root.right != null)
+            traverse(root.right, prev * 10 + root.right.val);
     }
 
     public int sumNumbers(TreeNode root) {
-        return root == null ? 0 : number(root, root.val, 0);
+        if (root == null)
+            return 0;
+
+        sum = 0;
+        traverse(root, root.val);
+        return sum;
     }
 }

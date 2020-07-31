@@ -3,9 +3,6 @@ package org.gd.leetcode.p1161;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
-import static org.gd.leetcode.common.LeetCode.Level.MEDIUM;
-import static org.gd.leetcode.common.LeetCode.Tags.GRAPH;
-
 /**
  * https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
  *
@@ -15,28 +12,45 @@ import static org.gd.leetcode.common.LeetCode.Tags.GRAPH;
  *
  * @since 2019-09-23
  */
-@LeetCode(difficulty = MEDIUM, tags = GRAPH)
+@LeetCode(
+        name = "Maximum Level Sum of a Binary Tree",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.GRAPH
+        })
 class Solution {
+
+    private int[] sums;
 
     private static int deep(TreeNode node) {
         return node == null ? 0 : 1 + Math.max(deep(node.left), deep(node.right));
     }
 
-    private static void traverse(TreeNode node, int level, int[] sums) {
+    private void traverse(TreeNode node, int level) {
         if (node == null)
             return;
+
         sums[level] += node.val;
-        traverse(node.left, (level + 1), sums);
-        traverse(node.right, (level + 1), sums);
+
+        traverse(node.left, level + 1);
+        traverse(node.right, level + 1);
     }
 
     public int maxLevelSum(TreeNode root) {
-        int[] sums = new int[deep(root)];
-        traverse(root, 0, sums);
+
+        if (root == null)
+            return 0;
+
+        sums = new int[deep(root)];
+
+        traverse(root, 0);
+
         int level = 0;
         for (int i = 1; i < sums.length; i++)
             if (sums[level] < sums[i])
                 level = i;
-        return sums.length == 0 ? 0 : (level + 1);
+
+        return level + 1;
     }
 }

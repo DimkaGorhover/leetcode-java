@@ -17,6 +17,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Horkhover Dmytro
  * @since 2018-11-15
  */
+@DisplayName("LeetCode #129: Sum Root to Leaf Numbers")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
