@@ -24,7 +24,7 @@ class RandomizedCollection {
 
     private static final Value NULL = new Value(0);
 
-    private final Map<Value, Value> positions;
+    private final Map<Integer, Value> positions;
     private final ArrayList<Value> list;
     private int size;
 
@@ -45,26 +45,21 @@ class RandomizedCollection {
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     public boolean insert(int val) {
 
-        Value value = new Value(val);
-        if (positions.containsKey(value)) {
-
-            value = positions.get(value);
-            list.set(size, value);
-            list.add(NULL);
-            value.positions.add(size);
-
-            size++;
-
-            return false;
+        boolean result = true;
+        Value value = positions.get(val);
+        if (value != null) {
+            result = false;
+        } else {
+            positions.put(val, value = new Value(val));
         }
 
-        positions.put(value, value);
         list.set(size, value);
         list.add(NULL);
         value.positions.add(size);
+
         size++;
 
-        return true;
+        return result;
     }
 
     /**
@@ -72,23 +67,23 @@ class RandomizedCollection {
      */
     public boolean remove(int val) {
 
-        throw new UnsupportedOperationException(new String(new char[]{ 175, 92, 95, 40, 12_484, 41, 95, 47, 175 }));
+        Value value = positions.get(val);
+        if (value == null)
+            return false;
 
-//        Queue<Integer> queue = positions.get(val);
-//        if (queue == null || queue.isEmpty())
-//            return false;
-//
-//        int pos = queue.poll();
-//
-//
-//        if (pos < size - 1) {
-//            final int last = list.get(size - 1);
-//            positions.put(last, pos);
-//            list.set(pos, last);
-//        }
-//
-//        size--;
-//        return true;
+        int pos = value.positions.poll();
+
+        if (pos < size - 1) {
+            Value last = list.get(size - 1);
+            list.set(pos, last);
+            last.positions.add(pos);
+        }
+
+        if (value.positions.isEmpty())
+            positions.remove(val);
+
+        size--;
+        return true;
     }
 
     /**
@@ -103,7 +98,6 @@ class RandomizedCollection {
 
         return list.get(rnd(size)).value;
     }
-
 
     static class Value {
 
@@ -124,5 +118,10 @@ class RandomizedCollection {
 
         @Override
         public int hashCode() { return value; }
+
+        @Override
+        public String toString() {
+            return "{" + value + " " + positions + '}';
+        }
     }
 }
