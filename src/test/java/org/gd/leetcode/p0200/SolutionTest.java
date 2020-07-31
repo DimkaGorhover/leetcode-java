@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-31
  */
+@DisplayName("LeetCode #200: Number of Islands")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
