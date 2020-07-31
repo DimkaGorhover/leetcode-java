@@ -2,13 +2,13 @@ package org.gd.leetcode.p0200;
 
 /**
  * @author Horkhover Dmytro
+ * @see QueueCleaner
  * @since 2020-07-31
  */
 class RecursiveCleaner implements Cleaner {
 
     private final char[][] grid;
-    private final int rows;
-    private final int cols;
+    private final int rows, cols;
 
     RecursiveCleaner(char[][] grid) {
         this.grid = grid;

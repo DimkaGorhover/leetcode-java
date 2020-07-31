@@ -55,14 +55,25 @@ class SolutionTest {
                         {'0', '0', '0', '0', '1', '0', '0'},
                         {'0', '0', '0', '0', '1', '0', '1'},
                         {'0', '0', '0', '0', '1', '1', '1'}
+                }, 2),
+
+                Arguments.of(new char[][]{
+                        {'1', '1', '1', '1', '1', '1', '0', '0', '0'},
+                        {'1', '0', '0', '0', '0', '1', '0', '0', '0'},
+                        {'1', '1', '0', '1', '1', '1', '0', '0', '0'},
+                        {'0', '1', '0', '0', '0', '0', '0', '0', '0'},
+                        {'1', '1', '0', '0', '0', '0', '1', '1', '1'},
+                        {'0', '0', '0', '0', '1', '0', '1', '0', '1'},
+                        {'0', '0', '0', '0', '1', '0', '1', '1', '1'},
+                        {'0', '0', '0', '0', '1', '1', '1', '1', '1'}
                 }, 2)
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("NumIslands")
-    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    @DisplayName("Number of Islands")
+    @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
     void test_NumIslands(char[][] grid, int expected) {
         assertEquals(expected, new Solution().numIslands(copy(grid)));
     }

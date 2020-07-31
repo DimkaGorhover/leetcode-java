@@ -5,13 +5,13 @@ import java.util.Queue;
 
 /**
  * @author Horkhover Dmytro
+ * @see RecursiveCleaner
  * @since 2020-07-31
  */
 class QueueCleaner implements Cleaner {
 
     private final char[][] grid;
-    private final int rows;
-    private final int cols;
+    private final int rows, cols;
 
     QueueCleaner(char[][] grid) {
         this.grid = grid;
@@ -36,15 +36,11 @@ class QueueCleaner implements Cleaner {
 
             grid[row][col] = '0';
 
-            if (col < cols - 1)
-                q.add(new int[]{row, col + 1});
-            if (col > 0)
-                q.add(new int[]{row, col - 1});
+            q.add(new int[]{row, col + 1});
+            q.add(new int[]{row, col - 1});
 
-            if (row < rows - 1)
-                q.add(new int[]{row + 1, col});
-            if (row > 0)
-                q.add(new int[]{row - 1, col});
+            q.add(new int[]{row + 1, col});
+            q.add(new int[]{row - 1, col});
         }
     }
 }
