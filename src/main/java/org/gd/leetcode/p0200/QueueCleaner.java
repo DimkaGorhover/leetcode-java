@@ -5,6 +5,7 @@ import java.util.Queue;
 
 /**
  * @author Horkhover Dmytro
+ * @see Solution
  * @see RecursiveCleaner
  * @since 2020-07-31
  */
