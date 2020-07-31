@@ -22,7 +22,12 @@ import java.util.*;
 )
 class RandomizedCollection {
 
-    private static final Value NULL = new Value(0);
+    private static final Value NULL = new Value(0) {
+        @Override
+        public String toString() {
+            return "NULL";
+        }
+    };
 
     private final Map<Integer, Value> positions;
     private final ArrayList<Value> list;
@@ -71,11 +76,13 @@ class RandomizedCollection {
         if (value == null)
             return false;
 
-        int pos = value.positions.poll();
+        int pos = value.pollPosition();
 
         if (pos < size - 1) {
             Value last = list.get(size - 1);
             list.set(pos, last);
+
+
             last.positions.add(pos);
         }
 
@@ -90,23 +97,26 @@ class RandomizedCollection {
      * Get a random element from the collection.
      */
     public int getRandom() {
-        if (size == 0)
-            throw new NoSuchElementException();
-
-        if (size == 1)
-            return list.get(0).value;
-
+        if (size == 0) throw new java.util.NoSuchElementException();
+        if (size == 1) return list.get(0).value;
         return list.get(rnd(size)).value;
     }
 
     static class Value {
 
         final int value;
-        final Queue<Integer> positions;
+        final Set<Integer> positions;
 
         Value(int value) {
             this.value = value;
-            positions = new LinkedList<>();
+            positions = new LinkedHashSet<>();
+        }
+
+        int pollPosition() {
+            Iterator<Integer> iterator = positions.iterator();
+            Integer next = iterator.next();
+            iterator.remove();
+            return next;
         }
 
         @Override
@@ -118,10 +128,5 @@ class RandomizedCollection {
 
         @Override
         public int hashCode() { return value; }
-
-        @Override
-        public String toString() {
-            return "{" + value + " " + positions + '}';
-        }
     }
 }

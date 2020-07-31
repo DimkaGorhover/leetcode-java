@@ -8,8 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link RandomizedSet}
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0381.RandomizedCollectionTest
  * @since 2020-07-31
  */
+@SuppressWarnings("JavadocReference")
 @DisplayName("LeeCode #380: Insert Delete GetRandom O(1)")
 class RandomizedSetTest {
 

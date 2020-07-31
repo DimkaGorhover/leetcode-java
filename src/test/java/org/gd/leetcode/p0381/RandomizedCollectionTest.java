@@ -11,11 +11,27 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link RandomizedCollection}
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0380.RandomizedSetTest
  * @since 2020-07-31
  */
+@SuppressWarnings("JavadocReference")
 @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
 @DisplayName("LeetCode #381: Insert Delete GetRandom O(1) - Duplicates allowed")
 class RandomizedCollectionTest {
+
+    @Test
+    @DisplayName("002")
+    void test_002() {
+        var set = new RandomizedCollection();
+
+        assertTrue(set.insert(0));
+        assertTrue(set.insert(1));
+        assertTrue(set.remove(0));
+        assertTrue(set.insert(2));
+        assertTrue(set.remove(1));
+
+        assertEquals(2, set.getRandom());
+    }
 
     @Test
     @DisplayName("001")
