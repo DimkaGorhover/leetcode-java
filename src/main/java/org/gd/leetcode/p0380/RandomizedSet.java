@@ -10,8 +10,10 @@ import java.util.Map;
  * https://leetcode.com/problems/insert-delete-getrandom-o1/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0381.RandomizedCollection
  * @since 2020-07-31
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Insert Delete GetRandom O(1)",
         difficulty = LeetCode.Level.MEDIUM,
