@@ -1,23 +1,23 @@
-package org.gd.leetcode.p0297;
+package org.gd.leetcode.p0449;
 
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
- * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
- *
- * @see org.gd.leetcode.p0449.Codec
- * @since 2019-09-12
+ * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0297.Codec
+ * @since 2020-07-31
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
-        name = "serialize and deserialize binary tree",
-        difficulty = LeetCode.Level.HARD,
-        state = LeetCode.State.DONE,
+        name = "Serialize and Deserialize BST",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.TODO,
         tags = {
                 LeetCode.Tags.TREE,
                 LeetCode.Tags.DESIGN
-        })
+        }
+)
 class Codec {
 
     static int size(TreeNode root) {
@@ -45,24 +45,24 @@ class Codec {
     @SuppressWarnings("EnhancedSwitchMigration")
     static class Nodes {
 
-        private final Node[] nodes;
+        private final Codec.Node[] nodes;
         private int size = 0;
         private int nextId = 0;
 
-        private Nodes(Node[] nodes) {
+        private Nodes(Codec.Node[] nodes) {
             this.nodes = nodes;
-            for (Node node : nodes) {
+            for (Codec.Node node : nodes) {
                 if (node != null)
                     size++;
             }
         }
 
         private Nodes(TreeNode treeNode) {
-            nodes = new Node[size(treeNode)];
+            nodes = new Codec.Node[size(treeNode)];
             fill('p', treeNode, null);
         }
 
-        static Nodes of(Node... nodes) {
+        static Nodes of(Codec.Node... nodes) {
             return new Nodes(nodes);
         }
 
@@ -74,11 +74,11 @@ class Codec {
             return new NodesReader(text).read();
         }
 
-        private void fill(char side, TreeNode treeNode, Node parent) {
+        private void fill(char side, TreeNode treeNode, Codec.Node parent) {
             if (treeNode != null) {
                 int id = nextId++;
                 size++;
-                nodes[id] = new Node(side, id, (parent == null ? -1 : parent.id), treeNode);
+                nodes[id] = new Codec.Node(side, id, (parent == null ? -1 : parent.id), treeNode);
                 fill('l', treeNode.left, nodes[id]);
                 fill('r', treeNode.right, nodes[id]);
             }
@@ -86,7 +86,7 @@ class Codec {
 
         TreeNode toTree() {
             for (int i = 1; i < size; i++) {
-                Node node = nodes[i];
+                Codec.Node node = nodes[i];
                 TreeNode treeNode = node.treeNode;
                 if (node.parentId >= 0) {
                     TreeNode parent = nodes[node.parentId].treeNode;
@@ -200,7 +200,7 @@ class Codec {
         Nodes read() {
             int length = nextInt();
             cursor++;
-            Node[] nodes = new Node[length];
+            Codec.Node[] nodes = new Codec.Node[length];
             for (int i = 0; i < length; i++) {
                 char side = next();
                 cursor++;
@@ -210,7 +210,7 @@ class Codec {
                 cursor++;
                 int value = nextInt();
                 cursor++;
-                nodes[id] = new Node(side, id, parentId, value);
+                nodes[id] = new Codec.Node(side, id, parentId, value);
             }
             return Nodes.of(nodes);
         }
