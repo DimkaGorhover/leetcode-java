@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
+import static org.gd.common.ArrayUtils.copy;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -51,6 +52,6 @@ class SolutionTest {
     @DisplayName("NumIslands")
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_NumIslands(char[][] grid, int expected) {
-        assertEquals(expected, new Solution().numIslands(grid));
+        assertEquals(expected, new Solution().numIslands(copy(grid)));
     }
 }
