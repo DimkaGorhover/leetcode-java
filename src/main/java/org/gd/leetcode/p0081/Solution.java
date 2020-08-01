@@ -39,10 +39,23 @@ class Solution {
                 return search(left, mid - 1) || search(mid + 1, right);
 
 
+            if (nums[left] > nums[mid]) {
 
+                if (target < nums[mid] || target > nums[left]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
 
-            left++;
-            right--;
+            } else {
+
+                if (nums[left] < target && target < nums[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+
+            }
         }
 
         return false;
