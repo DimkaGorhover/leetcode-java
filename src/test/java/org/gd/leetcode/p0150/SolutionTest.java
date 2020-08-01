@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-08-01
  */
+@DisplayName("LeetCode #150: Evaluate Reverse Polish Notation")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
