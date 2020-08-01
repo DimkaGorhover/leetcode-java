@@ -4,6 +4,7 @@ import org.gd.leetcode.common.ListNode;
 
 import java.util.PriorityQueue;
 
+@Deprecated
 @SuppressWarnings("JavadocReference")
 class BigHeapSolution implements Solution {
 

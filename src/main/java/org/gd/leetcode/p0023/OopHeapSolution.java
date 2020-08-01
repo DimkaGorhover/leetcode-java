@@ -42,10 +42,9 @@ class OopHeapSolution implements Solution {
         final Heap heap = new Heap(lists);
         final ListNode head = heap.poll();
         ListNode node = head;
-        for (ListNode next : heap) {
-            node.next = next;
-            node = next;
-        }
+        for (ListNode next : heap)
+            node = (node.next = next);
+
         return head;
     }
 

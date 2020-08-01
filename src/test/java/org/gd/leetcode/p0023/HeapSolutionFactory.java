@@ -9,6 +9,6 @@ class HeapSolutionFactory implements SolutionFactory {
 
     @Override
     public String toString() {
-        return HeapSolution.class.getSimpleName();
+        return "Heap";
     }
 }

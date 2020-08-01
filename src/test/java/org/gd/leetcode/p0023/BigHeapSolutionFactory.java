@@ -9,6 +9,6 @@ class BigHeapSolutionFactory implements SolutionFactory {
 
     @Override
     public String toString() {
-        return BigHeapSolution.class.getSimpleName();
+        return "Big Heap";
     }
 }
