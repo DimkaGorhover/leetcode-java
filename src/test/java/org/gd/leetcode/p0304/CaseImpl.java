@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0304;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.stream.Stream;
@@ -29,4 +30,9 @@ class CaseImpl implements Case {
 
     @Override
     public Stream<SubCase> stream() { return subCases.stream(); }
+
+    @Override
+    public String toString() {
+        return Arrays.deepToString(matrix);
+    }
 }

@@ -12,7 +12,14 @@ import java.util.Arrays;
  * @since 2019-09-13
  */
 @SuppressWarnings("JavadocReference")
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.DYNAMIC_PROGRAMMING})
+@LeetCode(
+        name = "Range Sum Query Immutable",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.DYNAMIC_PROGRAMMING
+        })
 class NumArray {
 
     private final Solution solution;
@@ -38,6 +45,7 @@ class NumArray {
         public int sumRange(int i, int j) { return 0; }
     }
 
+    @Deprecated
     static class LinearSolution implements Solution {
 
         private final int[] nums;
@@ -71,9 +79,7 @@ class NumArray {
 
         @Override
         public int sumRange(int i, int j) {
-            if (i > j)
-                return 0;
-            return sums[j] - (i == 0 ? 0 : sums[i - 1]);
+            return i > j ? 0 : sums[j] - (i <= 0 ? 0 : sums[i - 1]);
         }
     }
 }

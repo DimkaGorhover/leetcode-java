@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -20,12 +21,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2019-09-13
  */
 @SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #303: Range Sum Query Immutable")
 class NumArrayTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
                 new Case(new int[]{-2, 0, 3, -5, 2, -1}, List.of(
                         new SubCase(0, 2, 1),
+                        new SubCase(-1, 2, 1),
+                        new SubCase(0, 0, -2),
+                        new SubCase(1, 1, 0),
+                        new SubCase(2, 1, 0),
                         new SubCase(2, 5, -1),
                         new SubCase(0, 5, -3)
                 ))
@@ -35,7 +41,7 @@ class NumArrayTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("SumRange")
-    void test_SumRange(Case aCase) throws Exception {
+    void test_SumRange(Case aCase) {
 
         NumArray numArray = new NumArray(aCase.nums);
         for (SubCase subCase : aCase) {
@@ -65,6 +71,11 @@ class NumArrayTest {
 
         @Override
         public Object[] get() { return new Object[]{this}; }
+
+        @Override
+        public String toString() {
+            return Arrays.toString(nums);
+        }
     }
 
     static class SubCase {

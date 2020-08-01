@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.parallel.ExecutionMode.*;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.parallel.ExecutionMode.*;
  * @since 2019-09-13
  */
 @SuppressWarnings("JavadocReference")
-@Execution(CONCURRENT)
+@DisplayName("LeetCode #304: Range Sum Query 2D - Immutable")
 class NumMatrixTest {
 
     private static Stream<Arguments> args() {
@@ -68,22 +69,44 @@ class NumMatrixTest {
         );
     }
 
-    @SuppressWarnings("deprecation")
+    @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("SumRegion")
-    void test_SumRegion(Case aCase) throws Exception {
-
-        Solution numMatrix = new NumMatrix(aCase.matrix());
-        Solution linearMatrixSolution = new EachRowSumSolution(aCase.matrix());
-        Solution matrixSolution = new DynamicProgrammingSolution(aCase.matrix());
-        Solution quadSolution = new QuadSolution(aCase.matrix());
-
-        for (SubCase c : aCase) {
+    @DisplayName("NumMatrix")
+    void test_NumMatrix(Case aCase) {
+        var numMatrix = new NumMatrix(aCase.matrix());
+        for (SubCase c : aCase)
             c.doAssert(numMatrix);
-            c.doAssert(linearMatrixSolution);
-            c.doAssert(matrixSolution);
-            c.doAssert(quadSolution);
-        }
     }
+
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("EachRowSumSolution")
+    void test_EachRowSumSolution(Case aCase) {
+        var solution = new EachRowSumSolution(aCase.matrix());
+        for (SubCase subCase : aCase)
+            subCase.doAssert(solution);
+    }
+
+    @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("DynamicProgrammingSolution")
+    void test_DynamicProgrammingSolution(Case aCase) {
+        var solution = new DynamicProgrammingSolution(aCase.matrix());
+        for (SubCase subCase : aCase)
+            subCase.doAssert(solution);
+    }
+
+    @Timeout(value = 200, unit = TimeUnit.MILLISECONDS)
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("QuadSolution")
+    void test_QuadSolution(Case aCase) {
+        var solution = new QuadSolution(aCase.matrix());
+        for (SubCase subCase : aCase)
+            subCase.doAssert(solution);
+    }
+
 }
