@@ -13,7 +13,7 @@ import java.util.*;
 @LeetCode(
         name = "Insert Delete GetRandom O(1) - Duplicates allowed",
         difficulty = LeetCode.Level.HARD,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.HASH_TABLE,
@@ -22,24 +22,19 @@ import java.util.*;
 )
 class RandomizedCollection {
 
-    private static final Value NULL = new Value(0) {
-        @Override
-        public String toString() {
-            return "NULL";
-        }
-    };
-
-    private final Map<Integer, Value> positions;
-    private final ArrayList<Value> list;
+    private final Map<Integer, Set<Integer>> positions;
+    private final ArrayList<Integer> list;
     private int size;
 
     /**
      * Initialize your data structure here.
      */
     public RandomizedCollection() {
+
         positions = new HashMap<>();
+
         list = new ArrayList<>();
-        list.add(NULL);
+        list.add(0);
         size = 0;
     }
 
@@ -47,24 +42,38 @@ class RandomizedCollection {
         return java.util.concurrent.ThreadLocalRandom.current().nextInt(0, bound);
     }
 
-    /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
+    private int addToList(int val) {
+        if (list.size() == size + 1)
+            list.add(0);
+
+        int pos = this.size;
+        list.set(pos, val);
+        this.size++;
+        return pos;
+    }
+
+    /**
+     * Inserts a value to the collection. Returns true if the collection did not already contain the specified element.
+     */
     public boolean insert(int val) {
 
-        boolean result = true;
-        Value value = positions.get(val);
-        if (value != null) {
-            result = false;
-        } else {
-            positions.put(val, value = new Value(val));
+        Set<Integer> valuePositions = positions.get(val);
+        if (valuePositions != null) {
+            valuePositions.add(addToList(val));
+            return false;
         }
 
-        list.set(size, value);
-        list.add(NULL);
-        value.positions.add(size);
+        positions.put(val, valuePositions = new LinkedHashSet<>());
+        valuePositions.add(addToList(val));
 
-        size++;
+        return true;
+    }
 
-        return result;
+    private int pollPosition(Set<Integer> positions) {
+        Iterator<Integer> iterator = positions.iterator();
+        Integer next = iterator.next();
+        iterator.remove();
+        return next;
     }
 
     /**
@@ -72,21 +81,24 @@ class RandomizedCollection {
      */
     public boolean remove(int val) {
 
-        Value value = positions.get(val);
-        if (value == null)
+        if (size == 0)
             return false;
 
-        int pos = value.pollPosition();
+        Set<Integer> valuePositions = positions.get(val);
+        if (valuePositions == null)
+            return false;
 
-        if (pos < size - 1) {
-            Value last = list.get(size - 1);
-            list.set(pos, last);
-
-
-            last.positions.add(pos);
+        int pos = pollPosition(valuePositions);
+        int lastPos = size - 1;
+        if (pos < lastPos) {
+            int latValue = list.get(lastPos);
+            Set<Integer> posSet = positions.get(latValue);
+            posSet.remove(lastPos);
+            posSet.add(pos);
+            list.set(pos, latValue);
         }
 
-        if (value.positions.isEmpty())
+        if (valuePositions.isEmpty())
             positions.remove(val);
 
         size--;
@@ -98,35 +110,22 @@ class RandomizedCollection {
      */
     public int getRandom() {
         if (size == 0) throw new java.util.NoSuchElementException();
-        if (size == 1) return list.get(0).value;
-        return list.get(rnd(size)).value;
+        if (size == 1) return list.get(0);
+        return list.get(rnd(size));
     }
 
-    static class Value {
+    @Override
+    public String toString() {
+        if (size == 0)
+            return "[]";
 
-        final int value;
-        final Set<Integer> positions;
+        StringBuilder sb = new StringBuilder()
+                .append('[')
+                .append(list.get(0));
 
-        Value(int value) {
-            this.value = value;
-            positions = new LinkedHashSet<>();
-        }
+        for (int i = 1; i < size; i++)
+            sb.append(',').append(' ').append(list.get(i));
 
-        int pollPosition() {
-            Iterator<Integer> iterator = positions.iterator();
-            Integer next = iterator.next();
-            iterator.remove();
-            return next;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Value)) return false;
-            return value == ((Value) o).value;
-        }
-
-        @Override
-        public int hashCode() { return value; }
+        return sb.append(']').toString();
     }
 }
