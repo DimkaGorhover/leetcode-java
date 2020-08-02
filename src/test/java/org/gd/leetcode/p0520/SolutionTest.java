@@ -21,6 +21,8 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+                Arguments.of("LKSKDJLKSJD", true),
+                Arguments.of("LKskdjlksjd", false),
                 Arguments.of("USA", true),
                 Arguments.of("leetcode", true),
                 Arguments.of("leetCode", false),
@@ -49,7 +51,7 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("DetectCapitalUse")
-    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 20, unit = TimeUnit.MILLISECONDS)
     void test_DetectCapitalUse(String word, boolean expected) {
         assertEquals(expected, new Solution().detectCapitalUse(word));
     }

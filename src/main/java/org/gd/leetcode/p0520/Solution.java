@@ -32,26 +32,29 @@ import org.gd.leetcode.common.LeetCode;
 )
 class Solution {
 
-    public boolean detectCapitalUse(String word) {
-        if (word == null)
-            return false;
-
-        int length = word.length();
-        switch (length) {
-            case 0: return false;
-            case 1:
-            case 3:
-            case 2: return Character.isUpperCase(word.charAt(0));
-        }
-
-        if (Character.isLowerCase(word.charAt(0)))
-            return false;
-
-        for (int i = 1; i < length; i++) {
-            if (Character.isUpperCase(word.charAt(i)))
+    private static boolean allPass(String word, int pos, CharPredicate predicate) {
+        for (int i = pos; i < word.length(); i++) {
+            if (!predicate.test(word.charAt(i)))
                 return false;
         }
-
         return true;
+    }
+
+    public boolean detectCapitalUse(String word) {
+        if (word == null || word.length() <= 1)
+            return true;
+
+        if (CharPredicate.LOWER.test(word.charAt(0)))
+            return allPass(word, 1, CharPredicate.LOWER);
+
+        return allPass(word, 2, CharPredicate.UPPER.test(word.charAt(1)) ? CharPredicate.UPPER : CharPredicate.LOWER);
+    }
+
+    interface CharPredicate {
+
+        CharPredicate LOWER = Character::isLowerCase;
+        CharPredicate UPPER = Character::isUpperCase;
+
+        boolean test(char c);
     }
 }
