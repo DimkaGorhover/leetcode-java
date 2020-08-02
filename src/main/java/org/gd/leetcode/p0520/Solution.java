@@ -25,7 +25,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "Detect Capital",
         difficulty = LeetCode.Level.EASY,
-        state = LeetCode.State.FIXME,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.STRING
         }
