@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
@@ -25,7 +26,7 @@ class SolutionTest {
     private static ListNode[] copy(ListNode[] lists) {
         ListNode[] newLists = new ListNode[lists.length];
         for (int i = 0; i < lists.length; i++) {
-            newLists[i] = ListNode.copyRecursive(lists[i]);
+            newLists[i] = ListNode.copy(lists[i]);
         }
         return newLists;
     }
@@ -65,12 +66,12 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_MergeKLists(SolutionFactory sf, ListNode[] lists, ListNode expected) {
 
         validate(lists);
 
-        Solution solution = sf.create();
-        ListNode actual = solution.mergeKLists(copy(lists));
+        ListNode actual = sf.create().mergeKLists(copy(lists));
 
         assertEquals(expected, actual);
     }

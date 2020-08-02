@@ -1,6 +1,12 @@
 package org.gd.leetcode.common;
 
-public class ListNode {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.function.Consumer;
+
+import static java.util.Objects.requireNonNull;
+
+public class ListNode implements Iterable<ListNode> {
 
     private static final int TO_STRING_LIMIT = 1 << 5;
 
@@ -55,6 +61,11 @@ public class ListNode {
             node = tmp;
         }
         return root;
+    }
+
+    @Deprecated
+    public static ListNode copy(ListNode node) {
+        return node == null ? null : node.copy();
     }
 
     @Deprecated
@@ -260,5 +271,50 @@ public class ListNode {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public Iterator<ListNode> iterator() {
+        if (hasCycle())
+            throw new IllegalStateException("list node has cycle");
+        return new Itr(this);
+    }
+
+    static class Itr implements Iterator<ListNode> {
+
+        private ListNode node;
+
+        Itr(ListNode node) {
+            this.node = node;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return node != null;
+        }
+
+        @Override
+        public ListNode next() {
+            if (!hasNext())
+                throw new NoSuchElementException();
+
+            ListNode node = this.node;
+            this.node = node.next;
+            return node;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException(new String(new char[]{ 175, 92, 95, 40, 12_484, 41, 95, 47, 175 }));
+        }
+
+        @Override
+        public void forEachRemaining(Consumer<? super ListNode> action) {
+            requireNonNull(action, "\"action\" cannot be null");
+            while (node != null) {
+                action.accept(node);
+                node = node.next;
+            }
+        }
     }
 }
