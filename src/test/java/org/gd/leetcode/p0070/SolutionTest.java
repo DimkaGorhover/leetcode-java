@@ -1,13 +1,23 @@
 package org.gd.leetcode.p0070;
 
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link Solution}
+ *
+ * @see MemoizationSolution
+ * @see DPSolution
+ */
+@Timeout(value = 10, unit = TimeUnit.MILLISECONDS)
+@DisplayName("LeetCode #70: Climbing Stairs")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -23,8 +33,15 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    void climbStairs(int n, int expected) {
-        assertEquals(expected, new MemoizationSolution().climbStairs(n));
+    @DisplayName("Dynamic Programming")
+    void dpSolution(int n, int expected) {
         assertEquals(expected, new DPSolution().climbStairs(n));
+    }
+
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("Memoization")
+    void memoizationSolution(int n, int expected) {
+        assertEquals(expected, new MemoizationSolution().climbStairs(n));
     }
 }
