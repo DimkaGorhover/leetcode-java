@@ -51,7 +51,8 @@ class SolutionTest {
                         Arguments.of(new int[]{3, 2, 1, 0, 4}, false),
                         Arguments.of(new int[]{2, 3, 1, 1, 4}, true)),
 
-                testCase("test_case_001.txt")
+                Stream.of("test_case_001.txt")
+                        .flatMap(SolutionTest::testCase)
         );
     }
 
