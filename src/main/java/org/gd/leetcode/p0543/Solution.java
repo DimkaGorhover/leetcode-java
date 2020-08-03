@@ -7,8 +7,10 @@ import org.gd.leetcode.common.TreeNode;
  * https://leetcode.com/problems/diameter-of-binary-tree/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p1522.Solution
  * @since 2020-08-03
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Diameter of Binary Tree",
         difficulty = LeetCode.Level.EASY,

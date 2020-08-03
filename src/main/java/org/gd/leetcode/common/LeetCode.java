@@ -19,7 +19,7 @@ public @interface LeetCode {
 
     Tags[] tags() default {};
 
-    enum State {TODO, FIXME, DONE, UNKNOWN}
+    enum State {TODO, FIXME, DONE, PAID, UNKNOWN}
 
     enum Level {EASY, MEDIUM, HARD}
 
