@@ -18,10 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0045.SolutionTest
+ * @see org.gd.leetcode.p01306.SolutionTest
  * @since 2020-08-03
  */
+@SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #55: Jump Game")
-@Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
+@Timeout(value = 30, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> testCase(String fileName) {

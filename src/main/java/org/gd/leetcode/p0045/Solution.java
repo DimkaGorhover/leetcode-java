@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0045;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 /**
@@ -10,11 +11,12 @@ import org.gd.leetcode.common.LeetCode;
  * @see org.gd.leetcode.p1306.Solution
  * @since 2020-08-03
  */
+@Repeat("this is not my solution :'( ")
 @SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Jump Game II",
         difficulty = LeetCode.Level.HARD,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.GREEDY,
@@ -24,6 +26,27 @@ import org.gd.leetcode.common.LeetCode;
 class Solution {
 
     public int jump(int[] nums) {
-        throw new UnsupportedOperationException(new String(new char[]{ 175, 92, 95, 40, 12_484, 41, 95, 47, 175 }));
+
+        if (nums == null)
+            throw new NullPointerException();
+
+        if (nums.length <= 1)
+            return 0;
+
+        int jumps = 0;
+        int curEnd = 0;
+        int curFarthest = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+
+            curFarthest = Math.max(curFarthest, i + nums[i]);
+
+            if (i == curEnd) {
+                jumps++;
+                curEnd = curFarthest;
+            }
+
+        }
+        return jumps;
     }
 }
