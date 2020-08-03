@@ -13,7 +13,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "Climbing Stairs",
         difficulty = LeetCode.Level.EASY,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.DYNAMIC_PROGRAMMING
         }

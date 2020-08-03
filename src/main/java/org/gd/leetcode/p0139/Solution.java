@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0139;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.*;
@@ -12,6 +13,7 @@ import java.util.*;
  * @since 2020-07-11
  */
 @SuppressWarnings("JavadocReference")
+@Repeat("DYNAMIC_PROGRAMMING")
 @LeetCode(
         name = "Word Break",
         difficulty = LeetCode.Level.MEDIUM,
