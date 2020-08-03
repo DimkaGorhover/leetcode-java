@@ -14,7 +14,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "Jump Game",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.FIXME,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.GREEDY,
@@ -28,14 +28,9 @@ class Solution {
         if (nums.length <= 1) return true;
 
         int max = nums[0];
-        for (int i = 1; i < nums.length - 1 && max > 0; i++) {
-            //max = Math.max(max - 1, nums[i]);
-            if (max > nums[i]) {
-                max--;
-            } else if (max < nums[i]) {
-                max = nums[i];
-            }
-        }
+        for (int i = 1; i < nums.length - 1 && max > 0; i++)
+            max = Math.max(max - 1, nums[i]);
+
         return max > 0;
     }
 }
