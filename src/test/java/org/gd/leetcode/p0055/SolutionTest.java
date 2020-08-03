@@ -21,29 +21,36 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2020-08-03
  */
 @DisplayName("LeetCode #55: Jump Game")
-@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+@Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
-    private static Arguments testCase(String name) {
-        try (var resource = IOUtils.resource(SolutionTest.class, name)) {
+    private static Stream<Arguments> testCase(String fileName) {
+        return Stream.of(fileName).map(name -> {
+            try (var resource = IOUtils.resource(SolutionTest.class, name)) {
 
-            int[] nums = Arrays.stream(resource.readLine().split(","))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
+                int[] nums = Arrays.stream(resource.readLine().split(","))
+                        .mapToInt(Integer::parseInt)
+                        .toArray();
 
-            return Arguments.of(nums, false);
+                boolean expected = Boolean.parseBoolean(resource.readLine());
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+                return Arguments.of(nums, expected);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private static Stream<Arguments> args() {
-        return Stream.of(
-                Arguments.of(new int[]{0}, true),
-                Arguments.of(new int[]{0, 2, 3}, false),
-                Arguments.of(new int[]{3, 2, 1, 0, 4}, false),
-                Arguments.of(new int[]{2, 3, 1, 1, 4}, true),
+        return Stream.concat(
+
+                Stream.of(
+                        Arguments.of(new int[]{0}, true),
+                        Arguments.of(new int[]{0, 2, 3}, false),
+                        Arguments.of(new int[]{3, 2, 1, 0, 4}, false),
+                        Arguments.of(new int[]{2, 3, 1, 1, 4}, true)),
+
                 testCase("test_case_001.txt")
         );
     }
