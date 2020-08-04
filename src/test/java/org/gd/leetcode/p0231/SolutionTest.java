@@ -1,15 +1,25 @@
 package org.gd.leetcode.p0231;
 
-import java.util.stream.Stream;
-
-import org.gd.leetcode.common.BooleanAssertion;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Test for {@link Solution}
+ *
+ * @see org.gd.leetcode.p0342.SolutionTest
+ */
+@SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #231: Power of Two")
+@Timeout(value = 5, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
-    
+
     static Stream<Arguments> args() {
         return Stream.of(
                 Arguments.of(0, false),
@@ -24,6 +34,6 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("Is Power Of Two")
     void test(int n, boolean expected) {
-        BooleanAssertion.of(expected).doAssert(new Solution().isPowerOfTwo(n));
+        assertEquals(expected, new Solution().isPowerOfTwo(n));
     }
 }
