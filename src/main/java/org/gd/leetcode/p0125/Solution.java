@@ -30,24 +30,19 @@ class Solution {
 
         int i = 0, j = s.length() - 1;
         char c0, c1;
-        boolean isContinue = false;
 
         while (i <= j) {
             if (!isValid(c0 = s.charAt(i))) {
                 i++;
-                isContinue = true;
+                continue;
             }
             if (!isValid(c1 = s.charAt(j))) {
                 j--;
-                isContinue = true;
-            }
-            if (isContinue)
                 continue;
-
+            }
             if (!isEqual(c0, c1))
                 return false;
 
-            isContinue = false;
             i++;
             j--;
         }

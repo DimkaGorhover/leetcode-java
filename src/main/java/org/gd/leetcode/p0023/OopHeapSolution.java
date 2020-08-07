@@ -11,6 +11,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * @author Horkhover D.
+ * @see HeapSolution
  * @since 2020-07-13
  */
 class OopHeapSolution implements Solution {

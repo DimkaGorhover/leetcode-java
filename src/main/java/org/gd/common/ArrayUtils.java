@@ -22,7 +22,7 @@ public final class ArrayUtils {
         try {
             final Class<?> ArrayUtilsClass = Class.forName("org.apache.commons.lang3.ArrayUtils");
             emptyObjects = (Object[]) ArrayUtilsClass.getField("EMPTY_OBJECT_ARRAY").get(ArrayUtilsClass);
-        } catch (Throwable e) {}
+        } catch (Throwable ignored) {}
 
         if (emptyObjects == null) emptyObjects = new Object[0];
 

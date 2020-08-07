@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 
 /**
  * @author Horkhover D.
+ * @see OopHeapSolution
  * @since 2020-07-13
  */
 class HeapSolution implements Solution {
