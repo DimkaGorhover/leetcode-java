@@ -4,8 +4,19 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/maximum-product-of-three-numbers/
+ *
+ * @see org.gd.leetcode.p0053.Solution
+ * @see org.gd.leetcode.p0152.Solution
  */
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.ARRAY, LeetCode.Tags.MATH})
+@SuppressWarnings("JavadocReference")
+@LeetCode(
+        name = "Maximum Product Of Three Numbers",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.MATH
+        })
 class Solution {
 
     public int maximumProduct(int[] nums) {

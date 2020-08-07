@@ -1,5 +1,6 @@
-package org.gd.leetcode.p0053;
+package org.gd.leetcode.p1290;
 
+import org.gd.leetcode.common.ListNode;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,23 +14,23 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link Solution}
  *
- * @author Horkhover D.
- * @since 2020-06-30
+ * @author Horkhover Dmytro
+ * @since 2020-08-07
  */
-@DisplayName("LeetCode #53: Maximum Subarray")
-@Timeout(value = 20, unit = TimeUnit.MILLISECONDS)
+@DisplayName("LeetCode #1290: Convert Binary Number in a Linked List to Integer")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}, 6)
+                Arguments.of(ListNode.of(1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0), 18_880)
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("test")
-    void test_MaxSubArray(int[] nums, int expected) {
-        assertEquals(expected, new Solution().maxSubArray(nums));
+    @DisplayName("GetDecimalValue")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    void test_GetDecimalValue(ListNode head, int expected) {
+        assertEquals(expected, new Solution().getDecimalValue(head));
     }
 }
