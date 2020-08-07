@@ -1,6 +1,9 @@
 package org.gd.leetcode.common;
 
+import org.gd.common.CollectionUtils;
+
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
@@ -61,6 +64,38 @@ public class ListNode implements Iterable<ListNode> {
             node = tmp;
         }
         return root;
+    }
+
+    @Deprecated
+    public static int lengthRecursive(ListNode node) {
+        return node == null ? 0 : 1 + lengthRecursive(node.next);
+    }
+
+    @Deprecated
+    public static int length(ListNode node) {
+        int length = 0;
+        while (node != null) {
+            length++;
+            node = node.next;
+        }
+        return length;
+    }
+
+    @Deprecated
+    public static int[] values(ListNode node) {
+        if (node == null)
+            return new int[0];
+        int[] ints = new int[length(node)];
+        for (int i = 0; i < ints.length; i++) {
+            ints[i] = node.val;
+            node = node.next;
+        }
+        return ints;
+    }
+
+    @Deprecated
+    public static List<Integer> listValues(ListNode node) {
+        return CollectionUtils.listOf(values(node));
     }
 
     @Deprecated
