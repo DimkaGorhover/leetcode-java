@@ -1,9 +1,6 @@
 package org.gd.leetcode.common;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 
@@ -66,6 +63,30 @@ public class TreeNode {
             nodes = newNodes;
         }
         return head;
+    }
+
+    @Deprecated
+    public static int countNodes(TreeNode root) {
+        return root == null ? 0 : 1 + countNodes(root.left) + countNodes(root.right);
+    }
+
+    @Deprecated
+    public static int[] values(TreeNode root) {
+        int[] result = new int[countNodes(root)];
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int i = 0;
+        while ((root = q.poll()) != null) {
+
+            result[i++] = root.val;
+
+            if (root.left != null)
+                q.add(root.left);
+
+            if (root.right != null)
+                q.add(root.right);
+        }
+        return result;
     }
 
     /**
