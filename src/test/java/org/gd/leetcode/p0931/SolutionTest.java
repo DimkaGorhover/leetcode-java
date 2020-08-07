@@ -15,8 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p1289.SolutionTest
  * @since 2020-08-07
  */
+@SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #931: Minimum Falling Path Sum")
 class SolutionTest {
 

@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import javax.annotation.Nonnull;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2019-09-10
  */
 @DisplayName("LeetCode #155: Min Stack")
+@Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
 class MinStackTest {
 
     private static Stream<MinStackFactory> args() {

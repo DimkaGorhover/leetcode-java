@@ -6,8 +6,10 @@ import org.gd.leetcode.common.LeetCode;
  * https://leetcode.com/problems/minimum-falling-path-sum/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p1289.Solution
  * @since 2020-08-07
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Minimum Falling Path Sum",
         difficulty = LeetCode.Level.MEDIUM,
