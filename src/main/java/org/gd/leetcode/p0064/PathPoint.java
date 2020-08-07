@@ -13,13 +13,7 @@ interface PathPoint extends Comparable<PathPoint> {
 
     static PathPoint start(int[][] grid) {
         requireNonNull(grid, "\"grid\" cannot be null");
-        int rows = grid.length;
-        int cols = rows > 0 ? grid[0].length : 0;
-
-        if (rows * cols > (1 << 4))
-            return SimplePathPoint.start(grid);
-
-        return FullPathPoint.start(grid);
+        return SimplePathPoint.start(grid);
     }
 
     int sum();

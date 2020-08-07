@@ -1,23 +1,24 @@
 package org.gd.leetcode.p0064;
 
-import org.gd.common.ArrayUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.function.Supplier;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
+import static org.gd.common.ArrayUtils.copy;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link Solution}
+ * Test for {@link DPSolution}
  *
  * <code>
  * ./gradlew clean test --parallel --max-workers=4 --no-daemon --tests 'org.gd.leetcode.p0064.SolutionTest'
  * </code>
  */
+@SuppressWarnings("DefaultAnnotationParam")
 @DisplayName("LeetCode #64: Minimum Path Sum")
 class SolutionTest {
 
@@ -44,35 +45,37 @@ class SolutionTest {
                 {5, 1, 8, 8, 4, 6, 8, 5, 2, 4, 1, 6, 2, 2, 9, 7}
         };
 
-        Stream<Supplier<ISolution>> solutions = Stream.of(
-                SolutionFactory.singleton(Solution.class),
-                SolutionFactory.singleton(DijkstraSolution.class),
-                SolutionFactory.prototype(Solution.class),
-                SolutionFactory.prototype(DijkstraSolution.class)
-        );
+        return Stream.of(
 
-        return solutions.flatMap(solution -> Stream.of(
+                Arguments.of(copy(grid0), 83),
 
-                Arguments.of(solution, ArrayUtils.copy(grid0), 83),
-
-                Arguments.of(solution, new int[][]{
+                Arguments.of(new int[][]{
                         {1, 2, 5},
                         {3, 2, 1}
                 }, 6),
 
-                Arguments.of(solution, new int[][]{
+                Arguments.of(new int[][]{
                         {1, 3, 1},
                         {1, 5, 1},
                         {4, 2, 1}
                 }, 7)
-        ));
+        );
     }
 
-    @Timeout(2)
-    @ParameterizedTest
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    @ParameterizedTest(name = "{displayName} #{index}")
     @MethodSource("args")
-    void minPathSum(SolutionFactory solution, int[][] grid, int expected) {
-        int actual = solution.get().minPathSum(grid);
-        assertEquals(expected, actual);
+    @DisplayName("Dynamic Programming")
+    void minPathSum(int[][] grid, int expected) {
+        assertEquals(expected, new DPSolution().minPathSum(grid));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Timeout(value = 5, unit = TimeUnit.SECONDS)
+    @ParameterizedTest(name = "{displayName} #{index}")
+    @MethodSource("args")
+    @DisplayName("Dijkstra")
+    void test_Dijkstra(int[][] grid, int expected) {
+        assertEquals(expected, new DijkstraSolution().minPathSum(grid));
     }
 }

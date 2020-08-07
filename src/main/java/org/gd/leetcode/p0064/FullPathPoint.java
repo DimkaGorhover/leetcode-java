@@ -7,6 +7,7 @@ import java.util.Optional;
  * @author Horkhover D.
  * @since 2020-07-05
  */
+@Deprecated
 class FullPathPoint extends AbstractPathPoint {
 
     private final FullPathPoint prev;
