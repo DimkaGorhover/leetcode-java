@@ -38,19 +38,29 @@ import org.gd.leetcode.common.TreeNode;
  * @since 2019-09-14
  */
 //@formatter:on
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.TREE)
+@LeetCode(
+        name = "Path Sum III",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.TREE
+        })
 class Solution {
 
     private static int pathSum0(final TreeNode node, final int expected) {
-        return node == null ? 0 : (node.val == expected ? 1 : 0)
-                + pathSum0(node.left, expected - node.val)
-                + pathSum0(node.right, expected - node.val);
+        if (node == null)
+            return 0;
 
+        final int left = pathSum0(node.left, expected - node.val);
+        final int right = pathSum0(node.right, expected - node.val);
+
+        return (node.val == expected ? 1 : 0) + left + right;
     }
 
     public int pathSum(final TreeNode root, final int expected) {
-        return root == null ? 0 : pathSum0(root, expected)
-                + pathSum(root.left, expected)
-                + pathSum(root.right, expected);
+        if (root == null)
+            return 0;
+
+        return pathSum0(root, expected) + pathSum(root.left, expected) + pathSum(root.right, expected);
     }
 }

@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #342: Power of Four")
-@Timeout(value = 5, unit = TimeUnit.MILLISECONDS)
+@Timeout(value = 20, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {

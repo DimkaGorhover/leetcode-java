@@ -5,8 +5,13 @@ import org.gd.leetcode.common.ListNode;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list/
+ *
+ * @see org.gd.leetcode.p0096.Solution
+ * @see org.gd.hackerrank.other.ReverseLinkedList
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "Reverse Linked List",
         difficulty = LeetCode.Level.EASY,
         state = LeetCode.State.DONE,
         tags = LeetCode.Tags.LINKED_LIST

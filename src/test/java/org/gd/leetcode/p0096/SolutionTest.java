@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @see org.gd.leetcode.p0206.SolutionTest
  */
 @SuppressWarnings("JavadocReference")
-@DisplayName("LeetCode #96: Reverse Linked List 2")
+@DisplayName("LeetCode #96: Reverse Linked List II")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -38,7 +38,6 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #96: Reverse Linked List 2")
     void reverseBetween(ListNode head, int m, int n, ListNode expected) {
         ListNode actual = new Solution().reverseBetween(head, m, n);
         assertEquals(expected, actual);

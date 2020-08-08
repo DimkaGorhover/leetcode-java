@@ -267,7 +267,7 @@ public class ListNode implements Iterable<ListNode> {
             return hash * 19;
         }
 
-        while (slow != null) {
+        while (slow != null && slow != fast) {
             hash = hash * 13 + slow.val;
             slow = slow.next;
         }
@@ -300,10 +300,13 @@ public class ListNode implements Iterable<ListNode> {
             fast = fast.next.next;
         }
 
-        while (slow != null) {
+        while (slow != null && slow != fast) {
             sb.append("=>(").append(slow.val).append(')');
             slow = slow.next;
         }
+
+        if (slow != null)
+            sb.append("=>...");
 
         return sb.toString();
     }

@@ -6,7 +6,11 @@ import org.gd.hackerrank.common.SinglyLinkedListNode;
 
 /**
  * https://www.hackerrank.com/challenges/reverse-a-linked-list/
+ *
+ * @see org.gd.leetcode.p0096.Solution
+ * @see org.gd.leetcode.p0206.Solution
  */
+@SuppressWarnings("JavadocReference")
 @Repeat("reverse linked list")
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class ReverseLinkedList {

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link Solution}
  *
- * @see org.gd.leetcode.p0096.Solution
+ * @see org.gd.leetcode.p0096.SolutionTest
  */
 @SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #206: Reverse Linked List")
@@ -31,7 +31,6 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     void reverseList(ListNode head, ListNode expected) {
-        ListNode actual = new Solution().reverseList(head);
-        assertEquals(expected, actual);
+        assertEquals(expected, new Solution().reverseList(head));
     }
 }

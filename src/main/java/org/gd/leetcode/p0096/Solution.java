@@ -7,9 +7,11 @@ import org.gd.leetcode.common.ListNode;
  * https://leetcode.com/problems/reverse-linked-list-ii/
  *
  * @see org.gd.leetcode.p0206.Solution
+ * @see org.gd.hackerrank.other.ReverseLinkedList
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "Reverse Linked List II",
         difficulty = LeetCode.Level.MEDIUM,
         state = LeetCode.State.DONE,
         tags = LeetCode.Tags.LINKED_LIST
