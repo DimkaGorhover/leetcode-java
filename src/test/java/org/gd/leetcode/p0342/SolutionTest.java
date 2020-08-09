@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #342: Power of Four")
-@Timeout(value = 20, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -35,6 +34,7 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("IsPowerOfFour")
+    @Timeout(value = 10, unit = TimeUnit.MILLISECONDS)
     void test_IsPowerOfFour(int num, boolean expected) {
         assertEquals(expected, new Solution().isPowerOfFour(num));
     }
