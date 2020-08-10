@@ -8,8 +8,11 @@ import java.util.*;
  * https://leetcode.com/problems/top-k-frequent-words/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0347.Solution
+ * @see org.gd.leetcode.p0973.Solution
  * @since 2020-08-09
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Top K Frequent Words",
         difficulty = LeetCode.Level.MEDIUM,
