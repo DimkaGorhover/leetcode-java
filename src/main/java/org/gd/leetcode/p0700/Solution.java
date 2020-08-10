@@ -9,10 +9,18 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-12-28
  */
-@LeetCode(difficulty = LeetCode.Level.EASY)
+@LeetCode(
+        name = "Search in a Binary Search Tree",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.BINARY_SEARCH_TREE
+        }
+)
 class Solution {
 
-    public TreeNode searchBST(TreeNode root, int val) {
+    public TreeNode searchBST(TreeNode root, final int val) {
         while (root != null && root.val != val)
             root = root.val < val ? root.right : root.left;
         return root;

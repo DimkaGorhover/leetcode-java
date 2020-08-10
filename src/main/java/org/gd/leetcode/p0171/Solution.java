@@ -9,7 +9,12 @@ import org.gd.leetcode.common.LeetCode;
  * @since 2019-10-04
  */
 @SuppressWarnings("JavadocReference")
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.MATH)
+@LeetCode(
+        name = "Excel Sheet Column Number",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.MATH
+)
 class Solution {
 
     private static final int RADIX = 'Z' - 'A' + 1;
@@ -19,18 +24,16 @@ class Solution {
         if (s == null)
             throw new NullPointerException();
 
-        if (s.length() <= 0)
+        final int length = s.length();
+        if (length <= 0)
             throw new IndexOutOfBoundsException();
 
-        if (s.length() == 1)
+        if (length == 1)
             return s.charAt(0) - 'A' + 1;
 
         int sum = 0;
-        for (int index = 0; index < s.length(); index++) {
-            char c = s.charAt(index);
-            int i = c + 1 - 'A';
-            sum = sum * RADIX + i;
-        }
+        for (int index = 0; index < length; index++)
+            sum = (sum * RADIX) + (s.charAt(index) + 1 - 'A');
 
         return sum;
     }
