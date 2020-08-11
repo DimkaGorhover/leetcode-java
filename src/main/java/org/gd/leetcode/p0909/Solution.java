@@ -3,7 +3,7 @@ package org.gd.leetcode.p0909;
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.TreeSet;
 
 /**
  * TODO: https://leetcode.com/problems/snakes-and-ladders/
@@ -21,8 +21,8 @@ import java.util.Queue;
 )
 class Solution {
 
-    int[][] board;
-    int rows, cols, lastNumber;
+    private int[][] board;
+    private int rows, cols, lastNumber;
 
     void reset(int[][] board) {
         this.board = board;
@@ -38,18 +38,21 @@ class Solution {
 
         reset(board);
 
-        Queue<IPoint> q = new PriorityQueue<>(rows * cols * 6);
+        Queue q = new HeapQueueFactory().create(rows * cols * 6);
         q.add(startPoint());
 
-        while (!q.isEmpty()) {
+        Point point;
+        while ((point = q.poll()) != null) {
 
-            IPoint point = q.poll();
             if (point.isFinish())
                 return point.steps();
 
-            int number = point.number();
-            for (int i = 1; i <= 6 && number + i <= lastNumber; i++)
-                q.add(point.add(i));
+            int number = point.position();
+            for (int i = 1; i <= 6 && number + i <= lastNumber; i++) {
+                Point next = point.add(i);
+                if (next != null)
+                    q.add(next);
+            }
         }
 
         throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
@@ -59,24 +62,14 @@ class Solution {
         return new Point(rows - 1, 0, 0);
     }
 
-    interface IPoint extends Comparable<IPoint> {
+    interface Queue {
 
-        boolean isFinish();
+        Point poll();
 
-        int steps();
-
-        int number();
-
-        IPoint add(int value);
-
-        @Override
-        default int compareTo(IPoint o) {
-            int compare = Integer.compare(steps(), o.steps());
-            return compare != 0 ? compare : Integer.compare(o.number(), number());
-        }
+        void add(Point point);
     }
 
-    class Point implements IPoint {
+    class Point implements Comparable<Point> {
 
         final int row, col, steps;
 
@@ -87,7 +80,12 @@ class Solution {
         }
 
         @Override
-        public int number() {
+        public int compareTo(Point o) {
+            int compare = Integer.compare(steps(), o.steps());
+            return compare != 0 ? compare : Integer.compare(o.position(), position());
+        }
+
+        int position() {
             final int downRow = rows - 1 - this.row;
             if (downRow % 2 == 0) {
                 return (downRow * cols) + (col + 1);
@@ -96,38 +94,95 @@ class Solution {
             }
         }
 
-        @Override
-        public IPoint add(int value) { return next(number() + value); }
+        boolean isFinish() { return position() >= lastNumber; }
 
-        @Override
-        public boolean isFinish() { return number() >= lastNumber; }
+        int value() { return isFinish() ? -1 : board[row][col]; }
 
-        @Override
-        public int steps() { return steps; }
+        int steps() { return steps; }
 
-        private int value() { return isFinish() ? -1 : board[row][col]; }
+        Point add(int value) { return next(position() + value); }
 
-        Point next(int value) {
-            while (true) {
-                final int row = (rows - 1) - ((value - 1) / cols);
-                final int col;
-                if (row % 2 == 0) {
-                    col = cols - ((value - 1) % cols) - 1;
-                } else {
-                    col = (value - 1) % cols;
-                }
+        Point next(int position) {
 
-                Point point = new Point(row, col, steps + 1);
-                if (point.isFinish())
-                    return point;
+            int downRow = ((position - 1) / cols);
+            int row = (rows - 1) - ((position - 1) / cols);
+            int col = position - (downRow * cols) - 1;
+            if (downRow % 2 != 0)
+                col = cols - 1 - col;
 
-                if (point.value() >= 0) {
-                    value = point.value();
-                    continue;
-                }
+            Point point = new Point(row, col, steps + 1);
 
+            if (point.position() == point.value() || point.isFinish())
                 return point;
+
+            if (point.value() >= 0)
+                return next(point.value());
+
+            return point;
+        }
+
+        @Override
+        public String toString() {
+            return "Point{" +
+                    "row=" + row +
+                    ", col=" + col +
+                    (value() >= 0 ? ", redirect=" + value() : "") +
+                    ", number=" + position() +
+                    '}';
+        }
+    }
+
+    interface QueueFactory {
+
+        Solution.Queue create(int capacity);
+
+    }
+
+    static class HeapQueueFactory implements QueueFactory {
+
+        @Override
+        public Solution.Queue create(int capacity) {
+            return new QueueImpl(capacity);
+        }
+
+        static class QueueImpl implements Solution.Queue {
+
+            private final PriorityQueue<Point> heap;
+
+            QueueImpl(int capacity) {
+                heap = new PriorityQueue<>(capacity);
             }
+
+            @Override
+            public Point poll() { return heap.poll(); }
+
+            @Override
+            public void add(Point point) { heap.add(point); }
+
+            @Override
+            public String toString() { return heap.toString(); }
+        }
+    }
+
+    static class TreeSetQueueFactory implements QueueFactory {
+
+        @Override
+        public Solution.Queue create(int capacity) {
+            return new QueueImpl();
+        }
+
+        static class QueueImpl implements Solution.Queue {
+
+            private final TreeSet<Point> set = new TreeSet<>();
+
+            @Override
+            public Point poll() { return set.pollFirst(); }
+
+            @Override
+            public void add(Point point) { set.add(point); }
+
+            @Override
+            public String toString() { return set.toString(); }
         }
     }
 }

@@ -22,6 +22,13 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+
+                Arguments.of(new int[][]{
+                        {-1, 4, -1},
+                        {6, 2, 6},
+                        {-1, 3, -1}
+                }, 2),
+
                 Arguments.of(new int[][]{
                         {-1, -1, -1, -1, -1, -1},
                         {-1, -1, -1, -1, -1, -1},
@@ -41,8 +48,20 @@ class SolutionTest {
         assertEquals(expected, new Solution().snakesAndLadders(board));
     }
 
+    private static int[][] generateBoard(int n) {
+        int[][] board = new int[n][n];
+        for (int[] ints : board)
+            Arrays.fill(ints, -1);
+        return board;
+    }
+
     private static Stream<Arguments> pointsArgs() {
         return Stream.of(
+
+                Arguments.of(3, 5, new ExpectedPoint(1, 1)),
+                Arguments.of(3, 1, new ExpectedPoint(2, 0)),
+
+                Arguments.of(6, 1, new ExpectedPoint(5, 0)),
                 Arguments.of(6, 10, new ExpectedPoint(4, 2)),
                 Arguments.of(6, 13, new ExpectedPoint(3, 0)),
                 Arguments.of(6, 22, new ExpectedPoint(2, 2)),
@@ -57,38 +76,15 @@ class SolutionTest {
     @MethodSource("pointsArgs")
     @DisplayName("Point")
     @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
-    void test_Point(int n, int number, ExpectedPoint expected) {
+    void test_Point(int n, int position, ExpectedPoint expected) {
 
         Solution solution = new Solution();
         solution.reset(generateBoard(n));
 
-        var point = solution.startPoint().next(number);
+        var point = solution.startPoint().next(position);
 
-        //assertEquals(number, point.number());
+        assertEquals(position, point.position());
         assertEquals(1, point.steps);
-        assertEquals(expected.row, point.row);
-        assertEquals(expected.col, point.col);
-    }
-
-    static int[][] generateBoard(int n) {
-        int[][] board = new int[n][n];
-        for (int[] ints : board)
-            Arrays.fill(ints, -1);
-        return board;
-    }
-
-    static class ExpectedPoint {
-
-        final int row, col;
-
-        ExpectedPoint(int row, int col) {
-            this.row = row;
-            this.col = col;
-        }
-
-        @Override
-        public String toString() {
-            return "row=" + row + " col=" + col;
-        }
+        assertEquals(expected, ExpectedPoint.of(point));
     }
 }
