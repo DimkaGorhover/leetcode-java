@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("LeetCode #909: Snakes and Ladders")
 class SolutionTest {
 
-
     private static Stream<Arguments> args() {
         return Stream.of(
 
@@ -70,7 +69,7 @@ class SolutionTest {
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_SnakesAndLadders(int[][] board, int expected) {
 
-        assertEquals(expected, new MySolution().snakesAndLadders(board));
+        assertEquals(expected, new MySuperStupidUglySolution().snakesAndLadders(board));
     }
 
     @ParameterizedTest
@@ -112,7 +111,7 @@ class SolutionTest {
     @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
     void test_Point(int n, int position, ExpectedPoint expected) {
 
-        var solution = new MySolution();
+        var solution = new MySuperStupidUglySolution();
         solution.reset(generateBoard(n));
 
         var point = solution.startPoint();

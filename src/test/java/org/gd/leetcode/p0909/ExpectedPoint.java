@@ -13,7 +13,7 @@ class ExpectedPoint {
         this.col = col;
     }
 
-    static ExpectedPoint of(MySolution.Point point) {
+    static ExpectedPoint of(MySuperStupidUglySolution.Point point) {
         return of(point.row, point.col);
     }
 

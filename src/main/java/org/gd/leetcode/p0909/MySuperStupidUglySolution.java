@@ -1,9 +1,8 @@
 package org.gd.leetcode.p0909;
 
-import java.util.PriorityQueue;
-import java.util.TreeSet;
+import java.util.*;
 
-class MySolution implements Solution {
+class MySuperStupidUglySolution implements Solution {
 
     private int[][] board;
     private int rows, cols, lastNumber;
@@ -22,21 +21,22 @@ class MySolution implements Solution {
 
         reset(board);
 
-        Queue q = new TreeSetQueueFactory().create(rows * cols * 6);
+        Queue q = new LinkedListQueueFactory().create(rows * cols * 6);
         q.add(startPoint());
 
         Point point;
         while ((point = q.poll()) != null) {
 
-            if (point.isFinish()) {
-                return point.steps();
-            }
+            if (point.isFinish())
+                return point.steps;
 
             for (int i = 1; i <= 6 && point.position + i <= lastNumber; i++) {
                 Point next = point.add(i);
                 if (next != null) {
+
                     if (next.isFinish())
-                        return next.steps();
+                        return next.steps;
+
                     q.add(next);
                 }
             }
@@ -157,6 +157,35 @@ class MySolution implements Solution {
         }
     }
 
+    static class LinkedListQueueFactory implements QueueFactory {
+
+        @Override
+        public Queue create(int capacity) {
+            return new QueueImpl();
+        }
+
+        static class QueueImpl implements Queue {
+
+            private final LinkedList<Point> q = new LinkedList<>();
+            private final Set<Integer> set = new HashSet<>();
+
+            @Override
+            public Point poll() { return q.poll(); }
+
+            @Override
+            public void add(Point point) {
+                if (set.contains(point.position))
+                    return;
+                q.add(point);
+                set.add(point.position);
+            }
+
+            @Override
+            public String toString() { return q.toString(); }
+        }
+    }
+
+    @Deprecated
     static class TreeSetQueueFactory implements QueueFactory {
 
         @Override
