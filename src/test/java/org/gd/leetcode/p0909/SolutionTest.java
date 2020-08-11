@@ -20,8 +20,32 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("LeetCode #909: Snakes and Ladders")
 class SolutionTest {
 
+
     private static Stream<Arguments> args() {
         return Stream.of(
+
+                Arguments.of(new int[][]{
+                        {-1, -1, 30, 14, 15, -1},
+                        {23, 9, -1, -1, -1, 9},
+                        {12, 5, 7, 24, -1, 30},
+                        {10, -1, -1, -1, 25, 17},
+                        {32, -1, 28, -1, -1, 32},
+                        {-1, -1, 23, -1, 13, 19}
+                }, 3),
+
+                Arguments.of(new int[][]{
+                        {-1, 15, 9, 1, -1},
+                        {-1, -1, 10, 5, 19},
+                        {18, -1, 23, 9, -1},
+                        {1, 13, -1, 16, 20},
+                        {-1, 10, 10, 25, 13}
+                }, 1),
+
+                Arguments.of(new int[][]{
+                        {1, 1, -1},
+                        {1, 1, 1},
+                        {-1, 1, 1}
+                }, -1),
 
                 Arguments.of(new int[][]{
                         {-1, 4, -1},
@@ -81,10 +105,11 @@ class SolutionTest {
         Solution solution = new Solution();
         solution.reset(generateBoard(n));
 
-        var point = solution.startPoint().next(position);
+        var point = solution.startPoint();
+        if (position != point.position())
+            point = point.next(position);
 
         assertEquals(position, point.position());
-        assertEquals(1, point.steps);
         assertEquals(expected, ExpectedPoint.of(point));
     }
 }

@@ -2,7 +2,9 @@ package org.gd.leetcode.p0909;
 
 import org.gd.leetcode.common.LeetCode;
 
+import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.TreeSet;
 
 /**
@@ -55,7 +57,7 @@ class Solution {
             }
         }
 
-        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
+        return -1;
     }
 
     Point startPoint() {
@@ -96,7 +98,7 @@ class Solution {
 
         boolean isFinish() { return position() >= lastNumber; }
 
-        int value() { return isFinish() ? -1 : board[row][col]; }
+        int redirect() { return isFinish() ? -1 : board[row][col]; }
 
         int steps() { return steps; }
 
@@ -104,21 +106,36 @@ class Solution {
 
         Point next(int position) {
 
-            int downRow = ((position - 1) / cols);
-            int row = (rows - 1) - ((position - 1) / cols);
-            int col = position - (downRow * cols) - 1;
-            if (downRow % 2 != 0)
-                col = cols - 1 - col;
+            Set<Integer> visited = new HashSet<>();
+            visited.add(this.position());
 
-            Point point = new Point(row, col, steps + 1);
+            while (true) {
 
-            if (point.position() == point.value() || point.isFinish())
+                if (position() == position)
+                    return null;
+
+                int downRow = ((position - 1) / cols);
+                int row = (rows - 1) - ((position - 1) / cols);
+                int col = position - (downRow * cols) - 1;
+                if (downRow % 2 != 0)
+                    col = cols - 1 - col;
+
+                Point point = new Point(row, col, steps + 1);
+
+                if (point.position() == point.redirect() || point.isFinish())
+                    return point;
+
+                if (point.redirect() >= 0) {
+                    position = point.redirect();
+                    if (visited.contains(position))
+                        return null;
+
+                    visited.add(position);
+                    continue;
+                }
+
                 return point;
-
-            if (point.value() >= 0)
-                return next(point.value());
-
-            return point;
+            }
         }
 
         @Override
@@ -126,7 +143,7 @@ class Solution {
             return "Point{" +
                     "row=" + row +
                     ", col=" + col +
-                    (value() >= 0 ? ", redirect=" + value() : "") +
+                    (redirect() >= 0 ? ", redirect=" + redirect() : "") +
                     ", number=" + position() +
                     '}';
         }
