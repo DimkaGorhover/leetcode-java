@@ -8,13 +8,17 @@ class ExpectedPoint {
 
     final int row, col;
 
-    ExpectedPoint(int row, int col) {
+    private ExpectedPoint(int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    static ExpectedPoint of(Solution.Point point) {
-        return new ExpectedPoint(point.row, point.col);
+    static ExpectedPoint of(MySolution.Point point) {
+        return of(point.row, point.col);
+    }
+
+    static ExpectedPoint of(int row, int col) {
+        return new ExpectedPoint(row, col);
     }
 
     @Override

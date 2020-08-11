@@ -25,13 +25,13 @@ class SolutionTest {
         return Stream.of(
 
                 Arguments.of(new int[][]{
-                        {-1, -1, 30, 14, 15, -1},
-                        {23, 9, -1, -1, -1, 9},
-                        {12, 5, 7, 24, -1, 30},
-                        {10, -1, -1, -1, 25, 17},
-                        {32, -1, 28, -1, -1, 32},
-                        {-1, -1, 23, -1, 13, 19}
-                }, 3),
+                        /* 0 <-- */ { -1, -1, 30, 14, 15, -1},
+                        /* 1 --> */ { 23, 9, -1, -1, -1, 9},
+                        /* 2 <-- */ { 12, 5, 7, 24, -1, 30},
+                        /* 3 --> */ { 10, -1, -1, -1, 25, 17},
+                        /* 4 <-- */ { 32, -1, 28, -1, -1, 32},
+                        /* 5 --> */ { -1, -1, 23, -1, 13, 19}
+                }, 2),
 
                 Arguments.of(new int[][]{
                         {-1, 15, 9, 1, -1},
@@ -66,10 +66,20 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("SnakesAndLadders")
+    @DisplayName("My Solution")
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_SnakesAndLadders(int[][] board, int expected) {
-        assertEquals(expected, new Solution().snakesAndLadders(board));
+
+        assertEquals(expected, new MySolution().snakesAndLadders(board));
+    }
+
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("Reference")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    void test_Reference(int[][] board, int expected) {
+
+        assertEquals(expected, new ReferenceSolution().snakesAndLadders(board));
     }
 
     private static int[][] generateBoard(int n) {
@@ -82,17 +92,17 @@ class SolutionTest {
     private static Stream<Arguments> pointsArgs() {
         return Stream.of(
 
-                Arguments.of(3, 5, new ExpectedPoint(1, 1)),
-                Arguments.of(3, 1, new ExpectedPoint(2, 0)),
+                Arguments.of(3, 5, ExpectedPoint.of(1, 1)),
+                Arguments.of(3, 1, ExpectedPoint.of(2, 0)),
 
-                Arguments.of(6, 1, new ExpectedPoint(5, 0)),
-                Arguments.of(6, 10, new ExpectedPoint(4, 2)),
-                Arguments.of(6, 13, new ExpectedPoint(3, 0)),
-                Arguments.of(6, 22, new ExpectedPoint(2, 2)),
-                Arguments.of(6, 23, new ExpectedPoint(2, 1)),
-                Arguments.of(6, 19, new ExpectedPoint(2, 5)),
-                Arguments.of(6, 18, new ExpectedPoint(3, 5)),
-                Arguments.of(6, 36, new ExpectedPoint(0, 0))
+                Arguments.of(6, 1, ExpectedPoint.of(5, 0)),
+                Arguments.of(6, 10, ExpectedPoint.of(4, 2)),
+                Arguments.of(6, 13, ExpectedPoint.of(3, 0)),
+                Arguments.of(6, 22, ExpectedPoint.of(2, 2)),
+                Arguments.of(6, 23, ExpectedPoint.of(2, 1)),
+                Arguments.of(6, 19, ExpectedPoint.of(2, 5)),
+                Arguments.of(6, 18, ExpectedPoint.of(3, 5)),
+                Arguments.of(6, 36, ExpectedPoint.of(0, 0))
         );
     }
 
@@ -102,14 +112,14 @@ class SolutionTest {
     @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
     void test_Point(int n, int position, ExpectedPoint expected) {
 
-        Solution solution = new Solution();
+        var solution = new MySolution();
         solution.reset(generateBoard(n));
 
         var point = solution.startPoint();
-        if (position != point.position())
+        if (position != point.position)
             point = point.next(position);
 
-        assertEquals(position, point.position());
+        assertEquals(position, point.position);
         assertEquals(expected, ExpectedPoint.of(point));
     }
 }
