@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 /**
  * Test for {@link IsThisBinarySearchTree}
  */
+@DisplayName("HackerRank: Is This a Binary Search Tree")
 class IsThisBinarySearchTreeTest {
 
     private static Stream<Arguments> args() {
