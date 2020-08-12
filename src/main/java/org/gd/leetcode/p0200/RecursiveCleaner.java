@@ -18,16 +18,20 @@ class RecursiveCleaner implements Cleaner {
     }
 
     @Override
-    public void clean(int row, int col) {
+    public int clean(int row, int col) {
         if (row < 0 || row == rows || col < 0 || col == cols || grid[row][col] == '0')
-            return;
+            return 0;
 
         grid[row][col] = '0';
 
-        clean(row + 1, col);
-        clean(row - 1, col);
+        int count = 1;
 
-        clean(row, col + 1);
-        clean(row, col - 1);
+        count += clean(row + 1, col);
+        count += clean(row - 1, col);
+
+        count += clean(row, col + 1);
+        count += clean(row, col - 1);
+
+        return count;
     }
 }

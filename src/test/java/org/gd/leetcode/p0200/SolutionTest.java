@@ -72,9 +72,17 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("Number of Islands")
+    @DisplayName("Recursive Cleaner")
     @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
-    void test_NumIslands(char[][] grid, int expected) {
-        assertEquals(expected, new Solution().numIslands(copy(grid)));
+    void test_RecursiveCleaner(char[][] grid, int expected) {
+        assertEquals(expected, new Solution(RecursiveCleaner::new).numIslands(copy(grid)));
+    }
+
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("Queue Cleaner")
+    @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
+    void test_QueueCleaner(char[][] grid, int expected) {
+        assertEquals(expected, new Solution(QueueCleaner::new).numIslands(copy(grid)));
     }
 }

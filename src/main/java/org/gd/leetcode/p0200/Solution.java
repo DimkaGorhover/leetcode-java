@@ -20,6 +20,16 @@ import org.gd.leetcode.common.LeetCode;
 )
 class Solution {
 
+    private final CleanerFactory cleanerFactory;
+
+    Solution() {
+        this(QueueCleaner::new);
+    }
+
+    Solution(CleanerFactory cleanerFactory) {
+        this.cleanerFactory = cleanerFactory;
+    }
+
     public int numIslands(char[][] grid) {
 
         final int rows;
@@ -28,7 +38,7 @@ class Solution {
         if (grid == null || (rows = grid.length) == 0 || (cols = grid[0].length) == 0)
             return 0;
 
-        final Cleaner cleaner = (rows * cols > (1 << 5)) ? new QueueCleaner(grid) : new RecursiveCleaner(grid);
+        final Cleaner cleaner = cleanerFactory.create(grid);
 
         int count = 0;
         for (int row = 0; row < rows; row++) {

@@ -6,5 +6,5 @@ package org.gd.leetcode.p0200;
  */
 interface Cleaner {
 
-    void clean(int row, int col);
+    int clean(int row, int col);
 }
