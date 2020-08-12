@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0118;
 
-import org.junit.jupiter.api.parallel.*;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,10 +11,14 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test for {@link Solution}
+ *
  * @author Gorkhover D.
+ * @see org.gd.leetcode.p0119.SolutionTest
  * @since 2018-10-17
  */
-@Execution(ExecutionMode.CONCURRENT)
+@SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #118: Pascals Triangle")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -44,13 +48,15 @@ class SolutionTest {
                         /* 3 */ List.of(1, 3, 3, 1),
                         /* 4 */ List.of(1, 4, 6, 4, 1)
                 )),
-                Arguments.arguments(6, List.of(
+                Arguments.arguments(8, List.of(
                         /* 0 */ List.of(1),
                         /* 1 */ List.of(1, 1),
                         /* 2 */ List.of(1, 2, 1),
                         /* 3 */ List.of(1, 3, 3, 1),
                         /* 4 */ List.of(1, 4, 6, 4, 1),
-                        /* 5 */ List.of(1, 5, 10, 10, 5, 1)
+                        /* 5 */ List.of(1, 5, 10, 10, 5, 1),
+                        /* 6 */ List.of(1, 6, 15, 20, 15, 6, 1),
+                        /* 7 */ List.of(1, 7, 21, 35, 35, 21, 7, 1)
                 ))
         );
     }

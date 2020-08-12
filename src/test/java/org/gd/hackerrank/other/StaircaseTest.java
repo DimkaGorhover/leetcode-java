@@ -18,26 +18,27 @@ class StaircaseTest {
     @DisplayName("Staircase")
     void test_Staircase() throws IOException {
 
-        var prevOut = System.out;
-        var prevErr = System.err;
+        synchronized (System.out) {
 
-        var baos = new ByteArrayOutputStream();
-        var ps   = new PrintStream(baos);
+            var prevOut = System.out;
+            var prevErr = System.err;
 
-        System.setOut(ps);
-        System.setErr(ps);
+            try (var baos = new ByteArrayOutputStream();
+                 var ps = new PrintStream(baos)) {
 
-        Staircase.staircase(6);
+                System.setOut(ps);
+                System.setErr(ps);
 
-        System.setOut(prevOut);
-        System.setErr(prevErr);
+                Staircase.staircase(6);
 
-        ps.flush();
-        baos.flush();
-        ps.close();
-        baos.close();
+                System.setOut(prevOut);
+                System.setErr(prevErr);
 
-        System.out.println(baos.toString());
+                ps.flush();
+                baos.flush();
 
+                System.out.println(baos.toString());
+            }
+        }
     }
 }

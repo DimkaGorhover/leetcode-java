@@ -5,7 +5,7 @@ import org.gd.hackerrank.common.HackerRank;
 import java.util.List;
 
 /**
- * TODO: https://www.hackerrank.com/challenges/even-tree/problem
+ * TODO: https://www.hackerrank.com/challenges/even-tree/
  *
  * @since 2019-09-23
  */

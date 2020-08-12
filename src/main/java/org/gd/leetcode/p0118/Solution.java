@@ -13,7 +13,12 @@ import java.util.List;
  * @see org.gd.leetcode.p0119.Solution
  */
 @SuppressWarnings({"JavadocReference", "unchecked"})
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.ARRAY)
+@LeetCode(
+        name = "Pascals Triangle",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.ARRAY
+)
 class Solution {
 
     private static final List<Integer>[] LINES;

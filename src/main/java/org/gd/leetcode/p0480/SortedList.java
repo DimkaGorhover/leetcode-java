@@ -11,36 +11,27 @@ class SortedList implements SlidingWindow {
     private final long[] arr;
     private int size = 0;
 
-    SortedList(int[] nums, int k) {
-        arr = new long[k];
-        for (int i = 0; i < Math.min(nums.length, k); i++)
+    SortedList(int[] nums, int capacity) {
+        arr = new long[capacity];
+        for (int i = 0; i < Math.min(nums.length, capacity); i++)
             add(nums[i]);
     }
 
-    void add(int value) {
+    private void add(int value) {
         if (size == arr.length)
+            throw new IndexOutOfBoundsException();
+
+        if (size == 0 || arr[size - 1] <= value) {
+            arr[size++] = value;
             return;
-
-        switch (size) {
-            case 0:
-                arr[0] = value;
-                break;
-            case 1:
-                if (arr[0] > value) {
-                    arr[1] = arr[0];
-                    arr[0] = value;
-                } else {
-                    arr[1] = value;
-                }
-                break;
-            default:
-                int pos = Arrays.binarySearch(arr, 0, size, value);
-                if (pos < 0)
-                    pos = -pos - 1;
-
-                System.arraycopy(arr, pos, arr, pos + 1, size - pos);
-                arr[pos] = value;
         }
+
+        int pos = Arrays.binarySearch(arr, 0, size, value);
+        if (pos < 0)
+            pos = -pos - 1;
+
+        System.arraycopy(arr, pos, arr, pos + 1, size - pos);
+        arr[pos] = value;
         size++;
     }
 

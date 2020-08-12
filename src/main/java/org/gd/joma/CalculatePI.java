@@ -26,6 +26,10 @@ class CalculatePI {
 
     static record Result(long inCircle, long total) {
 
+        Result merge(Result o) {
+            return new Result((inCircle + o.inCircle), (total + o.total));
+        }
+
         double pi() { return 4d * inCircle / total; }
     }
 
