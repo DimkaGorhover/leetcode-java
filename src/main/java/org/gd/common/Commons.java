@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 public final class Commons {
 
+    private static final long[] FACTORIALS = new long[21];
+
     private static final long GAUS_MAX_VAL = 4_294_967_295L;
     private static final BigInteger GAUS_MAX_VAL_BI = BigInteger.valueOf(GAUS_MAX_VAL);
 
@@ -127,20 +129,48 @@ public final class Commons {
      * http://mathematichka.ru/school/combinatorics/combination.html
      */
     public static long factorial(int n) {
+        if (n < 0)
+            return 1;
+
         if (n > 20)
             throw new ArithmeticException("long overflow");
+
+        if (FACTORIALS[n] > 0)
+            return FACTORIALS[n];
+
         long s = 1;
         for (int i = 2; i <= n; i++)
-            s = Math.multiplyExact(s, i);
-        return s;
+            FACTORIALS[i] = s = s * i;
+
+        return FACTORIALS[n];
+    }
+
+    public static long combinations(int n, int m) {
+
+        if (n > 20) {
+
+            BigInteger v1 = bigFactorial(n);
+            BigInteger v2 = bigFactorial(n - m);
+            BigInteger v3 = bigFactorial(m);
+
+            return v1.divide(v2.multiply(v3)).longValueExact();
+        }
+
+        return factorial(n) / (factorial(n - m) * factorial(m));
     }
 
     public static BigInteger bigFactorial(int n) {
-        if (n < 20) return BigInteger.valueOf(factorial(n));
-        if (n == 20) return BIG_FACT_20;
+
+        if (n < 20)
+            return BigInteger.valueOf(factorial(n));
+
+        if (n == 20)
+            return BIG_FACT_20;
+
         BigInteger s = BIG_FACT_20;
         for (int i = 21; i <= n; i++)
             s = s.multiply(BigInteger.valueOf(i));
+
         return s;
     }
 

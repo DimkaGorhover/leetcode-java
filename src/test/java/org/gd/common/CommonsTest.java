@@ -67,6 +67,13 @@ class CommonsTest {
         assertEquals(6, Commons.factorial(3));
         assertEquals(24, Commons.factorial(4));
         assertThrows(ArithmeticException.class, () -> Commons.factorial(21));
+
+        StringBuilder sb = new StringBuilder()
+                .append("private static final long[] F = {1L");
+        for (int i = 1; i <= 15; i++) {
+            sb.append(", ").append(Commons.factorial(i)).append('L');
+        }
+        System.out.println(sb.append("};"));
     }
 
     @Test
