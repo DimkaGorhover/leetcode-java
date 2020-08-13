@@ -4,6 +4,8 @@ import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
+ * https://leetcode.com/problems/maximum-sum-bst-in-binary-tree
+ *
  * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0098.Solution
  * @since 2020-08-12
@@ -22,16 +24,30 @@ class Solution {
 
     private int maxSum;
 
-    private Result traverse(TreeNode root, final long min, final long max) {
+    private static boolean isLeaf(TreeNode root) {
+        return root != null && root.left == null && root.right == null;
+    }
+
+    private Result traverse(TreeNode root, Range range) {
 
         if (root == null)
-            return ResultImpl.ZERO;
+            return Result.ZERO;
 
-        if (root.left == null && root.right == null) {
+        if (isLeaf(root)) {
             maxSum = Math.max(maxSum, root.val);
-            if ((min >= root.val) || (root.val >= max))
-                return NotValid.INSTANCE;
-            return new ResultImpl(root.val);
+            return new Result(root.val, range.inRange(root));
+        }
+
+        Result left = traverse(root.left, Range.leftOf(root));
+        Result right = traverse(root.right, Range.rightOf(root));
+
+        if (left.bst && right.bst) {
+
+            Result result = Result.merge(Result.merge(left, right), new Result(root.val));
+
+            maxSum = Math.max(maxSum, sum);
+
+
         }
 
 
@@ -41,27 +57,20 @@ class Solution {
 
 
 
-        Result left = traverse(root.left, Integer.MIN_VALUE, root.val);
-        Result right = traverse(root.right, root.val, Integer.MAX_VALUE);
-        if (left.valid() && right.valid()) {
-            int sum = root.val + left.sum() + right.sum();
+
+        if (left.bst && right.bst) {
+            int sum = root.val + left.sum + right.sum;
             maxSum = Math.max(maxSum, sum);
         }
 
 
-
-
-
-
-
-
-        left = traverse(root.left, min, root.val);
-        right = traverse(root.right, root.val, max);
-        if (left.valid() && right.valid()) {
-            return new ResultImpl(root.val + left.sum() + right.sum());
+        left = traverse(root.left, range.left(root));
+        right = traverse(root.right, range.right(root));
+        if (left.bst && right.bst) {
+            return new Result(root.val + left.sum + right.sum);
         }
 
-        return NotValid.INSTANCE;
+        return Result.ZERO;
     }
 
     public int maxSumBST(TreeNode root) {
@@ -69,7 +78,7 @@ class Solution {
             return 0;
 
         maxSum = Integer.MIN_VALUE;
-        traverse(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        traverse(root, Range.INTEGER);
         return Math.max(0, maxSum);
     }
 
