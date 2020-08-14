@@ -6,8 +6,11 @@ import org.gd.leetcode.common.LeetCode;
  * https://leetcode.com/problems/intersection-of-two-arrays-ii/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0349.Solution
+ * @see org.gd.leetcode.p1002.Solution
  * @since 2020-08-14
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Intersection of Two Arrays II",
         difficulty = LeetCode.Level.EASY,
