@@ -43,9 +43,10 @@ class Solution {
 
         if (left.bst && right.bst) {
 
-            Result result = Result.merge(Result.merge(left, right), new Result(root.val));
+            Result child = Result.merge(left, right);
+            Result result = Result.merge(child, new Result(root.val));
 
-            maxSum = Math.max(maxSum, sum);
+            maxSum = Math.max(maxSum, result.sum);
 
 
         }
@@ -77,9 +78,9 @@ class Solution {
         if (root == null)
             return 0;
 
-        maxSum = Integer.MIN_VALUE;
+        maxSum = 0;
         traverse(root, Range.INTEGER);
-        return Math.max(0, maxSum);
+        return maxSum;
     }
 
 }
