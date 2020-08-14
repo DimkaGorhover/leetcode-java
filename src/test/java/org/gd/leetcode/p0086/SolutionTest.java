@@ -17,19 +17,17 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Gorkhover D.
  * @since 2018-10-23
  */
-@Disabled
 @DisplayName("LeetCode #86: Partition List")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(ListNode.of("1->4-> 3|2;5,2"), 2, ListNode.of("1->2->2->4->3->5"))
+                arguments(ListNode.of("1->4-> 3|2;5,2"), 3, ListNode.of("1->2->2->4->3->5"))
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #86: Partition List")
     void test_Partition(ListNode head, int x, ListNode expected) {
         assertEquals(expected, new Solution().partition(head, x));
     }

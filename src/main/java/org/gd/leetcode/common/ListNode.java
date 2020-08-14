@@ -9,6 +9,11 @@ import java.util.function.Consumer;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Definition for singly-linked list.
+ *
+ * @author LeetCode
+ */
 public class ListNode implements Iterable<ListNode> {
 
     private static final int TO_STRING_LIMIT = 1 << 5;
@@ -286,8 +291,16 @@ public class ListNode implements Iterable<ListNode> {
 
         while (slow != fast) {
 
-            if (fast == null || fast.next == null)
-                break;
+            if (fast == null || fast.next == null) {
+                // cycle not found
+
+                while (slow != null) {
+                    sb.append("=>(").append(slow.val).append(')');
+                    slow = slow.next;
+                }
+
+                return sb.toString();
+            }
 
             sb.append(prefix).append('(').append(slow.val).append(')');
             prefix = "=>";
@@ -298,11 +311,6 @@ public class ListNode implements Iterable<ListNode> {
 
             slow = slow.next;
             fast = fast.next.next;
-        }
-
-        while (slow != null && slow != fast) {
-            sb.append("=>(").append(slow.val).append(')');
-            slow = slow.next;
         }
 
         if (slow != null)

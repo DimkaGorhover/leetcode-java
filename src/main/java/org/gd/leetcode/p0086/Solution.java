@@ -4,7 +4,7 @@ import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.ListNode;
 
 /**
- * TODO: https://leetcode.com/problems/partition-list/
+ * https://leetcode.com/problems/partition-list/
  *
  * @author Gorkhover D.
  * @since 2018-10-23
@@ -12,7 +12,7 @@ import org.gd.leetcode.common.ListNode;
 @LeetCode(
         name = "Partition List",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.LINKED_LIST,
                 LeetCode.Tags.TWO_POINTERS
@@ -20,6 +20,31 @@ import org.gd.leetcode.common.ListNode;
 class Solution {
 
     public ListNode partition(ListNode head, int x) {
-        throw new UnsupportedOperationException();
+
+        ListNode before = new ListNode(0);
+        ListNode newHead = before;
+        ListNode after = new ListNode(0);
+        ListNode tail = after;
+
+        while (head != null) {
+
+            ListNode next = head.next;
+
+            if (head.val < x) {
+                before.next = head;
+                before = head;
+                before.next = null;
+            } else {
+                after.next = head;
+                after = head;
+                after.next = null;
+            }
+
+            head = next;
+        }
+
+        before.next = tail.next;
+
+        return newHead.next;
     }
 }
