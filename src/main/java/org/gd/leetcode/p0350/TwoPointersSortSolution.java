@@ -1,19 +1,17 @@
-package org.gd.leetcode.p0349;
+package org.gd.leetcode.p0350;
 
 import java.util.Arrays;
 
 /**
  * @author Horkhover Dmytro
- * @see org.gd.leetcode.p0350.TwoPointersSortSolution
- * @see HashTableSolution
+ * @see org.gd.leetcode.p0349.TwoPointersSortSolution
  * @since 2020-08-14
- * @deprecated too slow solution
  */
-@SuppressWarnings("JavadocReference")
 @Deprecated
+@SuppressWarnings("JavadocReference")
 class TwoPointersSortSolution implements Solution {
 
-    public int[] intersection(int[] nums1, int[] nums2) {
+    public int[] intersect(int[] nums1, int[] nums2) {
 
         if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0)
             return new int[0];
@@ -30,15 +28,9 @@ class TwoPointersSortSolution implements Solution {
             int num2 = nums2[i2];
 
             if (num1 == num2) {
-
-                if (i0 == 0 || result[i0 - 1] != num1) {
-                    result[i0] = num1;
-                    i0++;
-                }
-
+                result[i0++] = num1;
                 i1++;
                 i2++;
-
             } else if (num1 > num2) {
                 i2++;
             } else {

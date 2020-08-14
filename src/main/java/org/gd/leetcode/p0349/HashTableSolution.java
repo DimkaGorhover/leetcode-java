@@ -6,8 +6,10 @@ import java.util.Set;
 
 /**
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0350.HashTableSolution
  * @since 2020-08-14
  */
+@SuppressWarnings("JavadocReference")
 class HashTableSolution implements Solution {
 
     private static Set<Integer> toSet(int[] arr) {

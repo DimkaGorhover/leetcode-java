@@ -16,8 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0350.SolutionTest
  * @since 2020-08-14
  */
+@SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #349: Intersection of Two Arrays")
 class SolutionTest {
 
@@ -36,6 +38,7 @@ class SolutionTest {
         assertEquals(expected, setOf(new HashTableSolution().intersection(nums1, nums2)));
     }
 
+    @SuppressWarnings("deprecation")
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("Two Pointers Sort Solution")
