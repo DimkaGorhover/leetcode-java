@@ -4,7 +4,10 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/largest-rectangle-in-histogram/
+ *
+ * @see org.gd.leetcode.p0053.Solution
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Largest Rectangle in Histogram",
         difficulty = LeetCode.Level.HARD,
