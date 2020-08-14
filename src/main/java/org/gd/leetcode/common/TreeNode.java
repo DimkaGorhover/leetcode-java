@@ -165,18 +165,24 @@ public class TreeNode {
 
     @SuppressWarnings("StringRepeatCanBeUsed")
     private static void toTreeString(StringBuilder sb, TreeNode node, int level) {
-        if (node == null)
-            return;
-
         if (level > 0) {
             sb.append('\n');
             for (int i = 0; i < level; i++)
                 sb.append(' ');
             sb.append('├').append('─');
         }
-        sb.append('(').append(' ').append(node.val).append(' ').append(')');
-        toTreeString(sb, node.left, level + 2);
-        toTreeString(sb, node.right, level + 2);
+
+        if (node != null) {
+            sb.append('(').append(' ').append(node.val).append(' ').append(')');
+
+            if (node.left != null || node.right != null) {
+                toTreeString(sb, node.left, level + 2);
+                toTreeString(sb, node.right, level + 2);
+            }
+
+        } else {
+            sb.append('(').append(' ').append('x').append(' ').append(')');
+        }
     }
 
     @Override

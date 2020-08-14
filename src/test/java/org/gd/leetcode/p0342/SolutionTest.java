@@ -34,7 +34,7 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("IsPowerOfFour")
-    @Timeout(value = 10, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
     void test_IsPowerOfFour(int num, boolean expected) {
         assertEquals(expected, new Solution().isPowerOfFour(num));
     }

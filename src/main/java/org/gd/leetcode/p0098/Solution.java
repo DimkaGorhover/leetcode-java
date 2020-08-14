@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0098;
 
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
@@ -8,15 +9,30 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-11-15
  */
-class Solution {
+@LeetCode(
+        name = "Validate Binary Search Tree",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.DEPTH_FIRST_SEARCH
+        }
+)
+interface Solution {
 
     private static boolean isValidBST(TreeNode root, long max, long min) {
-        if (root == null) return true;
-        if (root.val >= max || root.val <= min) return false;
-        return isValidBST(root.left, root.val, min) && isValidBST(root.right, max, root.val);
+        if (root == null)
+            return true;
+
+        if (root.val >= max || root.val <= min)
+            return false;
+
+        return isValidBST(root.left, root.val, min)
+                && isValidBST(root.right, max, root.val);
     }
 
-    public boolean isValidBST(TreeNode root) {
-        return root == null || isValidBST(root, Long.MAX_VALUE, Long.MIN_VALUE);
-    }
+    boolean isValidBST(TreeNode root);
+
+
+
 }

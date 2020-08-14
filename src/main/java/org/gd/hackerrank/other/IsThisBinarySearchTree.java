@@ -4,7 +4,10 @@ import org.gd.hackerrank.common.HackerRank;
 
 /**
  * https://www.hackerrank.com/challenges/ctci-is-binary-search-tree/
+ *
+ * @see org.gd.leetcode.p0098.Solution
  */
+@SuppressWarnings("JavadocReference")
 @HackerRank(difficulty = HackerRank.Level.MEDIUM)
 class IsThisBinarySearchTree {
 

@@ -8,7 +8,7 @@ import org.gd.leetcode.common.LeetCode;
  * @see org.gd.leetcode.p0070.Solution
  * @see org.gd.leetcode.p0509.Solution
  */
-@SuppressWarnings("JavadocReference")
+@SuppressWarnings({"JavadocReference", "SpellCheckingInspection"})
 @LeetCode(
         name = "N-th Tribonacci Number",
         difficulty = LeetCode.Level.EASY,
