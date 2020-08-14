@@ -38,6 +38,27 @@ public final class CollectionUtils {
         return Collections.unmodifiableList(list);
     }
 
+    public static Set<Integer> setOf(int[] ints) {
+
+        if (ints == null)
+            return Collections.emptySet();
+
+        switch (ints.length) {
+            case 0: return Set.of();
+            case 1: return Set.of(ints[0]);
+            case 2: return Set.of(ints[0], ints[1]);
+            case 3: return Set.of(ints[0], ints[1], ints[2]);
+            case 4: return Set.of(ints[0], ints[1], ints[2], ints[3]);
+            case 5: return Set.of(ints[0], ints[1], ints[2], ints[3], ints[4]);
+            case 6: return Set.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5]);
+            case 7: return Set.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5], ints[6]);
+            case 8: return Set.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5], ints[6], ints[7]);
+            case 9: return Set.of(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5], ints[6], ints[7], ints[8]);
+        }
+
+        return Collections.unmodifiableSet(new HashSet<>(listOf(ints)));
+    }
+
     public static List<Integer> listOf(int[] ints) {
         if (ints == null)
             return List.of();
