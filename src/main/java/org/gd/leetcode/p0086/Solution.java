@@ -4,7 +4,7 @@ import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.ListNode;
 
 /**
- * TODO: https://leetcode.com/problems/partition-list/
+ * https://leetcode.com/problems/partition-list/
  *
  * @author Gorkhover D.
  * @since 2018-10-23
@@ -12,54 +12,39 @@ import org.gd.leetcode.common.ListNode;
 @LeetCode(
         name = "Partition List",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.LINKED_LIST,
                 LeetCode.Tags.TWO_POINTERS
         })
 class Solution {
 
-    private static void insertNext(ListNode node, ListNode next) {
-        next.next = node.next;
-        node.next = next;
-    }
-
     public ListNode partition(ListNode head, int x) {
 
-        ListNode pivot = head;
-        ListNode beforePivot = null;
+        ListNode before = new ListNode(0);
+        ListNode newHead = before;
+        ListNode after = new ListNode(0);
+        ListNode tail = after;
 
-        // try to find "x"
-        while (pivot != null && pivot.val != x) {
-            beforePivot = pivot;
-            pivot = pivot.next;
-        }
+        while (head != null) {
 
-        // "x" is not found
-        if (pivot == null)
-            return head;
+            ListNode next = head.next;
 
-        ListNode prev = beforePivot;
-        ListNode node = pivot;
-        while (node != null) {
-
-            ListNode next = node.next;
-
-            if (node.val < x) {
-
-                prev.next = next;
-
-                beforePivot.next = node;
-                node.next = pivot;
-
-                beforePivot = node;
+            if (head.val < x) {
+                before.next = head;
+                before = head;
+                before.next = null;
+            } else {
+                after.next = head;
+                after = head;
+                after.next = null;
             }
 
-            prev = node;
-            node = next;
+            head = next;
         }
 
+        before.next = tail.next;
 
-        return head;
+        return newHead.next;
     }
 }
