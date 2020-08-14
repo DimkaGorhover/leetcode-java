@@ -23,7 +23,7 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(ListNode.of("1->4-> 3|2;5,2"), 2, ListNode.of("1->2->2->4->3->5"))
+                arguments(ListNode.of("1->4-> 3|2;5,2"), 3, ListNode.of("1->2->2->4->3->5"))
         );
     }
 

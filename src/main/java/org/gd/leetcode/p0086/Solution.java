@@ -19,7 +19,47 @@ import org.gd.leetcode.common.ListNode;
         })
 class Solution {
 
+    private static void insertNext(ListNode node, ListNode next) {
+        next.next = node.next;
+        node.next = next;
+    }
+
     public ListNode partition(ListNode head, int x) {
-        throw new UnsupportedOperationException();
+
+        ListNode pivot = head;
+        ListNode beforePivot = null;
+
+        // try to find "x"
+        while (pivot != null && pivot.val != x) {
+            beforePivot = pivot;
+            pivot = pivot.next;
+        }
+
+        // "x" is not found
+        if (pivot == null)
+            return head;
+
+        ListNode prev = beforePivot;
+        ListNode node = pivot;
+        while (node != null) {
+
+            ListNode next = node.next;
+
+            if (node.val < x) {
+
+                prev.next = next;
+
+                beforePivot.next = node;
+                node.next = pivot;
+
+                beforePivot = node;
+            }
+
+            prev = node;
+            node = next;
+        }
+
+
+        return head;
     }
 }
