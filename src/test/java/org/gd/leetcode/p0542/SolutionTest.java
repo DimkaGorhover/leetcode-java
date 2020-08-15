@@ -10,6 +10,11 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link Solution}
+ *
+ * @see DPSolution
+ */
 @DisplayName("LeetCode #542: 01 Matrix")
 class SolutionTest {
 
