@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,13 +70,14 @@ class SolutionTest {
 
         var actual = new DPSolution().updateMatrix(matrix);
 
-        assertEquals(expected.length, actual.length);
-        for (int i = 0; i < actual.length; i++) {
-            final int line = i;
-            assertEquals(
-                    CollectionUtils.listOf(expected[i]),
-                    CollectionUtils.listOf(actual[i]),
-                    () -> String.format("line = %d", line));
-        }
+        assertEquals(listOf(expected), listOf(actual));
     }
+
+    private static List<List<Integer>> listOf(int[][] matrix) {
+        List<List<Integer>> lists = new MatrixList();
+        for (int[] col : matrix)
+            lists.add(CollectionUtils.listOf(col));
+        return lists;
+    }
+
 }
