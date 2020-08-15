@@ -1,12 +1,11 @@
 package org.gd.leetcode.p0542;
 
-import org.gd.common.CollectionUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,18 +65,11 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void updateMatrix(int[][] matrix, int[][] expected) {
 
         var actual = new DPSolution().updateMatrix(matrix);
 
-        assertEquals(listOf(expected), listOf(actual));
+        assertEquals(Matrix.of(expected), Matrix.of(actual));
     }
-
-    private static List<List<Integer>> listOf(int[][] matrix) {
-        List<List<Integer>> lists = new MatrixList();
-        for (int[] col : matrix)
-            lists.add(CollectionUtils.listOf(col));
-        return lists;
-    }
-
 }
