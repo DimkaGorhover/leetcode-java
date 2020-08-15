@@ -10,6 +10,7 @@ import java.util.Comparator;
  *
  * @author Horkhover D.
  * @see org.gd.leetcode.p0057.Solution
+ * @see org.gd.leetcode.p0435.Solution
  * @since 2020-07-06
  */
 @SuppressWarnings("JavadocReference")
