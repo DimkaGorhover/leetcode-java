@@ -8,7 +8,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "01 Matrix",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.DYNAMIC_PROGRAMMING,
                 LeetCode.Tags.DEPTH_FIRST_SEARCH,
