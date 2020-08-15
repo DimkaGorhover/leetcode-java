@@ -1,5 +1,6 @@
 package org.gd.leetcode.p1373;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
@@ -10,6 +11,7 @@ import org.gd.leetcode.common.TreeNode;
  * @see org.gd.leetcode.p0098.Solution
  * @since 2020-08-12
  */
+@Repeat("Maximum Sum BST in Binary Tree")
 @SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Maximum Sum BST in Binary Tree",
