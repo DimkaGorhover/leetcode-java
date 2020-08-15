@@ -16,6 +16,16 @@ class SolutionTest {
     private static Stream<Arguments> args() {
         return Stream.of(
 
+                Arguments.of(new int[][]{
+                        {0, 0, 0},
+                        {0, 1, 0},
+                        {1, 1, 1}
+                }, new int[][]{
+                        {0, 0, 0},
+                        {0, 1, 0},
+                        {1, 2, 1}
+                }),
+
                 Arguments.of(
                         new int[][]{
                                 /* 0 */ {1, 1, 0, 0, 1, 0, 0, 1, 1, 0},
@@ -41,17 +51,6 @@ class SolutionTest {
                                 /* 9 */ {1, 2, 1, 0, 1, 0, 1, 2, 3, 4}
                         }),
 
-
-                Arguments.of(new int[][]{
-                        {0, 0, 0},
-                        {0, 1, 0},
-                        {1, 1, 1}
-                }, new int[][]{
-                        {0, 0, 0},
-                        {0, 1, 0},
-                        {1, 2, 1}
-                }),
-
                 Arguments.of(new int[][]{
                         {0, 0, 0},
                         {0, 1, 0},
@@ -68,7 +67,7 @@ class SolutionTest {
     @MethodSource("args")
     void updateMatrix(int[][] matrix, int[][] expected) {
 
-        var actual = new Solution().updateMatrix(matrix);
+        var actual = new DPSolution().updateMatrix(matrix);
 
         assertEquals(expected.length, actual.length);
         for (int i = 0; i < actual.length; i++) {

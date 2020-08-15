@@ -15,12 +15,12 @@ class DPSolution implements Solution {
         if (cols == 0)
             return 0;
 
-        for (int i = 1; i < rows; i++) {
-            grid[i][0] += grid[i - 1][0];
+        for (int row = 1; row < rows; row++) {
+            grid[row][0] += grid[row - 1][0];
         }
 
-        for (int i = 1; i < cols; i++) {
-            grid[0][i] += grid[0][i - 1];
+        for (int col = 1; col < cols; col++) {
+            grid[0][col] += grid[0][col - 1];
         }
 
         for (int i = 1; i < rows; i++) {
