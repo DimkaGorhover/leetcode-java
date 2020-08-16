@@ -71,6 +71,20 @@ public class ListNode implements Iterable<ListNode> {
         return root;
     }
 
+    public static ListNode concat(ListNode l1, ListNode l2) {
+        if (l1 == null)
+            return l2;
+        if (l2 == null)
+            return l1;
+
+        ListNode tail = l1;
+        while (tail.next != null)
+            tail = tail.next;
+
+        tail.next = l2;
+        return l1;
+    }
+
     @Deprecated
     public static int lengthRecursive(ListNode node) {
         return node == null ? 0 : 1 + lengthRecursive(node.next);
@@ -165,7 +179,6 @@ public class ListNode implements Iterable<ListNode> {
         return count;
     }
 
-    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated
     public boolean hasCycle() {
         return hasCycle(this);
