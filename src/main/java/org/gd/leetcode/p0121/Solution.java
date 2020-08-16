@@ -9,6 +9,7 @@ import org.gd.leetcode.common.LeetCode;
  *
  * @author Horkhover D.
  * @see org.gd.leetcode.p0053.Solution
+ * @see org.gd.leetcode.p0123.Solution
  * @since 2020-06-30
  */
 @SuppressWarnings("JavadocReference")
