@@ -86,6 +86,29 @@ public class ListNode implements Iterable<ListNode> {
     }
 
     @Deprecated
+    public ListNode reverse() {
+        return reverse(copy());
+    }
+
+    @Deprecated
+    public static ListNode reverse(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode prev = null;
+        ListNode current = head;
+        ListNode next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
+    }
+
+    @Deprecated
     public static int lengthRecursive(ListNode node) {
         return node == null ? 0 : 1 + lengthRecursive(node.next);
     }
@@ -364,7 +387,7 @@ public class ListNode implements Iterable<ListNode> {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException(new String(new char[]{ 175, 92, 95, 40, 12_484, 41, 95, 47, 175 }));
+            throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
         }
 
         @Override

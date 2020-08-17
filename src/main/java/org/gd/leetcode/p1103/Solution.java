@@ -4,7 +4,7 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/distribute-candies-to-people/
- * 
+ *
  * @author Horkhover Dmytro
  * @since 2020-08-17
  */
