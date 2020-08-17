@@ -1,7 +1,5 @@
 package org.gd.hackerrank.common;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import org.gd.leetcode.common.LeetCode;
 
 import java.lang.annotation.*;
@@ -23,6 +21,5 @@ public @interface HackerRank {
 
     LeetCode.Tags[] tags() default {};
 
-    @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
     enum Level {EASY, MEDIUM, HARD, ADVANCED}
 }
