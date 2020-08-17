@@ -71,6 +71,20 @@ public class ListNode implements Iterable<ListNode> {
         return root;
     }
 
+    public static ListNode concat(ListNode... listNodes) {
+        if (listNodes == null || listNodes.length == 0)
+            return null;
+
+        ListNode head = listNodes[0];
+        ListNode node = head;
+        for (int i = 1; i < listNodes.length; i++)
+            node = concat(node, listNodes[i]);
+
+        return head;
+    }
+
+    public static ListNode concat(ListNode l1) { return l1; }
+
     public static ListNode concat(ListNode l1, ListNode l2) {
         if (l1 == null)
             return l2;

@@ -2,6 +2,8 @@ package org.gd.leetcode.common;
 
 import org.junit.jupiter.api.*;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -11,7 +13,29 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2020-07-01
  */
 @SuppressWarnings("deprecation")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class ListNodeTest {
+
+    @Test
+    @DisplayName("concat")
+    void test_concat() {
+
+        assertEquals(
+                ListNode.rangeClosed(1, 12),
+                ListNode.concat(
+                        ListNode.rangeClosed(1, 6),
+                        ListNode.rangeClosed(7, 12))
+        );
+
+        assertEquals(
+                ListNode.rangeClosed(1, 12),
+                ListNode.concat(
+                        ListNode.rangeClosed(1, 3),
+                        ListNode.rangeClosed(4, 6),
+                        ListNode.rangeClosed(7, 9),
+                        ListNode.rangeClosed(10, 12))
+        );
+    }
 
     @Test
     void test_toString() {
