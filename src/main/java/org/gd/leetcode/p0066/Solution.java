@@ -6,9 +6,15 @@ import org.gd.leetcode.common.LeetCode;
  * https://leetcode.com/problems/plus-one/
  *
  * @author Gorkhover D.
+ * @see org.gd.leetcode.p0989.Solution
  * @since 2018-10-22
  */
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.ARRAY)
+@SuppressWarnings("JavadocReference")
+@LeetCode(
+        name = "Plus One",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.ARRAY)
 class Solution {
 
     public int[] plusOne(int[] digits) {
