@@ -1,4 +1,4 @@
-package org.gd.joma;
+package org.gd.joma.pi;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,16 +7,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * Test for {@link CalculatePI}
+ * Test for {@link PiCalculator}
  *
  * @author Horkhover Dmytro
  * @since 2020-08-08
  */
 @DisplayName("Task from Joma: Calculating PI from uniform random")
-class CalculatePITest {
+class PiCalculatorTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
@@ -28,6 +26,8 @@ class CalculatePITest {
     @MethodSource("args")
     @DisplayName("Calc")
     void test_Calc(long count) {
-        System.out.printf("PI() = %1.6f%n", CalculatePI.calc(count));
+        PiCalculator calculator = new ForkPiCalculator(Runtime.getRuntime().availableProcessors());
+//        PiCalculator calculator = StreamPiCalculator.INSTANCE;
+        System.out.printf("PI() = %1.6f%n", calculator.calc(count));
     }
 }
