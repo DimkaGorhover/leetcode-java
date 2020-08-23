@@ -72,10 +72,11 @@ public final class Commons {
      * @throws ArithmeticException if {@code n > 92}
      */
     public static long fib(int n) throws ArithmeticException {
-        if (n < 2) return 1;
+        if (n < 1) return 0;
+        if (n < 3) return 1;
         if (n > 92) throw new ArithmeticException("long overflow");
-        long a1 = 0, a2 = 1, f = a2;
-        for (int i = 2; i <= n; i++) {
+        long a1 = 1, a2 = 1, f = a2;
+        for (int i = 3; i <= n; i++) {
             f = Math.addExact(a1, a2);
             a1 = a2;
             a2 = f;

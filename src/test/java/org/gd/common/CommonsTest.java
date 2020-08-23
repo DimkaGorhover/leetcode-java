@@ -41,11 +41,13 @@ class CommonsTest {
     @DisplayName("Fib")
     void test_Fib() {
         
-        assertEquals(1, Commons.fib(-1));
+        assertEquals(0, Commons.fib(-1));
+        assertEquals(0, Commons.fib(0));
         assertEquals(1, Commons.fib(1));
-        assertEquals(2, Commons.fib(2));
-        assertEquals(3, Commons.fib(3));
-        assertEquals(5, Commons.fib(4));
+        assertEquals(1, Commons.fib(2));
+        assertEquals(2, Commons.fib(3));
+        assertEquals(3, Commons.fib(4));
+        assertEquals(55, Commons.fib(10));
 
         assertEquals(0x68A3DD8E61ECCFBDL, Commons.fib(92));
         assertThrows(ArithmeticException.class, () -> Commons.fib(93));
