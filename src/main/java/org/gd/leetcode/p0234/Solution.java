@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * TODO: https://leetcode.com/problems/palindrome-linked-list/
+ * https://leetcode.com/problems/palindrome-linked-list/
  *
+ * <pre>
  * Given a singly linked list, determine if it is a palindrome.
  *
  * Example 1:
@@ -21,28 +22,26 @@ import java.util.Objects;
  *
  * Follow up:
  * Could you do it in O(n) time and O(1) space?
+ * </pre>
  *
  * @see org.gd.leetcode.p0009.Solution
+ * @see org.gd.leetcode.p0025.Solution
+ * @see org.gd.leetcode.p0096.Solution
+ * @see org.gd.leetcode.p0206.Solution
+ * @see org.gd.hackerrank.other.ReverseLinkedList
  * @since 2019-09-11
+ * @since 2020-08-24
  */
 @SuppressWarnings("JavadocReference")
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.LINKED_LIST, LeetCode.Tags.TWO_POINTERS})
-class Solution {
+@LeetCode(
+        name = "Palindrome Linked List",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.LINKED_LIST,
+                LeetCode.Tags.TWO_POINTERS
+        })
+interface Solution {
 
-    public boolean isPalindrome(ListNode head) {
-
-        if (head == null || head.next == null)
-            return true;
-
-        final ArrayList<Integer> integers = new ArrayList<>();
-        for (; head != null; head = head.next)
-            integers.add(head.val);
-
-        final int n = integers.size();
-        for (int i = 0; i < n / 2; i++)
-            if (!Objects.equals(integers.get(i), integers.get(n - i - 1)))
-                return false;
-
-        return true;
-    }
+    boolean isPalindrome(ListNode head);
 }
