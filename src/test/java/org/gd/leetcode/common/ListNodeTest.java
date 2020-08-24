@@ -39,9 +39,13 @@ class ListNodeTest {
 
     @Test
     void test_toString() {
-        assertEquals(
-                ListNode.of(1, 2, 3, 4, 5).toString(),
-                ListNode.of(1, 2, 3, 4, 5).toString());
+
+        assertEquals("(1)", ListNode.of(1).toString());
+        assertEquals("(1)=>(2)", ListNode.of(1, 2).toString());
+        assertEquals("(1)=>(2)=>(3)", ListNode.of(1, 2, 3).toString());
+        assertEquals("(1)=>(2)=>(3)=>(4)", ListNode.of(1, 2, 3, 4).toString());
+        assertEquals("(1)=>(2)=>(3)=>(4)=>(5)", ListNode.rangeClosed(1, 5).toString());
+
     }
 
     @Test

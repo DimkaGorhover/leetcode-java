@@ -6,6 +6,7 @@ import org.gd.leetcode.common.ListNode;
 /**
  * https://leetcode.com/problems/reverse-linked-list/
  *
+ * @see org.gd.leetcode.p0025.Solution
  * @see org.gd.leetcode.p0096.Solution
  * @see org.gd.hackerrank.other.ReverseLinkedList
  */

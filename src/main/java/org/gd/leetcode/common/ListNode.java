@@ -345,8 +345,9 @@ public class ListNode implements Iterable<ListNode> {
                 // cycle not found
 
                 while (slow != null) {
-                    sb.append("=>(").append(slow.val).append(')');
+                    sb.append(prefix).append("(").append(slow.val).append(')');
                     slow = slow.next;
+                    prefix = "=>";
                 }
 
                 return sb.toString();
