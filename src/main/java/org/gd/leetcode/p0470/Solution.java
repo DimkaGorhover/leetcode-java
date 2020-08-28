@@ -3,23 +3,65 @@ package org.gd.leetcode.p0470;
 import org.gd.leetcode.common.LeetCode;
 
 /**
- * FIXME: https://leetcode.com/problems/implement-rand10-using-rand7
+ * https://leetcode.com/problems/implement-rand10-using-rand7
  *
- * @author Horkhover Dmytro
- * @since 2018-12-18
+ * <p>Given a function rand7 which generates a uniform random integer in the range 1 to 7, write a function rand10
+ * which generates a uniform random integer in the range 1 to 10.</p>
+ *
+ * <p>Do NOT use system's Math.random().</p>
+ *
+ * <code><pre>
+ * Example 1:
+ *
+ * Input: 1
+ * Output: [7]
+ * </pre></code>
+ *
+ * <code><pre>
+ * Example 2:
+ *
+ * Input: 2
+ * Output: [8,4]
+ * </pre></code>
+ *
+ * <code><pre>
+ * Example 3:
+ *
+ * Input: 3
+ * Output: [8,1,10]
+ * </pre></code>
+ *
+ * <p>Note:</p>
+ *
+ * <ol>
+ * <li>rand7 is predefined.</li>
+ * <li>Each testcase has one argument: n, the number of times that rand10 is called.</li>
+ * </ol>
+ *
+ * <p>Follow up:</p>
+ *
+ * <ol>
+ * <li>What is the expected value for the number of calls to rand7() function?</li>
+ * <li>Could you minimize the number of calls to rand7()?</li>
+ * </ol>
  */
 @LeetCode(
-    difficulty = LeetCode.Level.MEDIUM, 
-    state = LeetCode.State.FIXME,
-    tags = {
-        LeetCode.Tags.RANDOM, 
-        LeetCode.Tags.REJECTION_SAMPLING
-    })
+        name = "Implement Rand10() Using Rand7()",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.RANDOM,
+                LeetCode.Tags.REJECTION_SAMPLING
+        })
 class Solution extends SolBase {
 
-    private static final double C = 10.0 / 7.0;
-
-    public int rand10() { return (rand7() << rand7()) % 10; }
-
-    public int rand10(int rand7) { return (int) (rand7 * C);}
+    public int rand10() {
+        int row, col, idx;
+        do {
+            row = rand7();
+            col = rand7();
+            idx = col + (row - 1) * 7;
+        } while (idx > 40);
+        return 1 + (idx - 1) % 10;
+    }
 }
