@@ -1,9 +1,11 @@
 package org.gd.leetcode.p0066;
 
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.gd.common.CollectionUtils.listOf;
@@ -11,9 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
+ * Test for {@link Solution}
+ *
  * @author Gorkhover D.
  * @since 2018-10-22
  */
+@DisplayName("LeetCode #66: Plus One")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -25,6 +30,7 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void plusOne(int[] input, int[] expected) {
         assertEquals(
                 listOf(expected),

@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0989;
+package org.gd.leetcode.p0969;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,25 +15,25 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
- * @see org.gd.leetcode.p0066.Solution
- * @see org.gd.leetcode.p0066.SolutionTest
- * @since 2020-08-19
+ * @since 2020-08-29
  */
-@SuppressWarnings("JavadocReference")
-@DisplayName("LeetCode #989: Add to Array-Form of Integer")
+@DisplayName("LeetCode #969: Pancake Sorting")
 class SolutionTest {
 
+    @SuppressWarnings("PrimitiveArrayArgumentToVarargsMethod")
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of(new int[]{1, 2, 0, 0}, 34, List.of(1, 2, 3, 4))
+                Arguments.of(new int[]{3, 2, 4, 1})
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("AddToArrayForm")
+    @DisplayName("PancakeSort")
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
-    void test_AddToArrayForm(int[] A, int K, List<Integer> expected) {
-        assertEquals(expected, new Solution().addToArrayForm(A, K));
+    void test_PancakeSort(int[] arr) {
+        List<Integer> actual = new Solution().pancakeSort(arr);
+        assertTrue(Solution.isSorted(arr));
+        assertTrue(actual.size() < 10 * arr.length);
     }
 }
