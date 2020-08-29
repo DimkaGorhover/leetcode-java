@@ -15,8 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0066.Solution
+ * @see org.gd.leetcode.p0066.SolutionTest
  * @since 2020-08-19
  */
+@SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #989: Add to Array-Form of Integer")
 class SolutionTest {
 
