@@ -2,6 +2,8 @@ package org.gd.hackerrank.common;
 
 import lombok.EqualsAndHashCode;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * @see org.gd.leetcode.common.ListNode
  */
@@ -29,6 +31,24 @@ public class SinglyLinkedListNode {
             node = newNode;
         }
         return head;
+    }
+
+    public static SinglyLinkedListNode concat(SinglyLinkedListNode head, SinglyLinkedListNode tail) {
+        if (head == null)
+            return tail;
+        if (tail == null)
+            return head;
+
+        SinglyLinkedListNode last = head;
+        while (last.next != null) {
+            last = last.next;
+        }
+        last.next = tail;
+        return head;
+    }
+
+    public SinglyLinkedListNode concat(SinglyLinkedListNode tail) {
+        return concat(this, tail);
     }
 
     @Override

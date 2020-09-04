@@ -4,58 +4,52 @@ import org.gd.hackerrank.common.HackerRank;
 import org.gd.hackerrank.common.SinglyLinkedListNode;
 
 /**
- * FIXME: https://www.hackerrank.com/challenges/find-the-merge-point-of-two-joined-linked-lists/
+ * https://www.hackerrank.com/challenges/find-the-merge-point-of-two-joined-linked-lists/
  */
 @HackerRank(difficulty = HackerRank.Level.EASY)
 class FindMergePointTwoLinkedLists {
-    
+
+    private static int length(SinglyLinkedListNode head) {
+        int length = 0;
+        while (head != null) {
+            length++;
+            head = head.next;
+        }
+        return length;
+    }
+
+    private static SinglyLinkedListNode skip(SinglyLinkedListNode head, int count) {
+        while (count > 0 && head != null) {
+            count--;
+            head = head.next;
+        }
+        return head;
+    }
+
     static int findMergeNode(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
 
         if (head1 == null)
             throw new NullPointerException("head1");
-            
+
         if (head2 == null)
             throw new NullPointerException("head2");
 
-        Finder finder = new Finder();
-        finder.findMergeNode(head1.next, head2.next);
-        return finder.get();
-    }
+        int length1 = length(head1);
+        int length2 = length(head2);
 
-    static class Finder {
+        head1 = skip(head1, length1 - length2);
+        head2 = skip(head2, length2 - length1);
 
-        int value = -1;
+        while (head1 != null && head2 != null) {
 
-        boolean findMergeNode(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
-            return findMergeNode0(head1, head2);
-        }
-
-        boolean findMergeNode0(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
-            if (head1 == null || head2 == null) {
-                return false;
+            if (head1 == head2) {
+                return head1.data;
             }
 
-            if (head1.data == head2.data) {
-                value = head1.data;
-                return true;
-            }
-            return findMergeNode1(head1, head2.next) || findMergeNode0(head1.next, head2);
+            head1 = head1.next;
+            head2 = head2.next;
         }
 
-        boolean findMergeNode1(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
-            if (head1 == null || head2 == null) {
-                return false;
-            }
-
-            if (head1.data == head2.data) {
-                value = head1.data;
-                return true;
-            }
-            return findMergeNode0(head1, head2.next) || findMergeNode1(head1.next, head2);
-        }
-
-        int get() {
-            return value;
-        }
+        throw new UnsupportedOperationException("not supported yet");
     }
 }
