@@ -2,6 +2,9 @@ package org.gd.hackerrank.common;
 
 import lombok.EqualsAndHashCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -31,6 +34,18 @@ public class SinglyLinkedListNode {
             node = newNode;
         }
         return head;
+    }
+
+    public static List<Integer> toList(SinglyLinkedListNode node) {
+        List<Integer> list = new ArrayList<>();
+        while (node != null) {
+            list.add(node.data);
+            node = node.next;
+        }
+        return list;
+    }
+    public List<Integer> toList() {
+        return toList(this);
     }
 
     public static SinglyLinkedListNode concat(SinglyLinkedListNode head, SinglyLinkedListNode tail) {
