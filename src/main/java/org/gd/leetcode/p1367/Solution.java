@@ -8,8 +8,10 @@ import org.gd.leetcode.common.TreeNode;
  * https://leetcode.com/problems/linked-list-in-binary-tree/
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0572.Solution
  * @since 2020-09-22
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Linked List in Binary Tree",
         difficulty = LeetCode.Level.MEDIUM,

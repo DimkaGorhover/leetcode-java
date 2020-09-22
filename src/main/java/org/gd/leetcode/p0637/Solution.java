@@ -1,4 +1,4 @@
-package org.gd.leetcode.p637;
+package org.gd.leetcode.p0637;
 
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
@@ -28,7 +28,7 @@ class Solution {
         bfs.add(root);
         while (!bfs.isEmpty()) {
             int size = bfs.size();
-            double sum = 0;
+            int sum = 0;
             for (int i = 0; i < size; i++) {
 
                 TreeNode node = bfs.poll();
@@ -41,7 +41,7 @@ class Solution {
                 if (node.right != null)
                     bfs.add(node.right);
             }
-            result.add(sum / size);
+            result.add(((double) sum) / size);
         }
         return result;
     }
