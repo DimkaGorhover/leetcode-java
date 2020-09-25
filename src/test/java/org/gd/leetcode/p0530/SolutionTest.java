@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,6 +17,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  *
  * @since 2019-09-14
  */
+@DisplayName("LeetCode #530: Minimum Absolute Difference in BST")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -25,7 +28,7 @@ class SolutionTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Minimum Absolute Difference in {0} is {1}")
     @MethodSource("args")
     @DisplayName("GetMinimumDifference")
     void test_GetMinimumDifference(TreeNode node, int expected) throws Exception {

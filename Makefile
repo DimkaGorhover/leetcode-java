@@ -6,7 +6,16 @@ CONTAINER_NAME=$(shell basename "$$PWD")
 EXPOSE_PORT=8888
 LOCAL_USER_DIR=$(shell echo $${HOME})
 
-__GRADLE_IMAGE_TAG=gradle:6.5.1-jdk14
+__GRADLE_IMAGE_TAG=gradle:6.6.1-jdk14
+
+JAVA_OPTS=\
+	-server
+
+GRADLE_OPTS=\
+	--no-daemon \
+	--stacktrace \
+	--parallel \
+	--max-workers $(CPU_COUNT)
 
 docker_prefix=docker run -i -t \
 	--rm \
@@ -16,6 +25,7 @@ docker_prefix=docker run -i -t \
 	--memory-reservation 1g \
 	--memory-swap 0 \
 	--user 1000 \
+	--env GRADLE_OPTS=$(JAVA_OPTS) \
 	-p 8888:8080 \
 	-v gradle-cache:/home/gradle/.gradle \
 	-v m2-cache:/home/gradle/.m2 \
@@ -24,11 +34,7 @@ docker_prefix=docker run -i -t \
 
 gradle=$(docker_prefix) \
 	--entrypoint gradle \
-	$(__GRADLE_IMAGE_TAG) \
-	--no-daemon \
-	--stacktrace \
-	--parallel \
-	--max-workers $(CPU_COUNT)
+	$(__GRADLE_IMAGE_TAG) $(GRADLE_OPTS)
 
 container=$(docker_prefix) \
 	--entrypoint bash \
