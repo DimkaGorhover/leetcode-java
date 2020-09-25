@@ -5,7 +5,7 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * TODO: https://leetcode.com/problems/lfu-cache/
  *
- * @author Gorkhover D.
+ * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0146.LRUCache
  * @since 2018-10-17
  */
