@@ -1,18 +1,19 @@
 package org.gd.leetcode.p0331;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
-import java.util.Deque;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 /**
  * https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
  *
- * @author Horkhover Dmytro
+ * Solution: https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/discuss/78551/7-lines-Easy-Java-Solution
+ *
  * @since 2020-09-25
  */
+@Repeat("Verify Preorder Serialization of a Binary Tree")
 @LeetCode(
         name = "Verify Preorder Serialization of a Binary Tree",
         difficulty = LeetCode.Level.MEDIUM,
@@ -24,31 +25,21 @@ import java.util.NoSuchElementException;
 class Solution {
 
     public boolean isValidSerialization(String preorder) {
-        if (preorder == null || preorder.isEmpty())
-            return false;
+        int diff = 1;
 
-        Stack stack = new Stack();
+        StringItr itr = new StringItr(preorder);
+        while (itr.hasNext()) {
 
+            Integer node = itr.next();
 
+            if (--diff < 0)
+                return false;
 
-        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
-    }
-
-    static class Stack {
-
-        private final Deque<Integer> deque = new LinkedList<>();
-
-        boolean isEmpty() {
-            return deque.isEmpty();
+            if (node != null)
+                diff += 2;
         }
 
-        void push(int value) {
-            deque.addFirst(value);
-        }
-
-        int pop() {
-            return deque.pollFirst();
-        }
+        return diff == 0;
     }
 
     static class StringItr implements Iterator<Integer> {
@@ -75,10 +66,20 @@ class Solution {
 
         @Override
         public boolean hasNext() {
+
             if (hasNext)
                 return true;
 
+            if (i >= length)
+                return false;
+
             skip();
+
+            if (preorder.charAt(i) == '#') {
+                i++;
+                next = null;
+                return hasNext = true;
+            }
 
             int n = 0;
             int sign = 1;
@@ -93,10 +94,6 @@ class Solution {
                 }
                 if (c == ',' || c == ' ') {
                     next = n * sign;
-                    return hasNext = true;
-                }
-                if (c == '#') {
-                    next = null;
                     return hasNext = true;
                 }
                 n = (n * 10) + (c - '0');
