@@ -95,6 +95,11 @@ test {
 }
 
 wrapper {
+
+    doFirst {
+        println "Gradle Version: ${gradleWrappedVersion}"
+    }
+
     gradleVersion = "${gradleWrappedVersion}"
     distributionType = Wrapper.DistributionType.ALL
 }
