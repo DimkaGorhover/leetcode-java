@@ -4,7 +4,10 @@ import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/subarray-product-less-than-k/
+ *
+ * @see org.gd.leetcode.p0560.Solution
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Subarray Product Less Than K",
         difficulty = LeetCode.Level.MEDIUM,
