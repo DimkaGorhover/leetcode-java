@@ -1,12 +1,13 @@
 package org.gd.leetcode.p0334;
 
-import org.gd.leetcode.common.BooleanAssertion;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @Disabled
 @DisplayName("LeetCode #334: increasing triplet subsequence")
@@ -22,6 +23,6 @@ class SolutionTest {
     @ParameterizedTest
     @MethodSource("args")
     void increasingTriplet(int[] nums, boolean expected) {
-        BooleanAssertion.of(expected).doAssert(new Solution().increasingTriplet(nums));
+        assertEquals(expected, new Solution().increasingTriplet(nums));
     }
 }

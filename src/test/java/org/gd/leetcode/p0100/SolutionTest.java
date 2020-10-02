@@ -1,6 +1,5 @@
 package org.gd.leetcode.p0100;
 
-import org.gd.leetcode.common.BooleanAssertion;
 import org.gd.leetcode.common.TreeNode;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for {@link Solution};
@@ -21,7 +20,7 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments(TreeNode.of(1, 2, 3), TreeNode.of(1, 2, 3), true)
+                Arguments.of(TreeNode.of(1, 2, 3), TreeNode.of(1, 2, 3), true)
         );
     }
 
@@ -29,7 +28,6 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("IsSameTree")
     void test_IsSameTree(TreeNode p, TreeNode q, boolean expected) {
-
-        BooleanAssertion.of(expected).doAssert(new Solution().isSameTree(p, q));
+        assertEquals(expected, new Solution().isSameTree(p, q));
     }
 }

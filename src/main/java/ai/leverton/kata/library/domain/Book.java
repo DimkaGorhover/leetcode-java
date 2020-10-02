@@ -9,8 +9,8 @@ import java.util.Set;
 @Builder
 public class Book implements Readable {
 
-    private final String      title;
-    private final String      description;
-    private final Set<String> authors;
-    private final String      isbn;
+    String title;
+    String description;
+    Set<String> authors;
+    String isbn;
 }
