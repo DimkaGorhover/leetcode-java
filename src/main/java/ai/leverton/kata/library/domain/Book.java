@@ -13,6 +13,4 @@ public class Book implements Readable {
     String description;
     Set<String> authors;
     String isbn;
-
-    static class BookBuilder {}
 }
