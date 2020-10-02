@@ -3,9 +3,6 @@ package org.gd.leetcode.p0729;
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * https://leetcode.com/problems/my-calendar-i
@@ -16,70 +13,92 @@ import java.util.List;
 @LeetCode(
         name = "My Calendar I",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
-        tags = LeetCode.Tags.ARRAY
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.BINARY_SEARCH
+        }
 )
 class MyCalendar {
 
-    private final ArrayList<Interval> intervals;
+    private final ArrayList<int[]> intervals;
 
     public MyCalendar() {
         intervals = new ArrayList<>();
     }
 
-    private int search(Interval interval) {
-        int startIndex = 0;
-        int endIndex = intervals.size() - 1;
+    private int search(int start, int end) {
+
+        int startIndex = 0, endIndex = intervals.size() - 1;
+
+        int[] midVal;
+        int midIndex = 0;
 
         while (startIndex <= endIndex) {
-            int mid = (startIndex + endIndex) >>> 1;
-            Interval midVal = intervals.get(mid);
-            int compare = interval.compareTo(midVal);
+            midIndex = (startIndex + endIndex) >>> 1;
+            midVal = intervals.get(midIndex);
+
+            int compare = Integer.compare(start, midVal[0]);
             if (compare == 0) {
-                return mid;
+                return -1;
             }
 
-            if (compare > 0) {
-                startIndex = mid + 1;
-            } else {
-                endIndex = mid - 1;
+            if (compare < 0) {
+                // [ interval ] | [ midVal ]
+                if (end > midVal[0]) {
+                    // intervals intersect each other
+                    return -1;
+                }
+                endIndex = midIndex - 1;
+                continue;
             }
 
+
+            // [ midVal ] | [ interval ]
+            if (midVal[1] > start) {
+                // intervals intersect each other
+                return -1;
+            }
+            startIndex = midIndex + 1;
         }
 
         return startIndex;
     }
 
-    private void add(Interval interval, int index) {
-        while (index >= intervals.size()) {
-            intervals.add(null);
-        }
-        intervals.set(index, interval);
-    }
-
     public boolean book(int start, int end) {
 
-        Interval interval = new Interval(start, end);
-
         if (intervals.isEmpty()) {
-            intervals.add(interval);
+            intervals.add(new int[]{start, end});
             return true;
         }
 
-        int index = search(interval);
-        if (index == intervals.size()) {
-            intervals.add(interval);
-            return true;
+        int index = search(start, end);
+        if (index < 0) {
+            return false;
         }
 
-
-
-        add(interval, index);
+        intervals.add(index, new int[]{start, end});
         return true;
     }
 
     @Override
     public String toString() {
-        return intervals.toString();
+        if (intervals.isEmpty())
+            return "[]";
+
+        StringBuilder sb = new StringBuilder().append("[");
+        java.util.function.Consumer<int[]> consumer = interval ->
+                sb.append('[').append(interval[0]).append(',').append(interval[1]).append(']');
+
+        java.util.Iterator<int[]> iterator = intervals.iterator();
+        if (iterator.hasNext()) {
+            consumer.accept(iterator.next());
+            while (iterator.hasNext()) {
+                sb.append(',').append(' ');
+                consumer.accept(iterator.next());
+            }
+        }
+
+        return sb.append("]").toString();
     }
 }

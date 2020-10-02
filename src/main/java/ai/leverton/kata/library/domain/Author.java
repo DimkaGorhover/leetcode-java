@@ -59,4 +59,6 @@ public class Author implements Entity {
         result = 31 * result + Double.hashCode(d);
         return result;
     }
+
+    static class Builder {}
 }

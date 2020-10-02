@@ -1,6 +1,5 @@
 package org.gd.leetcode.p0990;
 
-import org.gd.leetcode.common.BooleanAssertion;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -31,10 +30,8 @@ class SolutionTest {
     @MethodSource("args")
     @DisplayName("LeetCode #990: Satisfiability of Equality Equations")
     void equationsPossible(String[] equations, boolean expected) {
-
         boolean actual = new Solution().equationsPossible(equations);
-
-        BooleanAssertion.of(expected).doAssert(actual);
+        assertEquals(expected, actual);
     }
 
     @Test
