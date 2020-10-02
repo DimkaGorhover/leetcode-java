@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Test for {@link MyCalendar}
  *
@@ -15,13 +17,15 @@ class MyCalendarTest {
 
     @Test
     @DisplayName("Book")
-    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    //@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_Book() {
 
-        var i1 = new Interval(17, 18);
-        var i2 = new Interval(10, 20);
+        var cal = new MyCalendar();
 
-        System.out.println(i1.compareTo(i2));
-        System.out.println(i2.compareTo(i1));
+        cal.book(0, 10);
+        cal.book(10, 20);
+        cal.book(20, 30);
+
+        assertFalse(cal.book(13, 17));
     }
 }

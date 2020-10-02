@@ -15,18 +15,7 @@ class Interval implements Comparable<Interval> {
 
     @Override
     public int compareTo(Interval later) {
-
-        if (start > later.start) {
-            int compare = later.compareTo(this);
-            if (compare == 0)
-                return compare;
-        }
-
-
-        System.out.println("asd 2");
-
-
-        return 0;
+        return Integer.compare(start, later.start);
     }
 
     @Override
