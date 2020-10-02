@@ -25,6 +25,7 @@ public @interface LeetCode {
 
     enum Tags {
 
+        ORDERED_MAP("Ordered Map"),
         ARRAY("Array"),
         CONCURRENCY("Concurrency"),
         DYNAMIC_PROGRAMMING("Dynamic Programming"),

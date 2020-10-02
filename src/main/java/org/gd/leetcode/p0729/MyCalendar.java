@@ -8,8 +8,11 @@ import java.util.ArrayList;
  * https://leetcode.com/problems/my-calendar-i
  *
  * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p0731.MyCalendarTwo
+ * @see org.gd.leetcode.p0732.MyCalendarThree
  * @since 2020-08-28
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "My Calendar I",
         difficulty = LeetCode.Level.MEDIUM,
@@ -88,7 +91,7 @@ class MyCalendar {
 
         StringBuilder sb = new StringBuilder().append("[");
         java.util.function.Consumer<int[]> consumer = interval ->
-                sb.append('[').append(interval[0]).append(',').append(interval[1]).append(']');
+                sb.append('[').append(interval[0]).append(',').append(interval[1]).append(')');
 
         java.util.Iterator<int[]> iterator = intervals.iterator();
         if (iterator.hasNext()) {
