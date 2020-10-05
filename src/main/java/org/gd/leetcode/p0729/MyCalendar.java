@@ -2,8 +2,6 @@ package org.gd.leetcode.p0729;
 
 import org.gd.leetcode.common.LeetCode;
 
-import java.util.ArrayList;
-
 /**
  * https://leetcode.com/problems/my-calendar-i
  *
@@ -24,20 +22,19 @@ import java.util.ArrayList;
 )
 class MyCalendar {
 
-    private final ArrayList<int[]> intervals;
+    private int[][] intervals = new int[10][];
+    private int size = 0;
 
-    public MyCalendar() {
-        intervals = new ArrayList<>();
-    }
+    public MyCalendar() {}
 
     private int search(int start, int end) {
 
-        int startIndex = 0, endIndex = intervals.size() - 1;
+        int startIndex = 0, endIndex = size - 1;
 
         while (startIndex <= endIndex) {
 
             int midIndex = (startIndex + endIndex) >>> 1;
-            int[] midVal = intervals.get(midIndex);
+            int[] midVal = intervals[midIndex];
 
             int compare = Integer.compare(start, midVal[0]);
             if (compare == 0) {
@@ -54,7 +51,6 @@ class MyCalendar {
                 continue;
             }
 
-
             // [ midVal ] | [ interval ]
             if (midVal[1] > start) {
                 // intervals intersect each other
@@ -66,10 +62,23 @@ class MyCalendar {
         return startIndex;
     }
 
+    private void growIfNeed() {
+        if (size + 1 < intervals.length)
+            return;
+
+        final long newCapacity = size + 16;
+        if (newCapacity > Integer.MAX_VALUE - 8)
+            throw new OutOfMemoryError();
+
+        int[][] arr = new int[(int) newCapacity][];
+        System.arraycopy(intervals, 0, arr, 0, intervals.length);
+        intervals = arr;
+    }
+
     public boolean book(int start, int end) {
 
-        if (intervals.isEmpty()) {
-            intervals.add(new int[]{start, end});
+        if (size == 0) {
+            intervals[size++] = new int[]{start, end};
             return true;
         }
 
@@ -78,26 +87,45 @@ class MyCalendar {
             return false;
         }
 
-        intervals.add(index, new int[]{start, end});
+        insert(index, new int[]{start, end});
         return true;
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    private void insert(int index, int[] interval) {
+
+        growIfNeed();
+
+        if (index == size) {
+            intervals[size++] = interval;
+            return;
+        }
+
+        System.arraycopy(intervals, index, intervals, index + 1, size - index);
+        size++;
+        intervals[index] = interval;
     }
 
     @Override
     public String toString() {
-        if (intervals.isEmpty())
+        if (size == 0)
             return "[]";
 
         StringBuilder sb = new StringBuilder().append("[");
-        java.util.function.Consumer<int[]> consumer = interval ->
-                sb.append('[').append(interval[0]).append(',').append(interval[1]).append(')');
 
-        java.util.Iterator<int[]> iterator = intervals.iterator();
-        if (iterator.hasNext()) {
-            consumer.accept(iterator.next());
-            while (iterator.hasNext()) {
-                sb.append(',').append(' ');
-                consumer.accept(iterator.next());
+        java.util.function.Consumer<int[]> consumer = interval -> {
+            sb.append('[');
+            if (interval != null) {
+                sb.append(interval[0]).append(',').append(interval[1]);
             }
+            sb.append(')');
+        };
+
+        consumer.accept(intervals[0]);
+
+        for (int i = 1; i < size; i++) {
+            sb.append(',').append(' ');
+            consumer.accept(intervals[i]);
         }
 
         return sb.append("]").toString();
