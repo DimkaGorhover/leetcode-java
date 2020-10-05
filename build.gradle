@@ -6,7 +6,12 @@ sourceCompatibility = JavaVersion.VERSION_14
 targetCompatibility = JavaVersion.VERSION_14
 
 tasks.withType(JavaCompile).each {
-    it.options.compilerArgs.add('--enable-preview')
+    it.options.compilerArgs.addAll([
+            '--enable-preview',
+            '-Xlint:serial',
+            '-Xlint:unchecked',
+            /*'-Xlint:preview',*/
+    ])
 }
 
 tasks.withType(Test) {

@@ -34,12 +34,10 @@ class MyCalendar {
 
         int startIndex = 0, endIndex = intervals.size() - 1;
 
-        int[] midVal;
-        int midIndex = 0;
-
         while (startIndex <= endIndex) {
-            midIndex = (startIndex + endIndex) >>> 1;
-            midVal = intervals.get(midIndex);
+
+            int midIndex = (startIndex + endIndex) >>> 1;
+            int[] midVal = intervals.get(midIndex);
 
             int compare = Integer.compare(start, midVal[0]);
             if (compare == 0) {

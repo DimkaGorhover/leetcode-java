@@ -10,6 +10,7 @@ import java.util.*;
  * @author Horkhover Dmytro
  * @since 2020-08-29
  */
+@SuppressWarnings("unchecked")
 @LeetCode(
         name = "Diagonal Traverse II",
         difficulty = LeetCode.Level.MEDIUM,
