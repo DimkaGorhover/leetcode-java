@@ -14,7 +14,7 @@ import org.gd.leetcode.common.LeetCode;
 @LeetCode(
         name = "My Calendar II",
         difficulty = LeetCode.Level.MEDIUM,
-        state = LeetCode.State.TODO,
+        state = LeetCode.State.FIXME,
         tags = {
                 LeetCode.Tags.ORDERED_MAP
         }
@@ -37,24 +37,6 @@ class MyCalendarTwo {
             return true;
         }
 
-        int index = search(start, end);
-        switch (index) {
-            case -2:
-                return true;
-            case -1:
-                return false;
-            default:
-                insert(index, new int[]{start, end, 0});
-                return true;
-        }
-    }
-
-    private void splitInsert() {
-
-    }
-
-    private int search(int start, int end) {
-
         int startIndex = 0, endIndex = size - 1;
 
         while (startIndex <= endIndex) {
@@ -63,40 +45,96 @@ class MyCalendarTwo {
             int[] midVal = intervals[midIndex];
 
             int compare = Integer.compare(start, midVal[0]);
+
+            // intervals have the same start point
             if (compare == 0) {
-                return -1;
+
+                if (midVal[2] > 0) {
+                    return false;
+                }
+
+                if (midVal[1] == end) {
+                    midVal[2]++;
+                    return true;
+                }
+
+                int prevEnd = midVal[1];
+                midVal[1] = Math.min(prevEnd, end);
+                midVal[2]++;
+                insert(midIndex + 1, new int[]{midVal[1], Math.max(prevEnd, end), 0});
+
+                return true;
             }
 
+            // [ interval ] | [ midVal ]
             if (compare < 0) {
-                // [ interval ] | [ midVal ]
-                if (end > midVal[0]) {
-                    // intervals intersect each other
 
-                    if (midVal[2] == 1) {
-                        return -1;
+                // ----------------------------------------------------------------
+                // intervals intersect each other
+                //
+                // [ interval --- ]
+                //       [ midVal ----- ]
+                //
+                // [ interval --------- ]
+                //       [ midVal ]
+                // ----------------------------------------------------------------
+                if (end > midVal[0]) {
+
+                    if (midVal[2] > 0) {
+                        return false;
                     }
 
-                    return -2;
+                    int prevStart = midVal[0];
+                    int prevEnd = midVal[1];
+
+                    midVal[0] = start;
+                    midVal[1] = prevStart;
+
+                    int[] interval0 = {prevStart, Math.min(end, prevEnd), 1};
+                    int[] interval1 = {interval0[1], Math.max(end, prevEnd), 0};
+
+                    insert(midIndex + 1, interval0, interval1);
+
+                    return true;
                 }
+
                 endIndex = midIndex - 1;
                 continue;
             }
 
-
-            // [ midVal ] | [ interval ]
+            // ----------------------------------------------------------------
+            // intervals intersect each other
+            //
+            // [ midVal --- ]
+            //      [ interval --- ]
+            //
+            // [ midVal ------------- ]
+            //      [ interval ]
+            // ----------------------------------------------------------------
             if (midVal[1] > start) {
-                // intervals intersect each other
 
-                if (midVal[2] == 1) {
-                    return -1;
+                if (midVal[2] > 0) {
+                    return false;
                 }
 
-                return -2;
+                int prevEnd = midVal[1];
+                midVal[1] = start;
+
+                int[] interval0 = {midVal[1], Math.min(end, prevEnd), 1};
+                int[] interval1 = {interval0[1], Math.max(end, prevEnd), 0};
+
+                insert(midIndex + 1, interval0, interval1);
+
+                return true;
             }
+
             startIndex = midIndex + 1;
         }
 
-        return startIndex;
+        //return startIndex;
+
+        insert(startIndex, new int[]{start, end, 0});
+        return true;
     }
 
     private void growIfNeed() {
@@ -126,19 +164,43 @@ class MyCalendarTwo {
         intervals[index] = interval;
     }
 
+    private void insert(int index, int[] interval0, int[] interval1) {
+        growIfNeed();
+
+        if (index == size) {
+            intervals[index] = interval0;
+            intervals[index + 1] = interval1;
+            size += 2;
+            return;
+        }
+
+        System.arraycopy(intervals, index, intervals, index + 2, size - index);
+        size += 2;
+        intervals[index] = interval0;
+        intervals[index + 1] = interval1;
+    }
+
     @Override
     public String toString() {
         if (size == 0)
             return "[]";
 
-        StringBuilder sb = new StringBuilder().append("[");
+        StringBuilder sb = new StringBuilder().append("[ ");
 
         java.util.function.Consumer<int[]> consumer = interval -> {
+
+            if (interval == null) {
+                sb.append("[]");
+                return;
+            }
+
             int count = interval[2];
+            //noinspection StringRepeatCanBeUsed
             for (int i = 0; i <= count; i++) {
                 sb.append('[');
             }
-            sb.append(count).append(',').append(interval[1]);
+            sb.append(interval[0]).append(',').append(interval[1]);
+            //noinspection StringRepeatCanBeUsed
             for (int i = 0; i <= count; i++) {
                 sb.append(')');
             }
@@ -147,14 +209,10 @@ class MyCalendarTwo {
         consumer.accept(intervals[0]);
 
         for (int i = 1; i < size; i++) {
-
-            if (intervals[i] == null)
-                continue;
-
             sb.append(',').append(' ');
             consumer.accept(intervals[i]);
         }
 
-        return sb.append("]").toString();
+        return sb.append(" ]").toString();
     }
 }

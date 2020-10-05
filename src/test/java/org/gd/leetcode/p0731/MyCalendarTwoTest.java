@@ -19,7 +19,7 @@ class MyCalendarTwoTest {
 
     @Test
     @DisplayName("Book")
-    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    //@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_Book() {
 
         var calendar = new MyCalendarTwo();
