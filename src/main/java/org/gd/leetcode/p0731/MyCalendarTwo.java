@@ -31,6 +31,10 @@ class MyCalendarTwo {
 
     public boolean book(int start, int end) {
 
+        if (start == end) {
+            return true;
+        }
+
         if (size == 0) {
             intervals[0] = new int[]{start, end, 0};
             size++;
@@ -84,16 +88,18 @@ class MyCalendarTwo {
                         return false;
                     }
 
-                    int prevStart = midVal[0];
                     int prevEnd = midVal[1];
+                    int prevStart = midVal[0];
 
-                    midVal[0] = start;
-                    midVal[1] = prevStart;
+                    midVal[1] = Math.min(midVal[1], end);
+                    midVal[2]++;
 
-                    int[] interval0 = {prevStart, Math.min(end, prevEnd), 1};
-                    int[] interval1 = {interval0[1], Math.max(end, prevEnd), 0};
-
-                    insert(midIndex + 1, interval0, interval1);
+                    if (!book(start, midVal[0]) || !book(midVal[1], prevEnd)) {
+                        midVal[0] = prevStart;
+                        midVal[1] = prevEnd;
+                        midVal[2]--;
+                        return false;
+                    }
 
                     return true;
                 }
@@ -123,9 +129,16 @@ class MyCalendarTwo {
                 int[] interval0 = {midVal[1], Math.min(end, prevEnd), 1};
                 int[] interval1 = {interval0[1], Math.max(end, prevEnd), 0};
 
-                insert(midIndex + 1, interval0, interval1);
+                insert(midIndex + 1, interval0);
 
-                return true;
+                boolean innerResult = book(interval0[1], Math.max(end, prevEnd));
+
+                if (innerResult)
+                    return true;
+
+                remove(midIndex + 1);
+
+                return false;
             }
 
             startIndex = midIndex + 1;
@@ -135,6 +148,16 @@ class MyCalendarTwo {
 
         insert(startIndex, new int[]{start, end, 0});
         return true;
+    }
+
+    private void remove(int index) {
+        if (index + 1 == size) {
+            size--;
+            return;
+        }
+
+        System.arraycopy(intervals, index + 1, intervals, index, size - (index + 1));
+        size--;
     }
 
     private void growIfNeed() {
@@ -164,22 +187,6 @@ class MyCalendarTwo {
         intervals[index] = interval;
     }
 
-    private void insert(int index, int[] interval0, int[] interval1) {
-        growIfNeed();
-
-        if (index == size) {
-            intervals[index] = interval0;
-            intervals[index + 1] = interval1;
-            size += 2;
-            return;
-        }
-
-        System.arraycopy(intervals, index, intervals, index + 2, size - index);
-        size += 2;
-        intervals[index] = interval0;
-        intervals[index + 1] = interval1;
-    }
-
     @Override
     public String toString() {
         if (size == 0)
@@ -195,14 +202,18 @@ class MyCalendarTwo {
             }
 
             int count = interval[2];
-            //noinspection StringRepeatCanBeUsed
-            for (int i = 0; i <= count; i++) {
-                sb.append('[');
+            if (count == 1) {
+                sb.append("[[");
+            } else {
+                sb.append(" [");
             }
-            sb.append(interval[0]).append(',').append(interval[1]);
-            //noinspection StringRepeatCanBeUsed
-            for (int i = 0; i <= count; i++) {
-                sb.append(')');
+
+            sb.append(String.format("%2d", interval[0])).append(',').append(String.format("%2d", interval[1]));
+
+            if (count == 1) {
+                sb.append("))");
+            } else {
+                sb.append(") ");
             }
         };
 
