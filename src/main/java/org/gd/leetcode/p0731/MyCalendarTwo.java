@@ -127,7 +127,6 @@ class MyCalendarTwo {
                 midVal[1] = start;
 
                 int[] interval0 = {midVal[1], Math.min(end, prevEnd), 1};
-                int[] interval1 = {interval0[1], Math.max(end, prevEnd), 0};
 
                 insert(midIndex + 1, interval0);
 

@@ -39,13 +39,20 @@ class MyCalendarExecutableFactory {
         public void execute() throws Throwable {
 
             String before = calendar.toString();
+
             boolean actual = calendar.book(start, end);
+
             String after = calendar.toString();
 
             assertEquals(expected, actual, () -> {
 
                 return String.format("%n interval = [%2d,%2d);%n before = %s;%n  after = %s%n", start, end, before, after);
             });
+        }
+
+        @Override
+        public String toString() {
+            return String.format("[%d,%d) expected: %b", start, end, expected);
         }
     }
 }

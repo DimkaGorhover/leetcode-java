@@ -29,12 +29,17 @@ class MyCalendarTwoTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+
                 ((Supplier<Arguments>) () -> {
 
                     String valuesString = "" +
                             "[47,50],[1,10],[27,36],[40,47],[20,27],[15,23],[10,18],[27,36],[17,25],[8,17],[24,33]," +
                             "[23,28],[21,27],[47,50],[14,21],[26,32],[16,21],[2,7],[24,33],[6,13],[44,50],[33,39]," +
                             "[30,36],[6,15],[21,27],[49,50],[38,45],[4,12],[46,50],[13,21]";
+
+                    String resultsString = "" +
+                            "true,true,true,true,true,true,true,true,false,false,false,false,false,true,false,false," +
+                            "false,true,false,false,false,false,false,false,false,false,true,false,false,false";
 
                     List<int[]> values = Arrays
                             .stream(valuesString
@@ -47,7 +52,7 @@ class MyCalendarTwoTest {
                             .collect(Collectors.toList());
 
                     List<Boolean> results = Arrays
-                            .stream("true,true,true,true,true,true,true,true,false,false,false,false,false,true,false,false,false,true,false,false,false,false,false,false,false,false,true,false,false,false".split(","))
+                            .stream(resultsString.split(","))
                             .map(s -> Boolean.parseBoolean(s.trim().toLowerCase()))
                             .collect(Collectors.toList());
 
@@ -61,52 +66,39 @@ class MyCalendarTwoTest {
                     }
 
                     return Arguments.of(executables);
+                }),
 
-                }).get()
-        );
+                ((Supplier<Arguments>) () -> {
+                    var calendar = new MyCalendarTwo();
+
+                    var factory = new MyCalendarExecutableFactory();
+                    List<Executable> executables = new ArrayList<>();
+
+                    executables.add(factory.create(20, 30, true));
+                    executables.add(factory.create(0, 10, true));
+                    executables.add(factory.create(10, 20, true));
+                    executables.add(factory.create(20, 30, true));
+                    executables.add(factory.create(-5, 11, true));
+                    executables.add(factory.create(13, 21, false));
+                    executables.add(factory.create(13, 17, true));
+                    executables.add(factory.create(29, 30, false));
+                    executables.add(factory.create(29, 31, false));
+
+                    return Arguments.of(executables);
+
+                })
+
+        ).map(Supplier::get);
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("asdad")
+    @DisplayName("Book")
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
-    void test_asdad(List<Executable> executables) throws Throwable {
+    void test_Book(List<Executable> executables) throws Throwable {
 
         for (Executable executable : executables) {
             executable.execute();
         }
-    }
-
-
-
-
-
-/*
-["MyCalendarTwo","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book","book"]
-[[],]
-*/
-
-    //[null,]
-
-    @Test
-    @DisplayName("Book")
-    //@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
-    void test_Book() {
-
-        var calendar = new MyCalendarTwo();
-
-        assertTrue(calendar.book(20, 30));
-        assertTrue(calendar.book(0, 10));
-        assertTrue(calendar.book(10, 20));
-        assertTrue(calendar.book(20, 30));
-
-        System.out.println(calendar);
-
-        assertTrue(calendar.book(-5, 11));
-
-        assertFalse(calendar.book(13, 21));
-        assertTrue(calendar.book(13, 17));
-        assertFalse(calendar.book(29, 30));
-        assertFalse(calendar.book(29, 31));
     }
 }
