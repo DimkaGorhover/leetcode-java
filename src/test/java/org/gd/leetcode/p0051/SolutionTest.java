@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2020-07-22
  */
 @SuppressWarnings("JavadocReference")
-@DisplayName("LeetCode 51: N-Queens")
+@DisplayName("LeetCode #51: N-Queens")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

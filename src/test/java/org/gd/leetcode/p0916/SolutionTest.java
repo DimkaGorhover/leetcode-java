@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover D.
  * @since 2020-07-11.07.2020
  */
+@DisplayName("LeetCode #916: Word Subsets")
 class SolutionTest {
 
     private static Arguments fromFile(SolutionFactory solutionFactory, String fileName) {

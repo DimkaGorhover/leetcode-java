@@ -3,12 +3,18 @@ package org.gd.leetcode.p1381;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @see CustomStack
+ */
+@DisplayName("LeetCode #1381: Design a Stack With Increment Operation")
 class CustomStackTest {
 
     @Test
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test() {
 
         CustomStack customStack = new CustomStack(3);

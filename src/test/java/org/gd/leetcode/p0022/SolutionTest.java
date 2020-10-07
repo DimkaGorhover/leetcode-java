@@ -1,27 +1,26 @@
 package org.gd.leetcode.p0022;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.*;
 
 import java.util.Set;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for {@link Solution}
  */
+@DisplayName("LeetCode #22: Generate Parentheses")
 class SolutionTest {
-    
+
     @Test
-    @DisplayName("LeetCode #22: Generate Parentheses")
     void test() {
 
         var expected = Set.of(
-            "((()))",
-            "(()())",
-            "(())()",
-            "()(())",
-            "()()()"
+                "((()))",
+                "(()())",
+                "(())()",
+                "()(())",
+                "()()()"
         );
 
         var actual = Set.copyOf(new Solution().generateParenthesis(3));

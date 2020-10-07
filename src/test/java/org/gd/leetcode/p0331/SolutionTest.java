@@ -5,9 +5,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
+import static org.gd.common.CollectionUtils.listOf;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -33,5 +35,14 @@ class SolutionTest {
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_IsValidSerialization(String preorder, boolean expected) {
         assertEquals(expected, new Solution().isValidSerialization(preorder));
+    }
+
+    @Test
+    @DisplayName("String Iterator")
+    void test_Next() {
+
+        var itr = new Solution.StringItr("-1 ,2,#,-3,-4");
+
+        assertEquals(Arrays.asList(-1, 2, null, -3, -4), listOf(itr));
     }
 }

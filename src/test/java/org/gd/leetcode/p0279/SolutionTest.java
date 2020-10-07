@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2020-07-22
  */
 @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
-@DisplayName("LeetCode 279: Perfect Squares")
+@DisplayName("LeetCode #279: Perfect Squares")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

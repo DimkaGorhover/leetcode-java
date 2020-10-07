@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-24
  */
-@Execution(ExecutionMode.CONCURRENT)
+@DisplayName("LeetCode #208: Implement Trie (Prefix Tree)")
 class TrieTest {
 
     private static List<Map.Entry<String, String>> rawTestCases(String fileName) {

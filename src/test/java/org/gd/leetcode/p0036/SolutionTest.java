@@ -14,7 +14,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Horkhover Dmytro
  * @since 2018-11-18
  */
-@DisplayName("LeetCode 36: Valid Sudoku")
+@DisplayName("LeetCode #36: Valid Sudoku")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

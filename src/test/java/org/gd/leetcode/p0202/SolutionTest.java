@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("LeetCode 202: Happy Number")
+@DisplayName("LeetCode #202: Happy Number")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

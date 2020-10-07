@@ -19,6 +19,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @since 2018-11-02
  */
 @SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #1: Two Sum")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

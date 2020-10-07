@@ -9,6 +9,10 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link ZeroEvenOdd}
+ */
+@DisplayName("LeetCode #1116: Print Zero Even Odd")
 class ZeroEvenOddTest {
 
     @Test

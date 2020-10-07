@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link BrowserHistory}
  */
+@DisplayName("LeetCode #1472: Design Browser History")
 class BrowserHistoryTest {
 
     @Test

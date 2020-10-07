@@ -17,7 +17,7 @@ import java.util.function.BiFunction;
  */
 @Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
 @SuppressWarnings("deprecation")
-@DisplayName("LeetCode 382: Linked List Random Node")
+@DisplayName("LeetCode #382: Linked List Random Node")
 class SolutionTest {
 
     private static final BiFunction<Integer, Integer, Integer> INCREMENT =

@@ -11,6 +11,7 @@ import java.util.HashMap;
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "Two Sum",
         difficulty = LeetCode.Level.EASY,
         state = LeetCode.State.DONE,
         tags = {

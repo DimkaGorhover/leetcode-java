@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * test for {@link Solution}
  */
-@DisplayName("LeetCode #430: ")
+@DisplayName("LeetCode #430: Flatten a Multilevel Doubly Linked List")
 class SolutionTest {
 
     @Test

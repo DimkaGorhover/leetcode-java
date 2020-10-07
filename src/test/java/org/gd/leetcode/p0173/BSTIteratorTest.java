@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-24
  */
+@DisplayName("LeetCode #173: Binary Search Tree Iterator")
 class BSTIteratorTest {
 
     @Test

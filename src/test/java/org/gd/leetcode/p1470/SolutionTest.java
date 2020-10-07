@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("LeetCode #1470")
+@DisplayName("LeetCode #1470: Shuffle the Array")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -22,7 +22,6 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #1470: Shuffle the Array")
     void shuffle(int[] nums, int[] expected) {
         assertArrayEquals(expected, new Solution().shuffle(nums, nums.length >> 1));
     }

@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover D.
  * @since 2020-07-13
  */
-@DisplayName("LeetCode 169: Majority Element")
+@DisplayName("LeetCode #169: Majority Element")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

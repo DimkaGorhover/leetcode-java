@@ -24,7 +24,7 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode 338: Counting Bits")
+    @DisplayName("LeetCode #338: Counting Bits")
     void countBits(Supplier<ISolution> solution, int num, int[] expected) {
         assertArrayEquals(expected, solution.get().countBits(num));
     }

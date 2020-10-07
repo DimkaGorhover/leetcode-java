@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("LeetCode 509: Fibonacci Number")
+@DisplayName("LeetCode #509: Fibonacci Number")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

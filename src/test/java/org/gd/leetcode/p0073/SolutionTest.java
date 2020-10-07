@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-23
  */
-@DisplayName("LeetCode 73: Set Matrix Zeroes")
+@DisplayName("LeetCode #73: Set Matrix Zeroes")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

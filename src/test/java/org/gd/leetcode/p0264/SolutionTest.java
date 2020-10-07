@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("LeetCode 264: Ugly Number II")
+@DisplayName("LeetCode #264: Ugly Number II")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

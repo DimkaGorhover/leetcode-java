@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-23
  */
-@DisplayName("LeetCode 477: Total Hamming Distance")
+@DisplayName("LeetCode #477: Total Hamming Distance")
 class SolutionTest {
 
     private static int[] readTestCase(String testCaseName) {

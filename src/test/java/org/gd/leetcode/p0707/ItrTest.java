@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("LeetCode #707: Design Linked List (Iterator Test)")
 class ItrTest {
 
     @Test

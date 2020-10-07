@@ -4,7 +4,11 @@ import org.gd.leetcode.common.LeetCode;
 
 import java.util.LinkedList;
 
+/**
+ * https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
+ */
 @LeetCode(
+        name = "Flatten a Multilevel Doubly Linked List",
         difficulty = LeetCode.Level.MEDIUM,
         state = LeetCode.State.TODO,
         tags = {

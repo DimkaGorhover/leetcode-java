@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-23
  */
-@DisplayName("LeetCode 162: Find Peak Element")
+@DisplayName("LeetCode #162: Find Peak Element")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

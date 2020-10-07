@@ -15,7 +15,9 @@ import java.util.Map;
  * @since 2019-09-23
  */
 @LeetCode(
+        name = "Online Majority Element In Subarray",
         difficulty = LeetCode.Level.HARD,
+        state = LeetCode.State.FIXME,
         tags = {
                 LeetCode.Tags.ARRAY,
                 LeetCode.Tags.BINARY_SEARCH,

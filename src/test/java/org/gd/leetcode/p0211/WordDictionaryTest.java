@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for {@link WordDictionary}
  */
+@DisplayName("LeetCode #211: Word Dictionary")
 class WordDictionaryTest {
 
     @Test

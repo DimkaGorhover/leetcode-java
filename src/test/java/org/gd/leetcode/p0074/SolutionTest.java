@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-23
  */
-@DisplayName("LeetCode 74: Search a 2D Matrix")
+@DisplayName("LeetCode #74: Search a 2D Matrix")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-07-22
  */
-@DisplayName("LeetCode 480: Sliding Window Median")
+@DisplayName("LeetCode #480: Sliding Window Median")
 class SolutionTest {
 
     private static List<Double> toList(double[] arr) {

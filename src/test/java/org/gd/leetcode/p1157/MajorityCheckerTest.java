@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-23
  */
+@DisplayName("LeetCode #1157: Online Majority Element In Subarray")
 class MajorityCheckerTest {
 
     private static Stream<Arguments> args() {
