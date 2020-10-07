@@ -3,12 +3,13 @@ package org.gd.leetcode.p0355;
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * https://leetcode.com/problems/design-twitter/
  *
+ * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0023.Solution
+ * @since 2020-07-07
  */
 @SuppressWarnings({"JavadocReference", "SameParameterValue"})
 @LeetCode(
@@ -38,9 +39,11 @@ class Twitter {
      * who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
      */
     public List<Integer> getNewsFeed(int userId) {
-        return Optional.ofNullable(users.get(userId))
-                .map(User::getNewsFeed)
-                .orElseGet(Collections::emptyList);
+        User user = users.get(userId);
+        if (user == null)
+            return Collections.emptyList();
+
+        return user.getNewsFeed();
     }
 
     /**
@@ -62,17 +65,17 @@ class Twitter {
     static class User {
 
         final int id;
-        final Map<Integer, User> following;
-        final Tweets tweets;
+        final LinkedHashMap<Integer, User> following;
+
+        Tweet headTweet;
 
         User(int id) {
             this.id = id;
             this.following = new LinkedHashMap<>();
-            this.tweets = new Tweets();
         }
 
         void follow(User followee) {
-            if (followee.id != id)
+            if (followee != null && followee.id != id)
                 following.put(followee.id, followee);
         }
 
@@ -81,7 +84,7 @@ class Twitter {
         }
 
         void addTweet(int tweetId) {
-            tweets.add(tweetId, id);
+            headTweet = new Tweet(tweetId, headTweet);
         }
 
         List<Integer> getNewsFeed() {
@@ -93,96 +96,107 @@ class Twitter {
             if (limit <= 0)
                 return Collections.emptyList();
 
-            PriorityQueue<Tweet> q = new PriorityQueue<>(Tweet::compareTo);
-            Map<Integer, Iterator<Tweet>> map = new HashMap<>();
-            Iterator<Tweet> iterator = tweets.iterator();
+            final ArrayList<Integer> newsFeed = new ArrayList<>(limit);
 
-            if (iterator.hasNext()) {
-                q.add(iterator.next());
-                map.put(id, iterator);
-            }
+            final int followingSize = following.size();
 
-            for (Map.Entry<Integer, User> entry : following.entrySet()) {
-                User user = entry.getValue();
-                iterator = user.tweets.iterator();
-                if (iterator.hasNext()) {
-                    q.add(iterator.next());
-                    map.put(user.id, iterator);
+            // ================================================================
+            // 1. if user has no followee
+            //
+            if (followingSize == 0) {
+                Tweet tweet = headTweet;
+                while (limit > 0 && tweet != null) {
+                    newsFeed.add(tweet.id);
+                    tweet = tweet.next;
+                    limit--;
                 }
+                return newsFeed;
             }
 
-            List<Integer> newsFeed = new ArrayList<>(limit);
+            // ================================================================
+            // 2. if user has only one followee
+            //
+            if (followingSize == 1) {
+
+                User followee = following.values().iterator().next();
+
+                Tweet tweet0 = headTweet;
+                Tweet tweet1 = followee.headTweet;
+
+                while (tweet0 != null && tweet1 != null && limit > 0) {
+
+                    if (tweet0.compareTo(tweet1) > 0) {
+                        newsFeed.add(tweet1.id);
+                        tweet1 = tweet1.next;
+                    } else {
+                        newsFeed.add(tweet0.id);
+                        tweet0 = tweet0.next;
+                    }
+
+                    limit--;
+                }
+
+                while (tweet0 != null && limit > 0) {
+                    newsFeed.add(tweet0.id);
+                    tweet0 = tweet0.next;
+                    limit--;
+                }
+
+                while (tweet1 != null && limit > 0) {
+                    newsFeed.add(tweet1.id);
+                    tweet1 = tweet1.next;
+                    limit--;
+                }
+
+                return newsFeed;
+            }
+
+            // ================================================================
+            // 3. user has more than one followee
+            //
+            PriorityQueue<Tweet> q = new PriorityQueue<>(1 + followingSize);
+
+            // add head tweet of current user
+            if (headTweet != null)
+                q.add(headTweet);
+
+            // add head tweets of of all following users
+            for (Map.Entry<Integer, User> entry : following.entrySet()) {
+                Tweet followingHeadTweet = entry.getValue().headTweet;
+                if (followingHeadTweet != null)
+                    q.add(followingHeadTweet);
+            }
+
             Tweet tweet;
+
+            // pull head from the heap and add tweet id to the list
             while ((tweet = q.poll()) != null && limit > 0) {
+
                 newsFeed.add(tweet.id);
-                iterator = map.get(tweet.userId);
-                if (iterator.hasNext())
-                    q.add(iterator.next());
                 limit--;
+
+                // put next tweet inside heap, if it exists
+                if (tweet.next != null)
+                    q.add(tweet.next);
+
             }
 
             return newsFeed;
         }
     }
 
-    static class Tweets implements Iterable<Tweet> {
-
-        private Tweet head;
-
-        void add(int tweetId, int userId) {
-            head = new Tweet(tweetId, userId, head);
-        }
-
-        @SuppressWarnings("NullableProblems")
-        @Override
-        public Iterator<Tweet> iterator() {
-
-            if (head == null)
-                return Collections.emptyIterator();
-
-            return new TweetsIterator(head);
-        }
-    }
-
-    static class TweetsIterator implements Iterator<Tweet> {
-
-        private Tweet tweet;
-
-        TweetsIterator(Tweet tweet) {
-            this.tweet = tweet;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return tweet != null;
-        }
-
-        @Override
-        public Tweet next() {
-
-            if (!hasNext())
-                throw new NoSuchElementException();
-
-            Tweet tweet = this.tweet;
-            this.tweet = tweet.next;
-            return tweet;
-        }
-    }
-
     static class Tweet implements Comparable<Tweet> {
 
-        private static final AtomicLong TIME = new AtomicLong(Long.MIN_VALUE);
+        private static long TIME = Long.MIN_VALUE;
 
         final int id;
-        final int userId;
         final long time;
         final Tweet next;
 
-        Tweet(int id, int userId, Tweet next) {
+        Tweet(int id, Tweet next) {
             this.id = id;
-            this.userId = userId;
             this.next = next;
-            this.time = TIME.getAndAccumulate(1, Math::addExact);
+            this.time = TIME++;
         }
 
         @Override

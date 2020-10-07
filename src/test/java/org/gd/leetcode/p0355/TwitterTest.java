@@ -2,19 +2,19 @@ package org.gd.leetcode.p0355;
 
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("LeetCode #355: Design Twitter")
 class TwitterTest {
 
     @Test
+    @DisplayName("Test #1")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test() {
 
         Twitter twitter = new Twitter();
@@ -63,8 +63,39 @@ class TwitterTest {
     }
 
     @Test
+    @DisplayName("Test #2")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_002() {
+
         Twitter twitter = new Twitter();
-        twitter.getNewsFeed(1);
+
+        assertTrue(twitter.getNewsFeed(1).isEmpty());
+
+        for (int i = 1; i <= 50; i++) {
+            twitter.postTweet(i % 3, 100 + i);
+        }
+
+        assertEquals(
+                List.of(150, 147, 144, 141, 138, 135, 132, 129, 126, 123),
+                twitter.getNewsFeed(2));
+
+        twitter.follow(2, 1);
+
+        assertEquals(
+                List.of(150, 149, 147, 146, 144, 143, 141, 140, 138, 137),
+                twitter.getNewsFeed(2));
+
+        twitter.follow(2, 0);
+
+        assertEquals(
+                List.of(150, 149, 148, 147, 146, 145, 144, 143, 142, 141),
+                twitter.getNewsFeed(2));
+
+        twitter.unfollow(2, 1);
+
+        assertEquals(
+                List.of(150, 148, 147, 145, 144, 142, 141, 139, 138, 136),
+                twitter.getNewsFeed(2));
+
     }
 }

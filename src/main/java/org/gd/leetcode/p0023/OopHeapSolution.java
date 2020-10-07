@@ -72,6 +72,7 @@ class OopHeapSolution implements Solution {
             return Integer.compare(o1.val, o2.val);
         }
 
+        @SuppressWarnings("NullableProblems")
         @Override
         public Iterator<ListNode> iterator() {
             return new HeapItr(this);
