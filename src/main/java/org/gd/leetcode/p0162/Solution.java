@@ -5,6 +5,8 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * https://leetcode.com/problems/find-peak-element/
  *
+ * https://www.geeksforgeeks.org/find-a-peak-in-a-given-array/
+ *
  * @author Horkhover Dmytro
  * @since 2020-07-23
  */
