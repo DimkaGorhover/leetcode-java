@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0080;
+package org.gd.leetcode.p0088;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
