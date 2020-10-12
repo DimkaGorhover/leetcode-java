@@ -5,7 +5,7 @@ class DPSolution implements Solution {
     public int minPathSum(int[][] grid) {
 
         if (grid == null)
-            throw new NullPointerException();
+            return 0;
 
         final int rows = grid.length;
         if (rows == 0)

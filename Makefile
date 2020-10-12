@@ -1,6 +1,4 @@
 CPU_COUNT=2
-#GRADLE_VERSION=6.5
-GRADLE_VERSION=6.6-rc-6
 GRADLE_CONTAINER_NAME=gradle-$(shell basename "$$PWD")
 CONTAINER_NAME=$(shell basename "$$PWD")
 EXPOSE_PORT=8888
@@ -54,9 +52,7 @@ container:
 	$(container)
 
 wrapper: rm
-	$(gradle) wrapper \
-		--gradle-version $(GRADLE_VERSION) \
-		--distribution-type all
+	$(gradle) wrapper
 
 compile:
 	$(gradle) clean testClasses
