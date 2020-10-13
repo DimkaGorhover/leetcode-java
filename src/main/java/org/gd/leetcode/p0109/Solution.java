@@ -11,7 +11,15 @@ import org.gd.leetcode.common.TreeNode;
  * @since 2019-10-02
  */
 @SuppressWarnings("JavadocReference")
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.LINKED_LIST, LeetCode.Tags.DEPTH_FIRST_SEARCH})
+@LeetCode(
+        name = "Convert Sorted List to Binary Search Tree",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.LINKED_LIST,
+                LeetCode.Tags.DEPTH_FIRST_SEARCH
+        })
 class Solution {
 
     private static int length(ListNode head) {

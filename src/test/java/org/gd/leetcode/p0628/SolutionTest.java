@@ -1,16 +1,20 @@
 package org.gd.leetcode.p0628;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Test for {@link Solution}
+ */
+@DisplayName("LeetCode #628: Maximum Product of Three Numbers")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -25,7 +29,6 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #628: Maximum Product of Three Numbers")
     void test(int[] input, int expected) {
 
         int actual = new Solution().maximumProduct(input);

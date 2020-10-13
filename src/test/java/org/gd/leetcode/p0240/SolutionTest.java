@@ -5,10 +5,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("LeetCode #240: Search a 2d Matrix II")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     static Stream<Arguments> args() {
@@ -32,7 +35,6 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #240: Search a 2d Matrix II")
     void test(int[][] matrix, int target, boolean expected) {
         assertEquals(expected, new Solution().searchMatrix(matrix, target));
     }

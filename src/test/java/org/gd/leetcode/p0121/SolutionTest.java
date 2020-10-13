@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover D.
  * @since 2020-06-30
  */
+@DisplayName("LeetCode #121: Best Time to Buy and Sell Stock")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -26,7 +29,6 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #121: Best Time to Buy and Sell Stock")
     void test_MaxProfit(int[] prices, int expected) {
         assertEquals(expected, new Solution().maxProfit(prices));
         assertEquals(expected, new LinearSolution().maxProfit(prices));

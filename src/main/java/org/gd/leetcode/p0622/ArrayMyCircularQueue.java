@@ -1,7 +1,5 @@
 package org.gd.leetcode.p0622;
 
-import java.util.Arrays;
-
 class ArrayMyCircularQueue implements MyCircularQueue {
 
     private final int[] arr;
@@ -68,6 +66,13 @@ class ArrayMyCircularQueue implements MyCircularQueue {
     }
 
     public String toString() {
-        return Arrays.toString(Arrays.copyOf(arr, size));
+        if (size == 0)
+            return "[]";
+
+        StringBuilder sb = new StringBuilder().append('[').append(arr[0]);
+        for (int i = 1; i < size; i++)
+            sb.append(',').append(' ').append(arr[i]);
+
+        return sb.append(']').toString();
     }
 }

@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0100;
 
+import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
@@ -8,6 +9,15 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-11-15
  */
+@LeetCode(
+        name = "Same Tree",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.TREE,
+                LeetCode.Tags.DEPTH_FIRST_SEARCH
+        }
+)
 class Solution {
 
     public boolean isSameTree(TreeNode p, TreeNode q) {

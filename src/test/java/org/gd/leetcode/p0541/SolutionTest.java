@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover D.
  * @since 2020-07-14
  */
+@DisplayName("LeetCode #541: Reverse String II")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {

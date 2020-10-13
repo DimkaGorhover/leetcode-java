@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover D.
  * @since 2020-07-13
  */
+@DisplayName("LeetCode #131: Palindrome Partitioning")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {

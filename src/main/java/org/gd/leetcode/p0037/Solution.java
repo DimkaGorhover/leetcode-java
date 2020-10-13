@@ -11,6 +11,7 @@ import java.util.StringJoiner;
  */
 @SuppressWarnings("JavadocReference")
 @LeetCode(
+        name = "Sudoku Solver",
         difficulty = LeetCode.Level.HARD,
         state = LeetCode.State.DONE,
         tags = {

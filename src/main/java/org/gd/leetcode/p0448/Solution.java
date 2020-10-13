@@ -27,7 +27,11 @@ import java.util.List;
  *
  * @since 2019-09-13
  */
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.ARRAY})
+@LeetCode(
+        name = "Find All Numbers Disappeared in an Array",
+        state = LeetCode.State.DONE,
+        difficulty = LeetCode.Level.EASY,
+        tags = LeetCode.Tags.ARRAY)
 class Solution {
 
     public List<Integer> findDisappearedNumbers(int[] nums) {

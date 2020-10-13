@@ -8,7 +8,7 @@ import org.gd.leetcode.common.LeetCode;
  * @author Gorkhover D.
  * @since 2018-10-22
  */
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.MATH, LeetCode.Tags.STRING})
+@LeetCode(name = "Add Binary", state = LeetCode.State.DONE, difficulty = LeetCode.Level.EASY, tags = {LeetCode.Tags.MATH, LeetCode.Tags.STRING})
 class Solution {
 
     public String addBinary(String a, String b) {

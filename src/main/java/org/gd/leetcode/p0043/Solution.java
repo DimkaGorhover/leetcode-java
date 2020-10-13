@@ -13,7 +13,9 @@ import java.util.Arrays;
  * @since 2018-10-22
  */
 @LeetCode(
+        name = "Multiply Strings",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.MATH,
                 LeetCode.Tags.STRING
@@ -69,7 +71,10 @@ class Solution {
                 res[resI] = c(prev);
         }
 
-        final int startIndex = res[0] == '0' ? 1 : 0;
+        int startIndex = 0;
+        while (res[startIndex] == '0')
+            startIndex++;
+
         return new String(res, startIndex, res.length - startIndex);
     }
 }

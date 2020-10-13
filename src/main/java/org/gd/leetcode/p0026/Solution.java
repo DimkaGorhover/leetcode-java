@@ -1,13 +1,25 @@
 package org.gd.leetcode.p0026;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  */
+@LeetCode(
+        name = "Remove Duplicates from Sorted Array",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.ARRAY,
+                LeetCode.Tags.TWO_POINTERS
+        }
+)
 class Solution {
 
     public int removeDuplicates(int[] nums) {
         if (nums == null)
             return 0;
+
         final int length = nums.length;
         switch (length) {
             case 0: return 0;

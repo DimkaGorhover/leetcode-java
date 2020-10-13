@@ -2,6 +2,7 @@ package org.gd.leetcode.common;
 
 import org.junit.jupiter.api.*;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.LongStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,8 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link TreeNode}
  *
  * @author Horkhover D.
- * @since 2020-07-03.07.2020
+ * @since 2020-07-03.07
  */
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class TreeNodeTest {
 
     @Test

@@ -10,6 +10,7 @@ import org.gd.leetcode.common.TreeNode;
  * @since 2019-02-12
  */
 @LeetCode(
+        name = "Minimum Depth of Binary Tree",
         difficulty = LeetCode.Level.EASY,
         state = LeetCode.State.DONE,
         tags = {

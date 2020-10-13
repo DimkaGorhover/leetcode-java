@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
@@ -13,35 +13,50 @@ import java.util.function.BiFunction;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
+ * @see SimpleSolution
+ * @see HeapSolution
  * @since 2020-07-22
  */
-@Timeout(value = 50, unit = TimeUnit.MILLISECONDS)
 @SuppressWarnings("deprecation")
 @DisplayName("LeetCode #382: Linked List Random Node")
+@Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static final BiFunction<Integer, Integer, Integer> INCREMENT =
             (ignore, count) -> 1 + (count == null ? 0 : count);
 
+    private static int diff(Map<Integer, Integer> map) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int value = entry.getValue();
+            min = Math.min(min, value);
+            max = Math.max(max, value);
+        }
+        return max - min;
+    }
+
     @Test
     @DisplayName("GetRandom")
     void test_GetRandom() {
 
-        ListNode node = ListNode.rangeClosed(1, 5);
+        int nodesCount = ThreadLocalRandom.current().nextInt(5, 10);
 
-        HeapSolution heapSolution = new HeapSolution(node.copy());
-        Solution solution = new Solution(node.copy());
+        ListNode node = ListNode.rangeClosed(1, nodesCount);
 
-        final int nodesCount = node.count();
+        Solution heapSolution = new HeapSolution(node);
+        Solution solution = new SimpleSolution(node);
+
         Map<Integer, Integer> map = new HashMap<>(nodesCount);
         Map<Integer, Integer> mapForHeap = new HashMap<>(nodesCount);
 
-        for (int i = 0; i < 1 << 15; i++) {
+        for (int i = 0; i < 1 << 16; i++) {
             map.compute(solution.getRandom(), INCREMENT);
             mapForHeap.compute(heapSolution.getRandom(), INCREMENT);
         }
 
-        System.out.println("     Solution: " + map);
-        System.out.println("Heap Solution: " + mapForHeap);
+        System.out.printf("     Solution: %s; diff: %d%nHeap Solution: %s; diff: %d%n",
+                map, diff(map),
+                mapForHeap, diff(mapForHeap));
     }
 }

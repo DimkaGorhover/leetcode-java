@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link Solution}
  */
+@DisplayName("LeetCode #189: Rotate Array")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -31,11 +34,8 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #189: Rotate Array")
     void test(int[] input, int k, int[] expected) {
-
         new Solution().rotate(input, k);
-
         assertArrayEquals(expected, input);
     }
 }

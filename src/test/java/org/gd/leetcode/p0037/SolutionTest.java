@@ -3,9 +3,15 @@ package org.gd.leetcode.p0037;
 import org.junit.jupiter.api.*;
 
 import java.util.StringJoiner;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link Solution}
+ */
+@DisplayName("LeetCode #37: Sudoku Solver")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     @Test

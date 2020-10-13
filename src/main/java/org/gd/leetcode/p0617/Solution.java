@@ -9,7 +9,11 @@ import org.gd.leetcode.common.TreeNode;
  * @author Horkhover Dmytro
  * @since 2018-11-18
  */
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.TREE)
+@LeetCode(
+        name = "Merge Two Binary Trees",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.TREE)
 class Solution {
 
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {

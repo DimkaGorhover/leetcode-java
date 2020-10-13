@@ -5,7 +5,15 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * https://leetcode.com/problems/decode-string/
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.STACK, LeetCode.Tags.DEPTH_FIRST_SEARCH})
+@LeetCode(
+        name = "Decode String",
+        state = LeetCode.State.DONE,
+        difficulty = LeetCode.Level.MEDIUM,
+        tags = {
+                LeetCode.Tags.STACK,
+                LeetCode.Tags.DEPTH_FIRST_SEARCH
+        }
+)
 class Solution {
 
     private StringBuilder sb;

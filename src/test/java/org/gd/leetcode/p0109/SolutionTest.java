@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  *
  * @since 2019-10-02
  */
-@Execution(ExecutionMode.CONCURRENT)
+@DisplayName("LeetCode #109: Convert Sorted List to Binary Search Tree")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {

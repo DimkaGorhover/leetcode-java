@@ -1,20 +1,30 @@
 package org.gd.leetcode.p0622;
 
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link MyCircularQueue}
+ *
+ * @see ArrayMyCircularQueue
+ * @see LinkedListMyCircularQueue
+ */
+@DisplayName("LeetCode #622: Design Circular Queue")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class MyCircularQueueTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of((IntFunction<MyCircularQueue>) ArrayMyCircularQueue::new),
-                Arguments.of((IntFunction<MyCircularQueue>) LinkedListMyCircularQueue::new)
+                Arguments.of(new ArrayMyCircularQueueFactory()),
+                Arguments.of(new LinkedListMyCircularQueueFactory())
         );
     }
 

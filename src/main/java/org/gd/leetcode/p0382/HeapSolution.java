@@ -4,33 +4,34 @@ import org.gd.leetcode.common.ListNode;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 /**
  * @author Horkhover Dmytro
- * @see Solution
+ * @see SimpleSolution
  * @since 2020-07-22
  */
+@Deprecated
 @SuppressWarnings("ConstantConditions")
-class HeapSolution {
+class HeapSolution implements Solution {
 
-    private final Queue<RandomValue> q;
+    private final Queue<RandomValue> heap;
+    private final Random random;
 
     /**
      * @param head The linked list's head. Note that the head is guaranteed to be not null, so it contains at least one
      *             node.
      */
     public HeapSolution(ListNode head) {
-        q = new PriorityQueue<>(length(head));
+        heap = new PriorityQueue<>(length(head));
+        random = new Random();
         while (head != null) {
-            q.add(new RandomValue(head.val, Long.MIN_VALUE));
+            heap.add(new RandomValue(head.val, Long.MIN_VALUE));
             head = head.next;
         }
     }
 
     private static int length(ListNode node) {
-        if (node == null)
-            return 0;
         int length = 0;
         while (node != null) {
             length++;
@@ -42,14 +43,15 @@ class HeapSolution {
     /**
      * @return a random node's value.
      */
+    @Override
     public int getRandom() {
-        RandomValue randomValue = q.poll();
+        RandomValue randomValue = heap.poll();
         int value = randomValue.value;
-        q.add(randomValue.next());
+        heap.add(randomValue.next());
         return value;
     }
 
-    static class RandomValue implements Comparable<RandomValue> {
+    class RandomValue implements Comparable<RandomValue> {
 
         final int value;
         final long count;
@@ -58,7 +60,7 @@ class HeapSolution {
         RandomValue(int value, long count) {
             this.value = value;
             this.count = count;
-            this.random = ThreadLocalRandom.current().nextDouble();
+            this.random = HeapSolution.this.random.nextDouble();
         }
 
         RandomValue next() {

@@ -1,10 +1,7 @@
 package org.gd.leetcode.common;
 
-import org.gd.common.CollectionUtils;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import javax.annotation.Nonnull;
+import java.util.*;
 import java.util.function.Consumer;
 
 import static java.util.Objects.requireNonNull;
@@ -111,7 +108,7 @@ public class ListNode implements Iterable<ListNode> {
 
         ListNode prev = null;
         ListNode current = head;
-        ListNode next = null;
+        ListNode next;
 
         while (current != null) {
             next = current.next;
@@ -120,11 +117,6 @@ public class ListNode implements Iterable<ListNode> {
             current = next;
         }
         return prev;
-    }
-
-    @Deprecated
-    public static int lengthRecursive(ListNode node) {
-        return node == null ? 0 : 1 + lengthRecursive(node.next);
     }
 
     @Deprecated
@@ -141,17 +133,29 @@ public class ListNode implements Iterable<ListNode> {
     public static int[] values(ListNode node) {
         if (node == null)
             return new int[0];
+
         int[] ints = new int[length(node)];
         for (int i = 0; i < ints.length; i++) {
             ints[i] = node.val;
             node = node.next;
         }
+
         return ints;
     }
 
     @Deprecated
     public static List<Integer> listValues(ListNode node) {
-        return CollectionUtils.listOf(values(node));
+        if (node == null)
+            return Collections.emptyList();
+
+        int length = length(node);
+        ArrayList<Integer> ints = new ArrayList<>(length);
+        for (int i = 0; i < length; i++) {
+            ints.add(node.val);
+            node = node.next;
+        }
+
+        return ints;
     }
 
     @Deprecated
@@ -207,13 +211,41 @@ public class ListNode implements Iterable<ListNode> {
         return sum;
     }
 
+    /**
+     * Alias to {@link #count()}
+     */
+    @Deprecated
+    public int size() {
+        return count();
+    }
+
+    /**
+     * Alias to {@link #count(ListNode)}
+     */
+    @Deprecated
+    public static int size(ListNode node) {
+        return count(node);
+    }
+
+    /**
+     * Alias to {@link #count()}
+     */
+    @Deprecated
+    public int length() {
+        return count();
+    }
+
     @Deprecated
     public int count() {
-        ListNode node = this;
-        int count = 1;
-        while ((node = node.next) != null)
-            count++;
-        return count;
+        return count(this);
+    }
+
+    /**
+     * Alias to {@link #length(ListNode)}
+     */
+    @Deprecated
+    public static int count(ListNode node) {
+        return length(node);
     }
 
     @Deprecated
@@ -221,6 +253,7 @@ public class ListNode implements Iterable<ListNode> {
         return hasCycle(this);
     }
 
+    @Deprecated
     @SuppressWarnings("DuplicatedCode")
     private static boolean hasCycle(ListNode head) {
         if (head == null || head.next == null)
@@ -370,6 +403,7 @@ public class ListNode implements Iterable<ListNode> {
         return sb.toString();
     }
 
+    @Nonnull
     @Override
     public Iterator<ListNode> iterator() {
         if (hasCycle())

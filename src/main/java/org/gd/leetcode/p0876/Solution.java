@@ -6,7 +6,15 @@ import org.gd.leetcode.common.ListNode;
 /**
  * https://leetcode.com/problems/middle-of-the-linked-list/
  */
-@LeetCode(difficulty = LeetCode.Level.EASY)
+@LeetCode(
+        name = "Middle of the Linked List",
+        state = LeetCode.State.DONE,
+        difficulty = LeetCode.Level.EASY,
+        tags = {
+                LeetCode.Tags.LINKED_LIST,
+                LeetCode.Tags.TWO_POINTERS
+        }
+)
 class Solution {
 
     public ListNode middleNode(ListNode head) {

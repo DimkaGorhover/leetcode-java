@@ -1,14 +1,21 @@
 package org.gd.leetcode.p0988;
 
 import org.gd.leetcode.common.TreeNode;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for {@link Solution}
+ */
+@DisplayName("LeetCode #988: Smallest String Starting From Leaf")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {

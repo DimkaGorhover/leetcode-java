@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,8 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
- * @since 2020-07-08.07.2020
+ * @since 2020-07-08.07
  */
+@DisplayName("LeetCode #15: 3sum")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -32,15 +34,15 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("ThreeSum")
+    @DisplayName("Solution")
     void test_ThreeSum(int[] nums, List<List<Integer>> expected) {
+        assertEquals(expected, new Solution().threeSum(nums));
+    }
 
-        assertEquals(
-                (expected),
-                (new Solution().threeSum(nums)));
-
-        assertEquals(
-                (expected),
-                (new FastestSolution().threeSum(nums)));
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("Fastest Solution")
+    void test_Name(int[] nums, List<List<Integer>> expected) {
+        assertEquals(expected, new FastestSolution().threeSum(nums));
     }
 }

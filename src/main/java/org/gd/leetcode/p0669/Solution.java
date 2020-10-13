@@ -11,6 +11,8 @@ import org.gd.leetcode.common.TreeNode;
  * the trimmed binary search tree.
  */
 @LeetCode(
+        name = "Trim a Binary Search Tree",
+        state = LeetCode.State.DONE,
         difficulty = LeetCode.Level.EASY,
         tags = LeetCode.Tags.TREE)
 class Solution {

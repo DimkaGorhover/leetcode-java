@@ -4,10 +4,16 @@ import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
 /**
+ * https://leetcode.com/problems/invert-binary-tree/
+ *
  * @author Gorkhover D.
  * @since 2018-10-22
  */
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.TREE)
+@LeetCode(
+        name = "Invert Binary Tree",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.TREE)
 class Solution {
 
     public TreeNode invertTree(TreeNode root) {

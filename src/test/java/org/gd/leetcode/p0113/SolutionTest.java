@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @see org.gd.leetcode.p0112.SolutionTest
  */
 @SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #113: Path Sum II")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -48,7 +51,6 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("LeetCode #113: Path Sum II")
     void pathSum(TreeNode root, int target, List<List<Integer>> expected) {
         List<List<Integer>> actual = new Solution().pathSum(root, target);
         assertEquals(
