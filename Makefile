@@ -31,7 +31,7 @@ docker_prefix=docker run -i -t \
 	-w /project_dir \
 
 gradle=$(docker_prefix) \
-	--entrypoint gradle \
+	--entrypoint './gradlew' \
 	$(__GRADLE_IMAGE_TAG) $(GRADLE_OPTS)
 
 container=$(docker_prefix) \

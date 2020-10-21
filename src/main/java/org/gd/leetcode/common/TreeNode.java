@@ -120,9 +120,12 @@ public class TreeNode {
      */
     @Deprecated
     public long sum() {
+        return sum(this);
+    }
+
+    private static long sum(TreeNode node) {
         LinkedList<TreeNode> list = new LinkedList<>();
-        list.add(this);
-        TreeNode node;
+        list.add(node);
         long sum = 0;
         while ((node = list.poll()) != null) {
             sum += node.val;
@@ -132,10 +135,6 @@ public class TreeNode {
                 list.offer(node.right);
         }
         return sum;
-    }
-
-    private static long sum(TreeNode node) {
-        return node == null ? 0 : node.val + sum(node.left) + sum(node.right);
     }
 
     @Override

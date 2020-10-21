@@ -26,3 +26,8 @@ http-client.private.env.json
 # Allure
 .allure
 allure-results
+
+# VS Code
+.classpath
+.project
+.settings/
