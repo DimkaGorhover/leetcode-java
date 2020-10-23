@@ -22,6 +22,8 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
+                Arguments.of(new String[]{"cool", "lock", "cook"}, List.of("c", "o")),
+                Arguments.of(new String[]{"cool", "lock", "cook", "co"}, List.of("c", "o")),
                 Arguments.of(new String[]{"bella", "label", "roller"}, List.of("e", "l", "l"))
         );
     }

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link Solution}
  *
- * @author Dmytro Horkhover
+ * @author Horkhover Dmytro
  * @since 2020-10-12
  */
 @DisplayName("LeetCode #316: Remove Duplicate Letters")

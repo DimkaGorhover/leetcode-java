@@ -3,7 +3,7 @@ package org.gd.leetcode.p0148;
 import org.gd.leetcode.common.ListNode;
 
 /**
- * @author Dmytro Horkhover
+ * @author Horkhover Dmytro
  * @since 2020-10-13
  */
 class OnPlaceSolution implements Solution {

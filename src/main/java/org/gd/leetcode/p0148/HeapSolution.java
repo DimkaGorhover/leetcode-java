@@ -5,7 +5,7 @@ import org.gd.leetcode.common.ListNode;
 import java.util.PriorityQueue;
 
 /**
- * @author Dmytro Horkhover
+ * @author Horkhover Dmytro
  * @see PriorityQueue
  * @since 2020-10-13
  */

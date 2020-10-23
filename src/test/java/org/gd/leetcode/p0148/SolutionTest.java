@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link Solution}
  *
- * @author Dmytro Horkhover
+ * @author Horkhover Dmytro
  * @see OnPlaceSolution
  * @see HeapSolution
  * @since 2020-10-13

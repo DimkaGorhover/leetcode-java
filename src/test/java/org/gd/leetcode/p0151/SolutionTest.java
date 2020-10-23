@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link Solution}
  */
-@DisplayName("LeerCode #151: Reverse Words in a String")
+@DisplayName("LeetCode #151: Reverse Words in a String")
 @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 

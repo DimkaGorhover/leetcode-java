@@ -26,7 +26,7 @@ import java.util.List;
 )
 class Solution {
 
-    private static int[] toArr(String s) {
+    private static int[] extractCharsCountsTable(String s) {
         int[] arr = new int['z' - 'a' + 1];
         for (int i = 0; i < s.length(); i++)
             arr[s.charAt(i) - 'a']++;
@@ -42,12 +42,11 @@ class Solution {
         return count;
     }
 
-    public List<String> commonChars(String[] A) {
-        int[] arr = toArr(A[0]);
+    public List<String> commonChars(String[] words) {
+        int[] arr = extractCharsCountsTable(words[0]);
         int count = 0;
-        for (int i = 1; i < A.length; i++)
-            count = min(arr, toArr(A[i]));
-
+        for (int i = 1; i < words.length; i++)
+            count = min(arr, extractCharsCountsTable(words[i]));
 
         if (count == 0)
             return Collections.emptyList();

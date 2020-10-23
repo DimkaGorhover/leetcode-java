@@ -6,7 +6,7 @@ import org.gd.leetcode.common.ListNode;
 /**
  * https://leetcode.com/problems/sort-list/
  *
- * @author Dmytro Horkhover
+ * @author Horkhover Dmytro
  * @since 2020-10-13
  */
 @LeetCode(

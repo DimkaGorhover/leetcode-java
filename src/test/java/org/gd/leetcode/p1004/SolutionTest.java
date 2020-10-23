@@ -1,4 +1,4 @@
-package org.gd.leetcode.p1081;
+package org.gd.leetcode.p1004;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,23 +14,26 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
- * @since 2020-10-12
+ * @see org.gd.leetcode.p0485.SolutionTest
+ * @since 2020-10-23
  */
-@DisplayName("LeetCode #1081: Smallest Subsequence of Distinct Characters")
+@SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #1004: Max Consecutive Ones III")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of("cbacdcbc", "acdb"),
-                Arguments.of("bcabc", "abc")
+                Arguments.of(new int[]{0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1}, 3, 10),
+                Arguments.of(new int[]{0, 0, 1, 1, 1, 0, 0}, 0, 3),
+                Arguments.of(new int[]{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2, 6)
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("smallestSubsequence")
+    @DisplayName("LongestOnes")
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
-    void test_RemoveDuplicateLetters(String s, String expected) {
-        assertEquals(expected, new Solution().smallestSubsequence(s));
+    void test_LongestOnes(int[] A, int K, int expected) {
+        assertEquals(expected, new Solution().longestOnes(A, K));
     }
 }

@@ -1,4 +1,4 @@
-package org.gd.leetcode.p0053;
+package org.gd.leetcode.p0485;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,25 +13,25 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for {@link Solution}
  *
- * @author Horkhover D.
- * @since 2020-06-30
+ * @author Horkhover Dmytro
+ * @see org.gd.leetcode.p1004.SolutionTest
+ * @since 2020-10-23
  */
-@DisplayName("LeetCode #53: Maximum Subarray")
-@Timeout(value = 20, unit = TimeUnit.MILLISECONDS)
+@SuppressWarnings("JavadocReference")
+@DisplayName("LeetCode #485: Max Consecutive Ones")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of(new int[]{}, 0),
-                Arguments.of(new int[]{1}, 1),
-                Arguments.of(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}, 6)
+                Arguments.of(new int[]{1, 1, 0, 1, 1, 1}, 3)
         );
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("test")
-    void test_MaxSubArray(int[] nums, int expected) {
-        assertEquals(expected, new Solution().maxSubArray(nums));
+    @DisplayName("FindMaxConsecutiveOnes")
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    void test_FindMaxConsecutiveOnes(int[] nums, int expected) {
+        assertEquals(expected, new Solution().findMaxConsecutiveOnes(nums));
     }
 }
