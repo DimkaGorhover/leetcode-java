@@ -21,7 +21,15 @@ import java.util.*;
  * @author Gorkhover D.
  * @since 2018-10-23
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM, tags = {LeetCode.Tags.STRING, LeetCode.Tags.BACKTRACKING})
+@LeetCode(
+        name = "Restore IP Addresses",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.STRING,
+                LeetCode.Tags.BACKTRACKING
+        }
+)
 class Solution {
 
     private static boolean valid(int value) { return 0 <= value && value <= 255; }

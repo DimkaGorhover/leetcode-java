@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SuppressWarnings("JavadocReference")
 @DisplayName("LeetCode #206: Reverse Linked List")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
@@ -30,12 +31,11 @@ class SolutionTest {
         );
     }
 
+    @SuppressWarnings("deprecation")
     @ParameterizedTest
     @MethodSource("args")
-    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void reverseList(ListNode head, ListNode expected) {
 
-        //noinspection deprecation
         assertEquals(expected, head.reverse());
 
         assertEquals(expected, new Solution().reverseList(head));

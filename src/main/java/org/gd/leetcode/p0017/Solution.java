@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0017;
 
-import java.nio.charset.Charset;
+import org.gd.leetcode.common.LeetCode;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,9 +12,16 @@ import java.util.List;
  * @author Gorkhover D.
  * @since 2018-10-24
  */
+@LeetCode(
+        name = "Letter Combinations of a Phone Number",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.STRING,
+                LeetCode.Tags.BACKTRACKING
+        }
+)
 class Solution {
-
-    private static final Charset CHARSET = Charset.forName("US-ASCII");
 
     private static final byte[][] VALUES = {
             {},
@@ -38,7 +46,7 @@ class Solution {
         if (pos == last) {
             for (byte c : chars(digits, pos)) {
                 chars[last] = c;
-                list.add(new String(chars, CHARSET));
+                list.add(new String(chars));
             }
             return list;
         }
@@ -51,7 +59,7 @@ class Solution {
     }
 
     private static List<String> single(String digits) {
-        final byte[]       chars   = chars(digits, 0);
+        final byte[] chars = chars(digits, 0);
         final List<String> strings = new ArrayList<>(chars.length);
         for (byte c : chars)
             strings.add("" + ((char) c));

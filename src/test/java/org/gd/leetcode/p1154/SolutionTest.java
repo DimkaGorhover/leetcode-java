@@ -1,13 +1,13 @@
 package org.gd.leetcode.p1154;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.parallel.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -18,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @since 2019-09-14
  */
-@Execution(ExecutionMode.CONCURRENT)
+@DisplayName("LeetCode #1154: Day of the Year")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -45,7 +46,7 @@ class SolutionTest {
                         + "localDate: " + localDate + '\n'
                         + "format: " + format + '\n'
                         + "year: " + year + '\n'
-                        + "dayOfYear: " + dayOfYear+ '\n'
+                        + "dayOfYear: " + dayOfYear + '\n'
                         + '\n'
         );
     }

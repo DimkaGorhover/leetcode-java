@@ -9,10 +9,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/binary-tree-preorder-traversal/
+ *
  * @author Gorkhover D.
  * @since 2018-10-23
  */
-@LeetCode(difficulty = LeetCode.Level.MEDIUM)
+@LeetCode(
+        name = "Binary Tree Preorder Traversal",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = {
+                LeetCode.Tags.STACK,
+                LeetCode.Tags.TREE
+        }
+)
 class Solution {
 
     private static List<Integer> preorderTraversal(TreeNode root, List<Integer> list) {

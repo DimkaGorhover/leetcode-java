@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
  */
 class PriorityQueueArrayMinStackFactory implements MinStackFactory {
 
+    @SuppressWarnings("deprecation")
     @Nonnull
     @Override
     public MinStack create() {

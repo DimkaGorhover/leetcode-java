@@ -11,6 +11,8 @@ import java.util.List;
  */
 class Matrix extends ArrayList<List<Integer>> {
 
+    private static final long serialVersionUID = 1L;
+
     static Matrix of(int[][] matrix) {
         Matrix lists = new Matrix();
         for (int[] col : matrix)

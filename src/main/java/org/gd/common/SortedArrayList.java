@@ -71,7 +71,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         throw new UnsupportedOperationException();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public boolean addAll(Collection c) {
         if (c == null || c.isEmpty())
@@ -83,6 +83,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
         return result;
     }
 
+    @SuppressWarnings({"rawtypes"})
     @Override
     public boolean addAll(int index, Collection c) {
         throw new UnsupportedOperationException();
@@ -110,6 +111,7 @@ public class SortedArrayList<E> extends AbstractArrayCollection<E> implements Li
     @Override
     public void add(int index, E element) { throw new UnsupportedOperationException(); }
 
+    @SuppressWarnings({"unchecked"})
     @Override
     public int indexOf(Object o) {
         if (o == null)

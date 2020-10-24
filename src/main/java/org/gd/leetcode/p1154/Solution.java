@@ -7,7 +7,12 @@ import org.gd.leetcode.common.LeetCode;
  *
  * @since 2019-09-14
  */
-@LeetCode(difficulty = LeetCode.Level.EASY, tags = LeetCode.Tags.MATH)
+@LeetCode(
+        name = "Day of the Year",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.MATH
+)
 class Solution {
 
     private static final int[][] NORM_YEAR_DAYS = {

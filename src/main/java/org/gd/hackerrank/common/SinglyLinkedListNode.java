@@ -5,8 +5,6 @@ import lombok.EqualsAndHashCode;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * @see org.gd.leetcode.common.ListNode
  */

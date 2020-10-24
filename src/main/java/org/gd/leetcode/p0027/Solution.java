@@ -1,11 +1,19 @@
 package org.gd.leetcode.p0027;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * https://leetcode.com/problems/remove-element/
  *
  * @author Gorkhover D.
  * @since 2018-10-22
  */
+@LeetCode(
+        name = "Remove Element",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.LINKED_LIST
+)
 class Solution {
 
     public int removeElement(int[] nums, int val) {

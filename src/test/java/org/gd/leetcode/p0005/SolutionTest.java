@@ -7,10 +7,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * Test for {@link Solution};
@@ -18,16 +18,17 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Gorkhover D.
  * @since 2018-10-16
  */
-@Execution(ExecutionMode.CONCURRENT)
+@DisplayName("LeetCode #5: longest palindromic substring")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments("babad", Set.of("bab", "aba")),
-                arguments("cbbd", Set.of("bb")),
-                arguments("ac", Set.of("a", "c")),
-                arguments("ccc", Set.of("ccc")),
-                arguments("caba", Set.of("aba"))
+                Arguments.of("babad", Set.of("bab", "aba")),
+                Arguments.of("cbbd", Set.of("bb")),
+                Arguments.of("ac", Set.of("a", "c")),
+                Arguments.of("ccc", Set.of("ccc")),
+                Arguments.of("caba", Set.of("aba"))
         );
     }
 
@@ -44,12 +45,12 @@ class SolutionTest {
 
     private static Stream<Arguments> argsIsPalindrome() {
         return Stream.of(
-                arguments("bb", 0, "bb".length(), "bb"),
-                arguments("aba", 0, "aba".length(), "aba"),
-                arguments("abccba", 0, "abccba".length(), "abccba"),
-                arguments("abcdcba", 0, "abcdcba".length(), "abcdcba"),
-                arguments("ab1cdcba", 0, "ab1cdcba".length(), ""),
-                arguments("ab1cdcba", 3, 6, "cdc")
+                Arguments.of("bb", 0, "bb".length(), "bb"),
+                Arguments.of("aba", 0, "aba".length(), "aba"),
+                Arguments.of("abccba", 0, "abccba".length(), "abccba"),
+                Arguments.of("abcdcba", 0, "abcdcba".length(), "abcdcba"),
+                Arguments.of("ab1cdcba", 0, "ab1cdcba".length(), ""),
+                Arguments.of("ab1cdcba", 3, 6, "cdc")
         );
     }
 

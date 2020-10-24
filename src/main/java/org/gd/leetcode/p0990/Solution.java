@@ -5,8 +5,9 @@ import org.gd.leetcode.common.LeetCode;
 import java.util.*;
 
 /**
- * TODO: https://leetcode.com/problems/satisfiability-of-equality-equations/
+ * https://leetcode.com/problems/satisfiability-of-equality-equations/
  */
+@SuppressWarnings("unchecked")
 @LeetCode(
         name = "satisfiability of equality equations",
         difficulty = LeetCode.Level.MEDIUM,
