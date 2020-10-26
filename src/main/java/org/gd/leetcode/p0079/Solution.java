@@ -8,9 +8,10 @@ import java.util.StringJoiner;
  * https://leetcode.com/problems/word-search/
  *
  * @author Horkhover D.
- * @since 2020-07-13.07.2020
+ * @see org.gd.leetcode.p0212.Solution
+ * @since 2020-07-13.07
  */
-@SuppressWarnings("RedundantIfStatement")
+@SuppressWarnings({"RedundantIfStatement", "JavadocReference"})
 @LeetCode(
         name = "Word Search",
         difficulty = LeetCode.Level.MEDIUM,

@@ -1,9 +1,10 @@
 package org.gd.leetcode.p0307;
 
+import org.gd.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 /**
- * TODO: https://leetcode.com/problems/range-sum-query-mutable/
+ * https://leetcode.com/problems/range-sum-query-mutable/
  *
  * https://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/
  *
@@ -22,6 +23,7 @@ import org.gd.leetcode.common.LeetCode;
  * @see org.gd.leetcode.p0308.NumMatrix
  * @since 2019-09-18
  */
+@Repeat("SEGMENT_TREE")
 @SuppressWarnings({"JavadocReference", "DuplicatedCode"})
 @LeetCode(
         name = "range sum query mutable",

@@ -22,8 +22,63 @@ public final class CollectionUtils {
         if (iterator == null || !iterator.hasNext())
             return Stream.empty();
 
-        return StreamSupport.stream(
-                Spliterators.spliteratorUnknownSize(iterator, 0), false);
+        var spliterator = Spliterators.spliteratorUnknownSize(iterator, 0);
+        return StreamSupport.stream(spliterator, false);
+    }
+
+    @Deprecated
+    public static <T extends Comparable<T>> List<T> sortedListOf() {
+        return Collections.emptyList();
+    }
+
+    public static <T> List<T> sortedListOf(T value) {
+        requireNonNull(value, "\"value\" cannot be null");
+        return Collections.singletonList(value);
+    }
+
+    public static <T extends Comparable<T>> List<T> sortedListOf(T v1, T v2) {
+        requireNonNull(v1, "\"v1\" cannot be null");
+        requireNonNull(v2, "\"v2\" cannot be null");
+        if (v1.compareTo(v2) > 0) {
+            T t = v1;
+            v1 = v2;
+            v2 = t;
+        }
+        return Arrays.asList(v1, v2);
+    }
+
+    @SafeVarargs
+    public static <T extends Comparable<T>> List<T> sortedListOf(T... values) {
+        if (values == null || values.length == 0)
+            return Collections.emptyList();
+        if (values.length == 1)
+            return Collections.singletonList(values[0]);
+        Arrays.sort(values, Comparator.naturalOrder());
+        ArrayList<T> list = new ArrayList<>(values.length);
+        Collections.addAll(list, values);
+        return Collections.unmodifiableList(list);
+    }
+
+    public static <T extends Comparable<T>> List<T> sortedListOf(Iterable<T> iterable) {
+        if (iterable == null)
+            return Collections.emptyList();
+        return sortedListOf(iterable, -1);
+    }
+
+    public static <T extends Comparable<T>> List<T> sortedListOf(Collection<T> collection) {
+        if (collection == null || collection.isEmpty())
+            return Collections.emptyList();
+        return sortedListOf(collection, collection.size());
+    }
+
+    public static <T extends Comparable<T>> List<T> sortedListOf(Iterable<T> iterable, int size) {
+        if (iterable == null)
+            return Collections.emptyList();
+        ArrayList<T> list = new ArrayList<>(size > 0 ? size : 1 << 4);
+        for (T t : iterable)
+            list.add(t);
+        list.sort(Comparator.naturalOrder());
+        return Collections.unmodifiableList(list);
     }
 
     public static <T> List<T> listOf(Iterator<T> iterator) {

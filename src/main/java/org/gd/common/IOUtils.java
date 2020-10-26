@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
  * @author Horkhover Dmytro
  * @since 2020-07-23
  */
-public class IOUtils {
+public final class IOUtils {
 
     private IOUtils() { throw new UnsupportedOperationException(); }
 

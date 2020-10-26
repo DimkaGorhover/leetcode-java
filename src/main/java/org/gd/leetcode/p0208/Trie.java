@@ -67,7 +67,7 @@ class Trie {
      */
     public boolean startsWith(String prefix) {
         if (prefix == null) return false;
-        if (prefix.isEmpty()) return true;
+        if (prefix.isEmpty()) return children != null;
         if (children == null) return false;
         return searchTrie(prefix) != null;
     }

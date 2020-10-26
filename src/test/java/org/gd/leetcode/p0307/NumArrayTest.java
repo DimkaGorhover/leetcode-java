@@ -10,15 +10,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 /**
  * Test for {@link NumArray}
  *
+ * @author Horkhover Dmytro
  * @since 2019-09-18
  */
-@Disabled
 @DisplayName("LeetCode #307: range sum query mutable")
+@Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
 class NumArrayTest {
 
     private static Stream<Arguments> args() {

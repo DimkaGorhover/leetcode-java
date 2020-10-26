@@ -6,14 +6,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.BufferedReader;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.gd.common.CollectionUtils.listOf;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * Test for {@link Solution};
@@ -32,17 +31,25 @@ class SolutionTest {
     }
 
     private static Stream<Arguments> testCase001() {
-        try (var resource = IOUtils.resource(SolutionTest.class, "test_case_001.txt")) {
 
-            int[] ints = intArray(resource.readLine().split(","));
-            int k = Integer.parseInt(resource.readLine().trim());
-            int[] expected = intArray(resource.readLine().split(","));
+        List<String> fileNames = List.of(
+                "test_case_001.txt"
+        );
 
-            return Stream.of(Arguments.of(ints, k, expected));
+        return fileNames.stream()
+                .map(fileName -> {
+                    try (var resource = IOUtils.resource(SolutionTest.class, fileName)) {
 
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
+                        int[] ints = intArray(resource.readLine().split(","));
+                        int k = Integer.parseInt(resource.readLine().trim());
+                        int[] expected = intArray(resource.readLine().split(","));
+
+                        return Arguments.of(ints, k, expected);
+
+                    } catch (Throwable e) {
+                        throw new RuntimeException(e);
+                    }
+                });
     }
 
     private static Stream<Arguments> args() {
