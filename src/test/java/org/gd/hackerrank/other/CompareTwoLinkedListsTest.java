@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link CompareTwoLinkedLists}
  *
  * @author Horkhover D.
- * @since 2020-07-01.07.2020
+ * @since 2020-07-01
  */
 @DisplayName("HackerRank: Compare two linked lists")
 class CompareTwoLinkedListsTest {

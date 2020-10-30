@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-13.07.2020
+ * @since 2020-07-13
  */
 class HashMapSolution implements Solution {
 

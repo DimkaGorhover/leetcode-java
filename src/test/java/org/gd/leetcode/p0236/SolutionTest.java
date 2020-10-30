@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
- * @since 2020-07-16.07.2020
+ * @since 2020-07-16
  */
 @DisplayName("LeetCode #236: Lowest Common Ancestor of a Binary Tree")
 @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)

@@ -4,6 +4,6 @@ import java.util.function.Supplier;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-13.07.2020
+ * @since 2020-07-13
  */
 interface SolutionFactory extends Supplier<Solution> {}

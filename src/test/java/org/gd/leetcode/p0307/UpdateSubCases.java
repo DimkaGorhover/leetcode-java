@@ -6,7 +6,7 @@ import org.gd.common.SegmentTree;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-14.07.2020
+ * @since 2020-07-14
  */
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE, staticName = "of")
 class UpdateSubCases implements SubCase {

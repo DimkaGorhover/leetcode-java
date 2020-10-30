@@ -4,7 +4,7 @@ import org.gd.common.SegmentTree;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-14.07.2020
+ * @since 2020-07-14
  */
 interface SubCase {
 

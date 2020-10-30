@@ -10,7 +10,7 @@ import java.util.List;
  * https://leetcode.com/problems/text-justification/
  *
  * @author Horkhover D.
- * @since 2020-07-05.07.2020
+ * @since 2020-07-05
  */
 @LeetCode(
         name = "Text Justification",

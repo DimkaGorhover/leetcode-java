@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-13.07.2020
+ * @since 2020-07-13
  */
 @LeetCode(
         name = "Palindrome Partitioning",

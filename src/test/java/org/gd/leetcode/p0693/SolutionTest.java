@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
- * @since 2020-07-09.07.2020
+ * @since 2020-07-09
  */
 class SolutionTest {
 

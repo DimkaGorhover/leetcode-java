@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
- * @since 2020-07-08.07
+ * @since 2020-07-08
  */
 @DisplayName("LeetCode #15: 3sum")
 @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)

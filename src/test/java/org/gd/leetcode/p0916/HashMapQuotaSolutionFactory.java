@@ -2,7 +2,7 @@ package org.gd.leetcode.p0916;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-11.07.2020
+ * @since 2020-07-11
  */
 class HashMapQuotaSolutionFactory implements SolutionFactory {
 

@@ -1,11 +1,14 @@
 package org.gd.hackerrank.datastruct;
 
+import org.gd.hackerrank.common.HackerRank;
+
 /**
  * https://www.hackerrank.com/challenges/2d-array/
  *
  * @author Horkhover Dmytro
  * @since 2020-09-27
  */
+@HackerRank(difficulty = HackerRank.Level.EASY)
 class Array2DDS {
 
     private static int sum(int[][] arr, int row, int col) {

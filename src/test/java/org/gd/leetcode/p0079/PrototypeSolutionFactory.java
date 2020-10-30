@@ -2,7 +2,7 @@ package org.gd.leetcode.p0079;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-13.07.2020
+ * @since 2020-07-13
  */
 class PrototypeSolutionFactory implements SolutionFactory {
 

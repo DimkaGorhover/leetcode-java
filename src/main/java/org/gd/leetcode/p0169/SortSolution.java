@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-13.07.2020
+ * @since 2020-07-13
  */
 class SortSolution implements Solution {
 

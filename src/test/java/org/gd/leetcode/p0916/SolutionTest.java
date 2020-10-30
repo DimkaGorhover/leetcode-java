@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
- * @since 2020-07-11.07.2020
+ * @since 2020-07-11
  */
 @DisplayName("LeetCode #916: Word Subsets")
 class SolutionTest {

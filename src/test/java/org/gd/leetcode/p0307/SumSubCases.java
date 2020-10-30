@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Horkhover D.
- * @since 2020-07-14.07.2020
+ * @since 2020-07-14
  */
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE, staticName = "of")
 class SumSubCases implements SubCase {

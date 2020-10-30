@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link TreeNode}
  *
  * @author Horkhover D.
- * @since 2020-07-03.07
+ * @since 2020-07-03
  */
 @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class TreeNodeTest {

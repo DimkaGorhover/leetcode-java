@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link LevelOrderTraversal}
  *
  * @author Horkhover D.
- * @since 2020-07-15.07.2020
+ * @since 2020-07-15
  */
 class LevelOrderTraversalTest {
 

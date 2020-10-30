@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test for {@link Solution}
  *
  * @author Horkhover D.
- * @since 2020-07-03.07.2020
+ * @since 2020-07-03
  */
 @DisplayName("LeetCode #102: Binary Tree Level Order Traversal")
 class SolutionTest {

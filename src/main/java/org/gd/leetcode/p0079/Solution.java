@@ -9,7 +9,7 @@ import java.util.StringJoiner;
  *
  * @author Horkhover D.
  * @see org.gd.leetcode.p0212.Solution
- * @since 2020-07-13.07
+ * @since 2020-07-13
  */
 @SuppressWarnings({"RedundantIfStatement", "JavadocReference"})
 @LeetCode(

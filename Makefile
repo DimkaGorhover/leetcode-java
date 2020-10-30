@@ -4,7 +4,7 @@ CONTAINER_NAME=$(shell basename "$$PWD")
 EXPOSE_PORT=8888
 LOCAL_USER_DIR=$(shell echo $${HOME})
 
-__GRADLE_IMAGE_TAG=gradle:6.6.1-jdk14
+__GRADLE_IMAGE_TAG=gradle:6.7-jdk15
 
 JAVA_OPTS=\
 	-server
