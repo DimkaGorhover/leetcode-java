@@ -6,7 +6,9 @@ import org.gd.leetcode.common.LeetCode;
  * https://leetcode.com/problems/counting-bits/
  */
 @LeetCode(
+        name = "Counting Bits",
         difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
         tags = {
                 LeetCode.Tags.BIT_MANIPULATION,
                 LeetCode.Tags.DYNAMIC_PROGRAMMING

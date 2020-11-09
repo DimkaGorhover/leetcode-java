@@ -17,6 +17,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
  * @author Gorkhover D.
  * @since 2018-10-21
  */
+@DisplayName("LeetCode #82: Remove Duplicates from Sorted List II")
 class SolutionTest {
 
     private static Stream<Arguments> args() {

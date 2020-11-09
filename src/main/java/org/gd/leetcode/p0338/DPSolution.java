@@ -1,7 +1,5 @@
 package org.gd.leetcode.p0338;
 
-import org.gd.common.Repeat;
-
 class DPSolution implements ISolution {
 
     @Override

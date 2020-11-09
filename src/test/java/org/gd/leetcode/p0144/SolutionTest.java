@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0144;
 
 import org.gd.leetcode.common.TreeNode;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,9 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
+ * Test for {@link Solution}
+ *
  * @author Gorkhover D.
  * @since 2018-10-23
  */
+@DisplayName("LeetCode #144: Binary Tree Preorder Traversal")
 class SolutionTest {
 
     private static Stream<Arguments> args() {
