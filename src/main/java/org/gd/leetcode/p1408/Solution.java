@@ -1,5 +1,7 @@
 package org.gd.leetcode.p1408;
 
+import org.gd.leetcode.common.LeetCode;
+
 import java.util.*;
 
 /**
@@ -8,17 +10,32 @@ import java.util.*;
  * @author Horkhover Dmytro
  * @since 2020-09-27
  */
+@LeetCode(
+        name = "String Matching in an Array",
+        difficulty = LeetCode.Level.EASY,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.STRING
+)
 class Solution {
 
     public List<String> stringMatching(String[] words) {
+
+        if (words == null || words.length <= 1)
+            return Collections.emptyList();
+
         Arrays.sort(words, Comparator.comparingInt(String::length));
-        LinkedList<String> set = new LinkedList<>();
-        Collections.addAll(set, words);
 
+        List<String> strings = new ArrayList<>();
+        for (int i = 0; i < words.length - 1; i++) {
+            String substring = words[i];
+            for (int j = i + 1; j < words.length; j++) {
+                if (words[j].contains(substring)) {
+                    strings.add(substring);
+                    break;
+                }
+            }
+        }
 
-
-
-
-        throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
+        return strings;
     }
 }

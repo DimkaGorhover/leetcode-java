@@ -20,6 +20,9 @@ import org.gd.leetcode.common.LeetCode;
 class Solution {
 
     public int[][] matrixRankTransform(int[][] matrix) {
+        if (matrix == null || matrix.length == 0)
+            return matrix;
+
         throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
     }
 }
