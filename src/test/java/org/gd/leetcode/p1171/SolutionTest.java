@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Horkhover Dmytro
  * @since 2020-08-17
  */
-    @DisplayName("LeetCode #1171: Remove Zero Sum Consecutive Nodes from Linked List")
+@DisplayName("LeetCode #1171: Remove Zero Sum Consecutive Nodes from Linked List")
 @Timeout(value = 100, unit = java.util.concurrent.TimeUnit.MILLISECONDS)
 class SolutionTest {
 

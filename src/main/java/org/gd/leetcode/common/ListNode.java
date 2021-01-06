@@ -362,6 +362,21 @@ public class ListNode implements Iterable<ListNode> {
         return hash;
     }
 
+    public String unsafeToString() {
+        StringBuilder sb = new StringBuilder();
+        Iterator<ListNode> iterator = iterator();
+        ListNode node;
+        if (iterator.hasNext()) {
+            node = iterator.next();
+            sb.append('(').append(node.val).append(')');
+            while (iterator.hasNext()) {
+                node = iterator.next();
+                sb.append("=>(").append(node.val).append(')');
+            }
+        }
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
 
@@ -403,6 +418,21 @@ public class ListNode implements Iterable<ListNode> {
         return sb.toString();
     }
 
+    @Override
+    public Spliterator<ListNode> spliterator() {
+        return Spliterators.spliterator(iterator(), length(), 0);
+    }
+
+    @Override
+    public void forEach(Consumer<? super ListNode> action) {
+        requireNonNull(action, "\"action\" cannot be null");
+        ListNode node = this;
+        while (node != null) {
+            action.accept(node);
+            node = node.next;
+        }
+    }
+
     @Nonnull
     @Override
     public Iterator<ListNode> iterator() {
@@ -413,10 +443,12 @@ public class ListNode implements Iterable<ListNode> {
 
     static class Itr implements Iterator<ListNode> {
 
+        private ListNode parent;
         private ListNode node;
 
         Itr(ListNode node) {
             this.node = node;
+            this.parent = null;
         }
 
         @Override
@@ -429,14 +461,21 @@ public class ListNode implements Iterable<ListNode> {
             if (!hasNext())
                 throw new NoSuchElementException();
 
-            ListNode node = this.node;
+            parent = this.node;
             this.node = node.next;
-            return node;
+            return parent;
         }
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException(new String(new char[]{175, 92, 95, 40, 12_484, 41, 95, 47, 175}));
+            if (!hasNext())
+                throw new NoSuchElementException();
+
+            if (parent == null)
+                throw new IllegalStateException("You cannot remove first node, because you'll lose link to the head of the list");
+
+            parent.next = node.next;
+            node = parent.next;
         }
 
         @Override

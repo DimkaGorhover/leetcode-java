@@ -18,4 +18,9 @@ public final class Utils {
             throw new RuntimeException(e);
         }
     }
+
+    public static void run(SafeRunnable runnable) {
+        if (runnable != null)
+            runnable.run();
+    }
 }

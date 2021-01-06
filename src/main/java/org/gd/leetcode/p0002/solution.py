@@ -8,10 +8,10 @@ class ListNode:
         self.next = next
 
     def __str__(self):
-        __str = F"({self.val})"
+        sb = F"({self.val})"
         if self.next:
-            __str = F"{__str}->{self.next}"
-        return __str
+            sb = F"{sb}->{self.next}"
+        return sb
 
     @staticmethod
     def of(arr: List[int]):
@@ -30,8 +30,10 @@ class ListNode:
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
 
-        if not l1: return l2
-        if not l2: return l1
+        if not l1:
+            return l2
+        if not l2:
+            return l1
 
         __head: ListNode = ListNode(-1)
         __tail: ListNode = __head

@@ -1,23 +1,22 @@
 package org.gd.leetcode.p1117;
 
+import org.gd.leetcode.common.LeetCode;
+
 /**
  * https://leetcode.com/problems/building-h2o/
  */
-class H2O {
+@LeetCode(
+        name = "Building H2O",
+        difficulty = LeetCode.Level.MEDIUM,
+        state = LeetCode.State.DONE,
+        tags = LeetCode.Tags.CONCURRENCY
+)
+interface H2O {
 
-    public H2O() {
+    int MAX_HYDROGEN = 2;
+    int MAX_OXYGEN = 1;
 
-    }
+    void hydrogen(Runnable releaseHydrogen) throws InterruptedException;
 
-    public void hydrogen(Runnable releaseHydrogen) throws InterruptedException {
-
-        // releaseHydrogen.run() outputs "H". Do not change or remove this line.
-        releaseHydrogen.run();
-    }
-
-    public void oxygen(Runnable releaseOxygen) throws InterruptedException {
-
-        // releaseOxygen.run() outputs "O". Do not change or remove this line.
-        releaseOxygen.run();
-    }
+    void oxygen(Runnable releaseOxygen) throws InterruptedException;
 }

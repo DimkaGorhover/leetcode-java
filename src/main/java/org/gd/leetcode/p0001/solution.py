@@ -1,4 +1,5 @@
 from typing import List, Dict
+import unittest
 
 
 class Solution:
@@ -14,4 +15,15 @@ class Solution:
         return [-1, -1]
 
 
-print(Solution().twoSum([7, 11, 15, 2], 9))
+class SolutionTest(unittest.TestCase):
+
+    def test(self):  # test method names begin with 'test'
+
+        actual = Solution().twoSum([7, 11, 15, 2], 9)
+        expected = [0, 3]
+
+        self.assertEqual(expected, actual)
+
+
+if __name__ == '__main__':
+    unittest.main()

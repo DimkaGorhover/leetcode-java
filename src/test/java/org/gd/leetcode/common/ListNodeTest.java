@@ -2,6 +2,8 @@ package org.gd.leetcode.common;
 
 import org.junit.jupiter.api.*;
 
+import java.util.Iterator;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,6 +37,17 @@ class ListNodeTest {
                         ListNode.rangeClosed(7, 9),
                         ListNode.rangeClosed(10, 12))
         );
+    }
+
+    @Test
+    @DisplayName("unsafeToString")
+    void test_unsafeToString() {
+
+        assertEquals("(1)", ListNode.of(1).unsafeToString());
+        assertEquals("(1)=>(2)", ListNode.of(1, 2).unsafeToString());
+        assertEquals("(1)=>(2)=>(3)", ListNode.of(1, 2, 3).unsafeToString());
+        assertEquals("(1)=>(2)=>(3)=>(4)", ListNode.of(1, 2, 3, 4).unsafeToString());
+        assertEquals("(1)=>(2)=>(3)=>(4)=>(5)", ListNode.rangeClosed(1, 5).unsafeToString());
     }
 
     @Test
@@ -74,5 +87,27 @@ class ListNodeTest {
     @DisplayName("Count")
     void test_Count() {
         assertEquals(5, ListNode.of(1, 2, 3, 4, 5).count());
+    }
+
+    @Test
+    @DisplayName("Length")
+    void test_Length() {
+        int length = ThreadLocalRandom.current().nextInt(5, 100);
+        assertEquals(length, ListNode.rangeClosed(1, length).length());
+    }
+
+    @Test
+    @DisplayName("Iterator")
+    void test_Iterator() {
+        ListNode node = ListNode.rangeClosed(0, 9);
+        Iterator<ListNode> iterator = node.iterator();
+        assertThrows(IllegalStateException.class, iterator::remove);
+        assertEquals(0, iterator.next().val);
+        assertEquals(1, iterator.next().val);
+        assertEquals(2, iterator.next().val);
+        assertEquals(3, iterator.next().val);
+        iterator.remove();
+        assertEquals(5, iterator.next().val);
+        assertEquals(6, iterator.next().val);
     }
 }
