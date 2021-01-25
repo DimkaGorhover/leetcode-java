@@ -111,9 +111,9 @@ test {
 wrapper {
 
     doFirst {
-        println "Gradle Version: ${gradleWrappedVersion}"
+        println "Gradle Version: ${gradlewVersion}"
     }
 
-    gradleVersion = "${gradleWrappedVersion}"
+    gradleVersion = "${gradlewVersion}"
     distributionType = Wrapper.DistributionType.ALL
 }
