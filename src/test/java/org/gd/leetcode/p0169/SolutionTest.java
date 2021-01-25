@@ -5,46 +5,53 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
-import java.util.function.Supplier;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test for {@link Solution}
  *
  * @author Horkhover D.
+ * @see HashMapSolution
+ * @see SortSolution
+ * @see BoyerMooreVotingSolution
  * @since 2020-07-13
  */
 @DisplayName("LeetCode #169: Majority Element")
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 
     private static Stream<Arguments> args() {
-
-        var sortSolution = new SortSolution();
-        var hashMapSolution = new HashMapSolution();
-
-        return Stream
-                .<Supplier<Solution>>of(
-                        () -> sortSolution,
-                        () -> hashMapSolution,
-                        SortSolution::new,
-                        HashMapSolution::new
-                )
-                .flatMap(ss -> Stream.of(
-                        Arguments.of(ss, new int[]{3, 2, 3}, 3),
-                        Arguments.of(ss, new int[]{2, 2, 2, 1, 1}, 2),
-                        Arguments.of(ss, new int[]{2, 2, 1, 1, 1, 2, 2}, 2)
-                ));
+        return Stream.of(
+                Arguments.of(new int[]{3, 2, 3},             3),
+                Arguments.of(new int[]{2, 2, 2, 1, 1},       2),
+                Arguments.of(new int[]{2, 2, 1, 1, 1, 2, 2}, 2)
+        );
     }
 
-    @ParameterizedTest(name = "expected = {1}, {0}")
+    @ParameterizedTest
     @MethodSource("args")
-    @DisplayName("MajorityElement")
-    void test_MajorityElement(Supplier<Solution> s, int[] nums, int expected) {
-        var solution = s.get();
-        int actual = solution.majorityElement(Arrays.copyOf(nums, nums.length));
-        assertEquals(expected, actual);
+    @DisplayName("Sort Solution")
+    void test_SortSolution(int[] nums, int expected) {
+        assertThat(new SortSolution().majorityElement(nums))
+                .isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("HashMap Solution")
+    void test_HashMapSolution(int[] nums, int expected) {
+        assertThat(new HashMapSolution().majorityElement(nums))
+                .isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("args")
+    @DisplayName("Boyer-Moore Voting Solution")
+    void test_BoyerMooreVoting(int[] nums, int expected) {
+        assertThat(new BoyerMooreVotingSolution().majorityElement(nums))
+                .isEqualTo(expected);
     }
 }
