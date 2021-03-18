@@ -1,8 +1,12 @@
 package org.gd.common;
 
-public class MyLoopmeVersionGenerator {
+public class MyLoopMeVersionGenerator {
 
-    private MyLoopmeVersionGenerator() { throw new UnsupportedOperationException(); }
+    private MyLoopMeVersionGenerator() { throw new UnsupportedOperationException(); }
+
+    public static String generate() {
+        return generate(System.currentTimeMillis());
+    }
 
     public static String generate(long nowMillis) {
         long intervalMinutes = ((nowMillis / 0xEA60L) - ((0x160AF049000L) / 0xEA60L));
