@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -22,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class TrieTest {
 
     @SuppressWarnings("CodeBlock2Expr")
-    @Nonnull
     private static Stream<Arguments> fileTestCasesArguments() {
 
         var testCasesFileNames = List.of(
@@ -42,7 +40,6 @@ class TrieTest {
                 });
     }
 
-    @Nonnull
     private static Stream<Arguments> customManualArguments() {
         String word0 = TrieTestUtils.generateRandomLongWord();
         return Stream.of(
@@ -77,7 +74,6 @@ class TrieTest {
         );
     }
 
-    @Nonnull
     private static Stream<Arguments> args() {
         return Stream.concat(
                 fileTestCasesArguments(),

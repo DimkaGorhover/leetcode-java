@@ -1,7 +1,9 @@
 package org.gd.leetcode.p0055;
 
 import org.gd.common.IOUtils;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,14 +14,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.gd.common.ArrayUtils.copy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Test for {@link Solution}
  *
  * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0045.SolutionTest
- * @see org.gd.leetcode.p01306.SolutionTest
+ * @see org.gd.leetcode.p1306.SolutionTest
  * @since 2020-08-03
  */
 @SuppressWarnings("JavadocReference")
@@ -68,7 +71,6 @@ class SolutionTest {
 
     @Test
     @DisplayName("NPE")
-    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
     void test_NPE() {
         assertThrows(NullPointerException.class, () -> new Solution().canJump(null));
     }

@@ -1,17 +1,13 @@
 package org.gd.hackerrank.other;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import lombok.NonNull;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.stream.Stream;
 
-import javax.annotation.Nonnull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link VeryBigSum}
@@ -20,10 +16,9 @@ import javax.annotation.Nonnull;
  */
 class VeryBigSumTest {
 
-    @Nonnull
     static Stream<Arguments> args() {
         return Stream.of(
-            Arguments.of(new long[]{1000000001L, 1000000002L, 1000000003L, 1000000004L, 1000000005L}, 5000000015L)
+                Arguments.of(new long[]{1000000001L, 1000000002L, 1000000003L, 1000000004L, 1000000005L}, 5000000015L)
         );
     }
 
@@ -33,7 +28,7 @@ class VeryBigSumTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("Solution")
-    void test_AVeryBigSum(@NonNull long[] arr, long expected) throws Exception {
+    void test_AVeryBigSum(long[] arr, long expected) {
         long actual = VeryBigSum.aVeryBigSum(arr);
         assertEquals(expected, actual);
     }
@@ -44,7 +39,7 @@ class VeryBigSumTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("Loop Solution")
-    void test_Loop(@NonNull long[] arr, long expected) throws Exception {
+    void test_Loop(long[] arr, long expected) {
         long actual = VeryBigSum.forLoopSolution(arr);
         assertEquals(expected, actual);
     }
@@ -55,7 +50,7 @@ class VeryBigSumTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("Stream Solution")
-    void test_Stream(@NonNull long[] arr, long expected) throws Exception {
+    void test_Stream(long[] arr, long expected) {
         long actual = VeryBigSum.streamSolution(arr);
         assertEquals(expected, actual);
     }

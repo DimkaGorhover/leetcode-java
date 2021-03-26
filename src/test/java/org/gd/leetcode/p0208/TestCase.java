@@ -3,7 +3,6 @@ package org.gd.leetcode.p0208;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.params.provider.Arguments;
 
-import javax.annotation.Nonnull;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,7 +18,6 @@ class TestCase implements Iterable<TestAssertion>, Arguments, TestAssertion {
             assertion.doAssert(trie);
     }
 
-    @Nonnull
     @Override
     public Iterator<TestAssertion> iterator() {
         return testAssertions.iterator();

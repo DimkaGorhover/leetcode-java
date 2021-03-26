@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.params.provider.Arguments;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -25,7 +24,6 @@ class TestCase implements Arguments, Iterable<SubCase> {
     @Override
     public Object[] get() { return new Object[]{this}; }
 
-    @Nonnull
     @Override
     public Iterator<SubCase> iterator() {
         if (subCases.isEmpty())

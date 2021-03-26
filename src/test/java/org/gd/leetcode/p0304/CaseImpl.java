@@ -1,6 +1,5 @@
 package org.gd.leetcode.p0304;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -24,7 +23,6 @@ class CaseImpl implements Case {
     @Override
     public int[][] matrix() { return matrix; }
 
-    @Nonnull
     @Override
     public Iterator<SubCase> iterator() { return subCases.iterator(); }
 

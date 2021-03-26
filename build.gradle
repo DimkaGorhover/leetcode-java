@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "io.qameta.allure" version "${allurePluginVersion}"
+    id 'com.github.jk1.dependency-license-report' version '1.16'
 }
 
 sourceCompatibility = JavaVersion.VERSION_15
@@ -15,16 +16,12 @@ tasks.withType(Test) {
 }
 
 dependencies {
-    
+
+    // TODO: remove lombok from runtime scope
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     implementation("org.projectlombok:lombok:${lombokVersion}")
 
-    implementation("com.google.code.findbugs:jsr305:3.0.2") // TODO: replace it by jetbrains annotations
-    implementation("org.apache.commons:commons-csv:1.7")
-    //implementation("com.google.guava:guava:28.1-jre")
-
     // test scope
-
     testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     testImplementation("org.projectlombok:lombok:${lombokVersion}")
 
@@ -110,11 +107,9 @@ test {
 }
 
 wrapper {
-
     doFirst {
         println "Gradle Version: ${gradlewVersion}"
     }
-
     gradleVersion = "${gradlewVersion}"
     distributionType = Wrapper.DistributionType.ALL
 }

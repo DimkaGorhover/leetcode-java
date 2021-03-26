@@ -1,7 +1,12 @@
 package org.gd.leetcode.common;
 
-import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.function.Consumer;
 
 import static java.util.Objects.requireNonNull;
@@ -433,7 +438,6 @@ public class ListNode implements Iterable<ListNode> {
         }
     }
 
-    @Nonnull
     @Override
     public Iterator<ListNode> iterator() {
         if (hasCycle())

@@ -6,10 +6,6 @@ class LoopSolution implements Solution {
 
     @Override
     public ListNode removeElements(ListNode head, int val) {
-        if (head == null || (head.next == null && head.val == val)) {
-            return null;
-        }
-
         // remove all head ListNode's if the contains target value
         while (head != null && head.val == val) {
             head = head.next;

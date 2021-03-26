@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @since 2019-08-23
  */
+@DisplayName("LeetCode #203: Remove Linked List Elements")
 @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 class SolutionTest {
 

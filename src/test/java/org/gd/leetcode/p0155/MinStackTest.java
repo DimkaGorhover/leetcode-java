@@ -4,7 +4,6 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import javax.annotation.Nonnull;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -29,7 +28,7 @@ class MinStackTest {
     @ParameterizedTest
     @MethodSource("args")
     @DisplayName("LeetCode #155: Min Stack")
-    void test(@Nonnull MinStackFactory minStackFactory) {
+    void test(MinStackFactory minStackFactory) {
         
         MinStack minStack = minStackFactory.create();
         
