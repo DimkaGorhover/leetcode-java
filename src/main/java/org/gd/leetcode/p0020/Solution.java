@@ -9,6 +9,7 @@ import org.gd.leetcode.common.LeetCode;
  * @see org.gd.leetcode.p0022.Solution
  * @since 2018-12-29
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         difficulty = LeetCode.Level.EASY,
         tags = {
@@ -17,22 +18,28 @@ import org.gd.leetcode.common.LeetCode;
         })
 class Solution {
 
-    private static int map(int c) {
-        switch (c) {
-            case ')': return '(';
-            case ']': return '[';
-            case '}': return '{';
-        }
-        return -1;
+    private final byte[] hashTable;
+
+    public Solution() {
+        hashTable = new byte[Byte.MAX_VALUE];
+        hashTable[')'] = '(';
+        hashTable[']'] = '[';
+        hashTable['}'] = '{';
     }
 
     public boolean isValid(String s) {
+
+        if (s == null || s.length() % 2 != 0) {
+            return false;
+        }
 
         int[] stack = new int[s.length()];
 
         int c, mapped, head = 0;
         for (int i = 0; i < s.length(); i++) {
-            if ((mapped = map(c = s.charAt(i))) > 0) {
+            c = s.charAt(i);
+            mapped = hashTable[c];
+            if (mapped > 0) {
                 int top = head <= 0 ? -2 : stack[--head];
                 if (top != mapped)
                     return false;
