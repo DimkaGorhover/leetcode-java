@@ -25,7 +25,6 @@ import org.gd.leetcode.common.LeetCode;
         })
 class Solution {
 
-    @SuppressWarnings("DuplicatedCode")
     public int maxSubArray(int[] nums) {
         if (nums == null || nums.length == 0)
             return 0;
