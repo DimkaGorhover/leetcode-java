@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0055;
 
-import org.gd.common.IOUtils;
+import lombok.var;
+import org.gd.leetcode.common.IOUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -13,7 +14,7 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.gd.common.ArrayUtils.copy;
+import static org.gd.leetcode.common.ArrayUtils.copy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

@@ -1,7 +1,7 @@
 package org.gd.leetcode.p0093;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.parallel.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.parallel.ExecutionMode.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
@@ -25,10 +25,10 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                arguments("010010", Set.of("0.10.0.10", "0.100.1.0")),
-                arguments("111111111111", Set.of("111.111.111.111")),
-                arguments("1111", Set.of("1.1.1.1")),
-                arguments("25525511135", Set.of("255.255.11.135", "255.255.111.35"))
+                arguments("010010", org.gd.leetcode.common.CollectionUtils.setOf("0.10.0.10", "0.100.1.0")),
+                arguments("111111111111", org.gd.leetcode.common.CollectionUtils.setOf("111.111.111.111")),
+                arguments("1111", org.gd.leetcode.common.CollectionUtils.setOf("1.1.1.1")),
+                arguments("25525511135", org.gd.leetcode.common.CollectionUtils.setOf("255.255.11.135", "255.255.111.35"))
         );
     }
 

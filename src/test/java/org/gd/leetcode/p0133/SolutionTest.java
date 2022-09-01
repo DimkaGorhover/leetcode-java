@@ -1,13 +1,21 @@
 package org.gd.leetcode.p0133;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("LeetCode #133: Clone Graph")
 class SolutionTest {
@@ -32,12 +40,12 @@ class SolutionTest {
         final Node node3 = new Node(3);
         final Node node4 = new Node(4);
 
-        node1.neighbors.addAll(List.of(node2, node4));
-        node2.neighbors.addAll(List.of(node1, node3));
-        node3.neighbors.addAll(List.of(node4, node2));
-        node4.neighbors.addAll(List.of(node1, node3));
+        node1.neighbors.addAll(java.util.Arrays.asList(node2, node4));
+        node2.neighbors.addAll(java.util.Arrays.asList(node1, node3));
+        node3.neighbors.addAll(java.util.Arrays.asList(node4, node2));
+        node4.neighbors.addAll(java.util.Arrays.asList(node1, node3));
 
-        return List.of(
+        return java.util.Arrays.asList(
                 Arguments.of(node1)
         );
     }

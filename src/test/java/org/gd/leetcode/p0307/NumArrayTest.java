@@ -1,7 +1,9 @@
 package org.gd.leetcode.p0307;
 
-import org.gd.common.SegmentTree;
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.gd.leetcode.common.SegmentTree;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +11,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -27,7 +30,7 @@ class NumArrayTest {
 
         return Stream.of(
                 TestCase.of(new int[]{5, 18, 13},
-                        List.of(
+                        java.util.Arrays.asList(
                                 SumSubCases.of(0, 2, 36),
                                 UpdateSubCases.of(1, -1),
                                 UpdateSubCases.of(2, 3),
@@ -37,7 +40,7 @@ class NumArrayTest {
                         )),
                 TestCase.of(
                         new int[]{1, 2, 3, 4},
-                        List.of(
+                        java.util.Arrays.asList(
                                 SumSubCases.of(0, 2, 6),
                                 UpdateSubCases.of(0, 3),
                                 SumSubCases.of(0, 2, 8)
@@ -67,8 +70,6 @@ class NumArrayTest {
 
                 subCase.doAssert(numArray);
                 System.out.printf("NumArray: %n%s", numArray);
-
-                System.out.println("-".repeat(80));
             }
         } catch (Throwable e) {
 

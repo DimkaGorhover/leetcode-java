@@ -1,11 +1,15 @@
 package org.gd.leetcode.p0173;
 
 import org.gd.leetcode.common.TreeNode;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link BSTIterator}
@@ -16,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class BSTIteratorTest {
 
     @Test
-    @DisplayName("Next")
+    @DisplayName("PreSortedListBSTIterator")
     void test_Next() throws Exception {
-        BSTIterator iterator = new BSTIterator(TreeNode.of(7, 3, 15, null, null, 9, 20));
+        BSTIterator iterator = new PreSortedListBSTIterator(TreeNode.of(7, 3, 15, null, null, 9, 20));
         assertEquals(3, iterator.next());
         assertEquals(7, iterator.next());
         assertTrue(iterator.hasNext());

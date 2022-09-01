@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0173;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 
@@ -24,37 +24,18 @@ import java.util.NoSuchElementException;
                 LeetCode.Tags.TREE,
                 LeetCode.Tags.DESIGN
         })
-class BSTIterator {
-
-    private final ArrayList<Integer> nodes;
-    private int index;
+abstract class BSTIterator {
 
     public BSTIterator(TreeNode root) {
-        nodes = createNodes(new ArrayList<>(), root);
-        nodes.sort(Integer::compare);
-        index = 0;
-    }
-
-    private static ArrayList<Integer> createNodes(ArrayList<Integer> nodes, TreeNode node) {
-        if (node != null) {
-            nodes.add(node.val);
-            createNodes(nodes, node.left);
-            createNodes(nodes, node.right);
-        }
-        return nodes;
     }
 
     /**
      * @return whether we have a next smallest number
      */
-    public boolean hasNext() { return index < nodes.size(); }
+    public abstract boolean hasNext();
 
     /**
      * @return the next smallest number
      */
-    public int next() {
-        if (!hasNext())
-            throw new NoSuchElementException();
-        return nodes.get(index++);
-    }
+    public abstract int next();
 }

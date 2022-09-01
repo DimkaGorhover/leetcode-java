@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0239;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -3,7 +3,7 @@ package org.gd.leetcode.p0349;
 import org.gd.leetcode.common.LeetCode;
 
 /**
- * https://leetcode.com/problems/intersection-of-two-arrays/
+ * <a href="https://leetcode.com/problems/intersection-of-two-arrays/">LeetCode #349: Intersection of Two Arrays</a>
  *
  * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0350.Solution

@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0692;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link Solution}
@@ -27,12 +28,12 @@ class SolutionTest {
                 Arguments.of(
                         new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"},
                         4,
-                        List.of("the", "is", "sunny", "day")),
+                        java.util.Arrays.asList("the", "is", "sunny", "day")),
 
                 Arguments.of(
                         new String[]{"i", "love", "leetcode", "i", "love", "coding"},
                         2,
-                        List.of("i", "love"))
+                        java.util.Arrays.asList("i", "love"))
         );
     }
 

@@ -4,7 +4,7 @@ import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.ListNode;
 
 /**
- * https://leetcode.com/problems/add-two-numbers/
+ * <a href="https://leetcode.com/problems/add-two-numbers/">LeetCode #2: Add Two Numbers</a>
  */
 @LeetCode(
         name = "Add Two Numbers",
@@ -38,8 +38,9 @@ class Solution {
             if (l2 != null) l2 = l2.next;
         }
 
-        if (sum != 0)
+        if (sum != 0) {
             swap(tail, sum);
+        }
 
         return head.next;
     }

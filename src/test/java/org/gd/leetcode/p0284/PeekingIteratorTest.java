@@ -1,11 +1,15 @@
 package org.gd.leetcode.p0284;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link PeekingIterator}
@@ -18,7 +22,7 @@ class PeekingIteratorTest {
     @DisplayName("LeetCode #284: Peeking Iterator")
     void test_Peek() throws Exception {
 
-        PeekingIterator<Integer> iterator = new PeekingIterator<>(List.of(1, 2, 3, 4, 5).iterator());
+        PeekingIterator<Integer> iterator = new PeekingIterator<>(Arrays.asList(1, 2, 3, 4, 5).iterator());
 
         assertTrue(iterator.hasNext());
 

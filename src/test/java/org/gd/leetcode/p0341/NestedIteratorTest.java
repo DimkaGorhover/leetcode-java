@@ -1,17 +1,18 @@
 package org.gd.leetcode.p0341;
 
-import org.gd.common.CollectionUtils;
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.gd.leetcode.common.CollectionUtils;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link NestedIterator}
@@ -41,7 +42,7 @@ class NestedIteratorTest {
         assertEquals(
                 21,
                 count(
-                        List.of(
+                        java.util.Arrays.asList(
                                 NestedInteger.of(1),
                                 NestedInteger.of(2),
                                 ListNestedInteger.of(
@@ -71,11 +72,11 @@ class NestedIteratorTest {
     private static Stream<Arguments> args() {
         return Stream.of(
                 Arguments.of(
-                        List.of(
+                        java.util.Arrays.asList(
                                 NestedInteger.of(1, 1),
                                 NestedInteger.of(2),
                                 NestedInteger.of(1, 1)),
-                        List.of(1, 1, 2, 1, 1))
+                        java.util.Arrays.asList(1, 1, 2, 1, 1))
         );
     }
 

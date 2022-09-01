@@ -5,7 +5,7 @@ import java.util.*;
 import static java.util.Objects.requireNonNull;
 
 /**
- * @see org.gd.leetcode.p0077.Solution
+ * @see Solution
  * @since 2019-09-20
  */
 @SuppressWarnings({"DuplicatedCode"})

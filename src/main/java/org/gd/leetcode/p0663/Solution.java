@@ -2,7 +2,7 @@ package org.gd.leetcode.p0663;
 
 import java.util.Stack;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 

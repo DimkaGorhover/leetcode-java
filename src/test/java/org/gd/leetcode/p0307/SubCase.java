@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0307;
 
-import org.gd.common.SegmentTree;
+import org.gd.leetcode.common.SegmentTree;
 
 /**
  * @author Horkhover D.

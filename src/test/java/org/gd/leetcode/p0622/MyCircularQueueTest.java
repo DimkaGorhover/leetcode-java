@@ -1,6 +1,8 @@
 package org.gd.leetcode.p0622;
 
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +11,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link MyCircularQueue}

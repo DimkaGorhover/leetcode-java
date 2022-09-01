@@ -15,17 +15,22 @@ import java.util.List;
 @LeetCode(difficulty = LeetCode.Level.MEDIUM)
 class Solution {
 
-    private static List<Integer> rightSideView(List<Integer> list, TreeNode root, int level) {
-        if (root == null)
-            return list;
-        if (level == list.size())
+    private List<Integer> list;
+
+    private void traverse(TreeNode root, int level) {
+        if (root == null) {
+            return;
+        }
+        if (level == list.size()) {
             list.add(root.val);
-        rightSideView(list, root.right, level + 1);
-        rightSideView(list, root.left, level + 1);
-        return list;
+        }
+        traverse(root.right, level + 1);
+        traverse(root.left, level + 1);
     }
 
     public List<Integer> rightSideView(TreeNode root) {
-        return rightSideView(new ArrayList<>(), root, 0);
+        list = new ArrayList<>();
+        traverse(root, 0);
+        return list;
     }
 }

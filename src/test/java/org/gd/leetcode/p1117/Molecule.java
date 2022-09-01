@@ -2,7 +2,7 @@ package org.gd.leetcode.p1117;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.gd.common.SafeRunnable;
+import org.gd.leetcode.common.SafeRunnable;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;

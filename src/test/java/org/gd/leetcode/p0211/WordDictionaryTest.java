@@ -1,10 +1,11 @@
 package org.gd.leetcode.p0211;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import lombok.var;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link WordDictionary}
@@ -46,9 +47,9 @@ class WordDictionaryTest {
 
         assertFalse(dict.search("a"));
         assertFalse(dict.search(".at"));
-        
+
         dict.addWord("bat");
-        
+
         assertTrue(dict.search(".at"));
         assertTrue(dict.search("an."));
         assertFalse(dict.search("a.d."));

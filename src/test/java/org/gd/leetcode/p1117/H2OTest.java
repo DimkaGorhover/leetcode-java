@@ -1,7 +1,8 @@
 package org.gd.leetcode.p1117;
 
 import lombok.NonNull;
-import org.gd.common.Utils;
+import lombok.var;
+import org.gd.leetcode.common.Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.gd.leetcode.common.CollectionUtils.setOf;
 
 /**
  * Test for {@link H2O}.
@@ -29,13 +31,13 @@ class H2OTest {
         return Stream.of(
                 Arguments.of(
                         "HOH",
-                        Set.of("HHO", "HOH", "OHH")),
+                        setOf("HHO", "HOH", "OHH")),
                 Arguments.of(
                         "OOHHHH",
-                        Set.of("HOHHHO", "OHHHHO", "HHOHOH", "HOHHOH", "OHHHOH", "HHOOHH", "HOHOHH", "OHHOHH")),
+                        setOf("HOHHHO", "OHHHHO", "HHOHOH", "HOHHOH", "OHHHOH", "HHOOHH", "HOHOHH", "OHHOHH")),
                 Arguments.of(
                         "OOHHHH",
-                        Set.of("HOHHHO", "OHHHHO", "HHOHOH", "HOHHOH", "OHHHOH", "HHOOHH", "HOHOHH", "OHHOHH"))
+                        setOf("HOHHHO", "OHHHHO", "HHOHOH", "HOHHOH", "OHHHOH", "HHOOHH", "HOHOHH", "OHHOHH"))
         );
     }
 
@@ -43,7 +45,7 @@ class H2OTest {
     @MethodSource("args")
     @DisplayName("Synchronized H2O Solution")
     void synchronizedSolution(String input, Set<String> expected) {
-        String actual = doTest(new SynchronizedH2O(), input);
+        var actual = doTest(new SynchronizedH2O(), input);
         assertThat(expected).contains(actual);
     }
 
@@ -51,14 +53,14 @@ class H2OTest {
     @MethodSource("args")
     @DisplayName("Semaphore H2O Solution")
     void semaphoreSolution(String input, Set<String> expected) {
-        String actual = doTest(new SemaphoreH2O(), input);
+        var actual = doTest(new SemaphoreH2O(), input);
         assertThat(expected).contains(actual);
     }
 
     @NonNull
     private static String doTest(@NonNull H2O solution, @NonNull String input) {
 
-        StringBuffer sb = new StringBuffer();
+        var sb = new StringBuffer();
 
         Molecule.createThreads(input, solution, sb)
                 .parallel()

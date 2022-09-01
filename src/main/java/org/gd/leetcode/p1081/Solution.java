@@ -1,6 +1,6 @@
 package org.gd.leetcode.p1081;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 /**

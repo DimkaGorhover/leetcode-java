@@ -54,7 +54,7 @@ class Solution {
         List<String> strings = new ArrayList<>(count);
         for (int i = 0; i < arr.length; i++) {
             while (arr[i] > 0) {
-                strings.add(Character.toString(i + 'a'));
+                strings.add(Character.toString((char) (i + 'a')));
                 arr[i]--;
             }
         }

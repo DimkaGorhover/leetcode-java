@@ -1,13 +1,13 @@
 package org.gd.leetcode.p0542;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 
 /**
  * https://leetcode.com/problems/01-matrix/
  */
 @SuppressWarnings("SpellCheckingInspection")
-@Repeat("FUUUUUCKING DYNAMIC PROGRAMMING")
+@Repeat("Dynamic Progremming")
 @LeetCode(
         name = "01 Matrix",
         difficulty = LeetCode.Level.MEDIUM,

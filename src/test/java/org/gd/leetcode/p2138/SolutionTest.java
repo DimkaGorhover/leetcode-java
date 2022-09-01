@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -25,8 +26,8 @@ class SolutionTest {
     @NonNull
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of("abcdefghi", 3, "x", List.of("abc", "def", "ghi")),
-                Arguments.of("abcdefghij", 3, "x", List.of("abc", "def", "ghi", "jxx"))
+                Arguments.of("abcdefghi", 3, "x", Arrays.asList("abc", "def", "ghi")),
+                Arguments.of("abcdefghij", 3, "x", Arrays.asList("abc", "def", "ghi", "jxx"))
         );
     }
 
@@ -36,6 +37,6 @@ class SolutionTest {
     @SneakyThrows
     void test_divideString(String s, int k, char fill, List<String> expected) {
         String[] actual = new Solution().divideString(s, k, fill);
-        assertThat(List.of(actual)).isEqualTo(expected);
+        assertThat(actual).containsExactlyElementsOf(expected);
     }
 }

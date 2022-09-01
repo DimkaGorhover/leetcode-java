@@ -1,11 +1,15 @@
 package org.gd.leetcode.p0381;
 
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link RandomizedCollection}
@@ -44,13 +48,13 @@ class RandomizedCollectionTest {
         assertFalse(collection.insert(0));
         assertFalse(collection.insert(1));
 
-        var expected = Set.of(0, 1);
+        var expected = org.gd.leetcode.common.CollectionUtils.setOf(0, 1);
         for (int i = 0; i < 1000; i++)
             assertTrue(expected.contains(collection.getRandom()));
 
         assertTrue(collection.remove(0));
 
-        expected = Set.of(0, 1);
+        expected = org.gd.leetcode.common.CollectionUtils.setOf(0, 1);
         for (int i = 0; i < 1000; i++)
             assertTrue(expected.contains(collection.getRandom()));
 

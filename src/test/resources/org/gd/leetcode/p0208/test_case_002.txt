@@ -1,3 +1,0 @@
-["Trie","insert","search","search","search","startsWith","startsWith","startsWith"]
-[[],["hello"],["hell"],["helloa"],["hello"],["hell"],["helloa"],["hello"]]
-[null,null,false,false,true,true,false,true]

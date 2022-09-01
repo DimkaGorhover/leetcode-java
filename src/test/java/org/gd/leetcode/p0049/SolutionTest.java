@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0049;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SolutionTest {
 
@@ -24,15 +24,15 @@ class SolutionTest {
                                 "dis", "fop", "low", "bop", "apt", "dun", "ben", "paw", "ere", "bad", "ill",
                                 "fla", "mop", "tut", "sol", "peg", "pop", "les"
                         },
-                        List.of(
-                                List.of("pop"), List.of("peg"), List.of("fla"), List.of("ill"), List.of("bad"),
-                                List.of("tut"), List.of("ere"), List.of("paw"), List.of("sol"), List.of("dun"),
-                                List.of("bop"), List.of("low"), List.of("dis"), List.of("bob"), List.of("rep"),
-                                List.of("woe"), List.of("ion"), List.of("mop"), List.of("tie"), List.of("wyo"),
-                                List.of("tit"), List.of("les"), List.of("who"), List.of("fop"), List.of("hot"),
-                                List.of("ron"), List.of("gay"), List.of("gte"), List.of("moe"), List.of("lee"),
-                                List.of("huh"), List.of("lip"), List.of("jay"), List.of("tow"), List.of("may"),
-                                List.of("ben"), List.of("bay"), List.of("doe"), List.of("apt", "apt")
+                        java.util.Arrays.asList(
+                                java.util.Arrays.asList("pop"), java.util.Arrays.asList("peg"), java.util.Arrays.asList("fla"), java.util.Arrays.asList("ill"), java.util.Arrays.asList("bad"),
+                                java.util.Arrays.asList("tut"), java.util.Arrays.asList("ere"), java.util.Arrays.asList("paw"), java.util.Arrays.asList("sol"), java.util.Arrays.asList("dun"),
+                                java.util.Arrays.asList("bop"), java.util.Arrays.asList("low"), java.util.Arrays.asList("dis"), java.util.Arrays.asList("bob"), java.util.Arrays.asList("rep"),
+                                java.util.Arrays.asList("woe"), java.util.Arrays.asList("ion"), java.util.Arrays.asList("mop"), java.util.Arrays.asList("tie"), java.util.Arrays.asList("wyo"),
+                                java.util.Arrays.asList("tit"), java.util.Arrays.asList("les"), java.util.Arrays.asList("who"), java.util.Arrays.asList("fop"), java.util.Arrays.asList("hot"),
+                                java.util.Arrays.asList("ron"), java.util.Arrays.asList("gay"), java.util.Arrays.asList("gte"), java.util.Arrays.asList("moe"), java.util.Arrays.asList("lee"),
+                                java.util.Arrays.asList("huh"), java.util.Arrays.asList("lip"), java.util.Arrays.asList("jay"), java.util.Arrays.asList("tow"), java.util.Arrays.asList("may"),
+                                java.util.Arrays.asList("ben"), java.util.Arrays.asList("bay"), java.util.Arrays.asList("doe"), java.util.Arrays.asList("apt", "apt")
                         )
                 )
         );

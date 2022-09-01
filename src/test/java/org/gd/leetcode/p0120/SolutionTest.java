@@ -1,16 +1,18 @@
 package org.gd.leetcode.p0120;
 
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * test for {@link Solution}
@@ -30,27 +32,27 @@ class SolutionTest {
             return Stream.of(
                     Arguments.of(
                             solutionFactory,
-                            List.of(
-                                    List.of(2),
-                                    List.of(3, 4),
-                                    List.of(6, 5, 7),
-                                    List.of(4, 1, 8, 3)
+                            Arrays.asList(
+                                    Arrays.asList(2),
+                                    Arrays.asList(3, 4),
+                                    Arrays.asList(6, 5, 7),
+                                    Arrays.asList(4, 1, 8, 3)
                             ), 11),
-                    Arguments.of(solutionFactory, List.of(List.of(2)), 2),
-                    Arguments.of(solutionFactory, List.of(), 0),
+                    Arguments.of(solutionFactory, Arrays.asList(Arrays.asList(2)), 2),
+                    Arguments.of(solutionFactory, Arrays.asList(), 0),
                     Arguments.of(solutionFactory, null, 0),
                     Arguments.of(
                             solutionFactory,
-                            List.of(
-                                    List.of(2),
-                                    List.of(3, 4),
-                                    List.of(4, 1, 8)
+                            Arrays.asList(
+                                    Arrays.asList(2),
+                                    Arrays.asList(3, 4),
+                                    Arrays.asList(4, 1, 8)
                             ), 6),
                     Arguments.of(
                             solutionFactory,
-                            List.of(
-                                    List.of(2),
-                                    List.of(3, 4)
+                            Arrays.asList(
+                                    Arrays.asList(2),
+                                    Arrays.asList(3, 4)
                             ), 5)
             );
         });

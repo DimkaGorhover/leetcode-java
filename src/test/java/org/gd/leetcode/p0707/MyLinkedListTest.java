@@ -1,12 +1,15 @@
 package org.gd.leetcode.p0707;
 
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Test for {@link MyLinkedList}
@@ -75,13 +78,13 @@ class MyLinkedListTest {
         assertEquals(2, ll.get(2));
 
         ll.deleteAtIndex(5);
-        assertEquals(List.of(0, 1, 2, 3, 4, 6, 7, 8, 9, 10).toString(), ll.toString());
+        assertEquals(java.util.Arrays.asList(0, 1, 2, 3, 4, 6, 7, 8, 9, 10).toString(), ll.toString());
 
         ll.deleteAtIndex(0);
-        assertEquals(List.of(1, 2, 3, 4, 6, 7, 8, 9, 10).toString(), ll.toString());
+        assertEquals(java.util.Arrays.asList(1, 2, 3, 4, 6, 7, 8, 9, 10).toString(), ll.toString());
 
         ll.deleteAtIndex(ll.size() - 1);
-        assertEquals(List.of(1, 2, 3, 4, 6, 7, 8, 9).toString(), ll.toString());
+        assertEquals(java.util.Arrays.asList(1, 2, 3, 4, 6, 7, 8, 9).toString(), ll.toString());
 
         assertEquals(3, ll.get(2));
         assertEquals(9, ll.get(7));
@@ -92,20 +95,20 @@ class MyLinkedListTest {
         ll.addAtTail(1);
         ll.addAtHead(2);
 
-        assertEquals(List.of(2, 1).toString(), ll.toString());
+        assertEquals(java.util.Arrays.asList(2, 1).toString(), ll.toString());
 
         ll.addAtIndex(1, 3);
-        assertEquals(List.of(2, 3, 1).toString(), ll.toString());
+        assertEquals(java.util.Arrays.asList(2, 3, 1).toString(), ll.toString());
     }
 
     @Test
     void test_HashCode() {
 
         MyLinkedList ll = IMyLinkedList.of();
-        assertEquals(List.of().hashCode(), ll.hashCode());
+        assertEquals(java.util.Arrays.asList().hashCode(), ll.hashCode());
 
         assertEquals(
-                List.of(1, 2, 3, 4).hashCode(),
+                java.util.Arrays.asList(1, 2, 3, 4).hashCode(),
                 IMyLinkedList.of(1, 2, 3, 4).hashCode()
         );
     }
@@ -119,10 +122,10 @@ class MyLinkedListTest {
 
     @Test
     void test_Equals() {
-        assertEquals(IMyLinkedList.of(1, 2, 3, 4), List.of(1, 2, 3, 4));
-        assertNotEquals(IMyLinkedList.of(1, 2, 3, 4), List.of(1, 2, 3, 5));
-        assertNotEquals(IMyLinkedList.of(1, 2, 3), List.of(1, 2, 3, 4));
-        assertNotEquals(IMyLinkedList.of(1, 2, 3, 4), List.of(1, 2, 3));
+        assertEquals(IMyLinkedList.of(1, 2, 3, 4), java.util.Arrays.asList(1, 2, 3, 4));
+        assertNotEquals(IMyLinkedList.of(1, 2, 3, 4), java.util.Arrays.asList(1, 2, 3, 5));
+        assertNotEquals(IMyLinkedList.of(1, 2, 3), java.util.Arrays.asList(1, 2, 3, 4));
+        assertNotEquals(IMyLinkedList.of(1, 2, 3, 4), java.util.Arrays.asList(1, 2, 3));
         assertNotEquals(IMyLinkedList.of(1, 2, 3, 4), 1);
     }
 }

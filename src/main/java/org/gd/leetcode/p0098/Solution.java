@@ -20,7 +20,7 @@ import org.gd.leetcode.common.TreeNode;
 )
 interface Solution {
 
-    private static boolean isValidBST(TreeNode root, long max, long min) {
+    static boolean isValidBST(TreeNode root, long max, long min) {
         if (root == null)
             return true;
 

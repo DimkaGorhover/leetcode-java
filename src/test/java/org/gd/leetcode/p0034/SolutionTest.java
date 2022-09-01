@@ -1,14 +1,14 @@
 package org.gd.leetcode.p0034;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.gd.common.CollectionUtils.listOf;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.gd.leetcode.common.CollectionUtils.listOf;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**

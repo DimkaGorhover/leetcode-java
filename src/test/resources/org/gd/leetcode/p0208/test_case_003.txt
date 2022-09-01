@@ -1,3 +1,0 @@
-["Trie","insert","search","search","startsWith","insert","search"]
-[[],["apple"],["apple"],["app"],["app"],["app"],["app"]]
-[null,null,true,false,true,null,true]

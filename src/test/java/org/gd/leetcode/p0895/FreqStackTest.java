@@ -1,11 +1,13 @@
 package org.gd.leetcode.p0895;
 
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link FreqStack}
@@ -25,7 +27,7 @@ class FreqStackTest {
     void pop() {
         var stack = new FreqStack();
 
-        List.of(5, 7, 5, 7, 4, 5).forEach(stack::push);
+        java.util.Arrays.asList(5, 7, 5, 7, 4, 5).forEach(stack::push);
 
         assertEquals(5, stack.pop());
         assertEquals(7, stack.pop());

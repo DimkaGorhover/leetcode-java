@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0542;
 
-import org.gd.common.CollectionUtils;
+import lombok.var;
+import org.gd.leetcode.common.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;

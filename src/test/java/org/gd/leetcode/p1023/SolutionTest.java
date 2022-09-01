@@ -1,7 +1,9 @@
 package org.gd.leetcode.p1023;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,7 +13,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Test for {@link Solution}
@@ -37,19 +41,19 @@ class SolutionTest {
                                 "ksvsjLctikgnTzqn",
                                 "knzsvzjLiknTszqn"},
                         "ksvjLiknTzqn",
-                        List.of(true, true, true, true, true, true)),
+                        java.util.Arrays.asList(true, true, true, true, true, true)),
 
                 Arguments.of(
                         strings, "FoBaT",
-                        List.of(false, true, false, false, false)),
+                        java.util.Arrays.asList(false, true, false, false, false)),
 
                 Arguments.of(
                         strings, "FoBa",
-                        List.of(true, false, true, false, false)),
+                        java.util.Arrays.asList(true, false, true, false, false)),
 
                 Arguments.of(
                         strings, "FB",
-                        List.of(true, false, true, true, false))
+                        java.util.Arrays.asList(true, false, true, true, false))
         );
     }
 

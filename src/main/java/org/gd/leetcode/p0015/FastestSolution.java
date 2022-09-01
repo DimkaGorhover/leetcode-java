@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-class FastestSolution {
+class FastestSolution implements Solution {
 
     public List<List<Integer>> threeSum(int[] nums) {
         if (nums.length < 3) return Collections.emptyList();

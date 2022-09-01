@@ -1,7 +1,9 @@
 package org.gd.leetcode.p0239;
 
-import org.gd.common.IOUtils;
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.gd.leetcode.common.IOUtils;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,8 +13,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.gd.common.CollectionUtils.listOf;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.gd.leetcode.common.CollectionUtils.listOf;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link Solution};
@@ -32,7 +34,7 @@ class SolutionTest {
 
     private static Stream<Arguments> testCase001() {
 
-        List<String> fileNames = List.of(
+        List<String> fileNames = java.util.Arrays.asList(
                 "test_case_001.txt"
         );
 

@@ -1,6 +1,6 @@
 package org.gd.leetcode.p0916;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 
 import java.util.Arrays;
 import java.util.List;

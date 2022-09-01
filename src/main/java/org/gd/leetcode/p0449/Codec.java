@@ -45,24 +45,24 @@ class Codec {
     @SuppressWarnings("EnhancedSwitchMigration")
     static class Nodes {
 
-        private final Codec.Node[] nodes;
+        private final Node[] nodes;
         private int size = 0;
         private int nextId = 0;
 
-        private Nodes(Codec.Node[] nodes) {
+        private Nodes(Node[] nodes) {
             this.nodes = nodes;
-            for (Codec.Node node : nodes) {
+            for (Node node : nodes) {
                 if (node != null)
                     size++;
             }
         }
 
         private Nodes(TreeNode treeNode) {
-            nodes = new Codec.Node[size(treeNode)];
+            nodes = new Node[size(treeNode)];
             fill('p', treeNode, null);
         }
 
-        static Nodes of(Codec.Node... nodes) {
+        static Nodes of(Node... nodes) {
             return new Nodes(nodes);
         }
 
@@ -74,11 +74,11 @@ class Codec {
             return new NodesReader(text).read();
         }
 
-        private void fill(char side, TreeNode treeNode, Codec.Node parent) {
+        private void fill(char side, TreeNode treeNode, Node parent) {
             if (treeNode != null) {
                 int id = nextId++;
                 size++;
-                nodes[id] = new Codec.Node(side, id, (parent == null ? -1 : parent.id), treeNode);
+                nodes[id] = new Node(side, id, (parent == null ? -1 : parent.id), treeNode);
                 fill('l', treeNode.left, nodes[id]);
                 fill('r', treeNode.right, nodes[id]);
             }
@@ -86,7 +86,7 @@ class Codec {
 
         TreeNode toTree() {
             for (int i = 1; i < size; i++) {
-                Codec.Node node = nodes[i];
+                Node node = nodes[i];
                 TreeNode treeNode = node.treeNode;
                 if (node.parentId >= 0) {
                     TreeNode parent = nodes[node.parentId].treeNode;
@@ -200,7 +200,7 @@ class Codec {
         Nodes read() {
             int length = nextInt();
             cursor++;
-            Codec.Node[] nodes = new Codec.Node[length];
+            Node[] nodes = new Node[length];
             for (int i = 0; i < length; i++) {
                 char side = next();
                 cursor++;
@@ -210,7 +210,7 @@ class Codec {
                 cursor++;
                 int value = nextInt();
                 cursor++;
-                nodes[id] = new Codec.Node(side, id, parentId, value);
+                nodes[id] = new Node(side, id, parentId, value);
             }
             return Nodes.of(nodes);
         }

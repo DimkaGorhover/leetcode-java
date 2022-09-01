@@ -5,8 +5,10 @@ import org.gd.leetcode.common.LeetCode;
 /**
  * https://leetcode.com/problems/implement-trie-prefix-tree/
  *
+ * @see org.gd.leetcode.p0212.Solution
  * @since 2019-09-24
  */
+@SuppressWarnings("JavadocReference")
 @LeetCode(
         name = "Implement Trie (Prefix Tree)",
         difficulty = LeetCode.Level.MEDIUM,
@@ -19,8 +21,7 @@ class Trie {
 
     private static final int NODES_LENGTH = 'z' - 'a' + 1;
 
-    private boolean isWord;
-    private Trie[] children;
+    private Node root;
     private int minWordLength = Integer.MAX_VALUE;
     private int maxWordLength = 0;
 
@@ -39,14 +40,21 @@ class Trie {
         final int wordLength = word.length();
         minWordLength = Math.min(minWordLength, wordLength);
         maxWordLength = Math.max(maxWordLength, wordLength);
-        Trie trie = this;
+
+        Node trie = root;
+        if (trie == null) {
+            trie = root = new Node();
+        }
+
         for (int i = 0; i < wordLength; i++) {
-            if (trie.children == null)
-                trie.children = new Trie[NODES_LENGTH];
+            if (trie.children == null) {
+                trie.children = new Node[NODES_LENGTH];
+            }
             int index = word.charAt(i) - 'a';
-            Trie child = trie.children[index];
-            if (child == null)
-                trie.children[index] = child = new Trie();
+            Node child = trie.children[index];
+            if (child == null) {
+                trie.children[index] = child = new Node();
+            }
             trie = child;
         }
         trie.isWord = true;
@@ -56,9 +64,10 @@ class Trie {
      * @return {@code true} if the word is in the trie.
      */
     public boolean search(String word) {
-        if (word == null || word.length() == 0 || children == null || minWordLength > word.length())
+        if (word == null || word.length() == 0 || root == null || root.children == null || minWordLength > word.length()) {
             return false;
-        Trie trie = searchTrie(word);
+        }
+        Node trie = searchTrie(word);
         return trie != null && trie.isWord;
     }
 
@@ -67,21 +76,31 @@ class Trie {
      */
     public boolean startsWith(String prefix) {
         if (prefix == null) return false;
-        if (prefix.isEmpty()) return children != null;
-        if (children == null) return false;
+        if (prefix.isEmpty()) return root != null;
         return searchTrie(prefix) != null;
     }
 
-    private Trie searchTrie(String prefix) {
-        int length = prefix.length();
-        if (length > maxWordLength)
+    private Node searchTrie(String prefix) {
+        if (prefix == null) {
             return null;
-        Trie trie = this;
+        }
+        int length = prefix.length();
+        Node trie = root;
+        if (trie == null || length > maxWordLength) {
+            return null;
+        }
         for (int i = 0; i < length && trie != null; i++) {
-            if (trie.children == null)
+            if (trie.children == null) {
                 return null;
+            }
             trie = trie.children[prefix.charAt(i) - 'a'];
         }
         return trie;
+    }
+
+    static class Node {
+
+        Node[] children;
+        boolean isWord;
     }
 }

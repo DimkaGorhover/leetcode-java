@@ -1,6 +1,6 @@
 package org.gd.leetcode.p1373;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 import org.gd.leetcode.common.LeetCode;
 import org.gd.leetcode.common.TreeNode;
 

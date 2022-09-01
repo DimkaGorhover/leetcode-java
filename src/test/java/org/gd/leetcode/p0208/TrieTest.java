@@ -1,16 +1,20 @@
 package org.gd.leetcode.p0208;
 
-import org.junit.jupiter.api.*;
+import lombok.val;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link Trie}
@@ -23,7 +27,7 @@ class TrieTest {
     @SuppressWarnings("CodeBlock2Expr")
     private static Stream<Arguments> fileTestCasesArguments() {
 
-        var testCasesFileNames = List.of(
+        val testCasesFileNames = Arrays.asList(
                 "test_case_001.txt",
                 "test_case_002.txt",
                 "test_case_003.txt",
@@ -43,7 +47,7 @@ class TrieTest {
     private static Stream<Arguments> customManualArguments() {
         String word0 = TrieTestUtils.generateRandomLongWord();
         return Stream.of(
-                new TestCase("custom", List.of(
+                new TestCase("custom", Arrays.asList(
                         trie -> assertFalse(trie.search("apple")),
                         trie -> assertFalse(trie.search(TrieTestUtils.generateRandomLongWord())),
                         trie -> assertFalse(trie.search(TrieTestUtils.generateRandomLongWord())),

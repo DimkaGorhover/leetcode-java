@@ -1,6 +1,6 @@
 package org.gd.leetcode.p1289;
 
-import org.gd.common.Repeat;
+import org.gd.leetcode.common.Repeat;
 
 /**
  * @author Horkhover Dmytro

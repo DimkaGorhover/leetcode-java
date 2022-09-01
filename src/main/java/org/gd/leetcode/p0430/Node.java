@@ -1,17 +1,10 @@
 package org.gd.leetcode.p0430;
 
-import lombok.EqualsAndHashCode;
+import java.util.Objects;
 
-@EqualsAndHashCode(doNotUseGetters = true)
 class Node {
     public int val;
-
-    @EqualsAndHashCode.Exclude
-    public Node prev;
-
-    public Node next;
-
-    public Node child;
+    public Node prev, next, child;
 
     Node() {
     }
@@ -25,6 +18,19 @@ class Node {
         for (int i = 1; i < values.length; i++)
             prev = Solution.connect(prev, new Node(values[i]));
         return head;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Node)) return false;
+        Node node = (Node) o;
+        return val == node.val && Objects.equals(next, node.next) && Objects.equals(child, node.child);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val, next, child);
     }
 
     @Override

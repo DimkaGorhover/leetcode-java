@@ -1,8 +1,8 @@
 package org.gd.leetcode.p1352;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProductOfNumbersTest {
 

@@ -2,6 +2,7 @@ package org.gd.leetcode.p0037;
 
 import org.gd.leetcode.common.LeetCode;
 
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 /**
@@ -102,11 +103,17 @@ class Solution {
         solve();
     }
 
+    private static String lineForLength(int length) {
+        char[] chars = new char[length];
+        Arrays.fill(chars, '-');
+        return new String(chars);
+    }
+
     @Override
     public String toString() {
 
         StringJoiner all = new StringJoiner("\n");
-        all.add("-".repeat(25));
+        all.add(lineForLength(25));
 
         for (int row = 0; row < 9; row++) {
 
@@ -123,7 +130,7 @@ class Solution {
             String s = line.toString();
             all.add(s);
             if (row % 3 == 2)
-                all.add("-".repeat(s.length()));
+                all.add(lineForLength(s.length()));
         }
 
         return all.toString();

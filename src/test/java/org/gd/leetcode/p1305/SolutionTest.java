@@ -1,7 +1,8 @@
 package org.gd.leetcode.p1305;
 
 import org.gd.leetcode.common.TreeNode;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link Solution}
@@ -28,12 +29,12 @@ class SolutionTest {
                 Arguments.of(
                         TreeNode.of(0, -10, 10),
                         TreeNode.of(5, 1, 7, 0, 2),
-                        List.of(-10, 0, 0, 1, 2, 5, 7, 10)),
+                        java.util.Arrays.asList(-10, 0, 0, 1, 2, 5, 7, 10)),
 
                 Arguments.of(
                         TreeNode.of(2, 1, 4),
                         TreeNode.of(1, 0, 3),
-                        List.of(0, 1, 1, 2, 3, 4))
+                        java.util.Arrays.asList(0, 1, 1, 2, 3, 4))
         );
     }
 

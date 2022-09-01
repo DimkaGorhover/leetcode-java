@@ -2,16 +2,22 @@ package org.gd.leetcode.p0040;
 
 import org.gd.leetcode.common.LeetCode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
- * https://leetcode.com/problems/combination-sum-ii/
+ * <a href="https://leetcode.com/problems/combination-sum-ii/">40. Combination Sum II</a>
  *
  * @see org.gd.leetcode.p0039.Solution
  * @see org.gd.leetcode.p0337.Solution
  */
 @SuppressWarnings({"JavadocReference", "DuplicatedCode"})
 @LeetCode(
+        name = "40. Combination Sum II",
         difficulty = LeetCode.Level.MEDIUM,
         state = LeetCode.State.DONE,
         tags = {
@@ -72,8 +78,9 @@ class Solution {
         this.results = new HashSet<>();
         this.candidates = candidates;
 
-        if (!isSorted(candidates))
+        if (!isSorted(candidates)) {
             Arrays.sort(candidates);
+        }
 
         combine(Collections.emptyList(), 0, 0);
 

@@ -3,6 +3,7 @@ package org.gd.leetcode.p0001;
 import org.gd.leetcode.common.LeetCode;
 
 import java.util.HashMap;
+import java.util.Properties;
 
 /**
  * https://leetcode.com/problems/two-sum/

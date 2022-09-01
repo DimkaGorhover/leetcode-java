@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0131;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +10,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link Solution}
@@ -23,13 +25,13 @@ class SolutionTest {
 
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of("caba", List.of(
-                        List.of("c", "aba"),
-                        List.of("c", "a", "b", "a")
+                Arguments.of("caba", java.util.Arrays.asList(
+                        java.util.Arrays.asList("c", "aba"),
+                        java.util.Arrays.asList("c", "a", "b", "a")
                 )),
-                Arguments.of("aab", List.of(
-                        List.of("aa", "b"),
-                        List.of("a", "a", "b")
+                Arguments.of("aab", java.util.Arrays.asList(
+                        java.util.Arrays.asList("aa", "b"),
+                        java.util.Arrays.asList("a", "a", "b")
                 ))
         );
     }

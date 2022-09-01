@@ -1,6 +1,10 @@
 package org.gd.leetcode.common;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @author Horkhover Dmytro
@@ -48,6 +52,7 @@ public @interface LeetCode {
         UNION_FIND("Union Find"),
         DIVIDE_AND_CONQUER("Divide and Conquer"),
         BINARY_SEARCH_TREE("Binary Search Tree"),
+        BINARY_TREE("Binary Tree"),
         TRIE("Trie"),
         RECURSION("Recursion"),
         QUEUE("Queue"),
@@ -67,10 +72,16 @@ public @interface LeetCode {
         SLIDING_WINDOW("Sliding Window"),
         REJECTION_SAMPLING("Rejection Sampling"),
         RESERVOIR_SAMPLING("Reservoir Sampling"),
-        MEMOIZATION("Memoization");
+        MEMOIZATION("Memoization"),
+
+        QUICK_SELECT("Quick Select"),
+        DATA_STREAM("Data Stream"),
+        SIMULATION("Simulation");
 
         public final String name;
 
         Tags(String name) { this.name = name; }
+
+        String getName() { return name; }
     }
 }

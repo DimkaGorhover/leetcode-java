@@ -1,16 +1,14 @@
 package org.gd.leetcode.p0304;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.parallel.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.parallel.ExecutionMode.*;
 
 /**
  * Test for {@link NumMatrix}
@@ -28,7 +26,7 @@ class NumMatrixTest {
                         new int[][]{
                                 {1, 2, 3, 4, 5}
                         },
-                        List.of(
+                        java.util.Arrays.asList(
                                 SubCase.builder()
                                         .setLeft(0, 0)
                                         .setRight(0, 1)
@@ -48,7 +46,7 @@ class NumMatrixTest {
                                 {4, 1, 0, 1, 7},
                                 {1, 0, 3, 0, 5}
                         },
-                        List.of(
+                        java.util.Arrays.asList(
                                 SubCase.builder()
                                         .setLeft(2, 1)
                                         .setRight(4, 3)

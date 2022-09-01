@@ -1,10 +1,10 @@
 package org.gd.leetcode.p0022;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.gd.leetcode.common.CollectionUtils.setOf;
 
 /**
  * Test for {@link Solution}
@@ -14,17 +14,13 @@ class SolutionTest {
 
     @Test
     void test() {
-
-        var expected = Set.of(
+        Solution solution = new Solution();
+        assertThat(solution.generateParenthesis(3)).containsExactlyElementsOf(setOf(
                 "((()))",
                 "(()())",
                 "(())()",
                 "()(())",
                 "()()()"
-        );
-
-        var actual = Set.copyOf(new Solution().generateParenthesis(3));
-
-        assertEquals(expected, actual);
+        ));
     }
 }

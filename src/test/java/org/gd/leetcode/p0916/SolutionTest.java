@@ -1,6 +1,7 @@
 package org.gd.leetcode.p0916;
 
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link Solution}
@@ -52,25 +53,25 @@ class SolutionTest {
                                     solutionFactory,
                                     new String[]{"amazon", "apple", "facebook", "google", "leetcode"},
                                     new String[]{"lo", "eo"},
-                                    List.of("google", "leetcode")
+                                    java.util.Arrays.asList("google", "leetcode")
                             ),
                             Arguments.of(
                                     solutionFactory,
                                     new String[]{"amazon", "apple", "facebook", "google", "leetcode"},
                                     new String[]{"e", "o"},
-                                    List.of("facebook", "google", "leetcode")
+                                    java.util.Arrays.asList("facebook", "google", "leetcode")
                             ),
                             Arguments.of(
                                     solutionFactory,
                                     new String[]{"amazon", "apple", "facebook", "google", "leetcode"},
                                     new String[]{"l", "e"},
-                                    List.of("apple", "google", "leetcode")
+                                    java.util.Arrays.asList("apple", "google", "leetcode")
                             ),
                             Arguments.of(
                                     solutionFactory,
                                     new String[]{"amazon", "apple", "facebook", "google", "leetcode"},
                                     new String[]{"e", "oo"},
-                                    List.of("facebook", "google")
+                                    java.util.Arrays.asList("facebook", "google")
                             )
                     );
                 });

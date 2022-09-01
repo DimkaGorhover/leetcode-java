@@ -32,12 +32,12 @@ enum TestCaseOperation {
     public abstract TestAssertion createTestAssertion(@NonNull RawTestCaseEntry entry);
 
     public static TestCaseOperation of(@NonNull String name) {
-        return switch (name) {
-            case "Trie" -> CONSTRUCTOR;
-            case "insert" -> INSERT;
-            case "startsWith" -> START_WITH;
-            case "search" -> SEARCH;
-            default -> throw new UnsupportedOperationException(String.format("Operation \"%s\" is not supported", name));
-        };
+        switch (name) {
+            case "Trie": return CONSTRUCTOR;
+            case "insert": return INSERT;
+            case "startsWith": return START_WITH;
+            case "search": return SEARCH;
+        }
+        throw new UnsupportedOperationException(String.format("Operation \"%s\" is not supported", name));
     }
 }

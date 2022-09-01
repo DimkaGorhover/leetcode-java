@@ -1,11 +1,12 @@
 package org.gd.leetcode.p1381;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @see CustomStack
@@ -20,25 +21,25 @@ class CustomStackTest {
         CustomStack customStack = new CustomStack(3);
         assertEquals(-1, customStack.pop());
         assertEquals(-1, customStack.pop());
-        assertEquals(List.of().toString(), customStack.toString());
+        assertEquals(java.util.Arrays.asList().toString(), customStack.toString());
 
         customStack.push(1);
-        assertEquals(List.of(1).toString(), customStack.toString());
+        assertEquals(java.util.Arrays.asList(1).toString(), customStack.toString());
 
         customStack.push(2);
-        assertEquals(List.of(1, 2).toString(), customStack.toString());
+        assertEquals(java.util.Arrays.asList(1, 2).toString(), customStack.toString());
 
         assertEquals(2, customStack.pop());
-        assertEquals(List.of(1).toString(), customStack.toString());
+        assertEquals(java.util.Arrays.asList(1).toString(), customStack.toString());
 
         customStack.push(2);
-        assertEquals(List.of(1, 2).toString(), customStack.toString());
+        assertEquals(java.util.Arrays.asList(1, 2).toString(), customStack.toString());
 
         customStack.push(3);
-        assertEquals(List.of(1, 2, 3).toString(), customStack.toString());
+        assertEquals(java.util.Arrays.asList(1, 2, 3).toString(), customStack.toString());
 
         customStack.push(4);
-        assertEquals(List.of(1, 2, 3).toString(), customStack.toString());
+        assertEquals(java.util.Arrays.asList(1, 2, 3).toString(), customStack.toString());
 
         customStack.increment(5, 100);
 

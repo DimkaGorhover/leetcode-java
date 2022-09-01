@@ -1,16 +1,15 @@
 package org.gd.leetcode.p0068;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link Solution}
@@ -25,7 +24,7 @@ class SolutionTest {
                 Arguments.of(
                         new String[]{
                                 "This", "is", "an", "example", "of", "text", "justification."
-                        }, 16, List.of(
+                        }, 16, java.util.Arrays.asList(
                                 "This    is    an",
                                 "example  of text",
                                 "justification.  "
@@ -33,7 +32,7 @@ class SolutionTest {
                 Arguments.of(
                         new String[]{
                                 "What", "must", "be", "acknowledgment", "shall", "be"
-                        }, 16, List.of(
+                        }, 16, java.util.Arrays.asList(
                                 "What   must   be",
                                 "acknowledgment  ",
                                 "shall be        "
@@ -42,7 +41,7 @@ class SolutionTest {
                         new String[]{
                                 "Science", "is", "what", "we", "understand", "well", "enough", "to", "explain",
                                 "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"
-                        }, 20, List.of(
+                        }, 20, java.util.Arrays.asList(
                                 "Science  is  what we",
                                 "understand      well",
                                 "enough to explain to",

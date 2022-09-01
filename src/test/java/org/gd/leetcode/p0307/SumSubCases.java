@@ -2,9 +2,9 @@ package org.gd.leetcode.p0307;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import org.gd.common.SegmentTree;
+import org.gd.leetcode.common.SegmentTree;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Horkhover D.

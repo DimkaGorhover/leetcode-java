@@ -3,7 +3,7 @@ package org.gd.leetcode.p0052;
 import org.gd.leetcode.common.LeetCode;
 
 /**
- * https://leetcode.com/problems/n-queens-ii/
+ * <a href="https://leetcode.com/problems/n-queens-ii/">LeetCode #52: N-Queens II</a>
  *
  * @author Horkhover Dmytro
  * @see org.gd.leetcode.p0051.Solution

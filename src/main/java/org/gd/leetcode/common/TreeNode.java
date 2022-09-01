@@ -45,7 +45,7 @@ public class TreeNode {
         if (values.length < 1)
             throw new IllegalArgumentException("values should contain at least one element");
         final TreeNode head = new TreeNode(requireNonNull(values[0], "first value cannot be NULL"));
-        List<TreeNode> nodes = List.of(head);
+        List<TreeNode> nodes = Collections.singletonList(head);
         int i = 1;
         TreeNode tmp;
         while (!nodes.isEmpty()) {

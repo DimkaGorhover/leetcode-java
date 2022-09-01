@@ -1,13 +1,15 @@
 package org.gd.leetcode.p0355;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("LeetCode #355: Design Twitter")
 class TwitterTest {
@@ -24,7 +26,7 @@ class TwitterTest {
 
         // User 1's news feed should return a list with 1 tweet id -> [5].
         assertEquals(
-                List.of(5),
+                java.util.Arrays.asList(5),
                 twitter.getNewsFeed(1)
         );
 
@@ -38,7 +40,7 @@ class TwitterTest {
         // User 1's news feed should return a list with 2 tweet ids -> [6, 5].
         // Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.
         assertEquals(
-                List.of(6, 7, 5),
+                java.util.Arrays.asList(6, 7, 5),
                 twitter.getNewsFeed(1)
         );
 
@@ -57,7 +59,7 @@ class TwitterTest {
         // User 1's news feed should return a list with 1 tweet id -> [5],
         // since user 1 is no longer following user 2.
         assertEquals(
-                List.of(5),
+                java.util.Arrays.asList(5),
                 twitter.getNewsFeed(1)
         );
     }
@@ -76,25 +78,25 @@ class TwitterTest {
         }
 
         assertEquals(
-                List.of(150, 147, 144, 141, 138, 135, 132, 129, 126, 123),
+                java.util.Arrays.asList(150, 147, 144, 141, 138, 135, 132, 129, 126, 123),
                 twitter.getNewsFeed(2));
 
         twitter.follow(2, 1);
 
         assertEquals(
-                List.of(150, 149, 147, 146, 144, 143, 141, 140, 138, 137),
+                java.util.Arrays.asList(150, 149, 147, 146, 144, 143, 141, 140, 138, 137),
                 twitter.getNewsFeed(2));
 
         twitter.follow(2, 0);
 
         assertEquals(
-                List.of(150, 149, 148, 147, 146, 145, 144, 143, 142, 141),
+                java.util.Arrays.asList(150, 149, 148, 147, 146, 145, 144, 143, 142, 141),
                 twitter.getNewsFeed(2));
 
         twitter.unfollow(2, 1);
 
         assertEquals(
-                List.of(150, 148, 147, 145, 144, 142, 141, 139, 138, 136),
+                java.util.Arrays.asList(150, 148, 147, 145, 144, 142, 141, 139, 138, 136),
                 twitter.getNewsFeed(2));
 
     }

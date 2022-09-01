@@ -68,6 +68,7 @@ class Twitter {
         final LinkedHashMap<Integer, User> following;
 
         Tweet headTweet;
+        int tweetsCount = 0;
 
         User(int id) {
             this.id = id;
@@ -85,6 +86,7 @@ class Twitter {
 
         void addTweet(int tweetId) {
             headTweet = new Tweet(tweetId, headTweet);
+            tweetsCount++;
         }
 
         List<Integer> getNewsFeed() {
@@ -93,10 +95,9 @@ class Twitter {
 
         List<Integer> getNewsFeed(int limit) {
 
-            if (limit <= 0)
+            if (limit <= 0) {
                 return Collections.emptyList();
-
-            final ArrayList<Integer> newsFeed = new ArrayList<>(limit);
+            }
 
             final int followingSize = following.size();
 
@@ -104,6 +105,11 @@ class Twitter {
             // 1. if user has no followee
             //
             if (followingSize == 0) {
+                int capacity = Math.min(tweetsCount, limit);
+                if (capacity == 0) {
+                    return Collections.emptyList();
+                }
+                ArrayList<Integer> newsFeed = new ArrayList<>(capacity);
                 Tweet tweet = headTweet;
                 while (limit > 0 && tweet != null) {
                     newsFeed.add(tweet.id);
@@ -119,6 +125,12 @@ class Twitter {
             if (followingSize == 1) {
 
                 User followee = following.values().iterator().next();
+                int capacity = Math.min(tweetsCount + followee.tweetsCount, limit);
+                if (capacity == 0) {
+                    return Collections.emptyList();
+                }
+
+                ArrayList<Integer> newsFeed = new ArrayList<>(capacity);
 
                 Tweet tweet0 = headTweet;
                 Tweet tweet1 = followee.headTweet;
@@ -156,16 +168,28 @@ class Twitter {
             //
             PriorityQueue<Tweet> q = new PriorityQueue<>(1 + followingSize);
 
+            int capacity = tweetsCount;
+
             // add head tweet of current user
             if (headTweet != null)
                 q.add(headTweet);
 
-            // add head tweets of of all following users
+
+            // add head tweets of all following users
             for (Map.Entry<Integer, User> entry : following.entrySet()) {
-                Tweet followingHeadTweet = entry.getValue().headTweet;
+                User followee = entry.getValue();
+                capacity += followee.tweetsCount;
+                Tweet followingHeadTweet = followee.headTweet;
                 if (followingHeadTweet != null)
                     q.add(followingHeadTweet);
             }
+
+            capacity = Math.min(capacity, limit);
+            if (capacity == 0) {
+                return Collections.emptyList();
+            }
+
+            ArrayList<Integer> newsFeed = new ArrayList<>(capacity);
 
             Tweet tweet;
 

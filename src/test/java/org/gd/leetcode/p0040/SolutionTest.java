@@ -3,7 +3,8 @@ package org.gd.leetcode.p0040;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.function.*;
+import lombok.var;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,7 +13,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link Solution}
@@ -26,11 +29,11 @@ class SolutionTest {
         return Stream.of(
                 Arguments.of(
                         new int[]{10, 1, 2, 7, 6, 1, 5}, 8,
-                        List.of(
-                                List.of(1, 7),
-                                List.of(1, 2, 5),
-                                List.of(2, 6),
-                                List.of(1, 1, 6)
+                        java.util.Arrays.asList(
+                                java.util.Arrays.asList(1, 7),
+                                java.util.Arrays.asList(1, 2, 5),
+                                java.util.Arrays.asList(2, 6),
+                                java.util.Arrays.asList(1, 1, 6)
                         ))
         );
     }

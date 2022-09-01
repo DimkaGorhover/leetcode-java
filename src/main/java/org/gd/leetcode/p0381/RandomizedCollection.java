@@ -109,7 +109,7 @@ class RandomizedCollection {
      * Get a random element from the collection.
      */
     public int getRandom() {
-        if (size == 0) throw new java.util.NoSuchElementException();
+        if (size == 0) throw new NoSuchElementException();
         if (size == 1) return list.get(0);
         return list.get(rnd(size));
     }

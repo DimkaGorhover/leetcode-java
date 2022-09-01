@@ -1,13 +1,14 @@
 package org.gd.leetcode.p0208;
 
-import org.gd.common.IOUtils;
+import lombok.var;
+import org.gd.leetcode.common.IOUtils;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 final class TrieTestUtils {
 

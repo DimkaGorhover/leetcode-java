@@ -1,5 +1,6 @@
 package org.gd.leetcode.p0064;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.PriorityQueue;
 
@@ -54,7 +55,16 @@ class DijkstraSolution implements Solution {
         }
     }
 
-    record Grid(int[][] grid, int rows, int cols) {
+    static final class Grid {
+        private final int[][] grid;
+        private final int rows;
+        private final int cols;
+
+        Grid(int[][] grid, int rows, int cols) {
+            this.grid = grid;
+            this.rows = rows;
+            this.cols = cols;
+        }
 
         static Grid of(int[][] grid) {
 
@@ -63,11 +73,48 @@ class DijkstraSolution implements Solution {
 
             return new Grid(grid, grid.length, grid[0].length);
         }
+
+        public int[][] grid() {return grid;}
+
+        public int rows() {return rows;}
+
+        public int cols() {return cols;}
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            Grid that = (Grid) obj;
+            return Objects.equals(this.grid, that.grid) &&
+                    this.rows == that.rows &&
+                    this.cols == that.cols;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(grid, rows, cols);
+        }
+
+        @Override
+        public String toString() {
+            return "Grid[" +
+                    "grid=" + grid + ", " +
+                    "rows=" + rows + ", " +
+                    "cols=" + cols + ']';
+        }
+
     }
 
-    record Coordinates(int row, int col) {
+    static final class Coordinates {
 
         static final Coordinates ZERO = new Coordinates(0, 0);
+        private final int row;
+        private final int col;
+
+        Coordinates(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
 
         Coordinates right() {
             return new Coordinates(row, col + 1);
@@ -76,9 +123,44 @@ class DijkstraSolution implements Solution {
         Coordinates down() {
             return new Coordinates(row + 1, col);
         }
+
+        public int row() {return row;}
+
+        public int col() {return col;}
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            Coordinates that = (Coordinates) obj;
+            return this.row == that.row &&
+                    this.col == that.col;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(row, col);
+        }
+
+        @Override
+        public String toString() {
+            return "Coordinates[" +
+                    "row=" + row + ", " +
+                    "col=" + col + ']';
+        }
+
     }
 
-    record PathPointRecord(Grid grid, Coordinates coordinates, int sum) implements PathPoint {
+    static class PathPointRecord implements PathPoint {
+        private final Grid grid;
+        private final Coordinates coordinates;
+        private final int sum;
+
+        PathPointRecord(Grid grid, Coordinates coordinates, int sum) {
+            this.grid = grid;
+            this.coordinates = coordinates;
+            this.sum = sum;
+        }
 
         private static PathPointRecord create(Grid grid, PathPoint prev, Coordinates coordinates) {
 
@@ -95,7 +177,6 @@ class DijkstraSolution implements Solution {
             return create(Grid.of(grid), null, Coordinates.ZERO);
         }
 
-        @Override
         public int sum() { return sum; }
 
         @Override
@@ -117,6 +198,21 @@ class DijkstraSolution implements Solution {
                 return Optional.empty();
 
             return Optional.of(create(grid, this, coordinates.right()));
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof PathPointRecord)) return false;
+            PathPointRecord that = (PathPointRecord) o;
+            return sum == that.sum && Objects.equals(grid, that.grid) && Objects.equals(
+                    coordinates,
+                    that.coordinates);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(grid, coordinates, sum);
         }
     }
 }

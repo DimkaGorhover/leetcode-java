@@ -1,13 +1,15 @@
 package org.gd.leetcode.p1116;
 
-import org.junit.jupiter.api.*;
+import lombok.var;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link ZeroEvenOdd}
@@ -30,9 +32,9 @@ class ZeroEvenOddTest {
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.SECONDS);
 
-        System.out.println(List.copyOf(q));
+        System.out.println(new ArrayList<>(q));
 
-        assertEquals(List.of(0, 1, 0, 2, 0, 3, 0, 4), List.copyOf(q));
+        assertEquals(java.util.Arrays.asList(0, 1, 0, 2, 0, 3, 0, 4), new ArrayList<>(q));
     }
 
     interface TestRunnable extends Runnable {

@@ -1,7 +1,7 @@
 package org.gd.leetcode.p0304;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @since 2019-10-07

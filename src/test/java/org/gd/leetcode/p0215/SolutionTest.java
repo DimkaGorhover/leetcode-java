@@ -4,7 +4,6 @@ import lombok.NonNull;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -59,7 +58,7 @@ class SolutionTest {
     Stream<DynamicTest> test_Nullability() {
 
         List<Supplier<Solution>> solutions = Arrays.asList(
-                new Supplier<>() {
+                new Supplier<Solution>() {
                     @Override
                     public Solution get() {
                         return new SortSolution();
@@ -70,7 +69,7 @@ class SolutionTest {
                         return "SortSolution";
                     }
                 },
-                new Supplier<>() {
+                new Supplier<Solution>() {
                     @Override
                     public Solution get() {
                         return new HeapSolution();

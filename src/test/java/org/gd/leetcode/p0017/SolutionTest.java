@@ -22,9 +22,9 @@ class SolutionTest {
     @NonNull
     private static Stream<Arguments> args() {
         return Stream.of(
-                Arguments.of("23", List.of("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf")),
-                Arguments.of("", List.of()),
-                Arguments.of("2", List.of("a", "b", "c"))
+                Arguments.of("23", java.util.Arrays.asList("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf")),
+                Arguments.of("", java.util.Arrays.asList()),
+                Arguments.of("2", java.util.Arrays.asList("a", "b", "c"))
         );
     }
 
