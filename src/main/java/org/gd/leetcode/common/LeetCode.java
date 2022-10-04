@@ -42,6 +42,7 @@ public @interface LeetCode {
         BREADTH_FIRST_SEARCH("Breadth-first Search"),
         GREEDY("Greedy"),
         STACK("Stack"),
+        MONOTONIC_STACK("Monotonic Stack"),
         BACKTRACKING("Backtracking"),
         DESIGN("Design"),
         LINKED_LIST("Linked List"),
@@ -73,6 +74,7 @@ public @interface LeetCode {
         REJECTION_SAMPLING("Rejection Sampling"),
         RESERVOIR_SAMPLING("Reservoir Sampling"),
         MEMOIZATION("Memoization"),
+        ENUMERATION("Enumeration"),
 
         QUICK_SELECT("Quick Select"),
         DATA_STREAM("Data Stream"),
