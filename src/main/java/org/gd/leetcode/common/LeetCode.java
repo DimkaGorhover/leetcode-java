@@ -36,6 +36,7 @@ public @interface LeetCode {
         MATH("Math"),
         TREE("Tree"),
         HASH_TABLE("Hash Table"),
+        HASH_FUNCTION("Hash Function"),
         DEPTH_FIRST_SEARCH("Depth-first Search"),
         BINARY_SEARCH("Binary Search"),
         TWO_POINTERS("Two Pointers"),
