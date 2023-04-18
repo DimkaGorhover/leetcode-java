@@ -19,8 +19,8 @@
             junit.jupiter.execution.parallel.mode.default=concurrent
             junit.jupiter.execution.parallel.config.strategy=dynamic
         </junit5.config.properties>
-        <assertj.version>3.23.1</assertj.version>
-        <junit.version>5.9.0</junit.version>
+        <assertj.version>3.24.2</assertj.version>
+        <junit.version>5.9.2</junit.version>
     </properties>
 
     <dependencyManagement>
